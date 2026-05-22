@@ -2,8 +2,6 @@
 
 <img src="assets/oasis-banner.png" alt="O.A.S.I.S. Banner" width="100%">
 
-# O·A·S·I·S
-
 ### Operative Autonomous System for Intelligent Services
 
 **Your AI assistant. Your PC. Your rules.**
