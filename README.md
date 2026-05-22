@@ -144,6 +144,17 @@ O.A.S.I.S. walks you through a guided setup — choose your privacy settings, co
 
 Press `Ctrl + Shift + Space` from anywhere on your PC to bring O.A.S.I.S. up instantly.
 
+<br>
+
+---
+
+## Plans
+
+O.A.S.I.S. launches as a **free version** — no payment, no account, no strings attached. Download it, use it, and see what a local AI assistant can actually do.
+
+Paid plans with expanded capabilities are coming. Early community members will get priority access and the best pricing — it won't get cheaper than it is at launch.
+
+> Join the [Discord](https://discord.gg/88yfW5UwGC) to stay updated on when paid plans go live.
 
 <br>
 
@@ -231,7 +242,7 @@ The Discord server is organized so you can jump straight to what you need:
 
 **🔧 dev | support**
 - **#documentation** — guides and references *(read-only)*
-- **#bugs** — report issues with context and steps to reproduce *(read-only for posting, moderated)*
+- **#bugs** — report issues with context and steps to reproduce *(moderated)*
 - **#dev-chat** — development discussion *(private — contributors only)*
 - **#code-helpers-chat** — technical help for contributors *(private — contributors only)*
 
@@ -258,8 +269,11 @@ O.A.S.I.S. uses Gemma 4 locally by default and supports any GGUF-compatible mode
 **Is my data really private?**
 Your conversations, documents and memory never leave your PC. There are no user accounts, no cloud sync and no data collection unless you explicitly opt into anonymous crash reporting.
 
-**What's the difference between Pro and NEXUS?**
-Pro is a one-time payment that unlocks all core features permanently. NEXUS is a monthly subscription that adds connectivity features — mobile access, room microphone networks, voice cloning and real-time screen context. If you cancel NEXUS, you keep your Pro features.
+**Is it really free?**
+Yes. The initial release is completely free. Paid plans with additional features are coming — join the Discord to know when they launch and get early access pricing.
+
+**What paid plans are coming?**
+Details will be announced in the Discord before launch. Early community members get priority access and the best price — it won't get cheaper after launch.
 
 **Will it work on macOS or Linux?**
 Windows only for now. macOS and Linux are on the roadmap.
