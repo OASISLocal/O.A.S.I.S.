@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>O.A.S.I.S. — Your AI, Your Machine</title>
+    <meta name="description" content="O.A.S.I.S. runs powerful language models directly on your hardware. No cloud, no subscriptions, no data leaving your device. Chat, automate, and build — 100% private.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://github.com/OASISLocal/O.A.S.I.S.">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/OASISLocal/O.A.S.I.S./main/assets/logo-icon-64x64.png">
+
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://github.com/OASISLocal/O.A.S.I.S.">
+    <meta property="og:title"       content="O.A.S.I.S. — Your AI, Your Machine">
+    <meta property="og:description" content="Run powerful AI models on your own hardware. No cloud. No subscriptions. Fully private, fully yours.">
+    <meta property="og:image"       content="https://github.com/OASISLocal/O.A.S.I.S./og-image.png">
+    <meta property="og:image:width"  content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:site"        content="@oasis_sh">
+    <meta name="twitter:title"       content="O.A.S.I.S. — Your AI, Your Machine">
+    <meta name="twitter:description" content="Run powerful AI models on your own hardware. No cloud. No subscriptions. Fully private, fully yours.">
+    <meta name="twitter:image"       content="https://github.com/OASISLocal/O.A.S.I.S./og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* ============================================================
+           1. RESET & VARIABLES
+           ============================================================ */
+
+        :root {
+            --bg-app:     #000000;
+            --bg-surface: #0a0a0a;
+            --bg-panel:   #111111;
+            --bg-hover:   #1a1a1a;
+
+            --text-primary:   #ededed;
+            --text-secondary: #a1a1aa;
+            --text-tertiary:  #737373;
+
+            --accent:       #ffffff;
+            --accent-muted: rgba(255, 255, 255, 0.08);
+
+            --danger:  #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --info:    #60a5fa;
+
+            --border:       rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.6);
+
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+
+            --ease-out:    cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background: var(--bg-app);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--text-tertiary); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+
+        /* ============================================================
+           2. LAYOUT — Shared section scaffolding
+           ============================================================ */
+
+        section {
+            padding: 100px 24px;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-tertiary);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 540px;
+            line-height: 1.7;
+        }
+
+
+        /* ============================================================
+           3. COMPONENTS — Reusable UI elements
+           ============================================================ */
+
+        .btn-primary {
+            background: var(--text-primary);
+            color: #000;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 11px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition:
+                opacity 0.15s,
+                transform 0.2s var(--ease-bounce);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.85;
+            transform: scale(1.04);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+            opacity: 0.9;
+            transition: transform 0.08s ease, opacity 0.08s ease;
+        }
+
+        .btn-secondary {
+            background: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            padding: 11px 24px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition:
+                border-color 0.15s,
+                color 0.15s,
+                background 0.15s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        .btn-secondary:active {
+            transform: scale(0.98);
+            transition: transform 0.08s ease;
+        }
+
+        .code-label {
+            font-family: var(--font-mono);
+            background: rgba(255, 255, 255, 0.06);
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
+
+
+        /* ============================================================
+           4. NAVIGATION
+           ============================================================ */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            height: 52px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            color: var(--text-primary);
+            z-index: 1;
+        }
+
+        .nav-brand-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: color 0.15s, background 0.15s;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        .nav-cta {
+            background: var(--text-primary);
+            color: #000;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition:
+                opacity 0.15s,
+                transform 0.15s var(--ease-bounce);
+        }
+
+        .nav-cta:hover {
+            opacity: 0.85;
+            transform: scale(1.03);
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 36px;
+            height: 36px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 6px;
+            transition: background 0.15s;
+            z-index: 1;
+        }
+
+        .nav-hamburger:hover {
+            background: var(--bg-hover);
+        }
+
+        .nav-hamburger-line {
+            display: block;
+            width: 18px;
+            height: 1.5px;
+            background: var(--text-secondary);
+            border-radius: 2px;
+            transition: transform 0.2s var(--ease-out), opacity 0.2s;
+        }
+
+        .nav-hamburger.is-open .nav-hamburger-line:nth-child(1) {
+            transform: translateY(6.5px) rotate(45deg);
+        }
+
+        .nav-hamburger.is-open .nav-hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-hamburger.is-open .nav-hamburger-line:nth-child(3) {
+            transform: translateY(-6.5px) rotate(-45deg);
+        }
+
+        .nav-mobile-drawer {
+            display: none;
+            position: fixed;
+            top: 52px;
+            left: 0;
+            right: 0;
+            z-index: 150;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px 24px;
+            flex-direction: column;
+            gap: 4px;
+            transform: translateY(-8px);
+            opacity: 0;
+            transition: transform 0.2s var(--ease-out), opacity 0.2s var(--ease-out);
+        }
+
+        .nav-mobile-drawer.is-open {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .nav-mobile-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 12px 8px;
+            border-radius: 8px;
+            border-bottom: 1px solid var(--border);
+            transition: color 0.15s, background 0.15s;
+        }
+
+        .nav-mobile-link:last-of-type {
+            border-bottom: none;
+        }
+
+        .nav-mobile-link:hover {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        .nav-mobile-cta {
+            display: block;
+            margin-top: 12px;
+            text-align: center;
+            background: var(--text-primary);
+            color: #000;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+
+        /* ============================================================
+           5. HERO SECTION
+           ============================================================ */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: radial-gradient(
+                ellipse 65% 80% at 25% 30%,
+                black 20%,
+                transparent 100%
+            );
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            width: 700px;
+            height: 500px;
+            top: -80px;
+            right: -100px;
+            border-radius: 50% 40% 60% 50%;
+            background: radial-gradient(
+                ellipse at 60% 40%,
+                rgba(16, 185, 129, 0.04) 0%,
+                rgba(96, 165, 250, 0.025) 45%,
+                transparent 70%
+            );
+            filter: blur(60px);
+        }
+
+        .hero-eyebrow {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-tertiary);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .hero-title {
+            position: relative;
+            z-index: 1;
+            font-size: clamp(42px, 7vw, 88px);
+            font-weight: 700;
+            line-height: 1.0;
+            letter-spacing: -0.04em;
+            margin-bottom: 28px;
+        }
+
+        .hero-title-outline {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-sub {
+            position: relative;
+            z-index: 1;
+            font-size: clamp(15px, 2vw, 18px);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 520px;
+            margin: 0 auto 48px;
+        }
+
+        .hero-actions {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-enter-1 { animation: slide-up 0.55s var(--ease-out) both; }
+        .hero-enter-2 { animation: slide-up 0.55s 0.1s var(--ease-out) both; }
+        .hero-enter-3 { animation: slide-up 0.55s 0.2s var(--ease-out) both; }
+        .hero-enter-4 { animation: slide-up 0.55s 0.3s var(--ease-out) both; }
+
+
+        /* ============================================================
+           6. DASHBOARD PREVIEW
+           ============================================================ */
+
+        .preview-section {
+            padding: 0 24px 120px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .preview-wrap {
+            width: 100%;
+            max-width: 1100px;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .preview-top-shine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+        }
+
+        .preview-frame {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow:
+                0 40px 120px rgba(0, 0, 0, 0.8),
+                0 0 0 1px rgba(255, 255, 255, 0.04);
+            pointer-events: none;
+            user-select: none;
+            transform-style: preserve-3d;
+            animation: preview-reveal linear both;
+            animation-timeline: view();
+            animation-range: entry 10% cover 40%;
+        }
+
+        @keyframes preview-reveal {
+            from {
+                opacity: 0;
+                transform: translateY(60px) rotateX(12deg) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0) scale(1);
+            }
+        }
+
+        .preview-titlebar {
+            background: var(--bg-panel);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .preview-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .preview-dot--red    { background: #ef4444; }
+        .preview-dot--yellow { background: #f59e0b; }
+        .preview-dot--green  { background: #10b981; }
+
+        .preview-window-title {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-tertiary);
+            margin-left: auto;
+            margin-right: auto;
+            padding-right: 30px;
+        }
+
+        .preview-body {
+            display: grid;
+            grid-template-columns: 40px 280px 1fr;
+            height: 460px;
+        }
+
+        .preview-icon-strip {
+            background: #080808;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 0;
+        }
+
+        .strip-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .strip-btn--active { background: var(--bg-hover); }
+        .strip-btn svg { width: 14px; height: 14px; color: var(--text-tertiary); }
+        .strip-btn--active svg { color: var(--text-primary); }
+
+        .preview-sidebar {
+            background: #080808;
+            border-right: 1px solid var(--border);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow: hidden;
+        }
+
+        .sidebar-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px;
+        }
+
+        .history-item { padding: 8px; border-radius: 6px; transition: background 0.3s ease; }
+        .history-item--active { background: var(--bg-hover); }
+
+        .history-item-title {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .history-item-date {
+            font-size: 9px;
+            color: var(--text-tertiary);
+            font-family: var(--font-mono);
+            margin-top: 2px;
+        }
+
+        .preview-chat { display: flex; flex-direction: column; overflow: hidden; }
+
+        .chat-header {
+            height: 40px;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 8px;
+        }
+
+        .chat-model-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+        }
+
+        .chat-model-name {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+        }
+
+        .chat-msg { 
+            display: flex; 
+            gap: 10px; 
+            opacity: 0; 
+            transform: translateY(10px); 
+            transition: opacity 0.4s ease, transform 0.4s var(--ease-out);
+        }
+        .chat-msg.visible { opacity: 1; transform: translateY(0); }
+        .chat-msg--user { flex-direction: row-reverse; }
+
+        .chat-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+        }
+
+        .chat-avatar--system { background: var(--bg-hover); color: var(--text-secondary); }
+        .chat-avatar--user { background: var(--accent-muted); color: var(--text-secondary); }
+
+        .chat-bubble {
+            max-width: 75%;
+            padding: 9px 13px;
+            border-radius: 8px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--text-primary);
+        }
+
+        .chat-bubble--system { background: none; border: 1px solid var(--border); }
+        .chat-bubble--user { background: var(--bg-panel); }
+
+        .chat-code-block {
+            background: #0d0d0d;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px 14px;
+            margin-top: 8px;
+            font-family: var(--font-sans);
+            font-size: 11px;
+            color: var(--text-secondary);
+            opacity: 0;
+            line-height: 1.6;
+            transform: scale(0.98);
+            transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
+        }
+        .chat-code-block.visible { opacity: 1; transform: scale(1); }
+
+        .chat-input-area {
+            padding: 10px 16px;
+            border-top: 1px solid var(--border);
+            background: var(--bg-surface);
+        }
+
+        .chat-input-box {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chat-placeholder { font-size: 11px; color: var(--text-tertiary); flex: 1; display: flex; align-items: center; min-height: 14px;}
+        .chat-typed-text { color: var(--text-primary); font-size: 11px; font-family: var(--font-sans); }
+
+        .chat-cursor {
+            display: inline-block;
+            width: 1px;
+            height: 11px;
+            background: var(--text-primary);
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+
+        .chat-send-btn {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            background: var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .chat-send-btn.active { background: var(--text-primary); transform: scale(1.05); }
+        .chat-send-btn svg { width: 12px; height: 12px; color: #000; }
+
+        .preview-fade-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.3));
+            pointer-events: none;
+            border-radius: 0 0 16px 16px;
+        }
+
+
+        /* ============================================================
+           7. SOCIAL PROOF
+           ============================================================ */
+
+        .github-strip {
+            display: flex;
+            justify-content: center;
+            padding: 0 24px 80px;
+        }
+
+        .github-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 24px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .github-badge:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-panel);
+            color: var(--text-primary);
+        }
+
+        .github-badge-icon { display: flex; align-items: center; color: var(--text-secondary); }
+        .github-badge-icon svg { width: 18px; height: 18px; }
+        .github-badge-divider { width: 1px; height: 20px; background: var(--border); }
+
+        .github-star-group { display: flex; align-items: center; gap: 6px; }
+        .github-star-group svg { width: 14px; height: 14px; color: var(--warning); }
+        .github-star-count { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--text-primary); }
+        .github-badge-label { font-size: 12px; color: var(--text-tertiary); }
+
+
+        /* ============================================================
+           8. FEATURES SECTION (Asymmetric Layout & Enhancements)
+           ============================================================ */
+
+        .features-section {
+            background: none;
+            border-top: 1px solid var(--border);
+        }
+
+        .features-header {
+            margin-bottom: 64px;
+            animation: slide-up-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 5% cover 30%;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 16px;
+            border-radius: 16px;
+            animation: slide-up-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 5% cover 35%;
+        }
+
+        .feature-card {
+            background: var(--bg-surface);
+            padding: 36px 32px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease-out), box-shadow 0.3s;
+        }
+
+        /* Modern Asymmetric layout sizing alternating patterns */
+        .feature-card:nth-child(1),
+        .feature-card:nth-child(5) {
+            grid-column: span 4;
+        }
+
+        .feature-card:hover {
+            background: var(--bg-panel);
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            transition: transform 0.3s var(--ease-bounce), background 0.3s;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(4deg);
+            background: var(--accent-muted);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-icon svg { width: 20px; height: 20px; color: var(--text-secondary); transition: color 0.3s; }
+        .feature-card:hover .feature-icon svg { color: var(--text-primary); }
+
+        .feature-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+
+        /* ============================================================
+           9. HOW IT WORKS SECTION
+           ============================================================ */
+
+        .how-section { border-top: 1px solid var(--border); }
+        .how-section .section-title, .how-section .section-eyebrow {
+            animation: slide-up-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 5% cover 25%;
+        }
+
+        .how-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 64px;
+        }
+
+        .how-steps { display: flex; flex-direction: column; gap: 32px; }
+        .how-step { 
+            display: flex; 
+            gap: 20px;
+            animation: slide-up-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 5% cover 30%;
+        }
+
+        .how-step-number {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-tertiary);
+            width: 20px;
+            flex-shrink: 0;
+            padding-top: 3px;
+        }
+
+        .how-step-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .how-step-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+        .how-visuals { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px;
+            animation: slide-up-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 10% cover 40%;
+        }
+
+        .how-workflow-panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .workflow-panel-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+        }
+
+        .workflow-row {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .workflow-row:hover {
+            transform: translateX(4px);
+            border-color: var(--border-hover);
+        }
+
+        .workflow-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+        .workflow-dot--running  { background: var(--success); box-shadow: 0 0 6px rgba(16, 185, 129, 0.5); }
+        .workflow-dot--scheduled { background: var(--warning); }
+        .workflow-dot--waiting  { background: var(--text-tertiary); }
+
+        .workflow-name { font-size: 12px; font-weight: 500; flex: 1; }
+
+        .workflow-badge {
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            background: var(--bg-hover);
+            color: var(--text-tertiary);
+        }
+
+        .workflow-badge--running   { background: rgba(16, 185, 129, 0.12); color: var(--success); }
+        .workflow-badge--scheduled { background: rgba(245, 158, 11, 0.12);  color: var(--warning); }
+        .workflow-badge--trigger   { background: rgba(96, 165, 250, 0.12);  color: var(--info); }
+
+        .how-terminal {
+            background: #080808;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .term-line { display: flex; gap: 8px; }
+        .term-prompt  { color: var(--success); }
+        .term-command { color: #a9c084; }
+        .term-output  { color: var(--text-tertiary); padding-left: 16px; }
+        .term-ready   { color: var(--success); padding-left: 16px; }
+
+
+        /* ============================================================
+           10. PRIVACY SECTION
+           ============================================================ */
+
+        .privacy-section {
+            border-top: 1px solid var(--border);
+            background: var(--bg-surface);
+        }
+        
+        .privacy-section .section-title, .privacy-section .section-eyebrow, .privacy-section .section-sub {
+            animation: slide-up-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 5% cover 25%;
+        }
+
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 56px;
+        }
+
+        .privacy-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            animation: slide-up-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 5% cover 30%;
+            transition: border-color 0.3s ease;
+        }
+        .privacy-card:hover { border-color: var(--border-hover); }
+
+        .privacy-card-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--bg-hover);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .privacy-card-icon svg { width: 17px; height: 17px; color: var(--text-secondary); }
+        .privacy-card-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+        .privacy-card-desc  { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+
+        /* ============================================================
+           11. MODELS SECTION
+           ============================================================ */
+
+        .models-section { border-top: 1px solid var(--border); }
+        .models-section .section-title, .models-section .section-eyebrow, .models-section .section-sub {
+            animation: slide-up-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 5% cover 25%;
+        }
+
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 48px;
+            animation: slide-up-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 5% cover 35%;
+        }
+
+        .model-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 20px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.2s, transform 0.2s;
+            cursor: default;
+        }
+
+        .model-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+        .model-card--featured { border-color: rgba(255, 255, 255, 0.15); }
+
+        .model-card-tag {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 2px 7px;
+            border-radius: 3px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .model-card-tag--local  { background: rgba(16, 185, 129, 0.12); color: var(--success); }
+        .model-card-tag--remote { background: rgba(96, 165, 250, 0.12);  color: var(--info); }
+        .model-card-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .model-card-spec { font-size: 11px; color: var(--text-tertiary); }
+
+
+        /* ============================================================
+           12. FAQ ACCORDION
+           ============================================================ */
+
+        .faq-section { border-top: 1px solid var(--border); }
+        .faq-header {
+            margin-bottom: 48px;
+            animation: slide-up-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 5% cover 25%;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            animation: slide-up-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 5% cover 35%;
+        }
+
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-item:last-child { border-bottom: none; }
+
+        .faq-trigger {
+            width: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 22px 28px;
+            text-align: left;
+            transition: background 0.15s;
+        }
+
+        .faq-trigger:hover { background: var(--bg-surface); }
+        .faq-trigger[aria-expanded="true"] { background: var(--bg-surface); }
+        .faq-question { font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.4; }
+        .faq-chevron { flex-shrink: 0; width: 16px; height: 16px; color: var(--text-tertiary); transition: transform 0.25s var(--ease-out); }
+        .faq-trigger[aria-expanded="true"] .faq-chevron { transform: rotate(180deg); }
+
+        .faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.25s var(--ease-out); }
+        .faq-body.is-open { grid-template-rows: 1fr; }
+        .faq-body-inner { overflow: hidden; }
+        .faq-answer { padding: 0 28px 22px; font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+        .faq-answer p + p { margin-top: 10px; }
+        .faq-answer .code-label { font-size: 12px; }
+
+
+        /* ============================================================
+           13. CTA SECTION
+           ============================================================ */
+
+        .cta-section {
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 120px 24px;
+            animation: slide-up-fade linear both;
+            animation-timeline: view();
+            animation-range: entry 5% cover 30%;
+        }
+
+        .cta-title {
+            font-size: clamp(32px, 5vw, 60px);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .cta-sub {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 440px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .cta-note { font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); margin-top: 20px; }
+
+
+        /* ============================================================
+           14. FOOTER
+           ============================================================ */
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-brand {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+        }
+
+        .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+
+        .footer-link {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-link:hover { color: var(--text-secondary); }
+        .footer-copy { font-size: 12px; color: var(--text-tertiary); }
+
+
+        /* ============================================================
+           15. STATUS BAR
+           ============================================================ */
+
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 28px;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 16px;
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--text-tertiary);
+        }
+
+        .status-item { display: flex; align-items: center; gap: 5px; }
+        .status-online-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--success); }
+        .status-version { font-family: var(--font-mono); }
+
+
+        /* ============================================================
+           16. KEYFRAME ANIMATIONS
+           ============================================================ */
+
+        @keyframes slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slide-up-fade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.3); } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+
+        /* ============================================================
+           17. MEDIA QUERIES
+           ============================================================ */
+
+        @media (max-width: 992px) {
+            .features-grid { grid-template-columns: repeat(4, 1fr); }
+            .feature-card { grid-column: span 2 !important; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 20px; }
+            .nav-links .nav-link { display: none; }
+            .nav-hamburger { display: flex; }
+
+            .hero-title { font-size: 38px; }
+
+            .preview-body { grid-template-columns: 40px 1fr; height: 360px; }
+            .preview-sidebar { display: none; }
+
+            .features-grid { grid-template-columns: 1fr; }
+            .feature-card { grid-column: span 1 !important; }
+
+            .how-layout { grid-template-columns: 1fr; gap: 40px; }
+            .privacy-grid { grid-template-columns: 1fr; }
+            .models-grid { grid-template-columns: repeat(2, 1fr); }
+
+            footer { flex-direction: column; text-align: center; }
+            .status-bar { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .models-grid { grid-template-columns: 1fr; }
+            .hero-actions { flex-direction: column; align-items: center; }
+            .faq-trigger { padding: 18px 20px; }
+            .faq-answer  { padding: 0 20px 18px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+            .preview-frame, .features-header, .features-grid, .how-step, .how-visuals, .privacy-card, .models-grid, .faq-list, .cta-section {
+                animation: none !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+        </symbol>
+        <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+        </symbol>
+        <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+        </symbol>
+        <symbol id="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </symbol>
+        <symbol id="icon-workflows" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </symbol>
+        <symbol id="icon-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+        </symbol>
+        <symbol id="icon-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+        </symbol>
+        <symbol id="icon-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+        </symbol>
+        <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+        </symbol>
+        <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </symbol>
+        <symbol id="icon-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </symbol>
+        <symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </symbol>
+        <symbol id="icon-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+        </symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </symbol>
+        <symbol id="icon-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="1" y="5" width="22" height="14" rx="7" ry="7"/>
+            <circle cx="16" cy="12" r="3" fill="currentColor" stroke="none"/>
+        </symbol>
+        <symbol id="icon-github" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+        </symbol>
+        <symbol id="icon-star" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </symbol>
+        <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </symbol>
+    </svg>
+
+    <nav>
+        <a class="nav-brand" href="#">
+            <div class="nav-brand-indicator"></div>
+            O.A.S.I.S.
+        </a>
+
+        <div class="nav-links">
+            <a class="nav-link" href="#features">Features</a>
+            <a class="nav-link" href="#how">How it works</a>
+            <a class="nav-link" href="#privacy">Privacy</a>
+            <a class="nav-link" href="#models">Models</a>
+            <a class="nav-link" href="#faq">FAQ</a>
+            <a class="nav-cta" href="#cta">Get started</a>
+        </div>
+
+        <button
+            class="nav-hamburger"
+            id="nav-hamburger-btn"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+            aria-controls="nav-mobile-drawer"
+        >
+            <span class="nav-hamburger-line"></span>
+            <span class="nav-hamburger-line"></span>
+            <span class="nav-hamburger-line"></span>
+        </button>
+    </nav>
+
+    <div class="nav-mobile-drawer" id="nav-mobile-drawer" role="navigation" aria-label="Mobile navigation">
+        <a class="nav-mobile-link" href="#features"  data-mobile-nav>Features</a>
+        <a class="nav-mobile-link" href="#how"       data-mobile-nav>How it works</a>
+        <a class="nav-mobile-link" href="#privacy"   data-mobile-nav>Privacy</a>
+        <a class="nav-mobile-link" href="#models"    data-mobile-nav>Models</a>
+        <a class="nav-mobile-link" href="#faq"       data-mobile-nav>FAQ</a>
+        <a class="nav-mobile-cta"  href="#cta"       data-mobile-nav>Get started</a>
+    </div>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+
+        <h1 class="hero-title hero-enter-1">
+            Your AI.<br>
+            <span class="hero-title-outline">Your machine.</span>
+        </h1>
+
+        <p class="hero-sub hero-enter-2">
+            O.A.S.I.S. runs powerful language models directly on your hardware — no cloud, no subscriptions, no data leaving your device. Chat, automate, and build, all in one place.
+        </p>
+
+        <div class="hero-actions hero-enter-3">
+            <a class="btn-primary" href="#cta">
+                <svg width="14" height="14" aria-hidden="true"><use href="#icon-download"/></svg>
+                Download free
+            </a>
+            <a class="btn-secondary" href="#features">
+                See what it does
+                <svg width="13" height="13" aria-hidden="true"><use href="#icon-chevron-right"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <div class="preview-section" id="trigger-preview-section">
+        <div class="preview-wrap">
+            <div class="preview-top-shine"></div>
+            <div class="preview-frame" aria-hidden="true">
+
+                <div class="preview-titlebar">
+                    <div class="preview-dot preview-dot--red"></div>
+                    <div class="preview-dot preview-dot--yellow"></div>
+                    <div class="preview-dot preview-dot--green"></div>
+                    <span class="preview-window-title">O.A.S.I.S. — Operations</span>
+                </div>
+
+                <div class="preview-body">
+
+                    <div class="preview-icon-strip">
+                        <div class="strip-btn strip-btn--active">
+                            <svg aria-label="Chat"><use href="#icon-chat"/></svg>
+                        </div>
+                        <div class="strip-btn">
+                            <svg aria-label="Settings"><use href="#icon-settings"/></svg>
+                        </div>
+                        <div class="strip-btn">
+                            <svg aria-label="Workflows"><use href="#icon-workflows"/></svg>
+                        </div>
+                        <div class="strip-btn">
+                            <svg aria-label="Appearance"><use href="#icon-sun"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="preview-sidebar">
+                        <div class="sidebar-label">History</div>
+                        <div class="history-item" id="preview-history-item">
+                            <div class="history-item-title" id="preview-history-title">New Session</div>
+                            <div class="history-item-date">just now</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-item-title">Weekly grocery shopping list</div>
+                            <div class="history-item-date">2h ago</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-item-title">Draft simple email response</div>
+                            <div class="history-item-date">yesterday</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-item-title">Gift ideas for mom's birthday</div>
+                            <div class="history-item-date">Mon</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-item-title">Short workout routine 15m</div>
+                            <div class="history-item-date">Mon</div>
+                        </div>
+                    </div>
+
+                    <div class="preview-chat">
+                        <div class="chat-header">
+                            <div class="chat-model-dot"></div>
+                            <span class="chat-model-name">llama3.2:8b · local</span>
+                        </div>
+
+                        <div class="chat-messages" id="preview-chat-container">
+                            <!-- Dynamically injected via scroll trigger script -->
+                        </div>
+
+                        <div class="chat-input-area">
+                            <div class="chat-input-box">
+                                <span class="chat-placeholder" id="preview-input-field">
+                                    <span class="chat-typed-text"></span><span class="chat-cursor"></span>
+                                </span>
+                                <div class="chat-send-btn" id="preview-send-btn">
+                                    <svg aria-hidden="true"><use href="#icon-send"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="preview-fade-overlay"></div>
+        </div>
+    </div>
+
+    <div class="github-strip">
+        <a class="github-badge" href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer" aria-label="View O.A.S.I.S. on GitHub">
+            <span class="github-badge-icon">
+                <svg aria-hidden="true"><use href="#icon-github"/></svg>
+            </span>
+            <span class="github-badge-label">Open source on GitHub</span>
+            <span class="github-badge-divider"></span>
+            <span class="github-star-group">
+                <svg aria-hidden="true"><use href="#icon-star"/></svg>
+                <span class="github-star-count" id="github-stars-count">2.4k</span>
+                <span class="github-badge-label">stars</span>
+            </span>
+            <span class="github-badge-divider"></span>
+            <span class="github-star-group">
+                <svg width="14" height="14" aria-hidden="true"><use href="#icon-users"/></svg>
+                <span class="github-star-count" id="github-contributors-count">140</span>
+                <span class="github-badge-label">contributors</span>
+            </span>
+        </a>
+    </div>
+
+    <section class="features-section" id="features">
+        <div class="section-inner">
+            <div class="features-header">
+                <p class="section-eyebrow">What it does</p>
+                <h2 class="section-title">Everything you need.<br>Nothing you don't.</h2>
+                <p class="section-sub">Built for people who want a real AI assistant — not a SaaS subscription that phones home with every prompt.</p>
+            </div>
+
+            <div class="features-grid">
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg aria-hidden="true"><use href="#icon-chat"/></svg>
+                    </div>
+                    <div class="feature-title">Persistent chat</div>
+                    <div class="feature-desc">Full conversation history stored locally. Search, filter, and resume any past session instantly.</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg aria-hidden="true"><use href="#icon-workflows"/></svg>
+                    </div>
+                    <div class="feature-title">Workflow automation</div>
+                    <div class="feature-desc">Build and run multi-step automations. Schedule tasks, chain tools, and let OASIS handle repetitive work.</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg aria-hidden="true"><use href="#icon-search"/></svg>
+                    </div>
+                    <div class="feature-title">Skills library</div>
+                    <div class="feature-desc">Modular skill cards extend what your assistant can do — from web browsing to code execution and file analysis.</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg aria-hidden="true"><use href="#icon-grid"/></svg>
+                    </div>
+                    <div class="feature-title">Context panels</div>
+                    <div class="feature-desc">Attach files, images, and code snippets to any conversation. OASIS keeps them in context for the full session.</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg aria-hidden="true"><use href="#icon-mic"/></svg>
+                    </div>
+                    <div class="feature-title">Voice input & TTS</div>
+                    <div class="feature-desc">Speak your prompts and hear replies read back. Full voice control with adjustable speed and voice profiles.</div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg aria-hidden="true"><use href="#icon-code"/></svg>
+                    </div>
+                    <div class="feature-title">Python REPL</div>
+                    <div class="feature-desc">Run code directly inside the chat. OASIS executes Python in a sandboxed environment and feeds results back into the conversation.</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="how-section" id="how">
+        <div class="section-inner">
+            <p class="section-eyebrow">How it works</p>
+            <h2 class="section-title">Set up once.<br>Run forever.</h2>
+
+            <div class="how-layout">
+                <div class="how-steps">
+                    <div class="how-step">
+                        <div class="how-step-number">01</div>
+                        <div>
+                            <div class="how-step-title">Choose your model</div>
+                            <div class="how-step-desc">Pick from a curated list of local GGUF models or point to your own. OASIS checks your RAM and recommends what fits your hardware.</div>
+                        </div>
+                    </div>
+                    <div class="how-step">
+                        <div class="how-step-number">02</div>
+                        <div>
+                            <div class="how-step-title">Connect your tools</div>
+                            <div class="how-step-desc">Wire up skills — file access, web search, code execution, calendar. Each one is a toggle; you stay in control of what OASIS can reach.</div>
+                        </div>
+                    </div>
+                    <div class="how-step">
+                        <div class="how-step-number">03</div>
+                        <div>
+                            <div class="how-step-title">Chat, automate, iterate</div>
+                            <div class="how-step-desc">Use the chat interface for fast Q&A, or build workflows for recurring tasks. Everything stays on your machine, always.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="how-visuals">
+                    <div class="how-workflow-panel">
+                        <div class="workflow-panel-label">Active workflows</div>
+                        <div class="workflow-row">
+                            <div class="workflow-dot workflow-dot--running"></div>
+                            <span class="workflow-name">Daily digest · summarise news</span>
+                            <span class="workflow-badge workflow-badge--running">Running</span>
+                        </div>
+                        <div class="workflow-row">
+                            <div class="workflow-dot workflow-dot--scheduled"></div>
+                            <span class="workflow-name">Email triage · label & reply</span>
+                            <span class="workflow-badge workflow-badge--scheduled">Scheduled</span>
+                        </div>
+                        <div class="workflow-row">
+                            <div class="workflow-dot workflow-dot--waiting"></div>
+                            <span class="workflow-name">Code review · PR summary</span>
+                            <span class="workflow-badge workflow-badge--trigger">On trigger</span>
+                        </div>
+                    </div>
+
+                    <div class="how-terminal">
+                        <div class="term-line">
+                            <span class="term-prompt">$</span>
+                            <span class="term-command">oasis start --model llama3.2:8b</span>
+                        </div>
+                        <div class="term-output">✓ Model loaded (4.7 GB, 8 layers offloaded)</div>
+                        <div class="term-output">✓ Bridge running on 127.0.0.1:5000</div>
+                        <div class="term-output">✓ 3 skills active</div>
+                        <div class="term-ready">→ Ready</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="privacy-section" id="privacy">
+        <div class="section-inner">
+            <p class="section-eyebrow">Privacy first</p>
+            <h2 class="section-title">Your prompts never<br>leave your machine.</h2>
+            <p class="section-sub">No telemetry. No training on your data. No account required. OASIS is software you own, not a service you rent.</p>
+
+            <div class="privacy-grid">
+                <div class="privacy-card">
+                    <div class="privacy-card-icon">
+                        <svg aria-hidden="true"><use href="#icon-lock"/></svg>
+                    </div>
+                    <div class="privacy-card-title">Fully offline inference</div>
+                    <div class="privacy-card-desc">Run any supported model without an internet connection. Your prompts are processed entirely on your CPU or GPU — nothing is transmitted.</div>
+                </div>
+                <div class="privacy-card">
+                    <div class="privacy-card-icon">
+                        <svg aria-hidden="true"><use href="#icon-database"/></svg>
+                    </div>
+                    <div class="privacy-card-title">Local-only storage</div>
+                    <div class="privacy-card-desc">Conversations, files, and settings live in a local database you control. Export, delete, or move your data whenever you want.</div>
+                </div>
+                <div class="privacy-card">
+                    <div class="privacy-card-icon">
+                        <svg aria-hidden="true"><use href="#icon-shield"/></svg>
+                    </div>
+                    <div class="privacy-card-title">No telemetry, ever</div>
+                    <div class="privacy-card-desc">OASIS collects zero usage data. There are no analytics, no crash reports sent without consent, and no subscription server pinging home.</div>
+                </div>
+                <div class="privacy-card">
+                    <div class="privacy-card-icon">
+                        <svg aria-hidden="true"><use href="#icon-toggle"/></svg>
+                    </div>
+                    <div class="privacy-card-title">You pick the connections</div>
+                    <div class="privacy-card-desc">Each skill that needs network access — web search, remote APIs — requires an explicit toggle. Everything is off by default.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="models-section" id="models">
+        <div class="section-inner">
+            <p class="section-eyebrow">Supported models</p>
+            <h2 class="section-title">Use any model.<br>Or all of them.</h2>
+            <p class="section-sub">OASIS supports local GGUF files via llama.cpp and Ollama, plus optional remote endpoints for when you need more power.</p>
+
+            <div class="models-grid">
+                <div class="model-card model-card--featured">
+                    <span class="model-card-tag model-card-tag--local">Local</span>
+                    <div class="model-card-name">Llama 3.2 8B</div>
+                    <div class="model-card-spec">Fast · 8 GB RAM · Recommended</div>
+                </div>
+                <div class="model-card">
+                    <span class="model-card-tag model-card-tag--local">Local</span>
+                    <div class="model-card-name">Mistral 7B</div>
+                    <div class="model-card-spec">Balanced · 7 GB RAM</div>
+                </div>
+                <div class="model-card">
+                    <span class="model-card-tag model-card-tag--local">Local</span>
+                    <div class="model-card-name">Phi-3 Mini</div>
+                    <div class="model-card-spec">Lightweight · 4 GB RAM</div>
+                </div>
+                <div class="model-card">
+                    <span class="model-card-tag model-card-tag--local">Local</span>
+                    <div class="model-card-name">DeepSeek R1 8B</div>
+                    <div class="model-card-spec">Reasoning · 8 GB RAM</div>
+                </div>
+                <div class="model-card">
+                    <span class="model-card-tag model-card-tag--remote">Remote</span>
+                    <div class="model-card-name">OpenAI API</div>
+                    <div class="model-card-spec">GPT-4o, o1, and more</div>
+                </div>
+                <div class="model-card">
+                    <span class="model-card-tag model-card-tag--remote">Remote</span>
+                    <div class="model-card-name">Any OpenAI-compatible</div>
+                    <div class="model-card-spec">Groq, DeepSeek, Anthropic…</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+        <div class="section-inner">
+            <div class="faq-header">
+                <p class="section-eyebrow">Common questions</p>
+                <h2 class="section-title">Before you download.</h2>
+                <p class="section-sub">Hardware requirements, model compatibility, and privacy — answered.</p>
+            </div>
+
+            <div class="faq-list" role="list">
+
+                <div class="faq-item" role="listitem">
+                    <button
+                        class="faq-trigger"
+                        aria-expanded="false"
+                        aria-controls="faq-body-1"
+                        id="faq-trigger-1"
+                    >
+                        <span class="faq-question">Do I need a GPU, or will a CPU work?</span>
+                        <svg class="faq-chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg>
+                    </button>
+                    <div class="faq-body" id="faq-body-1" role="region" aria-labelledby="faq-trigger-1">
+                        <div class="faq-body-inner">
+                            <div class="faq-answer">
+                                <p>A GPU speeds things up significantly but is not required. On a modern CPU, a 7–8B model typically generates 5–15 tokens/second — fast enough for most conversational use. If you have a CUDA-capable NVIDIA GPU or Apple Silicon (M1/M2/M3), OASIS will automatically offload layers to it for much better throughput.</p>
+                                <p>The recommended starting point is an 8 GB RAM machine running <span class="code-label">llama3.2:8b</span> in CPU-only mode. It works. It's just not instant.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" role="listitem">
+                    <button
+                        class="faq-trigger"
+                        aria-expanded="false"
+                        aria-controls="faq-body-2"
+                        id="faq-trigger-2"
+                    >
+                        <span class="faq-question">Which local model formats does OASIS support?</span>
+                        <svg class="faq-chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg>
+                    </button>
+                    <div class="faq-body" id="faq-body-2" role="region" aria-labelledby="faq-trigger-2">
+                        <div class="faq-body-inner">
+                            <div class="faq-answer">
+                                <p>OASIS natively supports <span class="code-label">.gguf</span> files via a bundled llama.cpp backend. If you have Ollama installed, OASIS can connect to it directly and use any model you've already pulled — no re-download needed.</p>
+                                <p>Safetensors, GGML (legacy), and GPTQ are not currently supported as local backends, though remote API endpoints accept any format the provider serves.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" role="listitem">
+                    <button
+                        class="faq-trigger"
+                        aria-expanded="false"
+                        aria-controls="faq-body-3"
+                        id="faq-trigger-3"
+                    >
+                        <span class="faq-question">How much RAM do I realistically need?</span>
+                        <svg class="faq-chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg>
+                    </button>
+                    <div class="faq-body" id="faq-body-3" role="region" aria-labelledby="faq-trigger-3">
+                        <div class="faq-body-inner">
+                            <div class="faq-answer">
+                                <p>A rough rule: the model file size in GB ≈ the RAM required, plus about 1–2 GB overhead for OASIS itself. An 8B model in Q4 quantization typically runs in 5–6 GB of RAM. With 8 GB total you're fine. With 16 GB you can comfortably run 13B models.</p>
+                                <p>If you're tight on RAM, try <span class="code-label">phi-3-mini</span> — it fits comfortably in 4 GB and still handles code, writing, and Q&A well.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" role="listitem">
+                    <button
+                        class="faq-trigger"
+                        aria-expanded="false"
+                        aria-controls="faq-body-4"
+                        id="faq-trigger-4"
+                    >
+                        <span class="faq-question">Does OASIS ever send my prompts anywhere?</span>
+                        <svg class="faq-chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg>
+                    </button>
+                    <div class="faq-body" id="faq-body-4" role="region" aria-labelledby="faq-trigger-4">
+                        <div class="faq-body-inner">
+                            <div class="faq-answer">
+                                <p>No. When running a local model, inference happens entirely on your machine. OASIS has no telemetry, no analytics, and no update server that phones home. You can run it permanently in airplane mode.</p>
+                                <p>The only exception is if you explicitly enable a remote endpoint (like the OpenAI API) under Settings → Models. In that case, your prompts go to that provider — which you've opted into. The toggle is clearly labeled and off by default.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" role="listitem">
+                    <button
+                        class="faq-trigger"
+                        aria-expanded="false"
+                        aria-controls="faq-body-5"
+                        id="faq-trigger-5"
+                    >
+                        <span class="faq-question">Is OASIS free? What's the catch?</span>
+                        <svg class="faq-chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg>
+                    </button>
+                    <div class="faq-body" id="faq-body-5" role="region" aria-labelledby="faq-trigger-5">
+                        <div class="faq-body-inner">
+                            <div class="faq-answer">
+                                <p>For now it is free, but with limits, as we are working on a paid version to support the project with more advanced features.</p>
+                                <p>The "catch" is that you provide your own hardware and, if you want larger or better models, you download them yourself. We're not in the inference business.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="cta">
+        <div class="section-inner">
+            <h2 class="cta-title">Start talking to your<br>own AI today.</h2>
+            <p class="cta-sub">Free to download. No account. No API key required to get started.</p>
+
+            <div class="cta-buttons">
+                <a class="btn-primary" id="download-win" style="cursor: pointer;">
+                    <svg width="14" height="14" aria-hidden="true"><use href="#icon-download"/></svg>
+                    Download for Windows
+                </a>
+            </div>
+
+            <p class="cta-note">Requires 8 GB RAM minimum · Windows 10+ or Windows 11</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-brand">O.A.S.I.S.</div>
+        <div class="footer-links">
+            <a class="footer-link" href="https://github.com/OASISLocal/O.A.S.I.S./wiki">Docs</a>
+            <a class="footer-link" href="https://github.com/OASISLocal/O.A.S.I.S.">GitHub</a>
+            <a class="footer-link" href="https://github.com/OASISLocal/O.A.S.I.S./releases">Changelog</a>
+            <a class="footer-link" href="https://github.com/OASISLocal/O.A.S.I.S./wiki">Privacy</a>
+        </div>
+        <div class="footer-copy">© 2026 O.A.S.I.S. — Open-source</div>
+    </footer>
+
+    <div class="status-bar">
+        <div class="status-item">
+            <div class="status-online-dot"></div>
+            <span>oasis-landing</span>
+        </div>
+        <span>·</span>
+        <span>Static</span>
+        <span>·</span>
+        <span class="status-version">v2.0.0</span>
+    </div>
+
+    <script>
+        /* ============================================================
+           Hamburger menu — mobile nav
+           ============================================================ */
+        (function () {
+            const btn    = document.getElementById('nav-hamburger-btn');
+            const drawer = document.getElementById('nav-mobile-drawer');
+
+            function openMenu() {
+                btn.classList.add('is-open');
+                drawer.classList.add('is-open');
+                btn.setAttribute('aria-expanded', 'true');
+                document.addEventListener('keydown', onEscape);
+                setTimeout(() => document.addEventListener('click', onOutsideClick), 10);
+            }
+
+            function closeMenu() {
+                btn.classList.remove('is-open');
+                drawer.classList.remove('is-open');
+                btn.setAttribute('aria-expanded', 'false');
+                document.removeEventListener('keydown', onEscape);
+                document.removeEventListener('click', onOutsideClick);
+            }
+
+            function toggleMenu() {
+                btn.classList.contains('is-open') ? closeMenu() : openMenu();
+            }
+
+            function onEscape(e) {
+                if (e.key === 'Escape') closeMenu();
+            }
+
+            function onOutsideClick(e) {
+                if (!drawer.contains(e.target) && !btn.contains(e.target)) closeMenu();
+            }
+
+            btn.addEventListener('click', toggleMenu);
+
+            drawer.querySelectorAll('[data-mobile-nav]').forEach(function (link) {
+                link.addEventListener('click', closeMenu);
+            });
+        }());
+
+        /* ============================================================
+           Smooth Scroll Fallback (High-compatibility Interceptor)
+           ============================================================ */
+        (function () {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }());
+
+        /* ============================================================
+           FAQ accordion
+           ============================================================ */
+        (function () {
+            var triggers = document.querySelectorAll('.faq-trigger');
+
+            triggers.forEach(function (trigger) {
+                trigger.addEventListener('click', function () {
+                    var bodyId   = trigger.getAttribute('aria-controls');
+                    var body     = document.getElementById(bodyId);
+                    var isOpen   = trigger.getAttribute('aria-expanded') === 'true';
+
+                    triggers.forEach(function (t) {
+                        if (t !== trigger) {
+                            t.setAttribute('aria-expanded', 'false');
+                            var otherBodyId = t.getAttribute('aria-controls');
+                            var otherBody   = document.getElementById(otherBodyId);
+                            if (otherBody) otherBody.classList.remove('is-open');
+                        }
+                    });
+
+                    if (isOpen) {
+                        trigger.setAttribute('aria-expanded', 'false');
+                        body.classList.remove('is-open');
+                    } else {
+                        trigger.setAttribute('aria-expanded', 'true');
+                        body.classList.add('is-open');
+                    }
+                });
+            });
+        }());
+
+        /* ============================================================
+           GitHub API Counter — Live verified stats
+           ============================================================ */
+        (function () {
+            const repoURI = 'OASISLocal/O.A.S.I.S.';
+            const starsEl = document.getElementById('github-stars-count');
+            const contribsEl = document.getElementById('github-contributors-count');
+
+            function formatNumber(num) {
+                if (num >= 1000) {
+                    return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+                }
+                return num.toString();
+            }
+
+            fetch(`https://api.github.com/repos/${repoURI}`)
+                .then(response => {
+                    if (!response.ok) throw new Error('Error fetching data');
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && typeof data.stargazers_count === 'number') {
+                        starsEl.textContent = formatNumber(data.stargazers_count);
+                    }
+                })
+                .catch(err => console.error('GitHub API error (Stars):', err));
+
+            fetch(`https://api.github.com/repos/${repoURI}/contributors?per_page=1`)
+                .then(response => {
+                    if (!response.ok) throw new Error('Error fetching contributors');
+                    const linkHeader = response.headers.get('Link');
+                    if (linkHeader) {
+                        const match = linkHeader.match(/&page=(\d+)>; rel="last"/);
+                        if (match && match[1]) {
+                            contribsEl.textContent = formatNumber(parseInt(match[1], 10));
+                            return;
+                        }
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && Array.isArray(data)) {
+                        contribsEl.textContent = formatNumber(data.length);
+                    }
+                })
+                .catch(err => console.error('GitHub API error (Contributors):', err));
+        }());
+
+        /* ============================================================
+           DASHBOARD INTERACTIVE SIMULATION ON SCROLL
+           ============================================================ */
+        (function () {
+            const triggerSection = document.getElementById('trigger-preview-section');
+            const chatContainer = document.getElementById('preview-chat-container');
+            const inputField = document.querySelector('.chat-typed-text');
+            const sendBtn = document.getElementById('preview-send-btn');
+            const historyItem = document.getElementById('preview-history-item');
+            const historyTitle = document.getElementById('preview-history-title');
+
+            // Everyday, friendly common user queries instead of purely dense programming
+            const questionText = "I have eggs, tomatoes, and spinach left in my fridge. What quick dinner can I make?";
+            const responseHTML = `You can easily whip up a <strong>Healthy Spinach & Tomato Omelet</strong>. It takes less than 10 minutes! Here's a quick recipe:`;
+            const codeBlockHTML = `• Whisk 2-3 eggs in a bowl with salt and pepper.<br>• Sauté chopped tomatoes and spinach in a pan with oil for 2 mins.<br>• Pour the whisked eggs over the vegetables, cook until set, fold and serve!`;
+
+            let animationStarted = false;
+
+            function typeText(text, targetElement, speed, callback) {
+                let index = 0;
+                function type() {
+                    if (index < text.length) {
+                        targetElement.textContent += text.charAt(index);
+                        index++;
+                        setTimeout(type, speed);
+                    } else if (callback) {
+                        callback();
+                    }
+                }
+                type();
+            }
+
+            function streamHTML(htmlContent, targetElement, speed, callback) {
+                let tempDiv = document.createElement('div');
+                tempDiv.innerHTML = htmlContent;
+                let nodes = Array.from(tempDiv.childNodes);
+                let nodeIndex = 0;
+
+                function appendNode() {
+                    if (nodeIndex < nodes.length) {
+                        targetElement.appendChild(nodes[nodeIndex].cloneNode(true));
+                        nodeIndex++;
+                        setTimeout(appendNode, speed);
+                    } else if (callback) {
+                        callback();
+                    }
+                }
+                appendNode();
+            }
+
+            function startDashboardSequence() {
+                if (animationStarted) return;
+                animationStarted = true;
+
+                setTimeout(() => {
+                    typeText(questionText, inputField, 25, () => {
+                        setTimeout(() => {
+                            sendBtn.classList.add('active');
+
+                            setTimeout(() => {
+                                inputField.textContent = "";
+                                sendBtn.classList.remove('active');
+
+                                const userMsg = document.createElement('div');
+                                userMsg.className = 'chat-msg chat-msg--user';
+                                userMsg.innerHTML = `
+                                    <div class="chat-avatar chat-avatar--user">U</div>
+                                    <div class="chat-bubble chat-bubble--user">${questionText}</div>
+                                `;
+                                chatContainer.appendChild(userMsg);
+                                setTimeout(() => userMsg.classList.add('visible'), 50);
+
+                                historyItem.classList.add('history-item--active');
+                                historyTitle.textContent = "Quick Fridge Recipe Idea";
+
+                                setTimeout(() => {
+                                    const systemMsg = document.createElement('div');
+                                    systemMsg.className = 'chat-msg';
+                                    systemMsg.innerHTML = `
+                                        <div class="chat-avatar chat-avatar--system">O</div>
+                                        <div class="chat-bubble chat-bubble--system">
+                                            <div class="text-stream"></div>
+                                            <div class="chat-code-block"></div>
+                                        </div>
+                                    `;
+                                    chatContainer.appendChild(systemMsg);
+                                    setTimeout(() => systemMsg.classList.add('visible'), 50);
+
+                                    const streamTarget = systemMsg.querySelector('.text-stream');
+                                    const codeTarget = systemMsg.querySelector('.chat-code-block');
+
+                                    streamHTML(responseHTML, streamTarget, 40, () => {
+                                        codeTarget.innerHTML = codeBlockHTML;
+                                        codeTarget.classList.add('visible');
+                                    });
+
+                                }, 1000);
+
+                            }, 400);
+                        }, 500);
+                    });
+                }, 600);
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startDashboardSequence();
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(triggerSection);
+        }());
+    </script>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+    <script>
+        (function () {
+            const lenis = new Lenis({
+                duration: 1.2,           // Duración del deslizamiento (en segundos)
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Curva de suavizado (Inercial)
+                direction: 'vertical',   // Dirección
+                gestureDirection: 'vertical',
+                smoothWaveview: true,
+                mouseMultiplier: 1       // Sensibilidad al ratón
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+
+            requestAnimationFrame(raf);
+        }());
+    </script>
+<script>
+    (function() {
+        const downloadBtn = document.getElementById('download-win');
+        
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Cambiamos el texto temporalmente para dar feedback al usuario
+                const originalText = downloadBtn.innerHTML;
+                downloadBtn.innerHTML = 'Downloading...';
+                
+                // Consultamos la API de GitHub para obtener la última versión
+                fetch('https://api.github.com/repos/OASISLocal/O.A.S.I.S./releases/latest')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Buscamos un asset que sea un instalador de Windows (.exe o .msi)
+                        const winAsset = data.assets.find(asset => 
+                            asset.name.endsWith('.exe') || asset.name.endsWith('.msi')
+                        );
+                        
+                        if (winAsset && winAsset.browser_download_url) {
+                            // Si lo encuentra, redirige directamente a la descarga del archivo
+                            window.location.href = winAsset.browser_download_url;
+                        } else {
+                            // Si no encuentra el ejecutable, cae en la página de la release como plan B
+                            window.location.href = 'https://github.com/OASISLocal/O.A.S.I.S./releases/latest';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching latest release:', error);
+                        // Si falla la API por cualquier motivo, lo mandamos a la web de releases
+                        window.location.href = 'https://github.com/OASISLocal/O.A.S.I.S./releases/latest';
+                    })
+                    .finally(() => {
+                        // Restauramos el texto original del botón
+                        setTimeout(() => {
+                            downloadBtn.innerHTML = originalText;
+                        }, 2000);
+                    });
+            });
+        }
+    })();
+</script>
+
+</body>
+</html>
