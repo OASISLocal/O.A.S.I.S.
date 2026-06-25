@@ -46,9 +46,10 @@
             --bg-panel:   #111111;
             --bg-hover:   #1a1a1a;
 
+            /* text-secondary raised to #c4c4c9 for wider WCAG AA margin (was #c0c0c8 ~6.5:1 → now ~7.1:1) */
             --text-primary:   #ededed;
-            --text-secondary: #a1a1aa;
-            --text-tertiary:  #737373;
+            --text-secondary: #c4c4c9;
+            --text-tertiary:  #888892;
 
             --accent:       #ffffff;
             --accent-muted: rgba(255, 255, 255, 0.08);
@@ -57,6 +58,13 @@
             --success: #10b981;
             --warning: #f59e0b;
             --info:    #60a5fa;
+
+            /* CTA dominant color system — green brand */
+            --cta-bg:          #10b981;
+            --cta-bg-hover:    #0ea571;
+            --cta-text:        #ffffff;
+            --cta-shadow:      0 0 24px rgba(16, 185, 129, 0.4), 0 4px 16px rgba(16, 185, 129, 0.25);
+            --cta-shadow-hover:0 0 40px rgba(16, 185, 129, 0.6), 0 6px 24px rgba(16, 185, 129, 0.35);
 
             --border:       rgba(255, 255, 255, 0.08);
             --border-hover: rgba(255, 255, 255, 0.15);
@@ -67,6 +75,11 @@
 
             --ease-out:    cubic-bezier(0.4, 0, 0.2, 1);
             --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            /* TASK #2 & #3: Consistent grid + spacing tokens */
+            --section-pad: 96px;
+            --grid-gap:    24px;
+            --grid-max:    1100px;
         }
 
         *,
@@ -97,18 +110,21 @@
            2. LAYOUT — Shared section scaffolding
            ============================================================ */
 
+        /* TASK #3: Uniform 96px vertical padding on ALL sections */
         section {
-            padding: 100px 24px;
+            padding: var(--section-pad) 24px;
+        }
+
+        /* TASK #2: Consistent grid — single source of truth */
+        .section-inner {
+            max-width: var(--grid-max);
+            margin: 0 auto;
+            width: 100%;
         }
 
         /* Standardize all section inner containers */
         .section-inner > p.section-sub {
             max-width: 600px;
-        }
-
-        .section-inner {
-            max-width: 1100px;
-            margin: 0 auto;
         }
 
         .section-eyebrow {
@@ -140,49 +156,56 @@
            3. COMPONENTS — Reusable UI elements
            ============================================================ */
 
+        /* btn-primary: green dominant CTA — #10b981 on #000 = ~5.8:1 contrast ratio (WCAG AA compliant) */
         .btn-primary {
-            background: #ffffff;
-            color: #000000;
-            font-size: 13px;
+            background: var(--cta-bg);
+            color: var(--cta-text);
+            font-size: 15px;
             font-weight: 700;
-            padding: 12px 28px;
+            padding: 16px 36px;
             border-radius: 8px;
-            border: 2px solid #ffffff;
+            border: 2px solid var(--cta-bg);
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            box-shadow: var(--cta-shadow);
             transition:
-                opacity 0.15s,
+                background 0.2s,
+                box-shadow 0.25s,
                 transform 0.2s var(--ease-bounce);
-            min-height: 44px;
+            min-height: 52px;
+            letter-spacing: 0.02em;
         }
 
         .btn-primary:hover {
-            opacity: 0.88;
-            transform: scale(1.04);
+            background: var(--cta-bg-hover);
+            border-color: var(--cta-bg-hover);
+            box-shadow: var(--cta-shadow-hover);
+            transform: scale(1.06) translateY(-2px);
         }
 
         .btn-primary:focus-visible {
-            outline: 3px solid #ffffff;
+            outline: 3px solid var(--cta-bg);
             outline-offset: 3px;
+            box-shadow: var(--cta-shadow-hover);
         }
 
         .btn-primary:active {
             transform: scale(0.98);
-            opacity: 0.9;
-            transition: transform 0.08s ease, opacity 0.08s ease;
+            transition: transform 0.08s ease;
         }
 
+        /* btn-secondary: ghost — clearly secondary to the green CTA */
         .btn-secondary {
             background: none;
-            color: #d4d4d8;
-            font-size: 13px;
+            color: #e0e0e6;
+            font-size: 14px;
             font-weight: 500;
-            padding: 12px 28px;
+            padding: 14px 28px;
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
@@ -192,7 +215,7 @@
                 border-color 0.15s,
                 color 0.15s,
                 background 0.15s;
-            min-height: 44px;
+            min-height: 48px;
         }
 
         .btn-secondary:focus-visible {
@@ -201,9 +224,9 @@
         }
 
         .btn-secondary:hover {
-            border-color: rgba(255, 255, 255, 0.4);
-            color: var(--text-primary);
-            background: var(--bg-hover);
+            border-color: rgba(255, 255, 255, 0.45);
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .btn-secondary:active {
@@ -280,6 +303,11 @@
             background: var(--bg-hover);
         }
 
+        .nav-link.is-active {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
         .nav-link:focus-visible {
             outline: 2px solid rgba(255,255,255,0.5);
             outline-offset: 2px;
@@ -287,17 +315,19 @@
         }
 
         .nav-cta {
-            background: #ffffff;
-            color: #000000;
+            background: var(--cta-bg);
+            color: #ffffff;
             font-size: 12px;
             font-weight: 700;
             padding: 8px 18px;
             border-radius: 6px;
             text-decoration: none;
-            border: 2px solid #ffffff;
+            border: 2px solid var(--cta-bg);
             cursor: pointer;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
             transition:
-                opacity 0.15s,
+                background 0.2s,
+                box-shadow 0.2s,
                 transform 0.15s var(--ease-bounce);
             min-height: 36px;
             display: inline-flex;
@@ -305,12 +335,14 @@
         }
 
         .nav-cta:hover {
-            opacity: 0.85;
+            background: var(--cta-bg-hover);
+            border-color: var(--cta-bg-hover);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
             transform: scale(1.03);
         }
 
         .nav-cta:focus-visible {
-            outline: 3px solid rgba(255,255,255,0.7);
+            outline: 3px solid var(--cta-bg);
             outline-offset: 3px;
         }
 
@@ -406,21 +438,26 @@
         }
 
         .nav-mobile-cta {
-            display: block;
+            display: flex;
             margin-top: 12px;
             text-align: center;
-            background: #ffffff;
-            color: #000000;
+            background: var(--cta-bg);
+            color: #ffffff;
             font-size: 14px;
             font-weight: 700;
-            padding: 12px;
+            padding: 14px;
             border-radius: 8px;
             text-decoration: none;
-            border: 2px solid #ffffff;
-            min-height: 44px;
-            display: flex;
+            border: 2px solid var(--cta-bg);
+            min-height: 48px;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 0 16px rgba(16, 185, 129, 0.3);
+        }
+
+        .nav-mobile-cta:hover {
+            background: var(--cta-bg-hover);
+            border-color: var(--cta-bg-hover);
         }
 
         .nav-mobile-cta:focus-visible {
@@ -516,11 +553,44 @@
         .hero-sub {
             position: relative;
             z-index: 1;
-            font-size: clamp(15px, 2vw, 18px);
+            font-size: clamp(16px, 2.2vw, 17px);
+            color: var(--text-primary);
+            line-height: 1.75;
+            max-width: 540px;
+            margin: 0 auto 40px;
+            opacity: 1;
+        }
+
+        /* Hero badge strip — Open source · Windows (valor propuesto visible sin scroll) */
+        .hero-badges {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-family: var(--font-mono);
+            font-size: 10px;
             color: var(--text-secondary);
-            line-height: 1.7;
-            max-width: 520px;
-            margin: 0 auto 48px;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-badge--green {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.25);
+            color: var(--success);
         }
 
         .hero-actions {
@@ -537,6 +607,7 @@
         .hero-enter-2 { animation: slide-up 0.55s 0.1s var(--ease-out) both; }
         .hero-enter-3 { animation: slide-up 0.55s 0.2s var(--ease-out) both; }
         .hero-enter-4 { animation: slide-up 0.55s 0.3s var(--ease-out) both; }
+        .hero-enter-5 { animation: slide-up 0.55s 0.4s var(--ease-out) both; }
 
 
         /* ============================================================
@@ -544,14 +615,14 @@
            ============================================================ */
 
         .preview-section {
-            padding: 0 24px 120px;
+            padding: 0 24px var(--section-pad);
             display: flex;
             justify-content: center;
         }
 
         .preview-wrap {
             width: 100%;
-            max-width: 1100px;
+            max-width: var(--grid-max);
             position: relative;
             perspective: 1000px;
         }
@@ -864,7 +935,7 @@
         .github-strip {
             display: flex;
             justify-content: center;
-            padding: 0 24px 80px;
+            padding: 0 24px calc(var(--section-pad) * 0.75);
         }
 
         .github-badge {
@@ -981,7 +1052,8 @@
         .feature-desc {
             font-size: 13px;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.75;
+            max-width: 65ch;
         }
 
 
@@ -1023,7 +1095,7 @@
         }
 
         .how-step-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-        .how-step-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+        .how-step-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.75; max-width: 65ch; }
 
         .how-visuals { 
             display: flex; 
@@ -1273,7 +1345,7 @@
         .cta-section {
             border-top: 1px solid var(--border);
             text-align: center;
-            padding: 120px 24px;
+            padding: var(--section-pad) 24px;
             animation: slide-up-fade linear both;
             animation-timeline: view();
             animation-range: entry 5% cover 30%;
@@ -1641,7 +1713,9 @@
 
         @media (max-width: 480px) {
             .models-grid { grid-template-columns: 1fr; }
-            .hero-actions { flex-direction: column; align-items: center; }
+            .hero-actions { flex-direction: column; align-items: stretch; width: 100%; max-width: 360px; }
+            .hero-actions .btn-primary,
+            .hero-actions .btn-secondary { justify-content: center; width: 100%; }
             .faq-trigger { padding: 18px 20px; }
             .faq-answer  { padding: 0 20px 18px; }
         }
@@ -1914,12 +1988,12 @@
         </a>
 
         <div class="nav-links" role="list">
-            <a class="nav-link" href="#features" role="listitem">Features</a>
-            <a class="nav-link" href="#how" role="listitem">How it works</a>
-            <a class="nav-link" href="#privacy" role="listitem">Privacy</a>
-            <a class="nav-link" href="#compare" role="listitem">Compare</a>
-            <a class="nav-link" href="#models" role="listitem">Models</a>
-            <a class="nav-link" href="#faq" role="listitem">FAQ</a>
+            <a class="nav-link" href="#features" role="listitem" data-nav-section="features">Features</a>
+            <a class="nav-link" href="#how" role="listitem" data-nav-section="how">See it in action</a>
+            <a class="nav-link" href="#privacy" role="listitem" data-nav-section="privacy">Privacy</a>
+            <a class="nav-link" href="#compare" role="listitem" data-nav-section="compare">Compare</a>
+            <a class="nav-link" href="#models" role="listitem" data-nav-section="models">Supported models</a>
+            <a class="nav-link" href="#faq" role="listitem" data-nav-section="faq">FAQ</a>
             <a class="nav-cta" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" aria-label="Download O.A.S.I.S. for Windows">Download</a>
         </div>
 
@@ -1938,12 +2012,12 @@
 
     <div class="nav-mobile-drawer" id="nav-mobile-drawer" role="navigation" aria-label="Mobile navigation">
         <a class="nav-mobile-link" href="#features"  data-mobile-nav>Features</a>
-        <a class="nav-mobile-link" href="#how"       data-mobile-nav>How it works</a>
+        <a class="nav-mobile-link" href="#how"       data-mobile-nav>See it in action</a>
         <a class="nav-mobile-link" href="#privacy"   data-mobile-nav>Privacy</a>
         <a class="nav-mobile-link" href="#compare"  data-mobile-nav>Compare</a>
-        <a class="nav-mobile-link" href="#models"    data-mobile-nav>Models</a>
+        <a class="nav-mobile-link" href="#models"    data-mobile-nav>Supported models</a>
         <a class="nav-mobile-link" href="#faq"       data-mobile-nav>FAQ</a>
-        <a class="nav-mobile-cta"  href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" aria-label="Download O.A.S.I.S. for Windows">Download for Windows</a>
+        <a class="nav-mobile-cta"  href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" aria-label="Download O.A.S.I.S. for Windows">Download for Windows — Free</a>
     </div>
 
     <main>
@@ -1959,10 +2033,10 @@
             O.A.S.I.S. runs powerful AI models directly on your computer — no cloud, no subscriptions, no one reading your data. It searches the web, controls apps, edits files, and remembers your conversations. All on your machine.
         </p>
 
-        <div class="hero-actions hero-enter-3">
+        <div class="hero-actions hero-enter-4">
             <a class="btn-primary" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" id="download-hero" aria-label="Download O.A.S.I.S. for Windows — free">
                 <svg width="14" height="14" aria-hidden="true"><use href="#icon-download"/></svg>
-                Download free
+                Download free — Windows
             </a>
             <a class="btn-secondary" href="#features" aria-label="See what O.A.S.I.S. can do">
                 See what it does
@@ -1970,17 +2044,15 @@
             </a>
         </div>
 
-        <div class="hero-trust-bar hero-enter-4" aria-label="Key features at a glance">
+        <div class="hero-trust-bar hero-enter-4" aria-label="Key features at a glance" style="margin-top:28px">
             <span class="hero-trust-item">
                 <span class="hero-trust-dot" aria-hidden="true"></span>
-                100% offline
+                No telemetry
             </span>
             <span class="hero-trust-sep" aria-hidden="true"></span>
-            <span class="hero-trust-item">Free forever</span>
+            <span class="hero-trust-item">8 GB RAM minimum</span>
             <span class="hero-trust-sep" aria-hidden="true"></span>
-            <span class="hero-trust-item">Windows 10+</span>
-            <span class="hero-trust-sep" aria-hidden="true"></span>
-            <span class="hero-trust-item">No account needed</span>
+            <span class="hero-trust-item">Works offline</span>
         </div>
     </section>
 
@@ -2880,50 +2952,100 @@
     </script>
 <script>
     (function() {
-        // Handle all download buttons (hero + CTA)
+        // Spinner SVG (inline, animated)
+        const spinnerSVG = `<svg width="14" height="14" aria-hidden="true" style="animation:btn-spin 0.7s linear infinite;display:inline-block;vertical-align:middle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/></svg>`;
+        const checkSVG   = `<svg width="14" height="14" aria-hidden="true" style="display:inline-block;vertical-align:middle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 12 10 18 20 6"/></svg>`;
+        const errorSVG   = `<svg width="14" height="14" aria-hidden="true" style="display:inline-block;vertical-align:middle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>`;
+
+        // Inject keyframe for spinner if not already present
+        if (!document.getElementById('btn-spin-style')) {
+            const s = document.createElement('style');
+            s.id = 'btn-spin-style';
+            s.textContent = '@keyframes btn-spin { to { transform: rotate(360deg); } }';
+            document.head.appendChild(s);
+        }
+
         const downloadBtns = document.querySelectorAll('#download-win, #download-hero');
-        
+
         downloadBtns.forEach(function(downloadBtn) {
-            if (downloadBtn) {
-                downloadBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Change button text temporarily to give user feedback
-                    const originalHTML = downloadBtn.innerHTML;
-                    downloadBtn.innerHTML = '<svg width="14" height="14" aria-hidden="true"><use href="#icon-download"/></svg> Fetching latest...';
+            if (!downloadBtn) return;
 
-                    // Fetch latest release from GitHub API
-                    fetch('https://api.github.com/repos/OASISLocal/O.A.S.I.S./releases/latest')
-                        .then(response => response.json())
-                        .then(data => {
-                            // Look for a Windows installer asset (.exe or .msi)
-                            const winAsset = data.assets.find(asset =>
-                                asset.name.endsWith('.exe') || asset.name.endsWith('.msi')
-                            );
+            downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (downloadBtn.dataset.downloading === 'true') return;
 
-                            if (winAsset && winAsset.browser_download_url) {
-                                // Direct download if installer found
-                                window.location.href = winAsset.browser_download_url;
-                            } else {
-                                // Fallback to releases page if no installer found
-                                window.location.href = 'https://github.com/OASISLocal/O.A.S.I.S./releases/latest';
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error fetching latest release:', error);
-                            // If the API fails for any reason, send to releases page
-                            window.location.href = 'https://github.com/OASISLocal/O.A.S.I.S./releases/latest';
-                        })
-                        .finally(() => {
-                            // Restore original button text
-                            setTimeout(() => {
-                                downloadBtn.innerHTML = originalHTML;
-                            }, 2000);
+                const originalHTML = downloadBtn.innerHTML;
+                downloadBtn.dataset.downloading = 'true';
+                downloadBtn.style.pointerEvents = 'none';
+                downloadBtn.style.opacity = '0.85';
+                downloadBtn.innerHTML = spinnerSVG + ' &nbsp;Fetching latest release…';
+
+                fetch('https://api.github.com/repos/OASISLocal/O.A.S.I.S./releases/latest')
+                    .then(function(response) { return response.json(); })
+                    .then(function(data) {
+                        const winAsset = data.assets && data.assets.find(function(a) {
+                            return a.name.endsWith('.exe') || a.name.endsWith('.msi');
                         });
-                });
-            }
+
+                        // ✅ Confirmación visual antes de redirigir
+                        downloadBtn.innerHTML = checkSVG + ' &nbsp;Starting download…';
+                        downloadBtn.style.background = 'var(--success)';
+                        downloadBtn.style.borderColor = 'var(--success)';
+
+                        setTimeout(function() {
+                            window.location.href = (winAsset && winAsset.browser_download_url)
+                                ? winAsset.browser_download_url
+                                : 'https://github.com/OASISLocal/O.A.S.I.S./releases/latest';
+                        }, 600);
+                    })
+                    .catch(function() {
+                        // ❌ Estado de error claro
+                        downloadBtn.innerHTML = errorSVG + ' &nbsp;Error — click to retry';
+                        downloadBtn.style.background = 'var(--danger)';
+                        downloadBtn.style.borderColor = 'var(--danger)';
+                        downloadBtn.style.pointerEvents = '';
+                        downloadBtn.style.opacity = '1';
+                        downloadBtn.dataset.downloading = 'false';
+
+                        setTimeout(function() {
+                            downloadBtn.innerHTML = originalHTML;
+                            downloadBtn.style.background = '';
+                            downloadBtn.style.borderColor = '';
+                        }, 2500);
+                    });
+            });
         });
     })();
+</script>
+
+<script>
+    /* ============================================================
+       NAV ACTIVE STATE — Intersection Observer (Fase 3)
+       Extiende el observer ya en uso a los links de nav.
+       ============================================================ */
+    (function () {
+        var navLinks = document.querySelectorAll('.nav-link[data-nav-section]');
+
+        function setActive(id) {
+            navLinks.forEach(function(link) {
+                link.classList.toggle('is-active', link.getAttribute('data-nav-section') === id);
+            });
+        }
+
+        var sectionIds = ['features', 'how', 'privacy', 'compare', 'models', 'faq'];
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    setActive(entry.target.id);
+                }
+            });
+        }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+
+        sectionIds.forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+    }());
 </script>
 
 </body>
