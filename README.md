@@ -260,7 +260,7 @@ Early community members receive launch pricing.
 - [ ] Linux support
 
 > [!IMPORTANT]
-> O.A.S.I.S. is currently in **public beta**. While core features are functional, some components may still be unstable, incomplete, or subject to change as development continues.
+> O.A.S.I.S. is currently in **public beta**. While core features are functional, some features may be incomplete, unstable, or temporarily unavailable. Stability, performance, and functionality will continue improving with each release.
 
 ---
 
