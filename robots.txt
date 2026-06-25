@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oasislocal.github.io/O.A.S.I.S./sitemap.xml
