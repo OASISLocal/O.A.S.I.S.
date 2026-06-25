@@ -2,6 +2,10 @@
 
 <img src="assets/oasis-banner.png" alt="O.A.S.I.S. Banner" width="100%">
 
+<br>
+
+# O.A.S.I.S.
+
 ### Operative Autonomous System for Intelligent Services
 
 **Your AI assistant. Your PC. Your rules.**
@@ -10,308 +14,374 @@ Local · Private · Offline · No subscriptions
 
 <br>
 
+[![Website](https://img.shields.io/badge/Website-O.A.S.I.S.-111111?style=for-the-badge)](https://oasislocal.github.io/O.A.S.I.S./)
 [![Download](https://img.shields.io/badge/Download-Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/OASIS-AI/oasis/releases/latest)
-[![Discord](https://img.shields.io/badge/Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/88yfW5UwGC)
-[![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)](#)
+[![Discord](https://img.shields.io/badge/Community-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/88yfW5UwGC)
+[![Version](https://img.shields.io/badge/version-1.0.0-brightgreen?style=for-the-badge)](#)
 [![License](https://img.shields.io/badge/license-Proprietary-e05252?style=for-the-badge)](#)
 
-<br>
-
-> *Everything ChatGPT promises — without sending a single byte outside your PC.*
-
-<br>
-
 </div>
 
 ---
 
-## What is O.A.S.I.S.?
+# What is O.A.S.I.S.?
 
-O.A.S.I.S. is a **local AI assistant for Windows** that runs entirely on your machine. No cloud. No subscriptions. No one reading your conversations.
+O.A.S.I.S. is a **local AI assistant for Windows** designed to run entirely on your machine.
 
-It doesn't just chat — it **acts**. It opens apps, automates tasks, controls your desktop, reads your screen, manages your files and executes workflows while you focus on what matters. All powered by the best open-source AI models running directly on your hardware.
+No cloud processing. No subscriptions. No remote storage.
 
-Think of it as having a capable, private copilot living inside your PC — one that gets smarter the more you use it, remembers everything you tell it, and never shares your data with anyone.
+Unlike traditional AI assistants, O.A.S.I.S. does more than generate text. It understands context, interacts with your desktop, automates workflows, analyzes documents, and executes tasks directly on your system.
 
-<br>
+It is built for users who want a capable AI assistant without sacrificing control, privacy, or ownership of their data.
 
 <div align="center">
-<img src="assets/oasis-demo.gif" alt="O.A.S.I.S. in action" width="85%">
+<img src="assets/oasis-demo.gif" alt="O.A.S.I.S. Demo" width="85%">
 </div>
-
-<br>
 
 ---
 
-## Why O.A.S.I.S. instead of ChatGPT or Copilot?
+# Why O.A.S.I.S.?
 
-| | ChatGPT / Copilot | **O.A.S.I.S.** |
+| Feature | Cloud AI Assistants | O.A.S.I.S. |
 |---|---|---|
-| Your conversations | Sent to servers | Stay on your PC |
-| Your documents | Uploaded to the cloud | Never leave your machine |
-| Monthly cost | $20/month forever | One-time payment |
-| Works offline | ❌ | ✅ |
-| Controls your PC | ❌ | ✅ |
-| Remembers you | Limited | Grows with you |
-| Your data, your rules | ❌ | ✅ |
-
-<br>
+| Conversations | Sent to servers | Local |
+| Documents | Uploaded | Local |
+| Subscription | Monthly | Free / One-time |
+| Offline | No | Yes |
+| Desktop Control | Limited | Full |
+| Memory | Limited | Persistent |
+| Privacy | Policy-based | Architecture-based |
 
 ---
 
-## What O.A.S.I.S. can do
+# Core Capabilities
 
-### 🧠 Actually understands you
-Persistent memory that grows over time. O.A.S.I.S. remembers your projects, your preferences, your style — and uses that context in every response. Not just within a session. Forever.
+###  Persistent Memory
 
-### 🖥️ Controls your PC
-Ask it to open VS Code, run a script, search GitHub, draft an email, move files or fill out a form. O.A.S.I.S. acts on your system directly — no copy-pasting required.
-
-### ⚡ Automates your work
-Build workflows that run automatically — triggered by time, events, voice or a keyboard shortcut. Chain multiple steps together. Let O.A.S.I.S. handle the repetitive parts of your day.
-
-### 🎙️ Speaks and listens
-Full voice mode with local speech recognition (Whisper) and high-quality local text-to-speech (Kokoro TTS). Hands-free, offline, with no audio sent anywhere.
-
-### 📂 Understands your documents
-Drop your PDFs, Word files, notes and code — O.A.S.I.S. reads, understands and answers questions about them. Your personal knowledge base, entirely local.
-
-### 🔧 Runs Skills
-Specialized modules that make O.A.S.I.S. an expert in specific tasks — coding assistant, writing assistant, data analyst, meeting summarizer, document generator and more. Install from the community library or build your own.
-
-### 📄 Creates documents
-Generate fully formatted PowerPoint presentations and Word documents from a single instruction. With your data, your style and your colors — no templates that look like everyone else's.
-
-### 🔒 100% private by default
-No telemetry. No cloud sync. No account required to use it. Your conversations, your files and your memory stay on your machine. Always.
-
-<br>
+Long-term contextual memory stored locally. O.A.S.I.S. remembers projects, workflows, preferences, and prior conversations to improve relevance over time.
 
 ---
 
-## Built for real use
+###  Desktop Control
 
-<div align="center">
+Launch apps, execute scripts, browse repositories, move files, interact with windows, and control your operating system through natural language.
 
-```
+---
+
+###  Workflow Automation
+
+Create reusable workflows triggered by voice commands, hotkeys, schedules, or system events.
+
+---
+
+###  Voice Interaction
+
+Local speech recognition and offline text-to-speech enable hands-free interaction without sending audio to external servers.
+
+---
+
+### Document Intelligence
+
+Analyze PDFs, Office documents, source code, notes, and datasets using semantic search and retrieval.
+
+---
+
+###  Skills System
+
+Extend capabilities through specialized Skills for coding, writing, analytics, research, and automation.
+
+---
+
+###  Privacy by Architecture
+
+Privacy is enforced by system design—not by policy.
+
+---
+
+# Example Use Cases
+
+```text
 "Summarize the PDF I just downloaded and draft a follow-up email"
 
-"Every Monday at 9am, prepare my weekly briefing"
+"Every Monday at 9:00, prepare my weekly briefing"
 
 "Open VS Code, run the tests and tell me what failed"
 
-"Create a 10-slide presentation about Q3 results for the board meeting tomorrow"
+"Create a 10-slide presentation about Q3 results"
 
-"What was that thing I was reading about React hooks last week?"
+"What article about React hooks was I reading last week?"
 ```
+
+---
+
+# Architecture
+
+```mermaid
+flowchart LR
+CORE[OASIS Core]
+CORE --> LLM[llama.cpp]
+CORE --> MEMORY[Local Vector DB]
+CORE --> VOICE[Whisper + Kokoro & Piper TTS]
+CORE --> AUTO[Windows APIs]
+CORE --> RAG[Document Retrieval]
+```
+
+---
+
+# Technology Stack
+
+| Layer | Technology |
+|---|---|
+| Inference Engine | llama.cpp |
+| Speech Recognition | Whisper |
+| Text-to-Speech | Kokoro TTS & Piper TTS |
+| Automation Engine | Native Windows APIs |
+| Memory | Local Vector Database |
+| Retrieval | Local RAG Pipeline |
+| Model Format | GGUF |
+
+---
+
+# Official Website
+
+Visit the official website for demos, documentation and updates:
+
+**https://oasislocal.github.io/O.A.S.I.S./**
+
+---
+
+# System Requirements
+
+<div align="center">
+
+![Windows](https://img.shields.io/badge/OS-Windows_10/11-0078D4)
+![RAM](https://img.shields.io/badge/RAM-8GB+-blue)
+![Storage](https://img.shields.io/badge/Storage-20GB+-green)
+![GPU](https://img.shields.io/badge/GPU-Recommended-brightgreen)
 
 </div>
 
-<br>
+Minimum recommended configuration:
+
+- Windows 10 / 11 (64-bit)
+- 8 GB RAM
+- 20 GB free storage
+- Dedicated GPU recommended
+- CPU-only supported with smaller models
 
 ---
 
-## Getting started
+# Installation
 
-### System requirements
+## 1. Download
 
-> ⚠️ Full requirements will be published with the stable release. Beta testers have reported smooth performance on mid-range gaming PCs and modern laptops with dedicated GPUs.
+Download the latest release:
 
-Minimum recommended:
-- **OS:** Windows 10 / 11 (64-bit)
-- **RAM:** 16 GB
-- **Storage:** 20 GB free space
-- **GPU:** Dedicated GPU recommended for best performance (NVIDIA or AMD)
-- **CPU:** Works on CPU-only setups with smaller models
+```text
+OASIS_Setup.exe
+```
 
-<br>
-
-### Installation
-
-**1. Download the installer**
-
-Go to the [**Releases**](https://github.com/OASIS-AI/oasis/releases/latest) page and download `OASIS_Setup.exe`
-
-**2. Run the installer**
-
-The installer checks your system requirements, downloads the AI model and sets everything up automatically. No terminal. No configuration files.
-
-**3. Complete the onboarding**
-
-O.A.S.I.S. walks you through a guided setup — choose your privacy settings, configure your microphone, pick your AI model and personalize your assistant. Takes about 5 minutes.
-
-**4. You're ready**
-
-Press `Ctrl + Shift + Space` from anywhere on your PC to bring O.A.S.I.S. up instantly.
-
-<br>
+From GitHub Releases.
 
 ---
 
-## Plans
+## 2. Install
 
-O.A.S.I.S. launches as a **free version** — no payment, no account, no strings attached. Download it, use it, and see what a local AI assistant can actually do.
+The installer:
 
-Paid plans with expanded capabilities are coming. Early community members will get priority access and the best pricing — it won't get cheaper than it is at launch.
+- checks compatibility
+- downloads required models
+- configures the environment automatically
 
-> Join the [Discord](https://discord.gg/88yfW5UwGC) to stay updated on when paid plans go live.
-
-<br>
+No terminal required.
 
 ---
 
-## Keyboard shortcuts
+## 3. Configure
+
+On first launch you can:
+
+- select privacy settings
+- configure microphone
+- choose AI model
+- personalize assistant behavior
+
+---
+
+## 4. Launch
+
+Use:
+
+```text
+Ctrl + Shift + Space
+```
+
+to open O.A.S.I.S. from anywhere.
+
+---
+
+# Plans
+
+O.A.S.I.S. launches with a fully functional free tier.
+
+Optional paid plans will introduce expanded capabilities, premium services, and advanced integrations.
+
+Early community members receive launch pricing.
+
+---
+
+# Keyboard Shortcuts
 
 | Shortcut | Action |
 |---|---|
-| `Ctrl + Shift + Space` | Open O.A.S.I.S. from anywhere |
-| `Ctrl + Shift + V` | Activate voice mode |
-| `Ctrl + N` | New conversation |
-| `Ctrl + K` | Command palette |
-| `Ctrl + Shift + S` | Screenshot + analyze |
-
-<br>
+| Ctrl + Shift + Space | Open assistant |
+| Ctrl + Shift + V | Voice mode |
+| Ctrl + N | New conversation |
+| Ctrl + K | Command palette |
+| Ctrl + Shift + S | Screenshot analysis |
 
 ---
 
-## Roadmap
+# Roadmap
 
-O.A.S.I.S. is in active development. Here's what's coming:
-
-- [x] Core chat with local models
-- [x] Voice mode (STT + TTS)
-- [x] App control and automation
-- [x] Skills and Workflows system
-- [x] Cloud model support (optional)
-- [x] Automatic updates with rollback
-- [x] RAG over personal documents
-- [x] Real-time screen context stream
-- [ ] Mobile companion app
-- [ ] Room microphone network (NEXUS)
-- [ ] Voice cloning (NEXUS)
-- [ ] Meeting transcription (NEXUS)
-- [ ] Document and presentation generator
-- [ ] Community skills library
+- [x] Local chat inference
+- [x] Voice mode
+- [x] Desktop automation
+- [x] Skills system
+- [x] Optional cloud providers
+- [x] Automatic updates
+- [x] Document retrieval
+- [x] Real-time screen context
+- [ ] Mobile companion
+- [ ] Meeting transcription
+- [ ] Advanced document generation
+- [ ] Community marketplace
 - [ ] macOS support
+- [ ] Linux support
 
-<br>
-
----
-
-## Privacy — the real kind
-
-Most "private" AI tools still send your data somewhere. O.A.S.I.S. doesn't.
-
-- **No account required** to use the app
-- **No telemetry** by default — optional and anonymous if you choose to enable it
-- **No cloud processing** — every AI response is generated on your hardware
-- **No training on your data** — your conversations are yours
-- **Offline first** — works with no internet connection at all
-- **Auditable** — when Privacy Mode is on, O.A.S.I.S. shows you in real time that no network connections are active
-
-Your data never leaves your PC. This isn't a policy — it's the architecture.
-
-<br>
+> [!IMPORTANT]
+> O.A.S.I.S. is currently in **public beta**. While core features are functional, some components may still be unstable, incomplete, or subject to change as development continues.
 
 ---
 
-## Join the community
+# Privacy Architecture
 
-O.A.S.I.S. is being built in the open, and the community shapes what gets built next.
+Most AI tools require trust.
+
+O.A.S.I.S. minimizes trust requirements through architecture.
+
+- No account required
+- No mandatory telemetry
+- No remote inference
+- No cloud synchronization
+- No training on user data
+- Offline-first
+
+When Privacy Mode is enabled, O.A.S.I.S. can verify the absence of network activity during inference.
+
+Your data remains under your control.
+
+---
+
+# Community
+
+O.A.S.I.S. is developed openly with community feedback helping define priorities.
+
+Join the community for:
+
+- announcements
+- beta releases
+- support
+- feature suggestions
+- contributor discussions
+
+---
+
+# Frequently Asked Questions
+
+<details>
+<summary><b>Does it work offline?</b></summary>
+<br>
+Yes. Core functionality runs fully offline.
+</details>
+
+<details>
+<summary><b>Do I need a powerful PC?</b></summary>
+<br>
+A GPU improves performance significantly, but CPU-only usage is supported.
+</details>
+
+<details>
+<summary><b>Which models are supported?</b></summary>
+<br>
+
+Any GGUF-compatible model.
+
+Examples:
+
+- Gemma
+- Llama
+- Mistral
+- Phi
+- CodeLlama
+
+</details>
+
+<details>
+<summary><b>Is my data private?</b></summary>
+<br>
+Yes. Conversations, documents, and memory remain local unless you explicitly enable cloud integrations.
+</details>
+
+<details>
+<summary><b>Is it free?</b></summary>
+<br>
+The initial release is free. Premium plans are optional.
+</details>
+
+<details>
+<summary><b>macOS or Linux support?</b></summary>
+<br>
+Planned for future releases.
+</details>
+
+---
+
+# Developer Statement
+
+O.A.S.I.S. is an independent project built with a single objective:
+
+Provide a powerful AI assistant without compromising privacy or ownership.
+
+Modern AI products often force a tradeoff between capability and control.
+
+O.A.S.I.S. is designed to remove that compromise.
+
+Your conversations remain yours.  
+Your files remain yours.  
+Your data remains yours.
+
+That is not a marketing statement.
+
+It is how the software is built.
+
+---
 
 <div align="center">
 
-[![Join Discord](https://img.shields.io/badge/Join_Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/88yfW5UwGC)
+<img src="https://cdn.jsdelivr.net/npm/@tabler/icons/icons/outline/robot.svg" width="42">
 
-</div>
+## O.A.S.I.S.
 
-The Discord server is organized so you can jump straight to what you need:
+Operative Autonomous System for Intelligent Services
 
-**📢 info**
-- **#about-oasis** — what the project is, why it exists and where it's going
-- **#rules** — community guidelines
-- **#announcements** — releases, betas and major updates
-- **#roadmap** — what's being built and in what order
-- **#links** — useful resources, docs and external references
+[Website](https://oasislocal.github.io/O.A.S.I.S./) •
+[Download](https://github.com/OASIS-AI/oasis/releases/latest) •
+[Discord](https://discord.gg/88yfW5UwGC) •
+[Report a Bug](https://github.com/OASIS-AI/oasis/issues)
 
-**💬 O.A.S.I.S.**
-- **#general** — talk to the developer and other users
-- **#showcase** — show what you're building or doing with O.A.S.I.S.
-- **#suggestions** — propose features and vote on what gets built next
-- **#beta** — early access releases and beta builds *(requires Beta Tester role — see below)*
+<br><br>
 
-**🔧 dev | support**
-- **#documentation** — guides and references *(read-only)*
-- **#bugs** — report issues with context and steps to reproduce *(moderated)*
-- **#dev-chat** — development discussion *(private — contributors only)*
-- **#code-helpers-chat** — technical help for contributors *(private — contributors only)*
-
-<br>
-
-> **Want beta access?**
-> The `#beta` channel is restricted to users with the **Beta Tester** role. To get it, get involved — share feedback in `#general`, report bugs or contribute to discussions. Beta access is given to people who are genuinely interested in helping shape the product, not just downloading early builds.
-
-<br>
-
----
-
-## Frequently asked questions
-
-**Does it work without internet?**
-Yes. Once installed, O.A.S.I.S. runs entirely offline. The only features that require internet are optional cloud model integrations, which you can ignore completely.
-
-**Do I need a powerful PC?**
-A dedicated GPU gives the best experience, but O.A.S.I.S. also runs on CPU-only setups with smaller, optimized models. Full hardware requirements will be published with the stable release.
-
-**What AI models does it use?**
-O.A.S.I.S. uses Gemma 4 locally by default and supports any GGUF-compatible model — Llama 3, Mistral, Phi-3, CodeLlama and many more. You choose the model based on your hardware and needs. Optional cloud providers (OpenAI, Anthropic, Google) are available if you prefer.
-
-**Is my data really private?**
-Your conversations, documents and memory never leave your PC. There are no user accounts, no cloud sync and no data collection unless you explicitly opt into anonymous crash reporting.
-
-**Is it really free?**
-Yes. The initial release is completely free. Paid plans with additional features are coming — join the Discord to know when they launch and get early access pricing.
-
-**What paid plans are coming?**
-Details will be announced in the Discord before launch. Early community members get priority access and the best price — it won't get cheaper after launch.
-
-**Will it work on macOS or Linux?**
-Windows only for now. macOS and Linux are on the roadmap.
-
-**How do I get beta access?**
-Join the [Discord](https://discord.gg/88yfW5UwGC) and get involved. Beta access is given to active community members who participate in discussions, report bugs or share feedback — not handed out automatically.
-
-**I found a bug. Where do I report it?**
-Open an [Issue](https://github.com/OASIS-AI/oasis/issues) on GitHub or post in **#bugs** on Discord. Please include your system specs and steps to reproduce.
-
-<br>
-
----
-
-## A note from the developer
-
-O.A.S.I.S. is an independent project built by a single developer with one goal: to give people a genuinely capable AI assistant that respects their privacy completely.
-
-This isn't a startup with investor pressure to monetize your data. It's a tool built because the right version of it didn't exist yet.
-
-Every conversation you have stays on your machine. Every file you share stays local. Every response is generated on your hardware. That's not a marketing claim — it's how the code works.
-
-If you believe your conversations should stay yours, O.A.S.I.S. was built for you.
-
-— The developer
-
-<br>
-
----
-
-<div align="center">
-
-**O.A.S.I.S.** · Operative Autonomous System for Intelligent Services
-
-[Download](https://github.com/OASIS-AI/oasis/releases/latest) · [Discord](https://discord.gg/88yfW5UwGC) · [Report a bug](https://github.com/OASIS-AI/oasis/issues)
-
-<br>
-
-*Built for people who believe their data belongs to them.*
+<sub>Built for people who want AI without surrendering control.</sub>
 
 </div>
