@@ -6,9 +6,21 @@
     <meta name="google-site-verification" content="pssuVnTBv6uJ-xqCe5x3K5XiplMq9st6USi4K-l0LcQ">
 
     <title>Run AI Locally on Windows, Free — O.A.S.I.S.</title>
-    <meta name="description" content="Run Llama, Mistral and DeepSeek on your own PC — no cloud, no subscriptions, no data sent anywhere. Web search, app control, file editing. Free core for Windows.">
+    <meta name="description" content="O.A.S.I.S. is a free, open-source AI assistant for Windows that runs Llama, Mistral, and DeepSeek 100% offline on your own PC. 7 built-in tools: web search, bash, file editing, app control, persistent memory, and MCP. No cloud, no subscriptions, no telemetry.">
     <meta name="keywords" content="local AI, offline AI assistant, private AI, run LLM locally, Llama local, Mistral local, DeepSeek local, alternative to ChatGPT offline, AI without internet, local LLM Windows">
     <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' https://unpkg.com 'unsafe-inline' 'unsafe-eval';
+        style-src 'self' https://fonts.googleapis.com 'unsafe-inline';
+        font-src https://fonts.gstatic.com;
+        img-src 'self' https://raw.githubusercontent.com;
+        connect-src 'self' https://oasis-waitlist.sanitariorteba.workers.dev;
+        form-action 'self' https://oasis-waitlist.sanitariorteba.workers.dev;
+        frame-ancestors 'none';
+        base-uri 'self';
+    ">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./">
     <link rel="sitemap" type="application/xml" href="/O.A.S.I.S./sitemap.xml">
     <link rel="icon" type="image/png" sizes="64x64" href="/O.A.S.I.S./assets/logo-icon-64x64.png">
@@ -21,7 +33,7 @@
     <meta property="og:type"        content="website">
     <meta property="og:url"         content="https://oasislocal.github.io/O.A.S.I.S./">
     <meta property="og:title"       content="Run AI Locally on Windows, Free — O.A.S.I.S.">
-    <meta property="og:description" content="Run Llama, Mistral, DeepSeek on your own hardware. Web search, app control, file editing — no cloud, 100% private. Free core for Windows.">
+    <meta property="og:description" content="Free, open-source AI assistant for Windows. Runs Llama, Mistral, DeepSeek 100% offline with 7 built-in tools including web search, bash, file editing, app control, and persistent memory. No cloud, no subscriptions.">
     <meta property="og:image"       content="https://raw.githubusercontent.com/OASISLocal/O.A.S.I.S./main/assets/og-image.png">
     <meta property="og:image:width"  content="1200">
     <meta property="og:image:height" content="630">
@@ -29,13 +41,14 @@
     <meta name="twitter:card"        content="summary_large_image">
     <meta name="twitter:site"        content="@oasis_sh">
     <meta name="twitter:title"       content="Run AI Locally on Windows, Free — O.A.S.I.S.">
-    <meta name="twitter:description" content="Run Llama, Mistral, DeepSeek on your own hardware. Web search, app control, file editing. 100% local and private. Free core for Windows.">
+    <meta name="twitter:description" content="Free, open-source AI assistant for Windows. Runs Llama, Mistral, DeepSeek 100% offline with 7 built-in tools including web search, bash, file editing, app control, and persistent memory. No cloud, no subscriptions.">
     <meta name="twitter:image"       content="https://raw.githubusercontent.com/OASISLocal/O.A.S.I.S./main/assets/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/OASISLocal/O.A.S.I.S./main/assets/og-image.png">
 
     <style>
 
@@ -290,6 +303,9 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-link {
@@ -564,14 +580,14 @@
             opacity: 1;
         }
 
-        /* Hero badge strip — Open source · Windows (valor propuesto visible sin scroll) */
+        /* Hero badge strip — estilo status-bar de la app */
         .hero-badges {
             position: relative;
             z-index: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 16px;
             flex-wrap: wrap;
             margin-bottom: 32px;
         }
@@ -579,27 +595,24 @@
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
-            padding: 4px 12px;
+            gap: 6px;
             font-family: var(--font-mono);
-            font-size: 10px;
+            font-size: 11px;
             color: var(--text-secondary);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.02em;
         }
 
-        .hero-badge--green {
-            background: rgba(16, 185, 129, 0.1);
-            border-color: rgba(16, 185, 129, 0.25);
-            color: var(--success);
+        .hero-badge::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--text-tertiary);
+            flex-shrink: 0;
         }
 
-        .hero-badge--beta {
-            background: rgba(245, 158, 11, 0.12);
-            border-color: rgba(245, 158, 11, 0.25);
-            color: var(--warning);
+        .hero-badge--beta::before {
+            background: var(--warning);
         }
 
         .hero-actions {
@@ -1589,6 +1602,8 @@
         }
 
         .footer-copy { font-size: 12px; color: var(--text-tertiary); }
+        .footer-updated { opacity: 0.6; }
+        .footer-updated::before { content: '·'; margin: 0 8px; }
 
 
         /* ============================================================
@@ -2031,6 +2046,54 @@
       }
     },
     {
+      "@type": "Organization",
+      "name": "O.A.S.I.S.",
+      "url": "https://oasislocal.github.io/O.A.S.I.S./",
+      "logo": "https://raw.githubusercontent.com/OASISLocal/O.A.S.I.S./main/assets/logo-icon-64x64.png",
+      "sameAs": [
+        "https://github.com/OASISLocal/O.A.S.I.S."
+      ],
+      "description": "Free, open-source AI assistant for Windows that runs Llama, Mistral and DeepSeek models 100% locally with built-in tools for web search, file editing, app control, and more."
+    },
+    {
+      "@type": "WebSite",
+      "name": "O.A.S.I.S.",
+      "url": "https://oasislocal.github.io/O.A.S.I.S./",
+      "description": "Run powerful AI models on your own PC — no cloud, no subscriptions, no data sent anywhere. Free core for Windows.",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to run O.A.S.I.S. on Windows",
+      "description": "Get started with O.A.S.I.S. in four steps: pick a model, let the AI decide what tools to use, watch it execute, and get real answers.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Pick a model",
+          "text": "Download the installer, run it, and choose any GGUF model from the built-in catalog — Llama, Mistral, DeepSeek, Qwen, Phi, or your own."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "The AI decides what to do",
+          "text": "Type a request. The LLM analyzes it and decides which tool to use — web search, bash, file operations, or just conversation."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "It uses real tools",
+          "text": "The assistant executes the chosen tool on your machine: searches the web, edits files, runs commands, or controls apps. You see everything in real time."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Responds with real info",
+          "text": "The tool output feeds back to the model, which produces a final answer with verified data — not a hallucination."
+        }
+      ]
+    },
+    {
       "@type": "FAQPage",
       "mainEntity": [
         {
@@ -2208,15 +2271,15 @@
             O.A.S.I.S.
         </a>
 
-        <div class="nav-links" role="list">
-            <a class="nav-link" href="#features" role="listitem" data-nav-section="features">Features</a>
-            <a class="nav-link" href="#how" role="listitem" data-nav-section="how">See it in action</a>
-            <a class="nav-link" href="#privacy" role="listitem" data-nav-section="privacy">Privacy</a>
-            <a class="nav-link" href="#compare" role="listitem" data-nav-section="compare">Compare</a>
-            <a class="nav-link" href="#models" role="listitem" data-nav-section="models">Supported models</a>
-            <a class="nav-link" href="#faq" role="listitem" data-nav-section="faq">FAQ</a>
-            <a class="nav-cta" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" aria-label="Download O.A.S.I.S. for Windows">Download</a>
-        </div>
+        <ul class="nav-links">
+            <li><a class="nav-link" href="#features" data-nav-section="features">Features</a></li>
+            <li><a class="nav-link" href="#how" data-nav-section="how">See it in action</a></li>
+            <li><a class="nav-link" href="#privacy" data-nav-section="privacy">Privacy</a></li>
+            <li><a class="nav-link" href="#compare" data-nav-section="compare">Compare</a></li>
+            <li><a class="nav-link" href="#models" data-nav-section="models">Supported models</a></li>
+            <li><a class="nav-link" href="#faq" data-nav-section="faq">FAQ</a></li>
+            <li><a class="nav-cta" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" aria-label="Download O.A.S.I.S. for Windows">Download</a></li>
+        </ul>
 
         <button
             class="nav-hamburger"
@@ -2245,10 +2308,8 @@
     <section class="hero" id="main-content" aria-labelledby="hero-heading">
         <div class="hero-bg" aria-hidden="true"></div>
 
-        <div class="hero-badges hero-enter-1" style="margin-bottom:24px">
+        <div class="hero-badges hero-enter-1">
             <span class="hero-badge hero-badge--beta">Public Beta v0.1</span>
-            <span class="hero-badge">Open Source</span>
-            <span class="hero-badge">Windows</span>
         </div>
 
         <h1 class="hero-title hero-enter-1" id="hero-heading">
@@ -2257,7 +2318,7 @@
         </h1>
 
         <h2 class="hero-sub hero-enter-2">
-            O.A.S.I.S. runs powerful AI models directly on your computer — no cloud, no subscriptions, no one reading your data. It searches the web, controls apps, edits files, and remembers your conversations. All on your machine.
+            O.A.S.I.S. is a free, open-source AI assistant for Windows that runs Llama, Mistral, and DeepSeek models 100% offline on your own PC — no cloud, no subscriptions, no telemetry. It comes with 7 built-in tools: web search, bash, file editing, regex search, persistent memory, app control, and MCP. The assistant can control apps, execute code, and remember context across sessions. All on your machine.
         </h2>
 
         <div class="hero-actions hero-enter-4">
@@ -2953,7 +3014,7 @@
         </div>
         <div class="footer-bottom">
             <div class="footer-brand">O.A.S.I.S.</div>
-            <div class="footer-copy">© 2026 — Free core. Runs entirely on your machine.</div>
+            <div class="footer-copy">© 2026 — Free core. Runs entirely on your machine. <span class="footer-updated">Updated June 2026</span></div>
         </div>
     </footer>
 
@@ -3226,7 +3287,6 @@
     </script>
 
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"
-        integrity="sha384-C0hERd+I1O7I9PgtBzQHCR9tRHK6oJjA2qj/Lk6NRpXx5gKb7XG6g0UQpS34f3"
         crossorigin="anonymous"
         onerror="(function(){ var s=document.createElement('style'); s.textContent='html{scroll-behavior:smooth}'; document.head.appendChild(s); })()">
     </script>
