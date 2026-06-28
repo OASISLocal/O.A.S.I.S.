@@ -1,0 +1,42 @@
+# O.A.S.I.S.
+
+> Free, open-source AI assistant for Windows. Runs LLMs 100% locally — no cloud, no telemetry, no subscriptions.
+
+## What it is
+
+O.A.S.I.S. is an agentic AI system that runs open-source models (Llama, Mistral, DeepSeek, Qwen, Phi, etc.) on your own PC. Unlike chat wrappers, it has built-in tools that let the assistant actually do things: search the web, run bash commands, read/write/edit files, control Windows apps, and maintain persistent memory across sessions.
+
+## Key features
+
+- **100% offline inference** — your data never leaves your machine
+- **7 built-in tools** — bash, file, edit, regex, web_search, memory, mcp
+- **App control** — open, close, and interact with any Windows app via 5-level fallback chain
+- **Skills & Workflows** — custom triggers with multi-step automated routines
+- **Voice** — offline STT (speech-to-text) and TTS (text-to-speech)
+- **Persistent memory** — ChromaDB + cross-encoder reranking for semantic recall
+- **Proactivity engine** — suggests actions, monitors system health, reminds of events
+- **MCP client** — connect to external MCP servers for additional capabilities
+
+## Quick start
+
+1. Download the installer from https://github.com/OASISLocal/O.A.S.I.S./releases/latest
+2. Run it on Windows 10+ or Windows 11
+3. Pick a model from the built-in catalog
+4. Start chatting
+
+## Requirements
+
+- Windows 10 or Windows 11
+- 8 GB RAM minimum (16 GB recommended)
+- NVIDIA GPU optional (automatic layer offloading)
+- No account, no API key, no internet required
+
+## Pricing
+
+Free core with all tools. Pro tier coming soon with additional integrations and tools. See /pricing.md for details.
+
+## Links
+
+- Website: https://oasislocal.github.io/O.A.S.I.S./
+- GitHub: https://github.com/OASISLocal/O.A.S.I.S.
+- Releases: https://github.com/OASISLocal/O.A.S.I.S./releases
