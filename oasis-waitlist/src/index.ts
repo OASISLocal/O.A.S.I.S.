@@ -1,5 +1,5 @@
 export default {
-  async fetch(request, env) {
+  async fetch(request: Request, env: Env) {
     const allowedOrigin = "https://oasislocal.github.io";
     const corsHeaders = {
       "Access-Control-Allow-Origin": allowedOrigin,
@@ -19,8 +19,8 @@ export default {
       if (secret !== env.EXPORT_SECRET) {
         return new Response("Unauthorized", { status: 401 });
       }
-      let keys = [];
-      let cursor;
+      let keys: { name: string }[] = [];
+      let cursor: string | undefined;
       do {
         const result = await env.WAITLIST.list({ cursor, limit: 1000 });
         keys = keys.concat(result.keys);
@@ -62,7 +62,7 @@ export default {
     }
     await env.WAITLIST.put(rlKey, String(attempts + 1), { expirationTtl: 3600 });
 
-    let body;
+    let body: { email?: string };
     try {
       body = await request.json();
     } catch {
