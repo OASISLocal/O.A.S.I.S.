@@ -6,11 +6,11 @@
     <meta name="google-site-verification" content="pssuVnTBv6uJ-xqCe5x3K5XiplMq9st6USi4K-l0LcQ">
 
     <title>Run AI Locally on Windows, Free — O.A.S.I.S.</title>
-    <meta name="description" content="Run Llama, Mistral and DeepSeek on your own PC — no cloud, no subscriptions, no data sent anywhere. Web search, app control, file editing. Free for Windows.">
+    <meta name="description" content="Run Llama, Mistral and DeepSeek on your own PC — no cloud, no subscriptions, no data sent anywhere. Web search, app control, file editing. Free core for Windows.">
     <meta name="keywords" content="local AI, offline AI assistant, private AI, run LLM locally, Llama local, Mistral local, DeepSeek local, alternative to ChatGPT offline, AI without internet, local LLM Windows">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./">
-    <link rel="sitemap" type="application/xml" href="./sitemap.xml">
+    <link rel="sitemap" type="application/xml" href="/O.A.S.I.S./sitemap.xml">
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/OASISLocal/O.A.S.I.S./main/assets/logo-icon-64x64.png">
     <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/OASISLocal/O.A.S.I.S./main/assets/logo-icon-64x64.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/OASISLocal/O.A.S.I.S./main/assets/logo-icon-64x64.png">
@@ -21,7 +21,7 @@
     <meta property="og:type"        content="website">
     <meta property="og:url"         content="https://oasislocal.github.io/O.A.S.I.S./">
     <meta property="og:title"       content="Run AI Locally on Windows, Free — O.A.S.I.S.">
-    <meta property="og:description" content="Run Llama, Mistral, DeepSeek on your own hardware. Web search, app control, file editing — no cloud, 100% private. Free for Windows.">
+    <meta property="og:description" content="Run Llama, Mistral, DeepSeek on your own hardware. Web search, app control, file editing — no cloud, 100% private. Free core for Windows.">
     <meta property="og:image"       content="https://raw.githubusercontent.com/OASISLocal/O.A.S.I.S./main/assets/og-image.png">
     <meta property="og:image:width"  content="1200">
     <meta property="og:image:height" content="630">
@@ -29,7 +29,7 @@
     <meta name="twitter:card"        content="summary_large_image">
     <meta name="twitter:site"        content="@oasis_sh">
     <meta name="twitter:title"       content="Run AI Locally on Windows, Free — O.A.S.I.S.">
-    <meta name="twitter:description" content="Run Llama, Mistral, DeepSeek on your own hardware. Web search, app control, file editing. 100% local and private. Free for Windows.">
+    <meta name="twitter:description" content="Run Llama, Mistral, DeepSeek on your own hardware. Web search, app control, file editing. 100% local and private. Free core for Windows.">
     <meta name="twitter:image"       content="https://raw.githubusercontent.com/OASISLocal/O.A.S.I.S./main/assets/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -594,6 +594,12 @@
             background: rgba(16, 185, 129, 0.1);
             border-color: rgba(16, 185, 129, 0.25);
             color: var(--success);
+        }
+
+        .hero-badge--beta {
+            background: rgba(245, 158, 11, 0.12);
+            border-color: rgba(245, 158, 11, 0.25);
+            color: var(--warning);
         }
 
         .hero-actions {
@@ -1375,26 +1381,95 @@
         .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
         .cta-note { font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); margin-top: 20px; }
 
+        .email-capture {
+            display: flex;
+            gap: 8px;
+            max-width: 420px;
+            margin: 24px auto 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .email-input {
+            flex: 1;
+            min-width: 200px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+
+        .email-input:focus {
+            border-color: var(--text-tertiary);
+        }
+
+        .email-input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .btn-subtle {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.15s, border-color 0.15s;
+            min-height: 44px;
+            white-space: nowrap;
+        }
+
+        .btn-subtle:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--border-hover);
+        }
+
+        .email-status {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin-top: 8px;
+            text-align: center;
+            font-family: var(--font-mono);
+        }
+
+        .email-status--success {
+            color: var(--success);
+        }
+
+        /* animation-timeline fallback: ensure content visible if unsupported */
+        @supports not (animation-timeline: view()) {
+            .preview-frame, .features-header, .features-grid, .how-step,
+            .how-visuals, .privacy-card, .models-grid, .faq-list,
+            .cta-section, .compare-table-wrap, .compare-section .section-title,
+            .compare-section .section-eyebrow, .privacy-section .section-title,
+            .privacy-section .section-eyebrow, .privacy-section .section-sub {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
 
         /* ============================================================
-           13. COMPARISON TABLE
-           ============================================================ */
+            13. COMPARISON TABLE
+            ============================================================ */
 
         .compare-section { border-top: 1px solid var(--border); background: var(--bg-surface); }
         .compare-section .section-title, .compare-section .section-eyebrow {
             animation: slide-up-fade linear both;
             animation-timeline: view();
             animation-range: entry 5% cover 25%;
-        }
-
-        .compare-table-wrap {
-            margin-top: 48px;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            overflow: hidden;
-            animation: slide-up-fade linear both;
-            animation-timeline: view();
-            animation-range: entry 5% cover 35%;
         }
 
         .compare-table {
@@ -1439,6 +1514,10 @@
         }
 
         .compare-table tbody td svg { flex-shrink: 0; }
+        .icon-inline { vertical-align: middle; margin-right: 6px; }
+        .icon-danger { color: var(--danger); }
+        .icon-success { color: var(--success); }
+        .icon-muted { color: var(--text-tertiary); }
 
         @media (max-width: 768px) {
             .compare-table thead th,
@@ -1821,12 +1900,21 @@
         "Persistent memory across sessions"
       ],
       "softwareRequirements": "8 GB RAM, Windows 10 or Windows 11",
-      "offers": {
+      "offers": [{
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock"
-      },
+        "availability": "https://schema.org/InStock",
+        "description": "Free core assistant with all local tools",
+        "category": "Free"
+      }, {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/OnlineOnly",
+        "description": "Upcoming Pro tier with additional integrations and tools",
+        "category": "Pro"
+      }],
       "url": "https://oasislocal.github.io/O.A.S.I.S./",
       "downloadUrl": "https://github.com/OASISLocal/O.A.S.I.S./releases/latest"
     }
@@ -1894,7 +1982,7 @@
           "name": "Is O.A.S.I.S. free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, completely free. You provide your own hardware and download models yourself. No subscription plans, no usage limits, and no paywalls on features."
+            "text": "Yes, the core is free and always will be. You provide your own hardware and download models yourself. No subscription plans, no usage limits, and no feature restrictions on the local assistant."
           }
         }
       ]
@@ -2044,12 +2132,18 @@
         <a class="nav-mobile-link" href="#compare"  data-mobile-nav>Compare</a>
         <a class="nav-mobile-link" href="#models"    data-mobile-nav>Supported models</a>
         <a class="nav-mobile-link" href="#faq"       data-mobile-nav>FAQ</a>
-        <a class="nav-mobile-cta"  href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" aria-label="Download O.A.S.I.S. for Windows">Download for Windows — Free</a>
+        <a class="nav-mobile-cta"  href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" aria-label="Download O.A.S.I.S. for Windows">Download for Windows</a>
     </div>
 
     <main>
     <section class="hero" id="main-content" aria-labelledby="hero-heading">
         <div class="hero-bg" aria-hidden="true"></div>
+
+        <div class="hero-badges hero-enter-1" style="margin-bottom:24px">
+            <span class="hero-badge hero-badge--beta">Public Beta v0.1</span>
+            <span class="hero-badge">Open Source</span>
+            <span class="hero-badge">Windows</span>
+        </div>
 
         <h1 class="hero-title hero-enter-1" id="hero-heading">
             Your AI.<br>
@@ -2142,8 +2236,7 @@
                             <span class="chat-model-name">deepseek-r1:8b · local</span>
                         </div>
 
-                        <div class="chat-messages" id="preview-chat-container">
-                            <!-- Dynamically injected via scroll trigger script -->
+                        <div class="chat-messages" id="preview-chat-container" aria-live="polite" aria-label="Simulated assistant conversation">
                         </div>
 
                         <div class="chat-input-area">
@@ -2251,6 +2344,14 @@
                     <p class="feature-desc">Watch your assistant think, search, and reason in real-time. You can peek inside its decision process or just enjoy the streaming response.</p>
                 </div>
 
+                <div class="feature-card" style="border-color:rgba(245,158,11,0.2);background:rgba(245,158,11,0.02)">
+                    <div class="feature-icon" style="border-color:rgba(245,158,11,0.25)">
+                        <svg aria-hidden="true" style="color:var(--warning)"><use href="#icon-star"/></svg>
+                    </div>
+                    <h3 class="feature-title">O.A.S.I.S. Pro — coming soon</h3>
+                    <p class="feature-desc">Additional tools, multi-GPU support, advanced MCP integrations, priority updates, and expanded automation capabilities — for power users who need more. The free core stays complete and unlimited.</p>
+                </div>
+
             </div>
         </div>
     </section>
@@ -2317,9 +2418,9 @@
                             <span class="term-prompt">$</span>
                             <span class="term-command">oasis start --model deepseek-r1:8b</span>
                         </div>
-                        <div class="term-output"><svg width="12" height="12" style="color:var(--success);vertical-align:middle;margin-right:4px;"><use href="#icon-check"/></svg>Model loaded (4.7 GB, 8 layers on GPU)</div>
-                        <div class="term-output"><svg width="12" height="12" style="color:var(--success);vertical-align:middle;margin-right:4px;"><use href="#icon-check"/></svg>Bridge at 127.0.0.1:8765</div>
-                        <div class="term-output"><svg width="12" height="12" style="color:var(--success);vertical-align:middle;margin-right:4px;"><use href="#icon-check"/></svg>5 skills active · 7 tools ready</div>
+                        <div class="term-output"><svg width="12" height="12" class="icon-inline icon-success" style="margin-right:4px"><use href="#icon-check"/></svg>Model loaded (4.7 GB, 8 layers on GPU)</div>
+                        <div class="term-output"><svg width="12" height="12" class="icon-inline icon-success" style="margin-right:4px"><use href="#icon-check"/></svg>Bridge at 127.0.0.1:8765</div>
+                        <div class="term-output"><svg width="12" height="12" class="icon-inline icon-success" style="margin-right:4px"><use href="#icon-check"/></svg>5 skills active · 7 tools ready</div>
                         <div class="term-ready">→ Ready · waiting for input</div>
                     </div>
                 </div>
@@ -2382,33 +2483,33 @@
                     <tbody>
                         <tr>
                             <td><strong>Privacy</strong><br><span style="font-size:11px;color:var(--text-tertiary);">Where do your conversations go?</span></td>
-                            <td><svg width="14" height="14" style="color:var(--danger);vertical-align:middle;margin-right:6px;"><use href="#icon-cross"/></svg>Sent to their servers. They can read, store, and train on your data.</td>
-                            <td><svg width="14" height="14" style="color:var(--success);vertical-align:middle;margin-right:6px;"><use href="#icon-check"/></svg>Everything stays on your computer. No internet needed. No one else sees it.</td>
+                            <td><svg width="14" height="14" class="icon-inline icon-danger"><use href="#icon-cross"/></svg>Sent to their servers. They can read, store, and train on your data.</td>
+                            <td><svg width="14" height="14" class="icon-inline icon-success"><use href="#icon-check"/></svg>Everything stays on your computer. No internet needed. No one else sees it.</td>
                         </tr>
                         <tr>
                             <td><strong>Monthly cost</strong><br><span style="font-size:11px;color:var(--text-tertiary);">What do you pay?</span></td>
-                            <td><svg width="14" height="14" style="color:var(--danger);vertical-align:middle;margin-right:6px;"><use href="#icon-cross"/></svg>$20–$200/month. Prices go up. Limits go down.</td>
-                            <td><svg width="14" height="14" style="color:var(--success);vertical-align:middle;margin-right:6px;"><use href="#icon-check"/></svg>Free. No subscription. No usage caps. No surprises.</td>
+                            <td><svg width="14" height="14" class="icon-inline icon-danger"><use href="#icon-cross"/></svg>$20–$200/month. Prices go up. Limits go down.</td>
+                            <td><svg width="14" height="14" class="icon-inline icon-success"><use href="#icon-check"/></svg>Free core. No subscription. No usage caps. No hidden costs.</td>
                         </tr>
                         <tr>
                             <td><strong>Usage limits</strong><br><span style="font-size:11px;color:var(--text-tertiary);">How much can you use it?</span></td>
-                            <td><svg width="14" height="14" style="color:var(--danger);vertical-align:middle;margin-right:6px;"><use href="#icon-cross"/></svg>Rate limits, message caps, "you've reached your limit" screens.</td>
-                            <td><svg width="14" height="14" style="color:var(--success);vertical-align:middle;margin-right:6px;"><use href="#icon-check"/></svg>Unlimited. Chat all day, every day. It's your hardware.</td>
+                            <td><svg width="14" height="14" class="icon-inline icon-danger"><use href="#icon-cross"/></svg>Rate limits, message caps, "you've reached your limit" screens.</td>
+                            <td><svg width="14" height="14" class="icon-inline icon-success"><use href="#icon-check"/></svg>Unlimited. Chat all day, every day. It's your hardware.</td>
                         </tr>
                         <tr>
                             <td><strong>Internet required</strong><br><span style="font-size:11px;color:var(--text-tertiary);">Does it work offline?</span></td>
-                            <td><svg width="14" height="14" style="color:var(--danger);vertical-align:middle;margin-right:6px;"><use href="#icon-cross"/></svg>No connection = no AI. Offline means nothing works.</td>
-                            <td><svg width="14" height="14" style="color:var(--success);vertical-align:middle;margin-right:6px;"><use href="#icon-check"/></svg>Fully offline. Airplane mode? No problem. Hotel WiFi dead? Still works.</td>
+                            <td><svg width="14" height="14" class="icon-inline icon-danger"><use href="#icon-cross"/></svg>No connection = no AI. Offline means nothing works.</td>
+                            <td><svg width="14" height="14" class="icon-inline icon-success"><use href="#icon-check"/></svg>Fully offline. Airplane mode? No problem. Hotel WiFi dead? Still works.</td>
                         </tr>
                         <tr>
                             <td><strong>You own your data</strong><br><span style="font-size:11px;color:var(--text-tertiary);">Who controls your history?</span></td>
-                            <td><svg width="14" height="14" style="color:var(--danger);vertical-align:middle;margin-right:6px;"><use href="#icon-cross"/></svg>They own the servers. They can delete, move, or lose your data. You have no control.</td>
-                            <td><svg width="14" height="14" style="color:var(--success);vertical-align:middle;margin-right:6px;"><use href="#icon-check"/></svg>You control everything. Export, delete, or back up your conversations whenever you want.</td>
+                            <td><svg width="14" height="14" class="icon-inline icon-danger"><use href="#icon-cross"/></svg>They own the servers. They can delete, move, or lose your data. You have no control.</td>
+                            <td><svg width="14" height="14" class="icon-inline icon-success"><use href="#icon-check"/></svg>You control everything. Export, delete, or back up your conversations whenever you want.</td>
                         </tr>
                         <tr>
                             <td><strong>Setup</strong><br><span style="font-size:11px;color:var(--text-tertiary);">What does it take to start?</span></td>
-                            <td><svg width="14" height="14" style="color:var(--text-tertiary);vertical-align:middle;margin-right:6px;"><use href="#icon-check"/></svg>Sign up, enter credit card, configure API keys.</td>
-                            <td><svg width="14" height="14" style="color:var(--success);vertical-align:middle;margin-right:6px;"><use href="#icon-check"/></svg>Download the installer. Pick a model. Chat. That's it.</td>
+                            <td><svg width="14" height="14" class="icon-inline icon-muted"><use href="#icon-check"/></svg>Sign up, enter credit card, configure API keys.</td>
+                            <td><svg width="14" height="14" class="icon-inline icon-success"><use href="#icon-check"/></svg>Download the installer. Pick a model. Chat. That's it.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -2585,7 +2686,8 @@
                     <div class="faq-body" id="faq-body-6" role="region" aria-labelledby="faq-trigger-6">
                         <div class="faq-body-inner">
                             <div class="faq-answer">
-                                <p>Yes, it's free. You provide the hardware and the models (you download them yourself). We're not in the inference business — there are no subscription plans, no usage limits, and no paywalls on features.</p>
+                                <p>Yes, the core is and always will be free. You provide the hardware and the models (you download them yourself). There are no subscription plans, no usage limits, and no feature restrictions on the local assistant.</p>
+                            <p>We're also working on <strong>O.A.S.I.S. Pro</strong> — additional tools and integrations for power users who want more. The free version stays complete and unlimited.</p>
                             </div>
                         </div>
                     </div>
@@ -2611,6 +2713,49 @@
                     </div>
                 </div>
 
+                <div class="faq-item" role="listitem">
+                    <button
+                        class="faq-trigger"
+                        aria-expanded="false"
+                        aria-controls="faq-body-8"
+                        id="faq-trigger-8"
+                    >
+                        <span class="faq-question">How is this different from Ollama or LM Studio?</span>
+                        <svg class="faq-chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg>
+                    </button>
+                    <div class="faq-body" id="faq-body-8" role="region" aria-labelledby="faq-trigger-8">
+                        <div class="faq-body-inner">
+                            <div class="faq-answer">
+                                <p>Ollama, LM Studio, and Jan.ai are great at <strong>running models</strong> — but they're essentially chat wrappers. O.A.S.I.S. is an <strong>agentic system</strong> on top of your local model:</p>
+                                <p><strong>• Built-in tools:</strong> web search, file editing, bash, app control — the assistant can actually <em>do</em> things, not just chat.<br>
+                                <strong>• Skills &amp; workflows:</strong> create automated routines that trigger on specific topics.<br>
+                                <strong>• Persistent memory:</strong> remembers your preferences, projects, and past conversations across sessions.<br>
+                                <strong>• Voice + TTS:</strong> fully offline speech input and output.<br>
+                                <strong>• Proactive mode:</strong> the assistant can suggest actions based on your usage patterns.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" role="listitem">
+                    <button
+                        class="faq-trigger"
+                        aria-expanded="false"
+                        aria-controls="faq-body-9"
+                        id="faq-trigger-9"
+                    >
+                        <span class="faq-question">Is there a macOS or Linux version?</span>
+                        <svg class="faq-chevron" aria-hidden="true"><use href="#icon-chevron-down"/></svg>
+                    </button>
+                    <div class="faq-body" id="faq-body-9" role="region" aria-labelledby="faq-trigger-9">
+                        <div class="faq-body-inner">
+                            <div class="faq-answer">
+                                <p>Currently O.A.S.I.S. is designed for <strong>Windows 10 and Windows 11</strong>. macOS and Linux support are on the roadmap — follow <a href="https://github.com/OASISLocal/O.A.S.I.S." style="color:var(--text-primary);text-decoration:underline">our GitHub</a> for updates.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -2618,25 +2763,25 @@
     <section class="why-local-section" aria-labelledby="why-local-heading">
         <div class="section-inner">
             <p class="section-eyebrow">Local AI explained</p>
-            <h2 class="section-title" id="why-local-heading">Why choose local AI<br>over Cloud providers?</h2>
-            <p class="section-sub">The difference isn't just technical — it changes who's in control of your data, your costs, and your experience.</p>
+            <h2 class="section-title" id="why-local-heading">How O.A.S.I.S. compares to<br>other local AI tools</h2>
+            <p class="section-sub">Ollama, LM Studio, and Jan.ai run models well. O.A.S.I.S. goes further — it's an agent that acts on your machine, not just a chat window.</p>
 
             <div class="why-local-grid">
                 <div class="why-local-block">
-                    <h3>Privacy you can actually trust</h3>
-                    <p>Cloud AI services process your prompts on their servers. That means your conversations, documents, and ideas travel over the internet and can be stored, reviewed, or used to train future models. With a local AI like O.A.S.I.S., inference happens entirely on your hardware. Your prompts never leave your machine — not even for a millisecond. It works in airplane mode permanently.</p>
+                    <h3>Agentic, not just conversational</h3>
+                    <p>Other local AI frontends send your message to a model and display the reply. O.A.S.I.S. decides <em>what to do</em>: search the web, run a command, read a file, open an app — then does it. It's an agent that uses tools, not a chat wrapper. When it doesn't know something, it searches automatically instead of guessing.</p>
                 </div>
                 <div class="why-local-block">
-                    <h3>Zero ongoing cost</h3>
-                    <p>Subscription plans for cloud AI typically cost $20–$200 per month, and prices often increase as features improve. With O.A.S.I.S., you download it once and it's yours forever. You choose and download the models yourself (many are free and open source). No credit card, no API key, no usage caps. The only cost is your own hardware — which you already own.</p>
+                    <h3>Built-in tools (7+ with fallbacks)</h3>
+                    <p>O.A.S.I.S. ships with bash execution, file editing (read/write/search/replace), web search, app control (5-level fallback chain), persistent memory, MCP client support, and more. These aren't plugins you need to find and install — they're built in and the assistant knows when to use each one.</p>
                 </div>
                 <div class="why-local-block">
-                    <h3>Works with Llama, Mistral, DeepSeek and more</h3>
-                    <p>O.A.S.I.S. is compatible with any model in GGUF format and integrates with Ollama out of the box. That includes DeepSeek R1, Llama 3.2, Mistral 7B, Phi-3 Mini, Qwen, Gemma, and dozens of others. You're not locked into one provider's model — you can switch, experiment, and update as the open-source AI ecosystem evolves.</p>
+                    <h3>Skills, workflows, and automation</h3>
+                    <p>Create custom skills that trigger when you mention a topic. Build visual workflows with drag-and-drop nodes. The assistant can run multi-step automated routines, save plans as reusable workflows, and connect to MCP servers for additional capabilities. No coding required.</p>
                 </div>
                 <div class="why-local-block">
-                    <h3>Real tools, not just chat</h3>
-                    <p>Most local AI frontends are thin wrappers around a chat API. O.A.S.I.S. is different: it's an agentic system with 7 built-in tools — bash, file editing, web search, app control, and more. When you ask it something it doesn't know, it searches the web automatically instead of making something up. When you ask it to open an app or edit a file, it actually does it.</p>
+                    <h3>Voice, memory, and proactive assistance</h3>
+                    <p>Full offline voice input (STT) and output (TTS), persistent semantic memory (ChromaDB + cross-encoder reranking), screen awareness, file watching, and a proactivity engine that can suggest actions, remind you of events, and monitor system health — all while respecting your privacy.</p>
                 </div>
             </div>
         </div>
@@ -2655,6 +2800,22 @@
             </div>
 
             <p class="cta-note">Requires 8 GB RAM minimum · Windows 10+ or Windows 11</p>
+
+            <div class="email-capture" id="pro-waitlist">
+                <input type="email" class="email-input" id="pro-email" placeholder="Your email (for Pro waitlist — no spam)" aria-label="Email for Pro waitlist">
+                <button class="btn-subtle" id="pro-notify-btn">Notify me about Pro</button>
+                <!-- Honeypot antispam: invisible para humanos, los bots lo rellenan -->
+                <input
+                    type="text"
+                    id="hp-field"
+                    name="website"
+                    tabindex="-1"
+                    autocomplete="off"
+                    aria-hidden="true"
+                    style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;"
+                >
+            </div>
+            <div class="email-status" id="email-status"></div>
         </div>
     </section>
 
@@ -2669,6 +2830,7 @@
                 <a class="footer-link" href="#compare">Compare</a>
                 <a class="footer-link" href="#models">Models</a>
                 <a class="footer-link" href="#faq">FAQ</a>
+                <a class="footer-link" href="#pro-waitlist" style="color:var(--warning)">Pro — coming soon</a>
             </div>
             <div class="footer-col">
                 <div class="footer-col-title">Resources</div>
@@ -2685,7 +2847,7 @@
         </div>
         <div class="footer-bottom">
             <div class="footer-brand">O.A.S.I.S.</div>
-            <div class="footer-copy">© 2026 — Free software. Runs entirely on your machine.</div>
+            <div class="footer-copy">© 2026 — Free core. Runs entirely on your machine.</div>
         </div>
     </footer>
 
@@ -2697,7 +2859,7 @@
         <span>·</span>
         <span>Landing page</span>
         <span>·</span>
-        <span class="status-version">v0.1.0</span>
+        <span class="status-version">Public Beta</span>
     </div>
 
     <script>
@@ -2957,24 +3119,35 @@
         }());
     </script>
 
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"
+        integrity="sha384-C0hERd+I1O7I9PgtBzQHCR9tRHK6oJjA2qj/Lk6NRpXx5gKb7XG6g0UQpS34f3"
+        crossorigin="anonymous"
+        onerror="(function(){ var s=document.createElement('style'); s.textContent='html{scroll-behavior:smooth}'; document.head.appendChild(s); })()">
+    </script>
     <script>
         (function () {
-            const lenis = new Lenis({
-                duration: 1.2,           // Scroll duration in seconds
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing curve (inertial)
-                direction: 'vertical',   // Direction
-                gestureDirection: 'vertical',
-                smoothWaveview: true,
-                mouseMultiplier: 1       // Mouse sensitivity
-            });
+            if (typeof Lenis === 'undefined') return; // fallback: native smooth scroll
+            try {
+                const lenis = new Lenis({
+                    duration: 1.2,
+                    easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+                    direction: 'vertical',
+                    gestureDirection: 'vertical',
+                    smoothWaveview: true,
+                    mouseMultiplier: 1
+                });
 
-            function raf(time) {
-                lenis.raf(time);
+                function raf(time) {
+                    lenis.raf(time);
+                    requestAnimationFrame(raf);
+                }
+
                 requestAnimationFrame(raf);
+            } catch (_) {
+                document.head.appendChild(Object.assign(document.createElement('style'), {
+                    textContent: 'html{scroll-behavior:smooth}'
+                }));
             }
-
-            requestAnimationFrame(raf);
         }());
     </script>
 <script>
@@ -2993,6 +3166,27 @@
         }
 
         const downloadBtns = document.querySelectorAll('#download-win, #download-hero');
+        const CACHE_KEY = 'oasis_latest_release';
+        const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
+
+        function getCachedRelease() {
+            try {
+                const cached = localStorage.getItem(CACHE_KEY);
+                if (cached) {
+                    const parsed = JSON.parse(cached);
+                    if (Date.now() - parsed.timestamp < CACHE_TTL) {
+                        return parsed.data;
+                    }
+                }
+            } catch (_) {}
+            return null;
+        }
+
+        function setCachedRelease(data) {
+            try {
+                localStorage.setItem(CACHE_KEY, JSON.stringify({ timestamp: Date.now(), data: data }));
+            } catch (_) {}
+        }
 
         downloadBtns.forEach(function(downloadBtn) {
             if (!downloadBtn) return;
@@ -3005,16 +3199,35 @@
                 downloadBtn.dataset.downloading = 'true';
                 downloadBtn.style.pointerEvents = 'none';
                 downloadBtn.style.opacity = '0.85';
+
+                const cached = getCachedRelease();
+                if (cached) {
+                    const winAsset = cached.assets && cached.assets.find(function(a) {
+                        return a.name.endsWith('.exe') || a.name.endsWith('.msi');
+                    });
+                    downloadBtn.innerHTML = checkSVG + ' &nbsp;Starting download…';
+                    downloadBtn.style.background = 'var(--success)';
+                    downloadBtn.style.borderColor = 'var(--success)';
+                    setTimeout(function() {
+                        window.location.href = (winAsset && winAsset.browser_download_url)
+                            ? winAsset.browser_download_url
+                            : 'https://github.com/OASISLocal/O.A.S.I.S./releases/latest';
+                    }, 400);
+                    return;
+                }
+
                 downloadBtn.innerHTML = spinnerSVG + ' &nbsp;Fetching latest release…';
 
                 fetch('https://api.github.com/repos/OASISLocal/O.A.S.I.S./releases/latest')
                     .then(function(response) { return response.json(); })
                     .then(function(data) {
+                        if (data && data.assets) {
+                            setCachedRelease(data);
+                        }
                         const winAsset = data.assets && data.assets.find(function(a) {
                             return a.name.endsWith('.exe') || a.name.endsWith('.msi');
                         });
 
-                        // ✅ Confirmación visual antes de redirigir
                         downloadBtn.innerHTML = checkSVG + ' &nbsp;Starting download…';
                         downloadBtn.style.background = 'var(--success)';
                         downloadBtn.style.borderColor = 'var(--success)';
@@ -3026,7 +3239,6 @@
                         }, 600);
                     })
                     .catch(function() {
-                        // ❌ Estado de error claro
                         downloadBtn.innerHTML = errorSVG + ' &nbsp;Error — click to retry';
                         downloadBtn.style.background = 'var(--danger)';
                         downloadBtn.style.borderColor = 'var(--danger)';
@@ -3047,8 +3259,76 @@
 
 <script>
     /* ============================================================
+       EMAIL CAPTURE — Pro waitlist → Cloudflare Worker
+       ============================================================ */
+    (function () {
+        const WORKER_URL = 'https://oasis-waitlist.sanitariorteba.workers.dev/collect';
+
+        const btn    = document.getElementById('pro-notify-btn');
+        const input  = document.getElementById('pro-email');
+        const status = document.getElementById('email-status');
+        const hp     = document.getElementById('hp-field');
+
+        if (!btn || !input || !status) return;
+
+        var originalLabel = btn.textContent;
+
+        function setStatus(text, success) {
+            status.textContent = text;
+            status.className   = 'email-status' + (success ? ' email-status--success' : '');
+        }
+
+        async function submit() {
+            // Honeypot: si el campo oculto tiene valor, es un bot
+            if (hp && hp.value) return;
+
+            var email = input.value.trim();
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                setStatus('Please enter a valid email address.', false);
+                return;
+            }
+
+            btn.disabled    = true;
+            btn.textContent = 'Sending…';
+            setStatus('', false);
+
+            try {
+                var res  = await fetch(WORKER_URL, {
+                    method:  'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body:    JSON.stringify({ email: email }),
+                });
+                var data = await res.json();
+
+                if (data.ok) {
+                    setStatus(
+                        data.already
+                            ? 'You\'re already on the list!'
+                            : 'Thanks! We\'ll notify you when Pro launches.',
+                        true
+                    );
+                    input.value     = '';
+                    btn.textContent = '✓ Done';
+                } else {
+                    throw new Error(data.error || 'server_error');
+                }
+            } catch (_) {
+                setStatus('Something went wrong. Please try again.', false);
+                btn.disabled    = false;
+                btn.textContent = originalLabel;
+            }
+        }
+
+        btn.addEventListener('click', submit);
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') submit();
+        });
+    }());
+</script>
+
+<script>
+    /* ============================================================
        NAV ACTIVE STATE — Intersection Observer (Fase 3)
-       Extiende el observer ya en uso a los links de nav.
        ============================================================ */
     (function () {
         var navLinks = document.querySelectorAll('.nav-link[data-nav-section]');
