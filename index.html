@@ -1988,6 +1988,101 @@
       ]
     }
     </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "O.A.S.I.S.",
+      "operatingSystem": "Windows 10, Windows 11",
+      "applicationCategory": "UtilitiesApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "url": "https://oasislocal.github.io/O.A.S.I.S./",
+      "description": "Run Llama, Mistral and DeepSeek on your own PC — no cloud, no subscriptions, no data sent anywhere. Web search, app control, file editing. Free core for Windows.",
+      "featureList": [
+        "100% offline AI inference",
+        "Web search tool",
+        "File editing tool",
+        "App control tool",
+        "Persistent memory",
+        "Voice input and TTS",
+        "MCP client support",
+        "Custom skills and workflows"
+      ],
+      "softwareVersion": "latest",
+      "downloadUrl": "https://github.com/OASISLocal/O.A.S.I.S./releases/latest",
+      "screenshot": "https://raw.githubusercontent.com/OASISLocal/O.A.S.I.S./main/assets/og-image.png"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is O.A.S.I.S. hard to set up?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Three steps: download the installer for Windows, pick a model from the built-in catalog, and start chatting. No API keys, no accounts, no cloud setup. Everything runs on your machine."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What tools does the assistant have?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Seven local tools: bash (run commands), file (read/write files), edit (search and replace), regex (search code), web_search (DuckDuckGo), memory (persistent key-value storage), and mcp (basic MCP client). Plus the ControllerTool to open, close, and control any Windows app."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does O.A.S.I.S. send my data anywhere?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. With a local model, inference happens entirely on your machine. O.A.S.I.S. has no telemetry, no analytics, and no server that reports activity. You can use it in airplane mode permanently."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is O.A.S.I.S. free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, the core is and always will be free. No subscription plans, no usage limits, no feature restrictions. You provide the hardware and models."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a GPU?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. A GPU speeds things up but is not required. On a modern CPU, a 7-8B model generates 5-15 tokens per second — fast enough for conversation. The recommended starting point is 8 GB RAM running deepseek-r1:8b in CPU mode."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is O.A.S.I.S. different from Ollama or LM Studio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ollama and LM Studio run models but are essentially chat wrappers. O.A.S.I.S. is an agentic system: it has built-in tools (web search, file editing, bash, app control), custom skills and workflows, persistent memory, and a proactivity engine. The assistant can actually do things, not just chat."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a macOS or Linux version?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Currently O.A.S.I.S. is designed for Windows 10 and Windows 11. macOS and Linux support are on the roadmap."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
