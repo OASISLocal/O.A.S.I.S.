@@ -2,6 +2,10 @@
 
 <img src="assets/oasis-banner.png" alt="O.A.S.I.S. Banner" width="100%">
 
+<br>
+
+# O.A.S.I.S.
+
 ### Offline AI System for Information Sovereignty
 
 **Your AI assistant. Your PC. Your rules.**
