@@ -6,7 +6,7 @@
 
 # O.A.S.I.S.
 
-### Operative Autonomous System for Intelligent Services
+### Offline AI System for Information Sovereignty
 
 **Your AI assistant. Your PC. Your rules.**
 
