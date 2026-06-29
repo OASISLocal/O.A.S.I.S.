@@ -2,7 +2,7 @@
 
 <img src="assets/oasis-banner.png" alt="O.A.S.I.S. Banner" width="100%">
 
-### Operative Autonomous System for Intelligent Services
+### Offline AI System for Information Sovereignty
 
 **Your AI assistant. Your PC. Your rules.**
 
