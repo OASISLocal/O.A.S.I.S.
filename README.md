@@ -17,7 +17,7 @@ Local · Private · Offline · No subscriptions
 [![Website](https://img.shields.io/badge/Website-O.A.S.I.S.-111111?style=for-the-badge)](https://oasislocal.github.io/O.A.S.I.S./)
 [![Download](https://img.shields.io/badge/Download-Windows-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/OASIS-AI/oasis/releases/latest)
 [![Discord](https://img.shields.io/badge/Community-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/88yfW5UwGC)
-[![Version](https://img.shields.io/badge/version-1.0.0-brightgreen?style=for-the-badge)](#)
+[![Version](https://img.shields.io/badge/version-0.1.0_beta-00c9b1?style=for-the-badge)](#)
 [![License](https://img.shields.io/badge/license-Proprietary-e05252?style=for-the-badge)](#)
 
 </div>
