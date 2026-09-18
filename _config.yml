@@ -1,0 +1,41 @@
+# ---------------------------------------------------------------
+# Jekyll config — powers only the /blog/ section.
+# index.html at the root stays a plain static file, untouched by Jekyll.
+# ---------------------------------------------------------------
+
+title: OASIS Blogs
+description: "Release notes, deep dives, and what we're learning building OASIS."
+
+# Canonical deployment: https://oasislocal.github.io/OASIS/
+# (project page of the OASISLocal/oasis repo).
+url: "https://oasislocal.github.io"
+baseurl: "/OASIS"
+
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+
+# All three plugins below are on GitHub Pages' whitelist, so the automatic
+# build (no GitHub Actions needed) supports them out of the box.
+# Static pages (index, features, how-it-works…) ship with their own hand-written
+# sitemap.xml, so jekyll-sitemap is intentionally off — it would clash with it.
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+feed:
+  path: blog/feed.xml
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Only these are processed by Jekyll; index.html and its existing
+# assets/ folder are left completely alone.
+include:
+  - _posts
+exclude:
+  - README.md
+  - "*.log"

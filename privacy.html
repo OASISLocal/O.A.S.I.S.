@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy — No Trackers, No Cloud, Your Disk</title>
+<meta name="description" content="OASIS privacy in one page: this site runs zero trackers, and the app sends nothing anywhere — no telemetry, no accounts, local-only by design.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/OASIS/privacy.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Privacy — No Trackers, No Cloud, Your Disk">
+<meta property="og:description" content="Zero trackers here. Zero telemetry there. The full picture.">
+<meta property="og:url" content="https://oasislocal.github.io/OASIS/privacy.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a href="#content" class="skip">Skip to content</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>OASIS <small>v0.2.0 beta</small></a>
+    <nav class="links" aria-label="Primary">
+      <a href="how-it-works.html">How it works</a>
+      <a href="requirements.html">Requirements</a>
+      <a href="comparison.html">Compare</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog/">Blog</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn">Light</button>
+      <a class="btn sm" href="download.html">Download</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Mobile">
+    <a href="./">Home</a><a href="how-it-works.html">How it works</a><a href="requirements.html">Requirements</a>
+    <a href="download.html">Download</a><a href="comparison.html">Compare</a><a href="faq.html">FAQ</a>
+    <a href="blog/">Blog</a><a href="https://github.com/OASISLocal/oasis" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </nav>
+</header>
+
+<main id="content" class="wrap">
+  <p class="crumb"><a href="./">Home</a> / Privacy</p>
+  <h1>We can't leak what we never collect.</h1>
+  <p class="answer"><strong>This website runs zero trackers, and the OASIS app sends nothing anywhere.</strong> No analytics, no cookies, no accounts, no telemetry. Privacy here isn't a policy paragraph — it's the absence of anywhere for your data to go.</p>
+
+  <hr class="rule">
+  <p class="kicker">This website</p>
+  <h2>What this site knows about you: nothing.</h2>
+  <ul class="plain">
+    <li><b>No analytics.</b> No Google Analytics, no Plausible, no pixels. We count nothing.</li>
+    <li><b>No cookies.</b> The only thing stored in your browser is your light/dark preference, on your device only.</li>
+    <li><b>Two fetches, both optional:</b> the roadmap file and the blog index, from this same site. The GitHub star count calls GitHub's public API — your browser talking to GitHub, not to us.</li>
+    <li><b>Fonts come from Google Fonts.</b> If even that bothers you, the site works fine with them blocked — system fonts take over.</li>
+  </ul>
+
+  <hr class="rule">
+  <p class="kicker">The app</p>
+  <h2>What the app sends home: nothing. There is no home.</h2>
+  <ul class="plain">
+    <li><b>No telemetry, no crash reports, no accounts.</b> There is literally no endpoint that receives them.</li>
+    <li><b>Localhost only.</b> The app's internal server binds to your machine; nothing listens on your network.</li>
+    <li><b>Per-tool permissions.</b> Microphone, screen and files each have their own switch in Settings — revocable anytime.</li>
+    <li><b>Your data, your folder.</b> Models, memory and settings live in <code>%LOCALAPPDATA%\O.A.S.I.S.\</code>. Delete it and it's gone.</li>
+    <li><b>Encrypted backup, PIN lock, audit log</b> for whoever shares a machine or just sleeps better.</li>
+  </ul>
+  <p class="cap">The binding documents live with the product: <a href="https://github.com/OASISLocal/oasis/blob/main/legal/PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a> · <a href="https://github.com/OASISLocal/oasis/blob/main/legal/EULA.md" target="_blank" rel="noopener noreferrer">EULA</a> · <a href="https://github.com/OASISLocal/oasis/blob/main/legal/THIRD-PARTY-NOTICES.md" target="_blank" rel="noopener noreferrer">Third-party notices</a></p>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ OASIS</span><p>A local AI assistant for Windows. Your stuff never leaves your disk.</p></div>
+    <div><h4>Product</h4><ul>
+      <li><a href="download.html">Download</a></li><li><a href="how-it-works.html">How it works</a></li>
+      <li><a href="requirements.html">Requirements</a></li><li><a href="comparison.html">Compare</a></li>
+      <li><a href="features.html">Spec sheet</a></li></ul></div>
+    <div><h4>Resources</h4><ul>
+      <li><a href="blog/">Blog</a></li><li><a href="faq.html">FAQ</a></li>
+      <li><a href="changelog.html">Changelog</a></li><li><a href="about.html">About</a></li></ul></div>
+    <div><h4>Community</h4><ul>
+      <li><a href="https://github.com/OASISLocal/oasis" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/oasis/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
+      <li><a href="privacy.html">Privacy</a></li></ul></div>
+  </div>
+  <div class="base"><span>OASIS · v0.2.0 · beta</span><span>no trackers on this page</span></div>
+</footer>
+<script src="assets/site.js"></script>
+</body>
+</html>

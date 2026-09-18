@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OASIS vs Ollama, LM Studio &amp; Cloud AI (2026)</title>
+<meta name="description" content="How does OASIS compare to Ollama, LM Studio, GPT4All and ChatGPT? An honest table: voice, memory, PC control, offline use, price. Different tools, different strengths.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/OASIS/comparison.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OASIS vs Ollama, LM Studio &amp; Cloud AI (2026)">
+<meta property="og:description" content="Local AI tools compared honestly: what each is best at, and where OASIS fits.">
+<meta property="og:url" content="https://oasislocal.github.io/OASIS/comparison.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a href="#content" class="skip">Skip to content</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>OASIS <small>v0.2.0 beta</small></a>
+    <nav class="links" aria-label="Primary">
+      <a href="how-it-works.html">How it works</a>
+      <a href="requirements.html">Requirements</a>
+      <a href="comparison.html" aria-current="page">Compare</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog/">Blog</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn">Light</button>
+      <a class="btn sm" href="download.html">Download</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Mobile">
+    <a href="./">Home</a><a href="how-it-works.html">How it works</a><a href="requirements.html">Requirements</a>
+    <a href="download.html">Download</a><a href="comparison.html">Compare</a><a href="faq.html">FAQ</a>
+    <a href="blog/">Blog</a><a href="https://github.com/OASISLocal/oasis" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </nav>
+</header>
+
+<main id="content" class="wrap wide" style="max-width:960px;">
+  <div class="wrap" style="padding:0;">
+  <p class="crumb"><a href="./">Home</a> / Compare</p>
+  <h1>Different tools, different strengths.</h1>
+  <p class="answer"><strong>Ollama, LM Studio, GPT4All and Jan are excellent at running local models — OASIS is the one that turns them into a full assistant.</strong> If you want a model server or a chat window, those tools are great. If you want something that talks, remembers, drives your PC and runs errands on a schedule, that's the gap OASIS fills.</p>
+  </div>
+
+  <table class="spec" style="margin-top:26px;">
+    <thead><tr><th>Capability</th><th>OASIS</th><th>Ollama</th><th>LM Studio</th><th>GPT4All / Jan</th><th>Cloud assistants</th></tr></thead>
+    <tbody>
+      <tr><td>Runs models locally</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td>Voice in &amp; out</td><td class="y">Yes, offline</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="y">Online only</td></tr>
+      <tr><td>Persistent memory &amp; documents</td><td class="y">Yes</td><td class="n">No</td><td class="n">Basic</td><td class="n">Basic</td><td class="y">Yes, on their servers</td></tr>
+      <tr><td>Controls your PC (apps, system)</td><td class="y">68 tools</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td></tr>
+      <tr><td>Scheduled routines</td><td class="y">Yes</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">Limited</td></tr>
+      <tr><td>Windows installer + GUI</td><td class="y">Yes</td><td class="n">CLI-first</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">Browser/app</td></tr>
+      <tr><td>Works fully offline</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td>Price</td><td><b>Free / €15 once</b></td><td>Free</td><td>Free</td><td>Free</td><td>Free / monthly</td></tr>
+    </tbody>
+  </table>
+  <p class="cap">Correct as of September 2026, to the best of our knowledge — competitors ship fast, so double-check their sites. Spotted an error? <a href="https://github.com/OASISLocal/oasis/issues" target="_blank" rel="noopener noreferrer">Tell us</a> and we'll fix it.</p>
+
+  <div class="wrap" style="padding:0;">
+  <hr class="rule">
+  <p class="kicker">The short version</p>
+  <h2>When to pick what.</h2>
+  <ul class="plain">
+    <li><b>Pick Ollama</b> if you want a local model server to build on — it's the engine room, not the assistant.</li>
+    <li><b>Pick LM Studio, GPT4All or Jan</b> if you want a clean window to chat with local models.</li>
+    <li><b>Pick a cloud assistant</b> if you need frontier reasoning and don't mind accounts, fees and uploads.</li>
+    <li><b>Pick OASIS</b> if you want the whole job done on your PC: talking, remembering, organizing, coding and automating — with nothing leaving home.</li>
+  </ul>
+  <div class="ctas">
+    <a class="btn" href="download.html">Try OASIS free</a>
+    <a class="btn ghost" href="how-it-works.html">How it works</a>
+  </div>
+  </div>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ OASIS</span><p>A local AI assistant for Windows. Your stuff never leaves your disk.</p></div>
+    <div><h4>Product</h4><ul>
+      <li><a href="download.html">Download</a></li><li><a href="how-it-works.html">How it works</a></li>
+      <li><a href="requirements.html">Requirements</a></li><li><a href="comparison.html">Compare</a></li>
+      <li><a href="features.html">Spec sheet</a></li></ul></div>
+    <div><h4>Resources</h4><ul>
+      <li><a href="blog/">Blog</a></li><li><a href="faq.html">FAQ</a></li>
+      <li><a href="changelog.html">Changelog</a></li><li><a href="about.html">About</a></li></ul></div>
+    <div><h4>Community</h4><ul>
+      <li><a href="https://github.com/OASISLocal/oasis" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/oasis/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
+      <li><a href="privacy.html">Privacy</a></li></ul></div>
+  </div>
+  <div class="base"><span>OASIS · v0.2.0 · beta</span><span>no trackers on this page</span></div>
+</footer>
+<script src="assets/site.js"></script>
+</body>
+</html>
