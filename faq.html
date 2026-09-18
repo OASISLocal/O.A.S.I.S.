@@ -23,7 +23,7 @@
 {"@type":"Question","name":"Do my files leave my computer?","acceptedAnswer":{"@type":"Answer","text":"No. No telemetry, no accounts, no analytics. Data lives in a local folder, the server binds to localhost only, and every tool has its own permission switch."}},
 {"@type":"Question","name":"What PC do I need to run local AI?","acceptedAnswer":{"@type":"Answer","text":"Any modern CPU runs small models; 16 GB RAM and an NVIDIA GPU with 4 GB+ VRAM is the comfortable setup for 7-8B models. Docker is only needed for the code sandbox."}},
 {"@type":"Question","name":"Is there a Mac or Linux version?","acceptedAnswer":{"@type":"Answer","text":"Not yet — Windows 10/11 only. Linux and macOS are on the public roadmap."}},
-{"@type":"Question","name":"How is OASIS different from Ollama or LM Studio?","acceptedAnswer":{"@type":"Answer","text":"Ollama, LM Studio, GPT4All and Jan are excellent at running local models. OASIS turns them into a full assistant: offline voice, persistent memory, 68 PC tools, scheduled routines and messaging channels."}},
+{"@type":"Question","name":"How is OASIS different from Ollama or LM Studio?","acceptedAnswer":{"@type":"Answer","text":"Ollama, LM Studio, GPT4All and Jan are excellent at running local models. OASIS turns them into a full assistant: offline voice, persistent memory, 80 PC tools, scheduled routines and messaging channels."}},
 {"@type":"Question","name":"Is OASIS Max a subscription?","acceptedAnswer":{"@type":"Answer","text":"No. One payment: €15 in early access, €25 once 1.0 ships. No recurring fees."}},
 {"@type":"Question","name":"How do I uninstall it?","acceptedAnswer":{"@type":"Answer","text":"Like any Windows program, plus deleting one data folder (%LOCALAPPDATA%\\O.A.S.I.S.\\) removes models, memory and settings. Nothing stays in a cloud because nothing ever went there."}}
 ]}
@@ -35,9 +35,11 @@
   <div class="top-in">
     <a class="brand" href="./"><i></i>OASIS <small>v0.2.0 beta</small></a>
     <nav class="links" aria-label="Primary">
+      <a href="./#tour">Tour</a>
       <a href="how-it-works.html">How it works</a>
       <a href="requirements.html">Requirements</a>
       <a href="comparison.html">Compare</a>
+      <a href="./#pricing">Pricing</a>
       <a href="faq.html" aria-current="page">FAQ</a>
       <a href="blog/">Blog</a>
     </nav>
@@ -65,7 +67,7 @@
     <details><summary>Do my files leave my computer?</summary><p>No. No telemetry, no accounts, no analytics. Your stuff lives in <code>%LOCALAPPDATA%\O.A.S.I.S.\</code>, the server binds to localhost only, and mic, screen and files each have their own permission switch. Read the full <a href="privacy.html">privacy page</a>.</p></details>
     <details><summary>What PC do I need?</summary><p>Any modern CPU runs small models well. The comfortable setup is 16&nbsp;GB RAM plus an NVIDIA GPU with 4&nbsp;GB or more for 7–8B models. Details and honest caveats on the <a href="requirements.html">requirements page</a>.</p></details>
     <details><summary>Is there a Mac or Linux version?</summary><p>Not yet — Windows 10/11 only. Linux and macOS are on the public roadmap; the models themselves are portable, the packaging isn't done.</p></details>
-    <details><summary>How is it different from Ollama or LM Studio?</summary><p>Those are excellent at <em>running</em> local models. OASIS is the layer that turns them into an <em>assistant</em>: offline voice, persistent memory, 68 PC tools, scheduled routines, Discord/Telegram. Full table on the <a href="comparison.html">comparison page</a>.</p></details>
+    <details><summary>How is it different from Ollama or LM Studio?</summary><p>Those are excellent at <em>running</em> local models. OASIS is the layer that turns them into an <em>assistant</em>: offline voice, persistent memory, 80 PC tools, scheduled routines, Discord/Telegram. Full table on the <a href="comparison.html">comparison page</a>.</p></details>
     <details><summary>Is OASIS Max a subscription?</summary><p>No. One payment — €15 in early access, €25 once 1.0 ships. No recurring fees, no per-message limits.</p></details>
     <details><summary>How do I uninstall it?</summary><p>Like any Windows program — plus deleting one data folder removes models, memory and settings. Nothing stays in a cloud, because nothing ever went there.</p></details>
   </div>

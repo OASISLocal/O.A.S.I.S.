@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How OASIS Works — 100% Local AI on Your PC</title>
-<meta name="description" content="OASIS runs entirely on your PC: your voice is transcribed on-device, a local AI model thinks, and 68 tools act. No servers, no API calls. See the full data flow.">
+<meta name="description" content="OASIS runs entirely on your PC: your voice is transcribed on-device, a local AI model thinks, and 80 tools act. No servers, no API calls. See the full data flow.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./how-it-works.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="How OASIS Works — 100% Local AI on Your PC">
-<meta property="og:description" content="Your voice, a local AI model, and 68 PC tools — all inside one box labelled your computer. Nothing leaves it.">
+<meta property="og:description" content="Your voice, a local AI model, and 80 PC tools — all inside one box labelled your computer. Nothing leaves it.">
 <meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./how-it-works.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,9 +23,11 @@
   <div class="top-in">
     <a class="brand" href="./"><i></i>OASIS <small>v0.2.0 beta</small></a>
     <nav class="links" aria-label="Primary">
+      <a href="./#tour">Tour</a>
       <a href="how-it-works.html" aria-current="page">How it works</a>
       <a href="requirements.html">Requirements</a>
       <a href="comparison.html">Compare</a>
+      <a href="./#pricing">Pricing</a>
       <a href="faq.html">FAQ</a>
       <a href="blog/">Blog</a>
     </nav>
@@ -64,7 +66,7 @@
         <text x="368" y="146" style="fill:var(--ink)">Brain</text>
         <text x="368" y="164" font-size="10" style="fill:var(--ink-3)">model on disk</text>
         <rect x="516" y="120" width="180" height="64" fill="none" style="stroke:var(--strong)" stroke-width="1.5"/>
-        <text x="532" y="146" style="fill:var(--ink)">Hands — 68 tools</text>
+        <text x="532" y="146" style="fill:var(--ink)">Hands — 80 tools</text>
         <text x="532" y="164" font-size="10" style="fill:var(--ink-3)">files · apps · system</text>
         <rect x="352" y="228" width="180" height="64" fill="none" style="stroke:var(--ink-3)" stroke-width="1"/>
         <text x="368" y="254" style="fill:var(--ink)">Memory</text>
@@ -94,7 +96,7 @@
     <h3>2. A model on your disk thinks.</h3>
     <p>The text reaches an open AI model (Llama, Gemma, Qwen and friends) running locally. It reads the conversation, checks its memory of you, and decides: answer directly, or use a tool. Small models answer fast on CPU; bigger ones like a GPU.</p>
     <h3>3. Hands, not just words.</h3>
-    <p>When action is needed, the model calls one of 68 declared tools — set a timer, lower the volume, read a PDF, run code in an isolated sandbox. Risky tools (deleting, shutting down, executing) pause for your explicit approval first.</p>
+    <p>When action is needed, the model calls one of 80 declared tools — set a timer, lower the volume, read a PDF, run code in an isolated sandbox. Risky tools (deleting, shutting down, executing) pause for your explicit approval first.</p>
     <h3>4. It remembers — on your disk.</h3>
     <p>Exchanges, notes and documents land in a local database with semantic search, so "that electricity total from spring" is retrievable months later. Delete by memory, by type, or by file whenever you like.</p>
   </div>
@@ -106,7 +108,7 @@
     <li><b>Unplug the router.</b> Everything above keeps working. That's the whole test.</li>
     <li><b>Watch the network.</b> The app's server binds to localhost; there is no account system to phone home to.</li>
     <li><b>Open the folder.</b> Models, memory and settings live in <code>%LOCALAPPDATA%\O.A.S.I.S.\</code> — plain files you can inspect.</li>
-    <li><b>Read the code paths.</b> Permissions per tool, an audit log, and encrypted backup are in the app today, not on a roadmap slide.</li>
+    <li><b>Read the code paths.</b> Per-tool permissions, an action log and an encrypted local vault are in the app today, not on a roadmap slide.</li>
   </ul>
   <div class="ctas">
     <a class="btn" href="download.html">Download the beta</a>

@@ -317,10 +317,11 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
   <div class="top-in">
     <a class="brand" href="./"><i></i>OASIS <small>v0.2.0 beta</small></a>
     <nav class="links" aria-label="Primary">
-      <a href="#tour">Tour</a>
+      <a href="./#tour">Tour</a>
       <a href="how-it-works.html">How it works</a>
+      <a href="requirements.html">Requirements</a>
       <a href="comparison.html">Compare</a>
-      <a href="#pricing">Pricing</a>
+      <a href="./#pricing">Pricing</a>
       <a href="faq.html">FAQ</a>
       <a href="blog/">Blog</a>
     </nav>
@@ -375,7 +376,7 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
       </div>
       <div class="stage">
         <div class="toolbar" aria-hidden="true">
-          <span class="modelpill">gemma-3n · Q4_K_M ▾</span>
+          <span class="modelpill">gemma-4 · Q4_K_M ▾</span>
           <span class="tool live">text</span><span class="tool">voice</span><span class="tool">vision</span>
           <span style="margin-left:auto" class="tool">47 tok/s</span>
         </div>
@@ -403,7 +404,7 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
     <h2>A lot more than chat.</h2>
   </div>
   <div class="else">
-    It can <b>take notes</b>. Remind you about the <b>dentist</b>. <b>Add up your electricity bills</b> from a folder of PDFs. <b>Explain a Python traceback in plain words</b>. <b>Lower the volume</b> when you join a call. <b>Transcribe a meeting</b>. <b>Find any file</b>. <b>Control Spotify</b>. <b>Translate a paragraph</b>. <b>Read your screen</b>. <b>Test code in a sandbox</b> before touching your files. <b>Brief you every morning at 9</b>. And much more — <b>68 tools</b> and counting.
+    It can <b>take notes</b>. Remind you about the <b>dentist</b>. <b>Add up your electricity bills</b> from a folder of PDFs. <b>Explain a Python traceback in plain words</b>. <b>Lower the volume</b> when you join a call. <b>Transcribe a meeting</b>. <b>Find any file</b>. <b>Control Spotify</b>. <b>Translate a paragraph</b>. <b>Read your screen</b>. <b>Test code in a sandbox</b> before touching your files. <b>Brief you every morning at 9</b>. And much more — <b>80 tools</b> and counting.
   </div>
 </section>
 
@@ -448,9 +449,9 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
     <div class="mock" role="img" aria-label="Model manager downloading a model">
       <div class="mock-bar"><span>models · on your disk</span><span>2 installed</span></div>
       <div class="mock-body">
-        <div class="mrow"><div><div class="nm">gemma-3n · recommended</div><div class="prog" aria-hidden="true"><i style="width:100%"></i></div></div><span class="tag">ready</span></div>
-        <div class="mrow"><div><div class="nm">qwen2.5-small</div><div class="prog" aria-hidden="true"><i style="width:64%"></i></div></div><span class="tag">64%</span></div>
-        <div class="mrow"><div><div class="nm">llama-3.1-8B</div></div><span class="tag">paused</span></div>
+        <div class="mrow"><div><div class="nm">gemma-4 · recommended</div><div class="prog" aria-hidden="true"><i style="width:100%"></i></div></div><span class="tag">ready</span></div>
+        <div class="mrow"><div><div class="nm">qwen2.5-1.5b</div><div class="prog" aria-hidden="true"><i style="width:64%"></i></div></div><span class="tag">64%</span></div>
+        <div class="mrow"><div><div class="nm">llama-3.2-3b</div></div><span class="tag">paused</span></div>
       </div>
     </div>
   </div>
@@ -539,7 +540,7 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
 <section class="sec" id="tools">
   <div class="sec-head">
     <p class="kicker">Under the hood</p>
-    <h2>68 tools. Here's the honest list.</h2>
+    <h2>80 tools. Here's the honest list.</h2>
     <p>Each one declares its risk level and asks permission before acting. Dangerous ones — deleting, shutting down, running code — never move without your explicit OK.</p>
   </div>
   <div class="groups">
@@ -589,7 +590,7 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
       </ul>
     </div>
   </div>
-  <p class="cap">…plus more, up to 68. The exact inventory lives in the code — and the <a href="features.html">full spec sheet is here</a>.</p>
+  <p class="cap">…plus more, up to 80. The exact inventory lives in the code — and the <a href="features.html">full spec sheet is here</a>.</p>
 </section>
 
 <!-- ============ MODELS ============ -->
@@ -600,12 +601,10 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
     <p>Downloaded inside the app, with pause and resume. Start small; size up when you want more. All are open models that run on your machine.</p>
   </div>
   <div class="fams">
-    <div><b>Llama</b><span>the all-rounder</span></div>
-    <div><b>Gemma</b><span>start here</span></div>
-    <div><b>Qwen</b><span>fast &amp; light</span></div>
-    <div><b>DeepSeek</b><span>thinks out loud</span></div>
-    <div><b>Phi</b><span>for modest PCs</span></div>
-    <div><b>Mistral</b><span>+ anything else</span></div>
+    <div><b>Llama 3.2</b><span>ready to download</span></div>
+    <div><b>Gemma 4</b><span>recommended</span></div>
+    <div><b>Qwen 2.5</b><span>lightest, fastest</span></div>
+    <div><b>Any GGUF</b><span>DeepSeek · Phi · Mistral…</span></div>
   </div>
 </section>
 
@@ -616,7 +615,7 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
     <h2>Up and running in ten minutes.</h2>
   </div>
   <div class="steps">
-    <div class="step"><div class="n">1</div><h3>Install the app</h3><p>From GitHub Releases, for Windows 10/11. Verify the SHA256 if you're meticulous: <code>certutil -hashfile oasis.exe SHA256</code>.</p></div>
+    <div class="step"><div class="n">1</div><h3>Install the app</h3><p>From GitHub Releases, for Windows 10/11. Verify the SHA256 if you're meticulous: <code>certutil -hashfile OASIS.exe SHA256</code>.</p></div>
     <div class="step"><div class="n">2</div><h3>Download a model</h3><p>In the Models tab, pick a small Gemma or Qwen and hit download. Once, with internet. After that, you don't need it.</p></div>
     <div class="step"><div class="n">3</div><h3>Talk</h3><p>Type or press to speak. Ask it to tidy Downloads, explain an error, or remind you about the dentist.</p></div>
   </div>
@@ -679,7 +678,7 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
         <li>Discord and Telegram with voice</li>
         <li>Android app and browser extension</li>
         <li>External tool servers</li>
-        <li>Voice cloning and encrypted backup</li>
+        <li>Voice cloning and secure local backup</li>
       </ul>
       <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Get Max</a>
     </div>
@@ -779,6 +778,23 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
   paint(saved === 'light' || saved === 'dark' ? saved : 'dark');
   btn.addEventListener('click', function () { paint(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'); });
   var burger = document.getElementById('burger'), mnav = document.getElementById('mnav');
+  /* Mobile menu rebuilt from the desktop nav: one source of truth. */
+  var srcnav = document.querySelector('.top nav.links');
+  mnav.innerHTML = '';
+  if (srcnav) {
+    Array.prototype.forEach.call(srcnav.querySelectorAll('a'), function (a) {
+      var c = a.cloneNode(true);
+      c.removeAttribute('aria-current');
+      mnav.appendChild(c);
+    });
+  }
+  var mdl = document.createElement('a');
+  mdl.href = 'download.html'; mdl.textContent = 'Download';
+  mnav.appendChild(mdl);
+  var mgh = document.createElement('a');
+  mgh.href = 'https://github.com/OASISLocal/O.A.S.I.S.';
+  mgh.target = '_blank'; mgh.rel = 'noopener noreferrer'; mgh.textContent = 'GitHub';
+  mnav.appendChild(mgh);
   burger.addEventListener('click', function () {
     var open = mnav.classList.toggle('open');
     burger.setAttribute('aria-expanded', String(open));

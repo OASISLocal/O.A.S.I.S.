@@ -12,8 +12,26 @@
   if (btn) btn.addEventListener('click', function () {
     paint(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
   });
+  /* Mobile menu: rebuilt from the desktop nav on every load, so the two
+     can never drift apart. Download + GitHub are appended (not in desktop nav). */
   var burger = document.getElementById('burger'), mnav = document.getElementById('mnav');
   if (burger && mnav) {
+    var src = document.querySelector('.top nav.links');
+    mnav.innerHTML = '';
+    if (src) {
+      Array.prototype.forEach.call(src.querySelectorAll('a'), function (a) {
+        var c = a.cloneNode(true);
+        c.removeAttribute('aria-current');
+        mnav.appendChild(c);
+      });
+    }
+    var dl = document.createElement('a');
+    dl.href = 'download.html'; dl.textContent = 'Download';
+    mnav.appendChild(dl);
+    var gh = document.createElement('a');
+    gh.href = 'https://github.com/OASISLocal/O.A.S.I.S.';
+    gh.target = '_blank'; gh.rel = 'noopener noreferrer'; gh.textContent = 'GitHub';
+    mnav.appendChild(gh);
     burger.addEventListener('click', function () {
       var open = mnav.classList.toggle('open');
       burger.setAttribute('aria-expanded', String(open));

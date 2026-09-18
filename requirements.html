@@ -23,9 +23,11 @@
   <div class="top-in">
     <a class="brand" href="./"><i></i>OASIS <small>v0.2.0 beta</small></a>
     <nav class="links" aria-label="Primary">
+      <a href="./#tour">Tour</a>
       <a href="how-it-works.html">How it works</a>
       <a href="requirements.html" aria-current="page">Requirements</a>
       <a href="comparison.html">Compare</a>
+      <a href="./#pricing">Pricing</a>
       <a href="faq.html">FAQ</a>
       <a href="blog/">Blog</a>
     </nav>
@@ -181,21 +183,45 @@
     var ram = (typeof navigator.deviceMemory === 'number') ? navigator.deviceMemory : 0;
     set('ram', ram ? ('~' + ram + ' GB (as reported to the browser)') : 'Hidden by this browser — check Settings → System → About', ram ? (ram >= 8) : null);
 
-    /* GPU via WebGL (name only, never VRAM) */
-    var gpuName = 'Not visible', dedicated = null;
+    /* GPU via WebGL (name only, never VRAM) — raw ANGLE strings are
+       unreadable, so they get cleaned: vendor + model + backend stay,
+       PCI ids and shader tags go. Full string kept in the title attr. */
+    function cleanGpu(raw) {
+      var s = String(raw || '');
+      var backend = '';
+      var m = /^ANGLE\s*\((.*)\)\s*$/.exec(s);
+      if (m) {
+        var parts = m[1].split(',').map(function (p) { return p.trim(); }).filter(Boolean);
+        var last = parts[parts.length - 1] || '';
+        if (parts.length > 1 && /(direct3d|d3d\d*|opengl|vulkan|metal)/i.test(last)) {
+          backend = parts.pop().replace(/^Direct3D(\d+)$/i, 'Direct3D $1').replace(/^D3D(\d+)$/i, 'Direct3D $1');
+        }
+        s = parts.join(', ');
+      }
+      s = s.replace(/\(0x[0-9a-fA-F]+\)/g, ' ')
+        .replace(/\b(direct3d\s*\d*|d3d\s*\d*|opengl(\s+es)?|vulkan|metal)\b/gi, ' ')
+        .replace(/\b(vs|ps|gs|cs|hs|ds)_[0-9_]+/gi, ' ')
+        .replace(/\s{2,}/g, ' ').replace(/,\s*,/g, ',').replace(/^,|,$/g, '').trim();
+      s = s.replace(/^([^,\s]+),\s*\1(?=[\s(,]|$)/i, '$1').trim();
+      return { name: s || 'Unknown graphics', backend: backend };
+    }
+    var gpuRaw = '', gpuName = 'Not visible', dedicated = null;
     try {
       var cv = document.createElement('canvas');
       var gl = cv.getContext('webgl') || cv.getContext('experimental-webgl');
       if (gl) {
         var ext = gl.getExtension('WEBGL_debug_renderer_info');
-        var raw = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
-        gpuName = String(raw || 'Unknown renderer');
-        if (/nvidia|geforce|rtx|quadro/i.test(gpuName)) dedicated = true;
-        else if (/radeon|rx |amd/i.test(gpuName) && !/vega\s*[37]|renoir|cezanne|rembrandt|phoenix|hawk|strix|integrated/i.test(gpuName)) dedicated = true;
-        else if (/intel|apple|mali|adreno|uhd|iris xe/i.test(gpuName)) dedicated = false;
+        gpuRaw = String(ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER) || '');
+        var cg = cleanGpu(gpuRaw);
+        gpuName = cg.name + (cg.backend ? ' · ' + cg.backend : '');
+        if (/nvidia|geforce|rtx|quadro/i.test(gpuRaw)) dedicated = true;
+        else if (/radeon|rx |amd/i.test(gpuRaw) && !/vega\s*[37]|renoir|cezanne|rembrandt|phoenix|hawk|strix|integrated/i.test(gpuRaw)) dedicated = true;
+        else if (/intel|apple|mali|adreno|uhd|iris xe/i.test(gpuRaw)) dedicated = false;
       }
     } catch (_) { gpuName = 'Could not be read'; }
     set('gpu', gpuName, dedicated === true ? true : null);
+    var gv = document.getElementById('chk-gpu-v');
+    if (gv && gpuRaw) gv.title = gpuRaw;
 
     /* Verdict */
     var tier;

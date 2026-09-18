@@ -43,7 +43,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-o
 .mast nav a:hover { color: var(--ink); border-color: var(--line); }
 #theme-btn { font-family: var(--mono); font-size: 11px; background: none; border: 1px solid var(--line-strong); color: var(--ink); padding: 6px 10px; cursor: pointer; margin-left: 6px; }
 .wrap { max-width: 780px; margin: 0 auto; padding: 0 24px 20px; }
-.back { font-size: 14px; display: inline-block; margin: 30px 0 0; }
+.crumb { font-family: var(--mono); font-size: 12px; color: var(--ink-3); padding: 0; margin: 30px 0 0; }
+.crumb a { color: var(--ink-2); }
 h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.03em; color: var(--ink); font-size: clamp(34px, 6vw, 52px); line-height: 1.05; margin: 10px 0 12px; }
 .standfirst { font-size: 18px; }
 hr.rule { border: none; border-top: 2px solid var(--line-strong); margin: 46px 0 0; }
@@ -73,8 +74,11 @@ footer { border-top: 2px solid var(--line-strong); margin-top: 60px; }
     <nav aria-label="Primary">
       <a href="./">Home</a>
       <a href="./#tour">Tour</a>
-      <a href="./#tools">Tools</a>
-      <a href="./#download">Download</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="requirements.html">Requirements</a>
+      <a href="comparison.html">Compare</a>
+      <a href="./#pricing">Pricing</a>
+      <a href="faq.html">FAQ</a>
       <a href="blog/">Blog</a>
       <button id="theme-btn" aria-label="Switch between light and dark">Light</button>
     </nav>
@@ -82,7 +86,7 @@ footer { border-top: 2px solid var(--line-strong); margin-top: 60px; }
 </header>
 
 <main class="wrap">
-  <a class="back" href="./">← Back home</a>
+  <p class="crumb"><a href="./">Home</a> / Spec sheet</p>
   <h1>Full spec sheet, no adjectives.</h1>
   <p class="standfirst">This page is for people who want the detail before installing. What's here is what's here.</p>
 
@@ -98,7 +102,7 @@ footer { border-top: 2px solid var(--line-strong); margin-top: 60px; }
 
   <hr class="rule">
   <p class="kicker">What it can do</p>
-  <h2>68 tools, grouped so they make sense.</h2>
+  <h2>80 tools, grouped so they make sense.</h2>
   <dl>
     <div><dt>Talk &amp; listen</dt><dd>Dictation and read-aloud in Spanish (faster-whisper and Kokoro/Piper voices), wake word, background-noise filtering.</dd></div>
     <div><dt>Remember</dt><dd>Conversation memory, notes and saved facts, plus indexed PDF, DOCX, XLSX and code — all on your disk.</dd></div>
@@ -130,7 +134,7 @@ footer { border-top: 2px solid var(--line-strong); margin-top: 60px; }
   <p class="kicker">Download</p>
   <h2>The beta lives on GitHub.</h2>
   <p><a href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer" style="font-weight:600;">Go to the latest release →</a></p>
-  <p class="small">Check the SHA256 if that helps you sleep: <code>certutil -hashfile oasis.exe SHA256</code>. If setup fails, <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">report it in Issues</a> with your Windows version and the model you were using.</p>
+  <p class="small">Check the SHA256 if that helps you sleep: <code>certutil -hashfile OASIS.exe SHA256</code>. If setup fails, <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">report it in Issues</a> with your Windows version and the model you were using.</p>
 </main>
 
 <footer>
