@@ -51,6 +51,9 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: var(--bg); color: var(--ink-2); font-family: var(--body); font-size: 16.5px; line-height: 1.7; -webkit-font-smoothing: antialiased; transition: background-color .25s, color .25s; }
 ::selection { background: var(--ink); color: var(--bg); }
+/* Inverted elements (dark bubble/button on light page and vice versa):
+   the default selection would be invisible, so flip it here. */
+.msg.user::selection, .btn::selection, .cbox button::selection, .announce b::selection { background: var(--bg); color: var(--ink); }
 a { color: var(--ink); }
 a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 [tabindex="-1"]:focus { outline: none; }
@@ -120,7 +123,7 @@ h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; lin
 .msg.ai { align-self: flex-start; background: var(--panel); border: 1px solid var(--line); border-left: 2px solid var(--strong); padding: 11px 14px; color: var(--ink-2); }
 .msg.ai b { color: var(--ink); }
 .cbox { margin: 0 22px 6px; border: 1px solid var(--strong); display: flex; }
-.cbox input { flex: 1; background: transparent; border: none; color: var(--ink-2); font: 14px var(--body); padding: 13px 14px; min-width: 0; }
+.cbox input { flex: 1; background: transparent; border: none; color: var(--ink-2); caret-color: var(--ink); font: 14px var(--body); padding: 13px 14px; min-width: 0; }
 .cbox button { background: var(--ink); color: var(--bg); border: none; font: 600 13px var(--body); padding: 0 20px; cursor: pointer; }
 .statusbar { margin-top: auto; border-top: 1px solid var(--line); padding: 8px 16px; display: flex; gap: 18px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); flex-wrap: wrap; }
 .statusbar b { color: var(--ink); font-weight: 400; }
@@ -267,7 +270,7 @@ h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; lin
 .kv b { color: var(--ink); font-weight: 400; }
 /* Waitlist form */
 .wl-row { display: flex; gap: 0; border: 1px solid var(--strong); }
-.wl-row input[type="email"] { flex: 1; min-width: 0; background: transparent; border: none; color: var(--ink); font: 15px var(--body); padding: 13px 14px; }
+.wl-row input[type="email"] { flex: 1; min-width: 0; background: transparent; border: none; color: var(--ink); caret-color: var(--ink); font: 15px var(--body); padding: 13px 14px; }
 .wl-row input[type="email"]::placeholder { color: var(--ink-3); }
 .wl-row .btn { border: none; border-left: 1px solid var(--strong); white-space: nowrap; }
 .wl-checks { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 14px; font-size: 14px; }

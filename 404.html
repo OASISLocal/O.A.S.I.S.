@@ -33,6 +33,7 @@
 html, body { overflow-x: clip; }
 body { background: var(--bg); color: var(--ink-2); font-family: var(--body); font-size: 16.5px; line-height: 1.7; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; transition: background-color .25s, color .25s; min-height: 100vh; display: flex; flex-direction: column; }
 ::selection { background: var(--ink); color: var(--bg); }
+.btn::selection { background: var(--bg); color: var(--ink); }
 a { color: var(--ink); }
 a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .skip { position: absolute; top: -100px; left: 16px; z-index: 99; background: var(--ink); color: var(--bg); font-weight: 600; font-size: 14px; padding: 10px 18px; text-decoration: none; }
@@ -50,7 +51,7 @@ h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; lin
 .lede { font-size: 18px; max-width: 52ch; }
 .lede strong { color: var(--ink); }
 .find { margin-top: 26px; border: 2px solid var(--strong); background: var(--surface); }
-.find input { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--strong); color: var(--ink); font: 15px var(--body); padding: 13px 16px; }
+.find input { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--strong); color: var(--ink); caret-color: var(--ink); font: 15px var(--body); padding: 13px 16px; }
 .find input::placeholder { color: var(--ink-3); }
 .find ul { list-style: none; }
 .find li { border-bottom: 1px solid var(--line); }
