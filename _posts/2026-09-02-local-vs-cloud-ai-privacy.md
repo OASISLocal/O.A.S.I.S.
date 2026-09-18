@@ -29,5 +29,5 @@ If *you* connect OASIS to something external — a Discord bot, a web search, a 
 ## Further reading
 
 - [Privacy at OASIS: the full page]({{ '/privacy.html' | relative_url }}) — site and app, point by point.
-- [What is a local AI assistant?]({% post_url 2026-09-10-what-is-a-local-ai-assistant %}) — the plain-words guide.
+- [What is a local AI assistant?]({{ '/blog/2026/09/10/what-is-a-local-ai-assistant/' | relative_url }}) — the plain-words guide.
 - [OASIS vs. the alternatives]({{ '/comparison.html' | relative_url }}) — local tools and cloud assistants, compared honestly.

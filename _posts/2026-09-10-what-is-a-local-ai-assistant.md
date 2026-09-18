@@ -27,5 +27,5 @@ Three honest ones. First, small local models aren't as capable as frontier cloud
 ## Where to go from here
 
 - [How OASIS works, step by step]({{ '/how-it-works.html' | relative_url }}) — the data flow, with a diagram.
-- [Local vs. cloud privacy]({% post_url 2026-09-02-local-vs-cloud-ai-privacy %}) — the privacy case in detail.
+- [Local vs. cloud privacy]({{ '/blog/2026/09/02/local-vs-cloud-ai-privacy/' | relative_url }}) — the privacy case in detail.
 - [Download the free beta]({{ '/download.html' | relative_url }}) — ten minutes to your first offline question.
