@@ -6,23 +6,21 @@
 title: OASIS Blogs
 description: "Release notes, deep dives, and what we're learning building OASIS."
 
-# TODO: update these two once you're on a custom domain (see domain discussion).
-# While on oasislocal.github.io/OASIS:
-url: "https://puchitogamedev.github.io/oasisweb/"
-baseurl: "/OASIS"
-# Once on e.g. https://oasislocal.com:
-# url: "https://oasislocal.com"
-# baseurl: ""
+# Canonical deployment: https://oasislocal.github.io/O.A.S.I.S./
+# (project page of the OASISLocal/O.A.S.I.S. repo, branch github-pages).
+url: "https://oasislocal.github.io"
+baseurl: "/O.A.S.I.S."
 
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/
 
 # All three plugins below are on GitHub Pages' whitelist, so the automatic
 # build (no GitHub Actions needed) supports them out of the box.
+# Static pages (index, features, how-it-works…) ship with their own hand-written
+# sitemap.xml, so jekyll-sitemap is intentionally off — it would clash with it.
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-sitemap
 
 feed:
   path: blog/feed.xml

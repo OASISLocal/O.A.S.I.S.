@@ -8,8 +8,8 @@
 <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
-<meta name="theme-color" content="#040404">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23040404'/%3E%3Ccircle cx='12' cy='12' r='5' fill='none' stroke='%2310b981' stroke-width='2'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
 
 <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
 <meta property="og:title" content="{{ page.title | default: site.title }}">
@@ -23,58 +23,57 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
+/* Blog — esquema Mono (igual que la app por defecto) */
 :root {
---bg-base: #030303; --bg-1: #0d0e0e; --bg-2: #151617; --bg-3: #1c1d1f; --bg-4: #262729;
---text-1: #ffffff; --text-2: #ececec; --text-3: #bcbcbc; --text-4: #909090;
---accent-green: #10b981; --accent-green-glow: rgba(16, 185, 129, 0.4); --accent-blue: #3b82f6;
---border-thin: rgba(255, 255, 255, 0.08);
+--bg-app: #111111; --bg-surface: #161616; --bg-panel: #1c1c1c;
+--text: #ffffff; --text-2: #b4b4b4; --text-3: #8f8f8f;
+--border: rgba(255,255,255,0.16); --border-strong: #ffffff;
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg-base); color: var(--text-2); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: var(--bg-app); color: var(--text-2); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: inherit; }
-:focus-visible { outline: 2px solid var(--accent-green); outline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
 
-.skip-link { position: absolute; left: -9999px; top: 0; background: var(--accent-green); color: #04150f; padding: 10px 16px; z-index: 2000; border-radius: 0 0 6px 0; font-weight: 600; text-decoration: none; }
+.skip-link { position: absolute; left: -9999px; top: 0; background: var(--text); color: var(--bg-app); padding: 10px 16px; z-index: 2000; font-weight: 600; text-decoration: none; }
 .skip-link:focus { left: 0; }
 
-nav.site-nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid var(--border-thin); max-width: 1200px; margin: 0 auto; }
-.logo { font-size: 22px; font-weight: 700; color: var(--text-1); letter-spacing: -0.05em; text-decoration: none; }
-.site-nav a.nav-link { color: var(--text-3); text-decoration: none; margin-left: 28px; font-size: 14px; font-weight: 500; }
-.site-nav a.nav-link:hover, .site-nav a.nav-link.active { color: var(--text-1); }
+nav.site-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; border-bottom: 2px solid var(--border-strong); max-width: 1200px; margin: 0 auto; background: var(--bg-surface); }
+.logo { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -0.04em; text-decoration: none; }
+.site-nav a.nav-link { color: var(--text-2); text-decoration: none; margin-left: 8px; font-size: 14px; font-weight: 500; padding: 8px 12px; border: 1px solid transparent; }
+.site-nav a.nav-link:hover, .site-nav a.nav-link.active { color: var(--text); border-color: var(--border); }
 
 main.blog-main { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
-.blog-eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-green); font-weight: 600; margin-bottom: 12px; }
-.blog-h1 { font-size: clamp(30px, 4vw, 44px); font-weight: 700; color: var(--text-1); letter-spacing: -0.03em; line-height: 1.1; margin: 0 0 14px; }
-.blog-meta { font-size: 13px; color: var(--text-4); margin-bottom: 40px; }
+.blog-eyebrow { font-family: 'Space Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-3); font-weight: 400; margin-bottom: 12px; border: 1px solid var(--border-strong); display: inline-block; padding: 5px 10px; }
+.blog-h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4vw, 44px); font-weight: 700; color: var(--text); letter-spacing: -0.03em; line-height: 1.05; margin: 16px 0 14px; }
+.blog-meta { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 40px; }
 
-.post-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-.post-list li { border-bottom: 1px solid var(--border-thin); padding: 28px 0; }
-.post-list li:first-child { padding-top: 0; }
-.post-list a.post-title { font-size: 22px; font-weight: 600; color: var(--text-1); text-decoration: none; letter-spacing: -0.01em; }
-.post-list a.post-title:hover { color: var(--accent-green); }
-.post-list .post-date { font-size: 13px; color: var(--text-4); display: block; margin-bottom: 8px; }
-.post-list .post-excerpt { font-size: 15px; color: var(--text-4); margin-top: 8px; line-height: 1.6; }
+.post-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 2px solid var(--border-strong); }
+.post-list li { border-bottom: 1px solid var(--border-strong); padding: 28px 0; }
+.post-list a.post-title { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+.post-list a.post-title:hover { text-decoration: underline; }
+.post-list .post-date { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 8px; }
+.post-list .post-excerpt { font-size: 15px; color: var(--text-3); margin-top: 8px; line-height: 1.6; }
 
 /* Article prose (used by post.html) */
 .prose { font-size: 17px; line-height: 1.75; color: var(--text-2); }
-.prose h2 { font-size: 26px; color: var(--text-1); font-weight: 700; letter-spacing: -0.02em; margin: 44px 0 16px; }
-.prose h3 { font-size: 21px; color: var(--text-1); font-weight: 600; margin: 36px 0 14px; }
+.prose h2 { font-family: 'Space Grotesk', sans-serif; font-size: 26px; color: var(--text); font-weight: 700; letter-spacing: -0.02em; margin: 44px 0 16px; }
+.prose h3 { font-family: 'Space Grotesk', sans-serif; font-size: 21px; color: var(--text); font-weight: 600; margin: 36px 0 14px; }
 .prose p { margin: 0 0 20px; }
-.prose a { color: var(--accent-green); text-decoration: underline; text-underline-offset: 2px; }
+.prose a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
 .prose ul, .prose ol { margin: 0 0 20px; padding-left: 22px; }
 .prose li { margin-bottom: 8px; }
-.prose img { max-width: 100%; border-radius: 12px; border: 1px solid var(--border-thin); }
-.prose code { font-family: 'JetBrains Mono', monospace; background: var(--bg-2); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
-.prose pre { background: var(--bg-1); border: 1px solid var(--border-thin); border-radius: 10px; padding: 18px 20px; overflow-x: auto; }
-.prose pre code { background: none; padding: 0; }
-.prose blockquote { margin: 0 0 20px; padding-left: 18px; border-left: 3px solid var(--accent-green); color: var(--text-3); }
+.prose img { max-width: 100%; border: 2px solid var(--border-strong); }
+.prose code { font-family: 'IBM Plex Mono', monospace; background: var(--bg-panel); border: 1px solid var(--border); padding: 2px 6px; font-size: 0.9em; color: var(--text); }
+.prose pre { background: var(--bg-surface); border: 2px solid var(--border-strong); padding: 18px 20px; overflow-x: auto; }
+.prose pre code { background: none; padding: 0; border: none; }
+.prose blockquote { margin: 0 0 20px; padding-left: 18px; border-left: 2px solid var(--border-strong); color: var(--text-3); }
 
-.blog-footer { border-top: 1px solid var(--border-thin); padding: 32px 24px; text-align: center; font-size: 13px; color: var(--text-4); }
-.blog-footer a { color: var(--text-3); text-decoration: none; }
-.blog-footer a:hover { color: var(--accent-green); }
+.blog-footer { border-top: 2px solid var(--border-strong); padding: 32px 24px; text-align: center; font-family: 'Space Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); }
+.blog-footer a { color: var(--text-2); text-decoration: none; }
+.blog-footer a:hover { color: var(--text); text-decoration: underline; }
 
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
@@ -83,7 +82,7 @@ main.blog-main { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
 <a class="skip-link" href="#main-content">Skip to content</a>
 
 <nav class="site-nav">
-<a class="logo" href="{{ '/' | relative_url }}">OASIS</a>
+<a class="logo" href="{{ '/' | relative_url }}">■ OASIS</a>
 <div>
 <a class="nav-link active" href="{{ '/blog/' | relative_url }}">Blog</a>
 <a class="nav-link" href="{{ '/' | relative_url }}">← Back to site</a>
@@ -95,7 +94,7 @@ main.blog-main { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
 </main>
 
 <footer class="blog-footer">
-<a href="{{ '/blog/feed.xml' | relative_url }}">RSS feed</a> · <a href="https://puchitogamedev.github.io/oasisweb/" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/OASISLocal/oasis/discussions" target="_blank" rel="noopener noreferrer">Community</a>
+<a href="{{ '/blog/feed.xml' | relative_url }}">RSS feed</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Community</a>
 </footer>
 </body>
 </html>

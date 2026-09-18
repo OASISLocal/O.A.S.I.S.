@@ -1,1255 +1,819 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OASIS | Your AI. Your Computer. Nothing Else.</title>
-
-<!-- SEO & Accessibility -->
-<meta name="description" content="OASIS is a 100% local AI assistant. Voice, vision and automation free forever — unlock coding, advanced RAG and remote access with a one-time payment.">
+<title>OASIS — The AI assistant that lives on your PC</title>
+<meta name="description" content="OASIS is a free AI assistant for Windows that runs entirely on your computer. Talk or type in Spanish or English — it tidies files, summarizes PDFs, remembers things, explains code and controls your PC. No internet, no account.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://oasislocal.github.io/OASIS/">
-<meta name="theme-color" content="#040404">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23040404'/%3E%3Ccircle cx='12' cy='12' r='5' fill='none' stroke='%2310b981' stroke-width='2'/%3E%3C/svg%3E">
-
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
-<meta property="og:title" content="OASIS | Your AI. Your Computer. Nothing Else.">
-<meta property="og:description" content="A 100% local AI assistant. Free forever for daily use — one-time payment unlocks coding, advanced RAG and remote access.">
-<meta property="og:url" content="https://oasislocal.github.io/OASIS/">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="OASIS | Your AI. Your Computer. Nothing Else.">
-<meta name="twitter:description" content="A 100% local AI assistant. Free forever for daily use — one-time payment unlocks coding, advanced RAG and remote access.">
-
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="OASIS — The AI assistant that lives on your PC">
+<meta property="og:description" content="Talk or type in Spanish or English. OASIS tidies files, summarizes PDFs, remembers things, explains code and controls your PC — all offline. Free for Windows.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
-"@graph": [
-{
-"@type": "Organization",
-"name": "OASIS",
-"url": "https://oasislocal.github.io/OASIS/",
-"logo": "https://oasislocal.github.io/OASIS/icon.png",
-"sameAs": ["https://github.com/OASISLocal/oasis"]
-},
-{
 "@type": "SoftwareApplication",
 "name": "OASIS",
 "operatingSystem": "Windows 10, Windows 11",
 "applicationCategory": "UtilitiesApplication",
+"inLanguage": ["es", "en"],
 "offers": [
-{ "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "EUR" },
-{ "@type": "Offer", "name": "OASIS Max — early access", "price": "15", "priceCurrency": "EUR" }
+{ "@type": "Offer", "name": "OASIS Personal", "price": "0", "priceCurrency": "EUR" },
+{ "@type": "Offer", "name": "OASIS Max", "price": "15", "priceCurrency": "EUR" }
 ],
-"url": "https://oasislocal.github.io/OASIS/",
-"description": "A 100% local AI assistant. Free forever for daily use. OASIS Max is a one-time payment that unlocks coding, advanced RAG and remote access."
-},
-{
-"@type": "FAQPage",
-"mainEntity": [
-{
-"@type": "Question",
-"name": "Does it run on Mac?",
-"acceptedAnswer": { "@type": "Answer", "text": "Not yet. Windows 10/11 only for now — macOS and Linux are on the roadmap." }
-},
-{
-"@type": "Question",
-"name": "Can I use it offline?",
-"acceptedAnswer": { "@type": "Answer", "text": "100%. Disconnect your router after downloading a model and it works identically." }
-},
-{
-"@type": "Question",
-"name": "Is it really free?",
-"acceptedAnswer": { "@type": "Answer", "text": "The Personal plan is free forever, no account and no message limits. OASIS Max is an optional one-time payment for power features like coding and remote access." }
-},
-{
-"@type": "Question",
-"name": "Is OASIS Max a subscription?",
-"acceptedAnswer": { "@type": "Answer", "text": "No. It's a single payment: 15€ during early access, rising to 25€ once v1.0 ships. No recurring fees." }
-},
-{
-"@type": "Question",
-"name": "What hardware do I need?",
-"acceptedAnswer": { "@type": "Answer", "text": "Any modern CPU works for small models. A GPU with 4GB+ VRAM speeds things up but isn't required." }
-},
-{
-"@type": "Question",
-"name": "Is any of my data sent anywhere?",
-"acceptedAnswer": { "@type": "Answer", "text": "No telemetry, no analytics, no account system. Everything stays in a local folder you control." }
-}
-]
-}
-]
+"url": "https://oasislocal.github.io/O.A.S.I.S./",
+"description": "A free AI assistant for Windows that runs entirely on your computer: chat, voice in Spanish and English, memory, PC control and coding. No internet, no account."
 }
 </script>
-
 <style>
-/* =========================================
-1. COLOR SYSTEM & VARIABLES
-========================================= */
-:root {
---bg-base: #030303;
---bg-1: #0d0e0e;
---bg-2: #151617;
---bg-3: #1c1d1f;
---bg-4: #262729;
-
---text-1: #ffffff;
---text-2: #ececec;
---text-3: #bcbcbc;
---text-4: #909090;
-
---accent-green: #10b981;
---accent-green-glow: rgba(16, 185, 129, 0.4);
---accent-blue: #3b82f6;
-
---border-thin: rgba(255, 255, 255, 0.08);
---glass-bg: rgba(30, 32, 32, 0.55);
-
---ease-out: cubic-bezier(0.16, 1, 0.3, 1);
---ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+:root, :root[data-theme="dark"] {
+  --bg: #111111; --surface: #161616; --panel: #1c1c1c; --hover: #242424;
+  --ink: #ffffff; --ink-2: #c9c9c9; --ink-3: #8f8f8f;
+  --line: rgba(255,255,255,0.16); --strong: #ffffff;
+  --display: 'Space Grotesk', 'Inter', sans-serif;
+  --body: 'Inter', -apple-system, sans-serif;
+  --mono: 'Space Mono', 'IBM Plex Mono', monospace;
+  --code: 'IBM Plex Mono', monospace;
 }
-
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+:root[data-theme="light"] {
+  --bg: #f7f7f5; --surface: #ffffff; --panel: #f2f2ef; --hover: #ebebe7;
+  --ink: #111111; --ink-2: #3f3f3c; --ink-3: #6b6b6b;
+  --line: rgba(17,17,17,0.18); --strong: #111111;
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink-2); font-family: var(--body); font-size: 16.5px; line-height: 1.7; -webkit-font-smoothing: antialiased; transition: background-color .25s, color .25s; }
+::selection { background: var(--ink); color: var(--bg); }
+a { color: var(--ink); }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.skip { position: absolute; top: -100px; left: 16px; z-index: 99; background: var(--ink); color: var(--bg); font-weight: 600; font-size: 14px; padding: 10px 18px; text-decoration: none; }
+.skip:focus { top: 8px; }
+code { font-family: var(--code); font-size: .85em; background: var(--panel); border: 1px solid var(--line); padding: 1px 6px; color: var(--ink-2); }
 
-body {
-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-background-color: var(--bg-base);
-background-image:
-radial-gradient(ellipse 1100px 700px at 12% -10%, rgba(16, 185, 129, 0.12), transparent 60%),
-radial-gradient(ellipse 900px 700px at 100% 10%, rgba(59, 130, 246, 0.09), transparent 55%),
-radial-gradient(ellipse 1200px 900px at 50% 100%, rgba(16, 185, 129, 0.07), transparent 60%),
-linear-gradient(180deg, #050605 0%, #07080a 30%, #050606 65%, #020202 100%);
-background-attachment: fixed;
-background-repeat: no-repeat;
-color: var(--text-2);
-line-height: 1.6;
-overflow-x: hidden;
--webkit-font-smoothing: antialiased;
-}
+/* ---------- Bar ---------- */
+.top { border-bottom: 2px solid var(--strong); background: var(--surface); position: sticky; top: 0; z-index: 50; }
+.top-in { max-width: 1160px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.brand { font-family: var(--display); font-weight: 700; font-size: 21px; letter-spacing: -.03em; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 9px; }
+.brand i { width: 18px; height: 18px; border: 2px solid var(--strong); display: block; }
+.brand small { font-family: var(--mono); font-weight: 400; font-size: 10px; color: var(--ink-3); border: 1px solid var(--line); padding: 2px 7px; }
+.top nav { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; }
+.top nav a { font-size: 13.5px; color: var(--ink-2); text-decoration: none; padding: 7px 11px; border: 1px solid transparent; }
+.top nav a:hover { color: var(--ink); border-color: var(--line); }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; font-size: 14.5px; font-weight: 600; font-family: var(--body); text-decoration: none; border: 1px solid var(--strong); cursor: pointer; background: var(--ink); color: var(--bg); }
+.btn:hover { background: transparent; color: var(--ink); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--bg); }
+.btn.sm { padding: 8px 15px; font-size: 13px; }
+#theme-btn { font-family: var(--mono); font-size: 11px; background: none; border: 1px solid var(--strong); color: var(--ink); padding: 8px 11px; cursor: pointer; }
+#theme-btn:hover { background: var(--ink); color: var(--bg); }
+#burger { display: none; background: none; border: 1px solid var(--strong); width: 38px; height: 38px; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+#burger span { display: block; width: 16px; height: 2px; background: var(--ink); }
+.mnav { display: none; border-top: 1px solid var(--strong); background: var(--surface); padding: 6px 24px 16px; }
+.mnav.open { display: block; }
+.mnav a { display: block; color: var(--ink-2); text-decoration: none; font-size: 15px; padding: 11px 0; border-bottom: 1px solid var(--line); }
 
-code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
-img { max-width: 100%; display: block; }
+/* ---------- Hero ---------- */
+.hero { max-width: 1160px; margin: 0 auto; padding: 76px 24px 0; }
+.kicker { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-bottom: 14px; }
+.kicker b { color: var(--ink); font-weight: 400; border: 1px solid var(--strong); padding: 3px 9px; margin-right: 10px; }
+h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; line-height: 1.0; color: var(--ink); font-size: clamp(44px, 6.4vw, 84px); max-width: 15ch; }
+.lede { font-size: 19px; max-width: 62ch; margin-top: 20px; }
+.lede strong { color: var(--ink); font-weight: 600; }
+.ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.fine { font-size: 13.5px; color: var(--ink-3); margin-top: 16px; }
+.proof { display: flex; gap: 0; margin-top: 26px; border: 1px solid var(--strong); width: fit-content; max-width: 100%; flex-wrap: wrap; }
+.proof span { font-family: var(--mono); font-size: 11px; color: var(--ink-2); padding: 9px 15px; border-right: 1px solid var(--line); }
+.proof span:last-child { border-right: none; }
+.proof a { text-decoration: none; }
+.proof a:hover { text-decoration: underline; }
 
-/* =========================================
-2. BACKGROUND LAYERS
-========================================= */
-.layer-grid {
-position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-background-size: 48px 48px;
-background-image:
-linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-z-index: -4;
-}
-.layer-blobs { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -3; overflow: hidden; filter: blur(120px); opacity: 0.5; }
-.blob { position: absolute; border-radius: 50%; animation: float 20s infinite alternate ease-in-out; }
-.blob.green { width: 600px; height: 600px; background: var(--accent-green); top: -200px; right: -100px; opacity: 0.15; }
-.blob.blue { width: 500px; height: 500px; background: var(--accent-blue); bottom: -100px; left: -100px; opacity: 0.1; }
-.blob.white { width: 400px; height: 400px; background: #ffffff; top: 40%; left: 40%; opacity: 0.05; }
-@keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 30px); } }
+/* ---------- App window ---------- */
+.appwin { border: 2px solid var(--strong); background: var(--surface); margin-top: 44px; }
+.appwin-bar { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; border-bottom: 2px solid var(--strong); font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+.sq { display: flex; gap: 6px; }
+.sq i { width: 10px; height: 10px; border: 1px solid var(--ink-3); display: block; }
+.sq i:first-child { background: var(--ink); border-color: var(--ink); }
+.appwin-cols { display: grid; grid-template-columns: 190px 1fr; min-height: 420px; }
+.rail { border-right: 1px solid var(--strong); padding: 14px 10px; display: flex; flex-direction: column; gap: 2px; }
+.rail span { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); padding: 0 8px 8px; }
+.rail a { font-size: 13px; color: var(--ink-2); text-decoration: none; padding: 8px; border-left: 2px solid transparent; display: block; }
+.rail a.on { color: var(--ink); background: var(--hover); border-left-color: var(--strong); }
+.rail .ver { margin-top: auto; font-family: var(--mono); font-size: 10px; color: var(--ink-3); padding: 8px; }
+.stage { display: flex; flex-direction: column; min-width: 0; }
+.toolbar { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.modelpill { font-family: var(--code); font-size: 12px; color: var(--ink); border: 1px solid var(--strong); padding: 5px 11px; }
+.tool { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); border: 1px solid var(--line); padding: 5px 10px; }
+.tool.live { color: var(--ink); border-color: var(--strong); }
+.chat { padding: 20px 22px; display: flex; flex-direction: column; gap: 16px; }
+.msg { max-width: 82%; font-size: 14.5px; line-height: 1.6; }
+.msg small { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); display: block; margin-bottom: 5px; }
+.msg.user { align-self: flex-end; background: var(--ink); color: var(--bg); padding: 11px 14px; }
+.msg.user small { color: inherit; opacity: .6; }
+.msg.ai { align-self: flex-start; background: var(--panel); border: 1px solid var(--line); border-left: 2px solid var(--strong); padding: 11px 14px; color: var(--ink-2); }
+.msg.ai b { color: var(--ink); }
+.cbox { margin: 0 22px 6px; border: 1px solid var(--strong); display: flex; }
+.cbox input { flex: 1; background: transparent; border: none; color: var(--ink-2); font: 14px var(--body); padding: 13px 14px; min-width: 0; }
+.cbox button { background: var(--ink); color: var(--bg); border: none; font: 600 13px var(--body); padding: 0 20px; cursor: pointer; }
+.statusbar { margin-top: auto; border-top: 1px solid var(--line); padding: 8px 16px; display: flex; gap: 18px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); flex-wrap: wrap; }
+.statusbar b { color: var(--ink); font-weight: 400; }
+.cap { font-size: 13.5px; color: var(--ink-3); margin-top: 12px; }
 
-.layer-noise {
-position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
-opacity: 0.02; z-index: -2; pointer-events: none;
-}
+/* ---------- Sections ---------- */
+.sec { max-width: 1160px; margin: 0 auto; padding: 88px 24px 0; }
+.sec-head { border-top: 2px solid var(--strong); padding-top: 16px; margin-bottom: 36px; max-width: 780px; }
+.sec-head h2 { font-family: var(--display); font-weight: 700; letter-spacing: -.025em; color: var(--ink); font-size: clamp(28px, 3.6vw, 42px); line-height: 1.05; margin: 8px 0 10px; }
+.sec-head p { font-size: 16.5px; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.split.flip > div:first-child { order: 2; }
+.split h3 { font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); margin-bottom: 10px; }
+.split p { font-size: 15.5px; margin-bottom: 12px; }
+.check { list-style: none; margin-top: 14px; }
+.check li { font-size: 14.5px; padding: 9px 0 9px 24px; position: relative; border-bottom: 1px solid var(--line); }
+.check li:last-child { border-bottom: none; }
+.check li::before { content: '+'; position: absolute; left: 2px; color: var(--ink); font-family: var(--mono); }
+.check li b { color: var(--ink); font-weight: 600; }
+@media (max-width: 900px) { .split { grid-template-columns: 1fr; gap: 28px; } .split.flip > div:first-child { order: 0; } }
 
-#scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent-green); width: 0%; z-index: 1000; transition: width 0.1s; }
+/* Small mocks */
+.mock { border: 2px solid var(--strong); background: var(--surface); }
+.mock-bar { display: flex; justify-content: space-between; padding: 8px 13px; border-bottom: 1px solid var(--strong); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); }
+.mock-body { padding: 16px; font-size: 13.5px; }
+.mrow { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+.mrow:last-child { border-bottom: none; }
+.mrow .nm { font-family: var(--code); font-size: 12.5px; color: var(--ink); }
+.mrow .tag { font-family: var(--mono); font-size: 10px; color: var(--ink-3); text-transform: uppercase; }
+.prog { height: 8px; border: 1px solid var(--strong); margin-top: 7px; position: relative; }
+.prog i { position: absolute; inset: 1px auto 1px 1px; background: var(--ink); display: block; }
+.wave { display: flex; align-items: flex-end; gap: 4px; height: 56px; margin: 6px 0 10px; }
+.wave i { flex: 1; background: var(--ink-3); display: block; min-height: 4px; }
+.wave i.hot { background: var(--ink); }
+.fact { border: 1px solid var(--line); border-left: 2px solid var(--strong); padding: 9px 12px; margin-bottom: 8px; font-size: 13px; }
+.fact span { font-family: var(--mono); font-size: 10px; color: var(--ink-3); display: block; text-transform: uppercase; }
+.diff { font-family: var(--code); font-size: 12.5px; }
+.diff div { padding: 5px 10px; border-bottom: 1px solid var(--line); }
+.diff .add { background: var(--hover); color: var(--ink); }
+.diff .del { color: var(--ink-3); text-decoration: line-through; }
+.diff .h { color: var(--ink-3); }
+.flow { display: flex; align-items: stretch; gap: 0; font-size: 12.5px; }
+.flow div { border: 1px solid var(--strong); padding: 10px 12px; flex: 1; }
+.flow div + div { border-left: none; }
+.flow span { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; color: var(--ink-3); display: block; }
+.flow b { color: var(--ink); }
+.shot { border: 1px solid var(--line); background: var(--panel); height: 120px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; margin-bottom: 10px; }
+.shot i { background: var(--hover); display: block; }
+.shot i:nth-child(2) { background: var(--surface); }
+.log { font-family: var(--code); font-size: 12px; color: var(--ink-2); }
+.log div { padding: 4px 0; border-bottom: 1px dotted var(--line); }
+.log div:last-child { border-bottom: none; }
+.dchat { background: var(--panel); border: 1px solid var(--line); padding: 10px 12px; font-size: 13px; margin-bottom: 8px; }
+.dchat b { color: var(--ink); }
+.dchat span { font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
 
-/* =========================================
-3. NAVBAR
-========================================= */
-nav {
-position: fixed; top: 0; width: 100%; z-index: 100;
-backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px);
-background: rgba(4, 4, 4, 0.7);
-border-bottom: 1px solid var(--border-thin);
-transition: padding 0.3s var(--ease-out); padding: 20px 0;
-}
-nav.scrolled { padding: 12px 0; }
-.nav-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 24px; }
-.logo { font-size: 24px; font-weight: 700; color: var(--text-1); letter-spacing: -0.05em; text-decoration: none; }
-.nav-links a { color: var(--text-3); text-decoration: none; margin-left: 32px; font-size: 14px; font-weight: 500; transition: color 0.2s; }
-.nav-links a:hover { color: var(--text-1); }
-.btn-nav {
-background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3);
-color: var(--accent-green); padding: 8px 16px; border-radius: 6px; font-size: 14px;
-margin-left: 32px; cursor: pointer; transition: all 0.2s; box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
-}
-.btn-nav:hover { background: rgba(16, 185, 129, 0.2); box-shadow: 0 0 15px rgba(16, 185, 129, 0.3); }
+/* What-else long list (long-tail) */
+.else { border: 2px solid var(--strong); background: var(--surface); padding: 30px 32px; font-size: 17px; line-height: 1.9; }
+.else b { color: var(--ink); }
 
-/* =========================================
-4. HERO — copy + memorable terminal demo
-========================================= */
-.hero {
-padding: 170px 24px 90px; position: relative;
-max-width: 1280px; margin: 0 auto;
-display: grid; grid-template-columns: 1fr 0.92fr; gap: 48px; align-items: center;
-}
-.hero-copy { text-align: left; }
-.hero-badge {
-display: inline-flex; align-items: center; gap: 8px;
-padding: 6px 16px; background: var(--bg-2); border: 1px solid var(--border-thin);
-border-radius: 100px; font-size: 13px; color: var(--text-2); margin-bottom: 26px;
-font-weight: 500; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-}
-.live-dot { width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%; box-shadow: 0 0 8px var(--accent-green); flex-shrink: 0; }
+/* Tool groups */
+.groups { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--strong); }
+.groups > div { padding: 22px; border-right: 1px solid var(--strong); }
+.groups > div:last-child { border-right: none; }
+.groups h3 { font-family: var(--mono); font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 12px; }
+.groups ul { list-style: none; }
+.groups li { font-size: 14px; padding: 6px 0; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+.groups li:last-child { border-bottom: none; }
+@media (max-width: 800px) { .groups { grid-template-columns: 1fr; } .groups > div { border-right: none; border-bottom: 1px solid var(--strong); } .groups > div:last-child { border-bottom: none; } }
 
-h1 { font-size: clamp(42px, 5vw, 74px); font-weight: 700; color: var(--text-1); letter-spacing: -0.04em; line-height: 1.03; margin-bottom: 18px; }
+/* Models strip */
+.fams { display: flex; flex-wrap: wrap; gap: 0; border: 2px solid var(--strong); margin-top: 20px; }
+.fams div { padding: 16px 20px; border-right: 1px solid var(--line); flex: 1 1 150px; }
+.fams div:last-child { border-right: none; }
+.fams b { display: block; color: var(--ink); font-size: 16px; }
+.fams span { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
 
-.hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; font-size: 13px; color: var(--text-4); font-weight: 500; }
-.hero-tags span:not(:last-child)::after { content: '•'; margin-left: 10px; color: var(--border-thin); }
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--strong); }
+.step { padding: 26px 24px; border-right: 1px solid var(--strong); }
+.step:last-child { border-right: none; }
+.step .n { font-family: var(--display); font-size: 40px; font-weight: 700; color: var(--ink); line-height: 1; }
+.step h3 { font-size: 16px; color: var(--ink); margin: 10px 0 6px; }
+.step p { font-size: 14px; }
+@media (max-width: 800px) { .steps { grid-template-columns: 1fr; } .step { border-right: none; border-bottom: 1px solid var(--strong); } .step:last-child { border-bottom: none; } }
 
-.hero-checks { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 36px; }
-.hero-checks li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--text-2); font-weight: 500; }
-.hero-checks li svg { color: var(--accent-green); flex-shrink: 0; }
+/* Comparison */
+.vs { width: 100%; border-collapse: collapse; border: 2px solid var(--strong); background: var(--surface); max-width: 780px; }
+.vs th, .vs td { padding: 12px 18px; font-size: 14px; border-bottom: 1px solid var(--line); text-align: center; }
+.vs th:first-child, .vs td:first-child { text-align: left; color: var(--ink-2); font-weight: 500; }
+.vs thead th { font-family: var(--mono); font-size: 10px; font-weight: 400; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); border-bottom: 1px solid var(--strong); }
+.vs thead th.us { color: var(--ink); background: var(--hover); }
+.vs tbody tr:last-child td { border-bottom: none; }
+.y { color: var(--ink); font-weight: 700; }
+.n { color: var(--ink-3); }
 
-.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-.btn { padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.3s var(--ease-out); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-.btn-primary { background: var(--text-1); color: var(--bg-base); border: none; box-shadow: 0 0 30px rgba(255,255,255,0.1); }
-.btn-primary:hover { background: var(--accent-green); color: #fff; box-shadow: 0 0 40px var(--accent-green-glow); transform: scale(1.03); }
-.btn-ghost { background: transparent; border: 1px solid var(--border-thin); color: var(--text-2); backdrop-filter: blur(10px); }
-.btn-ghost:hover { background: var(--glass-bg); border-color: rgba(255,255,255,0.2); transform: scale(1.03); }
+/* Prices */
+.prices { display: grid; grid-template-columns: 1fr 1fr; border: 2px solid var(--strong); }
+.price { padding: 30px 28px; }
+.price:first-child { border-right: 1px solid var(--strong); }
+.price.hot { background: var(--surface); }
+.price .pn { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); }
+.price.hot .pn { color: var(--ink); }
+.price .pt { font-family: var(--display); font-size: 38px; font-weight: 700; letter-spacing: -.03em; color: var(--ink); margin: 8px 0 2px; }
+.price .pt small { font-size: 14px; font-family: var(--body); font-weight: 400; color: var(--ink-3); letter-spacing: 0; }
+.price ul { list-style: none; margin: 18px 0 22px; }
+.price li { font-size: 14px; padding: 8px 0 8px 22px; position: relative; border-bottom: 1px solid var(--line); }
+.price li:last-child { border-bottom: none; }
+.price li::before { content: '+'; position: absolute; left: 2px; font-family: var(--mono); color: var(--ink); }
+@media (max-width: 800px) { .prices { grid-template-columns: 1fr; } .price:first-child { border-right: none; border-bottom: 1px solid var(--strong); } }
 
-.hero-stats { margin-top: 24px; display: flex; align-items: center; gap: 14px; font-size: 13px; color: var(--text-4); }
-.hero-stats .sep { width: 1px; height: 12px; background: var(--border-thin); }
+/* FAQ */
+.faq { max-width: 780px; border-top: 2px solid var(--strong); }
+.faq details { border-bottom: 1px solid var(--strong); }
+.faq summary { cursor: pointer; padding: 18px 4px; font-weight: 600; font-size: 16px; color: var(--ink); list-style: none; display: flex; justify-content: space-between; gap: 14px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; font-family: var(--mono); color: var(--ink-3); }
+.faq details[open] summary::after { content: '–'; color: var(--ink); }
+.faq details p { padding: 0 4px 20px; font-size: 15px; }
 
-/* Terminal — the memorable centerpiece */
-.hero-terminal {
-font-family: 'JetBrains Mono', monospace; background: var(--bg-1);
-border: 1px solid var(--border-thin); border-radius: 16px; padding: 32px 28px;
-box-shadow: 0 70px 140px rgba(0,0,0,0.75), 0 0 90px rgba(16,185,129,0.07);
-position: relative;
-}
-.hero-terminal::before {
-content: ''; position: absolute; inset: -1px; border-radius: 16px; padding: 1px;
-background: linear-gradient(160deg, rgba(16,185,129,0.25), transparent 40%);
--webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
--webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none;
-}
-.t-rule { color: var(--border-thin); font-size: 13px; letter-spacing: 0.05em; margin: 14px 0; user-select: none; }
-.t-headline { color: var(--text-1); font-size: 15px; line-height: 1.9; letter-spacing: -0.01em; }
-.t-line { font-size: 14px; margin-bottom: 8px; min-height: 20px; }
-.t-line.prompt { color: var(--text-1); }
-.t-line .cursor { display: inline-block; width: 8px; background: var(--accent-green); margin-left: 2px; animation: blink 1s step-end infinite; }
-.t-line.status { color: var(--text-4); opacity: 0; }
-.t-line.status.shown { opacity: 1; transition: opacity 0.3s ease; }
-.t-line.done { color: var(--accent-green); }
+/* Status + blog */
+.rm { display: grid; grid-template-columns: 1fr 1fr; border: 2px solid var(--strong); max-width: 780px; }
+.rm > div { padding: 24px; }
+.rm > div:first-child { border-right: 1px solid var(--strong); }
+.rm h3 { font-family: var(--mono); font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 10px; }
+.rm ul { list-style: none; }
+.rm li { font-size: 14.5px; padding: 7px 0 7px 22px; position: relative; }
+.rm li::before { content: '—'; position: absolute; left: 0; color: var(--ink-3); }
+@media (max-width: 640px) { .rm { grid-template-columns: 1fr; } .rm > div:first-child { border-right: none; border-bottom: 1px solid var(--strong); } }
+.blogindex { list-style: none; margin-top: 22px; border-top: 2px solid var(--strong); max-width: 780px; }
+.blogindex li { border-bottom: 1px solid var(--line); }
+.blogindex a { display: flex; justify-content: space-between; gap: 16px; padding: 15px 0; text-decoration: none; }
+.blogindex a:hover .t { text-decoration: underline; }
+.blogindex .t { color: var(--ink); font-weight: 600; font-size: 16.5px; }
+.blogindex .d { font-family: var(--mono); font-size: 12px; color: var(--ink-3); white-space: nowrap; }
+#blog-empty { font-size: 14px; color: var(--ink-3); padding: 14px 0; border-bottom: 1px solid var(--line); }
+
+/* Closer + footer */
+.closer { border: 2px solid var(--strong); background: var(--surface); margin-top: 88px; padding: 56px 32px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 36px; align-items: center; }
+.closer h2 { font-family: var(--display); font-size: clamp(30px, 4vw, 48px); font-weight: 700; letter-spacing: -.03em; line-height: 1.02; color: var(--ink); margin-bottom: 14px; }
+.kv { border: 1px solid var(--strong); background: var(--bg); }
+.kv div { display: flex; justify-content: space-between; padding: 11px 16px; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); }
+.kv div:last-child { border-bottom: none; }
+.kv b { color: var(--ink); font-weight: 400; }
+@media (max-width: 800px) { .closer { grid-template-columns: 1fr; } }
+footer { border-top: 2px solid var(--strong); margin-top: 88px; }
+.foot { max-width: 1160px; margin: 0 auto; padding: 48px 24px 30px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; }
+.foot h4 { font-family: var(--mono); font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 14px; }
+.foot ul { list-style: none; }
+.foot li { margin-bottom: 9px; }
+.foot a { color: var(--ink-2); text-decoration: none; font-size: 14px; }
+.foot a:hover { color: var(--ink); text-decoration: underline; }
+.foot .fb { font-family: var(--display); font-size: 23px; font-weight: 700; color: var(--ink); letter-spacing: -.03em; display: block; margin-bottom: 8px; }
+.foot p { font-size: 13.5px; }
+.base { max-width: 1160px; margin: 0 auto; padding: 16px 24px 26px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-3); border-top: 1px solid var(--line); }
+@media (max-width: 800px) { .foot { grid-template-columns: 1fr; } }
+/* ---------- Hero pro ---------- */
+.announce { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--ink-2); text-decoration: none; border: 1px solid var(--strong); padding: 7px 14px; margin-bottom: 22px; background: var(--surface); }
+.announce:hover { background: var(--hover); color: var(--ink); }
+.announce b { color: var(--ink); font-weight: 400; background: var(--ink); color: var(--bg); padding: 1px 8px; }
+.btn svg { flex-shrink: 0; }
+.winbtns { display: flex; gap: 0; }
+.winbtns i { width: 34px; height: 26px; display: flex; align-items: center; justify-content: center; font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--ink-3); border-left: 1px solid var(--line); }
+.winbtns i:last-child:hover { background: var(--ink); color: var(--bg); }
+.rail a { display: flex; align-items: center; gap: 9px; }
+.rail a svg { flex-shrink: 0; }
+.tcard { border: 1px solid var(--line); margin-top: 9px; font-size: 12.5px; }
+.tcard header { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); padding: 6px 10px; border-bottom: 1px solid var(--line); }
+.tcard div { padding: 6px 10px; border-bottom: 1px dotted var(--line); font-family: var(--code); font-size: 12px; }
+.tcard div:last-child { border-bottom: none; }
+.tcard .ok { color: var(--ink); float: right; }
+.cite { font-family: var(--mono); font-size: 10px; border: 1px solid var(--strong); color: var(--ink); padding: 0 5px; margin: 0 1px; white-space: nowrap; }
+.cursor { display: inline-block; width: 8px; height: 15px; background: var(--ink); vertical-align: -2px; margin-left: 2px; animation: blink 1.1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
-
-.t-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 6px; }
-.t-stats div { text-align: left; }
-.t-stats strong { display: block; font-size: 18px; color: var(--text-1); }
-.t-stats span { font-size: 11px; color: var(--text-4); text-transform: uppercase; letter-spacing: 0.05em; font-family: 'Inter', sans-serif; }
-.t-tags { display: flex; gap: 8px; margin-top: 18px; }
-.t-tags span { font-size: 11px; color: var(--accent-green); background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); padding: 4px 10px; border-radius: 100px; letter-spacing: 0.03em; }
-
-@media (max-width: 940px) {
-.hero { grid-template-columns: 1fr; padding-top: 130px; text-align: center; }
-.hero-copy { text-align: center; }
-.hero-checks { align-items: center; }
-.hero-checks li { justify-content: center; }
-.hero-ctas, .hero-tags { justify-content: center; }
-.hero-stats { justify-content: center; }
-.hero-terminal { text-align: left; }
-}
-
-/* =========================================
-5. CREDIBILITY BAR — plain, no cards
-========================================= */
-.credibility-bar { padding: 20px 24px; }
-.credibility-inner { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 36px; }
-.credibility-inner span { font-size: 13px; color: var(--text-4); font-weight: 500; display: flex; align-items: center; gap: 7px; white-space: nowrap; }
-.credibility-inner span svg { color: var(--accent-green); }
-.credibility-inner a { color: inherit; text-decoration: none; }
-
-/* =========================================
-6. SECTION SCAFFOLDING + FULL-BLEED BANDS
-========================================= */
-.section-container { max-width: 1200px; margin: 130px auto; padding: 0 24px; }
-.section-header { text-align: center; margin-bottom: 56px; }
-.section-header h2 { font-size: 36px; font-weight: 700; color: var(--text-1); letter-spacing: -0.03em; margin-bottom: 12px; }
-.section-header p { color: var(--text-4); font-size: 16px; max-width: 480px; margin: 0 auto; }
-
-.band {
-position: relative;
-background:
-radial-gradient(900px circle at 20% 0%, rgba(16,185,129,0.06), transparent 60%),
-linear-gradient(180deg, rgba(13,14,14,0) 0%, rgba(13,14,14,0.6) 16%, rgba(13,14,14,0.6) 84%, rgba(13,14,14,0) 100%);
-backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
--webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
-padding: 110px 24px;
-}
-.band-inner { max-width: 1200px; margin: 0 auto; position: relative; }
-
-/* generic reveal variants */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
-.reveal.active { opacity: 1; transform: translateY(0); }
-
-.reveal-blur { opacity: 0; filter: blur(14px); transform: translateY(10px); transition: opacity 0.9s var(--ease-out), filter 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
-.reveal-blur.active { opacity: 1; filter: blur(0); transform: translateY(0); }
-
-.reveal-scale { opacity: 0; transform: scale(0.94); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
-.reveal-scale.active { opacity: 1; transform: scale(1); }
-
-.reveal-mask { clip-path: inset(0 0 100% 0); opacity: 0; transition: clip-path 0.9s var(--ease-out), opacity 0.3s; }
-.reveal-mask.active { clip-path: inset(0 0 0% 0); opacity: 1; }
-
-/* =========================================
-7. THE APPLICATION — full-bleed, image-led
-========================================= */
-.app-band {
-position: relative;
-background: linear-gradient(180deg, rgba(13,14,14,0.6) 0%, rgba(13,14,14,0.6) 82%, rgba(13,14,14,0) 100%);
-backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 82%, transparent 100%);
--webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 12%, #000 82%, transparent 100%);
-}
-.app-shot { width: 100%; max-height: 760px; overflow: hidden; }
-.app-shot img { width: 100%; height: 100%; object-fit: cover; }
-.app-caption-row { max-width: 1200px; margin: 0 auto; padding: 48px 24px 0; }
-.app-caption-row h2 { font-size: 34px; color: var(--text-1); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 32px; }
-.app-feature-list { list-style: none; display: flex; flex-wrap: wrap; gap: 12px 28px; padding-bottom: 56px; }
-.app-feature-list li { font-size: 15px; color: var(--text-3); font-weight: 500; display: flex; align-items: center; gap: 8px; }
-.app-feature-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent-green); }
-
-/* =========================================
-8. DIFFERENTIATORS — three distinct treatments
-========================================= */
-.diff-1 { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 56px; align-items: center; margin-bottom: 100px; }
-.diff-1 .diff-media { border-radius: 14px; overflow: hidden; border: 1px solid var(--border-thin); box-shadow: 0 30px 70px rgba(0,0,0,0.5); }
-.diff-1 h3 { font-size: 28px; color: var(--text-1); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
-.diff-1 p { color: var(--text-4); font-size: 16px; }
-
-.diff-2 { margin-bottom: 100px; }
-.diff-2 .diff-media-full { border-radius: 14px; overflow: hidden; border: 1px solid var(--border-thin); box-shadow: 0 50px 100px rgba(0,0,0,0.55); margin-bottom: 28px; }
-.diff-2 .diff-media-full img { width: 100%; }
-.diff-2 .diff-caption { max-width: 520px; }
-.diff-2 h3 { font-size: 28px; color: var(--text-1); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
-.diff-2 p { color: var(--text-4); font-size: 16px; }
-
-.diff-3 { text-align: center; max-width: 620px; margin: 0 auto; }
-.diff-3 h3 { font-size: 30px; color: var(--text-1); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 20px; }
-.diff-3-icons { display: flex; justify-content: center; gap: 28px; }
-.diff-3-icons div { display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 13px; color: var(--text-4); font-weight: 500; }
-.diff-3-icons svg { color: var(--accent-green); }
-
-@media (max-width: 860px) {
-.diff-1 { grid-template-columns: 1fr; gap: 24px; }
-.diff-3-icons { flex-wrap: wrap; }
-}
-
-/* =========================================
-9. ECOSYSTEM — no card wrappers, just rhythm
-========================================= */
-.ecosystem-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
-.ecosystem-cols h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-4); margin-bottom: 22px; font-weight: 500; }
-.eco-list { list-style: none; display: flex; flex-direction: column; }
-.eco-list li { padding: 14px 0; border-bottom: 1px solid var(--border-thin); font-size: 17px; color: var(--text-2); font-weight: 500; }
-.eco-list li:last-child { border-bottom: none; }
-.eco-list li span { color: var(--text-4); font-size: 13px; font-weight: 400; float: right; }
-@media (max-width: 760px) { .ecosystem-cols { grid-template-columns: 1fr; gap: 40px; } }
-
-/* =========================================
-10. COMPATIBILITY — mixed: cards + plain pills
-========================================= */
-.compat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 40px; }
-.compat-card { background: var(--bg-1); border: 1px solid var(--border-thin); border-radius: 14px; padding: 26px; text-align: center; }
-.compat-card h4 { font-size: 16px; color: var(--text-1); font-weight: 500; margin-bottom: 10px; }
-.compat-status { font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 100px; display: inline-block; }
-.compat-status.ready { color: var(--accent-green); background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); }
-.compat-status.soon { color: var(--text-4); background: var(--bg-2); border: 1px solid var(--border-thin); }
-.hardware-pills { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
-.hardware-pills span { font-size: 14px; color: var(--text-3); font-weight: 500; padding: 8px 18px; border: 1px solid var(--border-thin); border-radius: 100px; }
-@media (max-width: 760px) { .compat-row { grid-template-columns: repeat(2, 1fr); } }
-
-/* =========================================
-11. COMPARISON — half width
-========================================= */
-.compare-wrap { max-width: 620px; margin: 0 auto; }
-.compare-table { width: 100%; border-collapse: collapse; background: var(--bg-1); border: 1px solid var(--border-thin); border-radius: 14px; overflow: hidden; }
-.compare-table th, .compare-table td { padding: 14px 20px; text-align: center; font-size: 14px; border-bottom: 1px solid var(--border-thin); }
-.compare-table th:first-child, .compare-table td:first-child { text-align: left; color: var(--text-3); font-weight: 500; }
-.compare-table thead th { color: var(--text-4); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; background: var(--bg-2); }
-.compare-table thead th.brand { color: var(--accent-green); }
-.compare-table tbody tr:last-child td { border-bottom: none; }
-.compare-table .yes { color: var(--accent-green); font-weight: 700; }
-.compare-table .no { color: var(--text-4); }
-
-/* =========================================
-11b. PRICING — two plan cards
-========================================= */
-.pricing-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 900px; margin: 0 auto; align-items: stretch; }
-.price-card { background: var(--bg-1); border: 1px solid var(--border-thin); border-radius: 16px; padding: 32px; display: flex; flex-direction: column; }
-.price-card.featured { border-color: rgba(16,185,129,0.35); box-shadow: 0 0 40px rgba(16,185,129,0.08); position: relative; }
-.price-card-name { font-size: 13px; font-weight: 500; color: var(--text-4); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
-.price-card.featured .price-card-name { color: var(--accent-green); }
-.price-tag { font-size: 34px; font-weight: 700; color: var(--text-1); letter-spacing: -0.02em; margin-bottom: 4px; }
-.price-tag .old-price { font-size: 18px; font-weight: 500; color: var(--text-4); text-decoration: line-through; margin-right: 8px; }
-.price-sub { font-size: 13px; color: var(--text-4); margin-bottom: 24px; }
-.price-feature-list { list-style: none; margin: 0 0 28px; padding: 0; flex-grow: 1; }
-.price-feature-list li { font-size: 14px; color: var(--text-3); padding: 8px 0; border-bottom: 1px solid var(--border-thin); display: flex; align-items: center; gap: 8px; }
-.price-feature-list li:last-child { border-bottom: none; }
-.price-feature-list li svg { color: var(--accent-green); flex-shrink: 0; }
-.price-feature-list li.muted { color: var(--text-4); }
-.price-note { text-align: center; font-size: 13px; color: var(--text-4); margin-top: 28px; max-width: 560px; margin-left: auto; margin-right: auto; }
-@media (max-width: 760px) { .pricing-cols { grid-template-columns: 1fr; } }
-
-/* =========================================
-12. USE CASES — no cards, plain grid
-========================================= */
-.usecase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 32px 24px; }
-.usecase-item { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
-.usecase-item h4 { font-size: 15px; color: var(--text-2); font-weight: 500; }
-.card-icon { width: 42px; height: 42px; background: var(--bg-2); border: 1px solid var(--border-thin); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--text-1); }
-
-/* =========================================
-13. BETA — full-bleed gradient band
-========================================= */
-.beta-band {
-position: relative; overflow: hidden;
-background: linear-gradient(180deg, transparent 0%, rgba(16,185,129,0.07) 22%, rgba(16,185,129,0.12) 50%, rgba(16,185,129,0.07) 78%, transparent 100%);
-backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
--webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%);
-padding: 110px 24px; text-align: center;
-}
-.beta-band::before {
-content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-background: radial-gradient(ellipse 620px 340px at 50% 45%, rgba(16,185,129,0.10), transparent 72%);
-}
-.beta-band .hero-badge { margin-bottom: 18px; }
-.beta-band h3 { font-size: 26px; color: var(--text-1); font-weight: 700; margin-bottom: 10px; letter-spacing: -0.02em; }
-.beta-band p { color: var(--text-4); font-size: 15px; max-width: 460px; margin: 0 auto; }
-
-/* =========================================
-14. ROADMAP — two columns
-========================================= */
-.roadmap-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; max-width: 640px; margin: 0 auto; }
-.roadmap-cols h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-4); margin-bottom: 14px; font-weight: 500; }
-.roadmap-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.roadmap-list li { display: flex; align-items: center; gap: 10px; font-size: 15px; }
-.roadmap-list li.done { color: var(--text-2); }
-.roadmap-list li.todo { color: var(--text-4); }
-.roadmap-list .mark { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 10px; }
-.roadmap-list li.done .mark { background: rgba(16,185,129,0.12); color: var(--accent-green); border: 1px solid rgba(16,185,129,0.3); }
-.roadmap-list li.todo .mark { background: var(--bg-2); border: 1px solid var(--border-thin); }
-@media (max-width: 600px) { .roadmap-cols { grid-template-columns: 1fr; } }
-#roadmap-updated { font-size: 12px; color: var(--text-4); margin-top: 6px; }
-#roadmap-updated:empty { display: none; }
-.roadmap-suggest { text-align: center; margin-top: 32px; font-size: 14px; }
-.roadmap-suggest a { color: var(--text-3); text-decoration: none; border-bottom: 1px solid var(--border-thin); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
-.roadmap-suggest a:hover { color: var(--accent-green); border-color: var(--accent-green); }
-
-/* =========================================
-14b. BLOG TEASER
-========================================= */
-.blog-teaser-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.blog-teaser-card {
-display: flex; flex-direction: column; gap: 10px; text-decoration: none;
-background: var(--bg-1); border: 1px solid var(--border-thin); border-radius: 14px;
-padding: 24px; transition: border-color 0.2s, transform 0.2s;
-}
-.blog-teaser-card:hover { border-color: var(--accent-green); transform: translateY(-2px); }
-.blog-teaser-date { font-size: 12px; color: var(--text-4); text-transform: uppercase; letter-spacing: 0.05em; }
-.blog-teaser-card h4 { font-size: 17px; color: var(--text-1); font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; }
-.blog-teaser-card p { font-size: 14px; color: var(--text-4); line-height: 1.5; }
-.blog-teaser-viewall { text-align: center; margin-top: 28px; font-size: 14px; }
-.blog-teaser-viewall a { color: var(--text-3); text-decoration: none; border-bottom: 1px solid var(--border-thin); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
-.blog-teaser-viewall a:hover { color: var(--accent-green); border-color: var(--accent-green); }
-#blog-teaser-section:has(#blog-teaser-grid:empty) { display: none; }
-@media (max-width: 900px) { .blog-teaser-grid { grid-template-columns: 1fr; } }
-
-/* =========================================
-15. COMMUNITY — plain link row, no cards
-========================================= */
-.community-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0; border-top: 1px solid var(--border-thin); }
-.community-row a {
-flex: 1 1 220px; text-align: center; padding: 32px 20px; text-decoration: none;
-border-right: 1px solid var(--border-thin); border-bottom: 1px solid var(--border-thin);
-transition: background 0.2s;
-}
-.community-row a:last-child { border-right: none; }
-.community-row a:hover { background: var(--bg-1); }
-.community-row .card-icon { margin: 0 auto 14px; color: var(--accent-green); }
-.community-row h4 { font-size: 15px; color: var(--text-1); font-weight: 500; margin-bottom: 4px; }
-.community-row p { font-size: 13px; color: var(--text-4); }
-
-/* =========================================
-16. FAQ
-========================================= */
-.faq-item { border-bottom: 1px solid var(--border-thin); padding: 22px 0; cursor: pointer; }
-.faq-question { display: flex; justify-content: space-between; align-items: center; font-size: 17px; font-weight: 500; color: var(--text-2); }
-.faq-answer { max-height: 0; overflow: hidden; opacity: 0; color: var(--text-4); margin-top: 0; transition: all 0.4s var(--ease-out); font-size: 15px; }
-.faq-item.active .faq-answer { max-height: 200px; opacity: 1; margin-top: 14px; }
-.chevron { transition: transform 0.4s var(--ease-out); }
-.faq-item.active .chevron { transform: rotate(180deg); color: var(--accent-green); }
-.faq-more { text-align: center; margin-top: 28px; font-size: 13px; color: var(--text-4); }
-.faq-more a { color: var(--text-2); text-decoration: underline; text-decoration-color: var(--border-thin); }
-
-/* =========================================
-17. FINAL CTA
-========================================= */
-.final-cta { text-align: center; padding: 130px 24px; position: relative; overflow: hidden; }
-.final-cta-bg { position: absolute; inset: 0; z-index: -1; background-size: cover; background-position: center; filter: blur(24px) brightness(0.32); transform: scale(1.1); opacity: 0.6; }
-.final-cta h2 { font-size: clamp(34px, 5vw, 62px); font-weight: 700; letter-spacing: -0.04em; margin-bottom: 32px; color: var(--text-1); }
-.final-cta-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 24px; font-size: 12px; color: var(--text-4); }
-.final-cta-badges span:not(:last-child)::after { content: '•'; margin-left: 10px; }
-
-/* Footer */
-footer {
-position: relative;
-padding: 90px 24px 44px;
-background: linear-gradient(180deg, rgba(13,14,14,0) 0%, rgba(13,14,14,0.65) 18%, rgba(13,14,14,0.65) 100%);
-backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-}
-.footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px; margin-bottom: 70px; }
-.footer-col h4 { color: var(--text-1); font-weight: 500; margin-bottom: 22px; }
-.footer-col ul { list-style: none; }
-.footer-col ul li { margin-bottom: 12px; }
-.footer-col ul a { color: var(--text-4); text-decoration: none; transition: color 0.2s; font-size: 14px; }
-.footer-col ul a:hover { color: var(--text-1); text-decoration: underline; text-decoration-color: var(--border-thin); }
-.footer-icons { display: flex; gap: 12px; }
-.footer-icons a { width: 36px; height: 36px; border-radius: 8px; background: var(--bg-2); border: 1px solid var(--border-thin); display: flex; align-items: center; justify-content: center; color: var(--text-4); transition: all 0.2s var(--ease-out); }
-.footer-icons a:hover { color: var(--accent-green); border-color: var(--accent-green); box-shadow: 0 0 12px var(--accent-green-glow); transform: translateY(-2px); }
-
-/* =========================================
-18. ACCESSIBILITY
-========================================= */
-.skip-link { position: absolute; top: -100px; left: 16px; z-index: 9999; background: #ffffff; color: #040404; font-weight: 700; font-size: 14px; padding: 10px 20px; border-radius: 6px; text-decoration: none; transition: top 0.15s ease; }
-.skip-link:focus { top: 8px; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-green); outline-offset: 2px; }
-.faq-trigger { width: 100%; background: none; border: none; padding: 0; margin: 0; font: inherit; text-align: left; color: inherit; cursor: pointer; }
-
-@media (prefers-reduced-motion: reduce) {
-*, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-.blob { animation: none !important; }
-.reveal, .reveal-blur, .reveal-scale, .reveal-mask { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; }
-.t-line.status { opacity: 1 !important; }
-}
-
-/* =========================================
-19. MOBILE NAVIGATION
-========================================= */
-.nav-hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px; border-radius: 6px; transition: background 0.15s; }
-.nav-hamburger:hover { background: var(--bg-2); }
-.nav-hamburger-line { display: block; width: 18px; height: 1.5px; background: var(--text-2); border-radius: 2px; transition: transform 0.2s var(--ease-out), opacity 0.2s; }
-.nav-hamburger.is-open .nav-hamburger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-.nav-hamburger.is-open .nav-hamburger-line:nth-child(2) { opacity: 0; }
-.nav-hamburger.is-open .nav-hamburger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-.nav-mobile-drawer { display: none; position: fixed; top: 100%; left: 0; right: 0; z-index: 150; background: rgba(4, 4, 4, 0.97); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-thin); padding: 16px 24px 24px; flex-direction: column; gap: 4px; transform: translateY(-8px); opacity: 0; transition: transform 0.2s var(--ease-out), opacity 0.2s var(--ease-out); }
-.nav-mobile-drawer.is-open { display: flex; transform: translateY(0); opacity: 1; }
-.nav-mobile-drawer a { color: var(--text-3); text-decoration: none; font-size: 15px; font-weight: 500; padding: 12px 8px; border-radius: 8px; border-bottom: 1px solid var(--border-thin); }
-.nav-mobile-drawer a:last-of-type { border-bottom: none; }
-.nav-mobile-drawer a:hover { color: var(--text-1); background: var(--bg-2); }
-
-@media (max-width: 768px) {
-.nav-links { display: none; }
-.nav-hamburger { display: flex; }
-.footer-grid { grid-template-columns: 1fr; gap: 40px; }
-.community-row a { flex: 1 1 45%; }
-}
-
+.cbox button.mic { background: transparent; color: var(--ink-2); border-left: 1px solid var(--line); padding: 0 13px; display: flex; align-items: center; }
+.cbox button.mic:hover { color: var(--ink); }
+kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line); border-bottom-width: 2px; padding: 1px 6px; color: var(--ink-2); background: var(--panel); white-space: nowrap; }
+.dot { display: inline-block; width: 8px; height: 8px; background: var(--ink); margin-right: 7px; vertical-align: 0; }
+@media (max-width: 900px) { .top nav.links { display: none; } #burger { display: flex; } .appwin-cols { grid-template-columns: 1fr; } .rail { display: none; } }
 </style>
 </head>
 <body>
+<a href="#content" class="skip">Skip to content</a>
 
-<a href="#main-content" class="skip-link">Skip to main content</a>
-
-<div class="layer-grid" aria-hidden="true"></div>
-<div class="layer-blobs" aria-hidden="true">
-<div class="blob green"></div>
-<div class="blob blue"></div>
-<div class="blob white"></div>
-</div>
-<div class="layer-noise" aria-hidden="true"></div>
-
-<div id="scroll-progress"></div>
-
-<nav id="navbar" aria-label="Main navigation">
-<div class="nav-content">
-<a href="#main-content" class="logo">OASIS</a>
-<div class="nav-links">
-<a href="#application">Application</a>
-<a href="#ecosystem">Ecosystem</a>
-<a href="#pricing">Pricing</a>
-<a href="#use-cases">Use cases</a>
-<a href="blog/">Blog</a>
-<a href="https://github.com/OASISLocal/oasis/discussions" target="_blank" rel="noopener noreferrer">Community</a>
-<a class="btn-nav" href="#pricing">Get OASIS</a>
-</div>
-<button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile-drawer">
-<span class="nav-hamburger-line"></span><span class="nav-hamburger-line"></span><span class="nav-hamburger-line"></span>
-</button>
-</div>
-</nav>
-
-<div class="nav-mobile-drawer" id="nav-mobile-drawer" role="navigation" aria-label="Mobile navigation">
-<a href="#application" data-mobile-nav>Application</a>
-<a href="#ecosystem" data-mobile-nav>Ecosystem</a>
-<a href="#pricing" data-mobile-nav>Pricing</a>
-<a href="#compatibility" data-mobile-nav>Compatibility</a>
-<a href="#use-cases" data-mobile-nav>Use cases</a>
-<a href="blog/" data-mobile-nav>Blog</a>
-<a href="https://github.com/OASISLocal/oasis/discussions" target="_blank" rel="noopener noreferrer" data-mobile-nav>Community</a>
-<a href="#pricing" data-mobile-nav>Get OASIS</a>
-</div>
-
-<main id="main-content">
-
-<!-- =======================================================
-1. HERO — copy left, live terminal demo right (the memorable bit)
-======================================================= -->
-<header class="hero">
-<div class="hero-copy">
-<div class="hero-badge reveal"><span class="live-dot"></span> Public Beta</div>
-<h1 class="reveal-blur" style="transition-delay: 0.05s;">Your AI.<br>Your Computer.<br>Nothing Else.</h1>
-<div class="hero-tags reveal" style="transition-delay: 0.15s;">
-<span>Free to start</span><span>Local</span><span>Offline</span><span>Windows</span>
-</div>
-<ul class="hero-checks reveal" style="transition-delay: 0.2s;">
-<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> No cloud</li>
-<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> No subscriptions</li>
-<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Runs locally</li>
-</ul>
-<div class="hero-ctas reveal" style="transition-delay: 0.25s;">
-<a href="https://github.com/OASISLocal/oasis/releases/latest" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download free</a>
-<a href="#pricing" class="btn btn-ghost">See pricing</a>
-</div>
-<div class="hero-stats reveal" style="transition-delay: 0.3s;">
-<span><span id="github-star-count">0</span> stars</span>
-<span class="sep"></span>
-<span><span id="github-download-count">0</span> downloads</span>
-</div>
-</div>
-
-<!-- Memorable terminal demo -->
-<div class="hero-terminal reveal-scale" style="transition-delay:0.15s;" id="hero-terminal">
-<div class="t-rule">────────────────────────</div>
-<div class="t-line prompt">&gt; <span id="typed-cmd"></span><span class="cursor" id="type-cursor"></span></div>
-<div class="t-line status" id="t-status-1">Reading...</div>
-<div class="t-line status" id="t-status-2">Thinking...</div>
-<div class="t-line status done" id="t-status-3">Done.</div>
-<div class="t-rule">────────────────────────</div>
-<div class="t-stats">
-<div><strong id="t-count-time">0s</strong><span>time</span></div>
-<div><strong id="t-count-speed">0</strong><span>speed</span></div>
-<div><strong>RTX 4070</strong><span>gpu</span></div>
-<div><strong>5.8GB</strong><span>ram</span></div>
-</div>
-<div class="t-tags"><span>GGUF</span><span>Offline</span></div>
-</div>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>OASIS <small>v0.2.0 beta</small></a>
+    <nav class="links" aria-label="Primary">
+      <a href="#tour">Tour</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="comparison.html">Compare</a>
+      <a href="#pricing">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog/">Blog</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn">Light</button>
+      <a class="btn sm" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Download</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Mobile">
+    <a href="#tour">Tour</a>
+    <a href="how-it-works.html">How it works</a>
+    <a href="requirements.html">Requirements</a>
+    <a href="#download">Download</a>
+    <a href="comparison.html">Compare</a>
+    <a href="#pricing">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="blog/">Blog</a>
+    <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+  </nav>
 </header>
 
-<!-- =======================================================
-2. CREDIBILITY BAR
-======================================================= -->
-<div class="credibility-bar">
-<div class="credibility-inner reveal">
-<span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Free to start</span>
-<span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> One-time payment, no subscription</span>
-<span><a href="https://github.com/OASISLocal/oasis" target="_blank" rel="noopener noreferrer"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:inline;vertical-align:-2px;"><polyline points="20 6 9 17 4 12"/></svg> GitHub</a></span>
-<span><a href="https://github.com/OASISLocal/oasis/projects" target="_blank" rel="noopener noreferrer"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:inline;vertical-align:-2px;"><polyline points="20 6 9 17 4 12"/></svg> Public roadmap</a></span>
-<span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Runs offline</span>
-<span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Beta</span>
-</div>
-</div>
+<main id="content">
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <a class="announce" href="changelog.html"><b>NEW</b> v0.2.0 — the Mono release · See what's new →</a>
+  <h1>The AI assistant that lives on your PC.</h1>
+  <p class="lede">Meet OASIS: <strong>talk or type and get things done</strong> — tidy up files, summarize PDFs, set timers, remember the dentist, explain broken code, turn the volume down before a call. It all happens <strong>on your computer</strong>. Unplug the router and it keeps working.</p>
+  <div class="ctas">
+    <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.5V11H3zM11.5 4.3 21 3v8H11.5zM3 12h7.5v6.5L3 17.5zM11.5 12H21v8l-9.5-1.3z"/></svg>Download for Windows</a>
+    <a class="btn ghost" href="how-it-works.html">How it works</a>
+  </div>
+  <p class="fine">Free beta · v0.2.0 · Windows 10/11 · No account · <a href="download.html">Verify the SHA256 checksum</a></p>
+  <div class="proof">
+    <span><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">★ <b id="star-count">–</b> on GitHub</a></span>
+    <span><a href="#status">Open roadmap</a></span>
+    <span><a href="changelog.html">Public changelog</a></span>
+    <span><a href="privacy.html">No trackers</a></span>
+  </div>
 
-<!-- =======================================================
-3. THE APPLICATION — full-bleed image, minimal copy
-======================================================= -->
-<section class="app-band" id="application">
-<div class="app-shot reveal-mask">
-<!-- REPLACE: /assets/screenshot-app-full.png — real capture of the main interface -->
-<img src="assets/screenshot-app-full.png" alt="Full view of the OASIS native desktop interface" width="1600" height="300" loading="lazy">
-</div>
-<div class="app-caption-row reveal" style="transition-delay:0.1s;">
-<h2>The application.</h2>
-<ul class="app-feature-list">
-<li>Native desktop interface</li>
-<li>Model manager</li>
-<li>Integrated chat</li>
-<li>Tool calling</li>
-<li>Voice</li>
-<li>Settings</li>
-<li>Extensions</li>
-</ul>
-</div>
+  <div class="appwin" role="img" aria-label="The OASIS app: sidebar navigation, model picker, chat with tool calls and cited sources, command input and a local status bar">
+    <div class="appwin-bar"><span><span class="dot" aria-hidden="true"></span>OASIS — Chat · local engine</span><span class="winbtns" aria-hidden="true"><i>—</i><i>▢</i><i>✕</i></span></div>
+    <div class="appwin-cols">
+      <div class="rail" aria-hidden="true">
+        <span>Workspace</span>
+        <a class="on"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H9l-5 4z"/></svg>Chat</a>
+        <a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12L4 7.5M12 12v9"/></svg>Models</a>
+        <a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>Memory</a>
+        <a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.5 8 10.5 16M16.5 8 13.5 16M8.5 6h7"/></svg>Workflows</a>
+        <a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>Settings</a>
+        <div class="ver">v0.2.0 · offline</div>
+      </div>
+      <div class="stage">
+        <div class="toolbar" aria-hidden="true">
+          <span class="modelpill">gemma-3n · Q4_K_M ▾</span>
+          <span class="tool live">text</span><span class="tool">voice</span><span class="tool">vision</span>
+          <span style="margin-left:auto" class="tool">47 tok/s</span>
+        </div>
+        <div class="chat">
+          <div class="msg user"><small>you · 8:59 AM</small>remind me about the dentist tomorrow at 9?</div>
+          <div class="msg ai"><small>oasis · on your PC</small>Done: <b>dentist tomorrow at 9</b>. I'll nudge you at 8:15.
+            <div class="tcard"><header>2 actions · approved by you</header><div>timer — tomorrow 8:15 AM <span class="ok">✓</span></div><div>reminder — spoken alert <span class="ok">✓</span></div></div>
+          </div>
+          <div class="msg user"><small>you · 9:02 AM</small>how much did I pay for power in Q2?</div>
+          <div class="msg ai"><small>oasis · on your PC</small><b>€184.20</b> across 3 bills <span class="cite">[1]</span> <span class="cite">[2]</span> <span class="cite">[3]</span> — summed locally, nothing uploaded.</div>
+          <div class="msg ai"><small>oasis · typing</small>Summarizing the new bill<span class="cursor"></span></div>
+        </div>
+        <div class="cbox" aria-hidden="true"><input value="turn the volume down, I'm joining a call" readonly tabindex="-1"><button class="mic" tabindex="-1"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button><button tabindex="-1">Send</button></div>
+        <div class="statusbar" aria-hidden="true"><span>engine <b>local</b></span><span>model <b>on your disk</b></span><span>network <b>unused</b></span><span style="margin-left:auto">mem <b>5.8 GB</b></span></div>
+      </div>
+    </div>
+  </div>
+  <p class="cap">The actual app: sidebar navigation, one-click model picker, tool calls with your approval, cited sources, and a status bar that shows where everything runs. Shortcuts: <kbd>Ctrl K</kbd> commands · <kbd>Ctrl ⇧ V</kbd> voice · <kbd>/</kbd> tools.</p>
 </section>
 
-<!-- =======================================================
-4. DIFFERENTIATORS — three distinct treatments
-======================================================= -->
-<section class="section-container">
-<div class="section-header reveal"><h2>What makes it different</h2></div>
-
-<div class="diff-1 reveal">
-<!-- REPLACE: /assets/diff-offline.png -->
-<div class="diff-media"><img src="assets/diff-offline.png" alt="OASIS running with no network connection" width="480" height="360"></div>
-<div><h3>Runs entirely on your computer.</h3><p>No servers. No accounts.</p></div>
-</div>
-
-<div class="diff-2 reveal-blur">
-<!-- REPLACE: /assets/diff-models.png -->
-<div class="diff-media-full"><img src="assets/diff-models.png" alt="Model manager showing GGUF models available to download" width="1200" height="600"></div>
-<div class="diff-caption"><h3>Choose any GGUF model.</h3><p>One-click download. VRAM is managed automatically.</p></div>
-</div>
-
-<div class="diff-3 reveal-scale">
-<h3>Voice. Tools. Terminal. Documents.</h3>
-<div class="diff-3-icons">
-<div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>Voice</div>
-<div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Tools</div>
-<div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Terminal</div>
-<div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Documents</div>
-</div>
-</div>
+<!-- ============ WHAT ELSE ============ -->
+<section class="sec" id="tour">
+  <div class="sec-head">
+    <p class="kicker">What else can it do?</p>
+    <h2>A lot more than chat.</h2>
+  </div>
+  <div class="else">
+    It can <b>take notes</b>. Remind you about the <b>dentist</b>. <b>Add up your electricity bills</b> from a folder of PDFs. <b>Explain a Python traceback in plain words</b>. <b>Lower the volume</b> when you join a call. <b>Transcribe a meeting</b>. <b>Find any file</b>. <b>Control Spotify</b>. <b>Translate a paragraph</b>. <b>Read your screen</b>. <b>Test code in a sandbox</b> before touching your files. <b>Brief you every morning at 9</b>. And much more — <b>68 tools</b> and counting.
+  </div>
 </section>
 
-<!-- =======================================================
-5. ECOSYSTEM — plain columns, full-bleed band
-======================================================= -->
-<section class="band" id="ecosystem">
-<div class="band-inner">
-<div class="section-header reveal"><h2>A platform, not a chatbot.</h2></div>
-<div class="ecosystem-cols">
-<div class="reveal">
-<h3>Models</h3>
-<ul class="eco-list">
-<li>Llama</li><li>Gemma</li><li>Qwen</li><li>DeepSeek</li><li>Phi</li><li>Mistral <span>+ any GGUF</span></li>
-</ul>
-</div>
-<div class="reveal" style="transition-delay:0.1s;">
-<h3>Extensions</h3>
-<ul class="eco-list">
-<li>Vision</li><li>Voice</li><li>Terminal</li><li>Python</li><li>Files</li><li>Search <span>more soon</span></li>
-</ul>
-</div>
-</div>
-</div>
+<!-- ============ TOUR ============ -->
+<section class="sec">
+  <div class="sec-head">
+    <p class="kicker">Tour</p>
+    <h2>Six things it does every day.</h2>
+    <p>Each with its own corner of the app. None of it needs the internet once you're set up.</p>
+  </div>
+
+  <div class="split">
+    <div>
+      <h3>Talk to your computer like a person.</h3>
+      <p>Dictate, and it talks back — in Spanish or English, with natural voices, entirely offline. Say the wake word and it's listening. Interrupt mid-sentence, like a real conversation.</p>
+      <ul class="check">
+        <li><b>Voice in, voice out</b> — dictation, read-aloud, hands-free mode.</li>
+        <li><b>Spoken reminders and timers</b> that actually remind you out loud.</li>
+        <li><b>Four personalities</b>: OASIS, TARS, NOVA and REBELDE — the last one has a dark sense of humor.</li>
+      </ul>
+    </div>
+    <div class="mock" role="img" aria-label="Voice meter with live transcription">
+      <div class="mock-bar"><span>voice · listening</span><span>on-device</span></div>
+      <div class="mock-body">
+        <div class="wave" aria-hidden="true"><i style="height:30%"></i><i style="height:55%"></i><i class="hot" style="height:90%"></i><i class="hot" style="height:70%"></i><i class="hot" style="height:100%"></i><i style="height:45%"></i><i style="height:60%"></i><i class="hot" style="height:85%"></i><i style="height:35%"></i><i style="height:50%"></i><i class="hot" style="height:75%"></i><i style="height:40%"></i></div>
+        <p style="font-size:13px;">"…remind me about the dentist tomorrow at nine"</p>
+        <p class="fine" style="margin-top:6px;">transcribed right here · 0 bytes sent anywhere</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="split flip" style="margin-top:64px;">
+    <div>
+      <h3>Swap brains in one click.</h3>
+      <p>OASIS doesn't ship with a brain — you pick one. The app finds AI models for you, downloads them with pause and resume, and tunes itself to your hardware. Switching models feels like switching radio stations.</p>
+      <ul class="check">
+        <li><b>Any open model</b>: Llama, Gemma, Qwen, DeepSeek, Phi, Mistral.</li>
+        <li><b>Matched to your machine</b> — it tells you what your PC can handle.</li>
+        <li><b>Runs on plain CPU</b>; flies with an NVIDIA GPU.</li>
+      </ul>
+    </div>
+    <div class="mock" role="img" aria-label="Model manager downloading a model">
+      <div class="mock-bar"><span>models · on your disk</span><span>2 installed</span></div>
+      <div class="mock-body">
+        <div class="mrow"><div><div class="nm">gemma-3n · recommended</div><div class="prog" aria-hidden="true"><i style="width:100%"></i></div></div><span class="tag">ready</span></div>
+        <div class="mrow"><div><div class="nm">qwen2.5-small</div><div class="prog" aria-hidden="true"><i style="width:64%"></i></div></div><span class="tag">64%</span></div>
+        <div class="mrow"><div><div class="nm">llama-3.1-8B</div></div><span class="tag">paused</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="split" style="margin-top:64px;">
+    <div>
+      <h3>It remembers, so you don't have to.</h3>
+      <p>What you tell it, it keeps: conversations, notes, facts you ask it not to forget. It also reads your documents — PDFs, Word, Excel, code — and answers citing the exact file each fact came from. All in a database on your disk.</p>
+      <ul class="check">
+        <li><b>Real memory</b>: facts, notes and conversations, searchable by meaning.</li>
+        <li><b>Your documents as a source</b> — every answer shows where it came from.</li>
+        <li><b>Deletable</b>: by memory, by type or by file, whenever you want.</li>
+      </ul>
+    </div>
+    <div class="mock" role="img" aria-label="Saved memories with their sources">
+      <div class="mock-bar"><span>memory · local</span><span>on your disk</span></div>
+      <div class="mock-body">
+        <div class="fact"><span>fact · high confidence</span>Dentist checkup every 6 months, last reminder in March.</div>
+        <div class="fact"><span>document · power_bill_q2.pdf</span>Q2 power: €184.20 — summed from 3 bills.</div>
+        <div class="fact"><span>note · dictated by voice</span>Buy coffee-machine filters before Friday.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="split flip" style="margin-top:64px;">
+    <div>
+      <h3>It codes carefully.</h3>
+      <p>Paste an error and get a plain-words explanation. Ask for a script and it writes it, tests it in an isolated sandbox, and shows you the diff before touching your files. If it fails, it retries on its own — up to three times.</p>
+      <ul class="check">
+        <li><b>Explains repos and errors</b> without the jargon.</li>
+        <li><b>Runs in a sandbox first</b> — nothing executes on your system without your OK.</li>
+        <li><b>Diffs before applying</b>: review every change line by line.</li>
+      </ul>
+    </div>
+    <div class="mock" role="img" aria-label="Code change proposed by the assistant">
+      <div class="mock-bar"><span>code · isolated sandbox</span><span>attempt 2 of 3</span></div>
+      <div class="mock-body diff">
+        <div class="h">budget.py · proposed</div>
+        <div class="del">- total = sum(bills)</div>
+        <div class="add">+ total = sum(b for b in bills if b.quarter == "Q2")</div>
+        <div class="add">+ print(f"Q2 total: €{total:.2f}")</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="split" style="margin-top:64px;">
+    <div>
+      <h3>It sees your screen — only when asked.</h3>
+      <p>OASIS looks only when you tell it to — and understands what it sees: it describes images, reads your screen, clicks where you point. It also drives your PC: volume, windows, Spotify, timers, clipboard. Every permission has its own switch in Settings.</p>
+      <ul class="check">
+        <li><b>Local vision</b>: describes your screen or any image.</li>
+        <li><b>Drives your PC</b>: apps, windows, audio, system.</li>
+        <li><b>Per-tool permissions</b>: mic, screen and files, each with its own off switch.</li>
+      </ul>
+    </div>
+    <div class="mock" role="img" aria-label="Screen analysis and action log">
+      <div class="mock-bar"><span>vision · only when asked</span><span>screen 1</span></div>
+      <div class="mock-body">
+        <div class="shot" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="log"><div>09:02 — volume → 30% ✓</div><div>09:03 — screen read: "3 windows, VS Code in front"</div><div>09:04 — 20-min timer ✓</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="split flip" style="margin-top:64px;">
+    <div>
+      <h3>It handles the boring parts on a schedule.</h3>
+      <p>Routines in plain words ("every day at 9"), proactive nudges when it spots something useful, and little skills that learn your phrases. And when you leave the house: your own Discord or Telegram bot with voice, an Android app over local network, and a browser extension.</p>
+      <ul class="check">
+        <li><b>Scheduled routines</b> plus proactive notifications with a daily budget.</li>
+        <li><b>Discord and Telegram</b> with text and voice (Max edition).</li>
+        <li><b>Android app and browser extension</b> talking to your PC over local network (Max).</li>
+      </ul>
+    </div>
+    <div class="mock" role="img" aria-label="Automatic routine and Discord message">
+      <div class="mock-bar"><span>routines · scheduler</span><span>3 active</span></div>
+      <div class="mock-body">
+        <div class="flow" aria-hidden="true"><div><span>daily 9:00 AM</span><b>Briefing</b></div><div><span>reads</span><b>Calendar + weather</b></div><div><span>sends</span><b>Notification</b></div></div>
+        <div class="dchat" style="margin-top:12px;"><span>discord · your server</span><br><b>oasis:</b> Good morning. 3 meetings today, rain at 6 PM — take an umbrella.</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- =======================================================
-6. COMPATIBILITY — cards for OS, plain pills for hardware
-======================================================= -->
-<section class="section-container" id="compatibility">
-<div class="section-header reveal"><h2>Runs on your hardware</h2></div>
-<div class="compat-row reveal">
-<div class="compat-card"><h4>Windows</h4><span class="compat-status ready">Ready</span></div>
-<div class="compat-card"><h4>Linux</h4><span class="compat-status soon">Coming soon</span></div>
-<div class="compat-card"><h4>macOS</h4><span class="compat-status soon">Coming soon</span></div>
-</div>
-<div class="hardware-pills reveal" style="transition-delay:0.1s;">
-<span>RTX</span><span>AMD</span><span>Intel</span><span>CPU only</span>
-</div>
+<!-- ============ TOOLS ============ -->
+<section class="sec" id="tools">
+  <div class="sec-head">
+    <p class="kicker">Under the hood</p>
+    <h2>68 tools. Here's the honest list.</h2>
+    <p>Each one declares its risk level and asks permission before acting. Dangerous ones — deleting, shutting down, running code — never move without your explicit OK.</p>
+  </div>
+  <div class="groups">
+    <div>
+      <h3>System &amp; PC</h3>
+      <ul>
+        <li>Open apps</li>
+        <li>System volume</li>
+        <li>Arrange windows</li>
+        <li>CPU, RAM, disk, network stats</li>
+        <li>Sleep, lock, restart, shut down</li>
+        <li>Close processes</li>
+        <li>Clean temp files</li>
+        <li>Wi-Fi status</li>
+        <li>Clipboard read &amp; write</li>
+        <li>Screenshots</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Files, code &amp; web</h3>
+      <ul>
+        <li>Find files by name</li>
+        <li>Copy, move, rename files</li>
+        <li>Search inside files</li>
+        <li>Git repo status</li>
+        <li>Code in an isolated sandbox</li>
+        <li>Try snippets safely</li>
+        <li>Web search</li>
+        <li>Open pages</li>
+        <li>Translate text</li>
+        <li>External tool servers (MCP)</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Everyday life</h3>
+      <ul>
+        <li>Timers with spoken alerts</li>
+        <li>Reminders</li>
+        <li>Daily briefing</li>
+        <li>Weather, no API key needed</li>
+        <li>Exact calculations</li>
+        <li>Unit converter</li>
+        <li>Spotify control</li>
+        <li>Quick notes &amp; archive</li>
+        <li>Calendar management</li>
+        <li>Screen analysis</li>
+      </ul>
+    </div>
+  </div>
+  <p class="cap">…plus more, up to 68. The exact inventory lives in the code — and the <a href="features.html">full spec sheet is here</a>.</p>
 </section>
 
-<!-- =======================================================
-7. COMPARISON — half width
-======================================================= -->
-<section class="section-container">
-<div class="section-header reveal"><h2>How it compares</h2></div>
-<div class="compare-wrap reveal">
-<table class="compare-table">
-<thead><tr><th></th><th class="brand">OASIS</th><th>ChatGPT</th></tr></thead>
-<tbody>
-<tr><td>Offline</td><td class="yes">✓</td><td class="no">✗</td></tr>
-<tr><td>Local</td><td class="yes">✓</td><td class="no">✗</td></tr>
-<tr><td>Account required</td><td class="yes">No</td><td class="no">Yes</td></tr>
-<tr><td>Subscription</td><td class="yes">No</td><td class="no">Yes</td></tr>
-<tr><td>Privacy</td><td class="yes">Full</td><td class="no">Cloud</td></tr>
-</tbody>
-</table>
-</div>
+<!-- ============ MODELS ============ -->
+<section class="sec" id="models">
+  <div class="sec-head">
+    <p class="kicker">Models</p>
+    <h2>Pick a brain like you'd pick a station.</h2>
+    <p>Downloaded inside the app, with pause and resume. Start small; size up when you want more. All are open models that run on your machine.</p>
+  </div>
+  <div class="fams">
+    <div><b>Llama</b><span>the all-rounder</span></div>
+    <div><b>Gemma</b><span>start here</span></div>
+    <div><b>Qwen</b><span>fast &amp; light</span></div>
+    <div><b>DeepSeek</b><span>thinks out loud</span></div>
+    <div><b>Phi</b><span>for modest PCs</span></div>
+    <div><b>Mistral</b><span>+ anything else</span></div>
+  </div>
 </section>
 
-<!-- =======================================================
-7b. PRICING — two plan cards
-======================================================= -->
-<section class="section-container" id="pricing">
-<div class="section-header reveal"><h2>Pricing</h2><p>Free to start. One payment to unlock everything else.</p></div>
-<div class="pricing-cols reveal">
-
-<div class="price-card">
-<div class="price-card-name">OASIS Personal</div>
-<div class="price-tag">Free</div>
-<div class="price-sub">Forever. No account, no message limits.</div>
-<ul class="price-feature-list">
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Voice ↔ voice</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Vision (screen & image analysis)</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Basic PC control</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Simple automations (2 steps, 3 saved)</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Basic RAG (10 docs / 20MB)</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> 4 active skills</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> 1 device</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> 7-day memory</li>
-</ul>
-<a href="https://github.com/OASISLocal/oasis/releases/latest" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">Download free</a>
-</div>
-
-<div class="price-card featured">
-<div class="price-card-name">OASIS Max</div>
-<div class="price-tag">15€ <span style="font-size:14px;font-weight:500;color:var(--text-4);">early access</span></div>
-<div class="price-sub">→ 25€ once v1.0 ships · one-time payment, lifetime access</div>
-<ul class="price-feature-list">
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Everything in Personal, plus:</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Full coding (editor, execution, multi-repo)</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Advanced RAG (unlimited docs, persistent index)</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Complex automations (unlimited, conditionals, cron)</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Unlimited + custom skills</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Up to 5 devices, synced memory</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Long-term memory + custom voice cloning</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> External integrations (Home Assistant, calendar, MCP)</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Secure remote access + granular permissions & audit log</li>
-<li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Encrypted backup/restore, browser & VS Code extensions</li>
-</ul>
-<!-- REPLACE: point to the real checkout/purchase flow once available -->
-<a href="https://github.com/OASISLocal/oasis/releases/latest" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Get OASIS Max — 15€</a>
-</div>
-
-</div>
-<p class="price-note reveal">One-time payment, no subscription, no per-model or per-message limits. The price rises from 15€ to 25€ once v1.0 ships — early access locks in the founder price for life.</p>
+<!-- ============ DOWNLOAD ============ -->
+<section class="sec" id="download">
+  <div class="sec-head">
+    <p class="kicker">Download</p>
+    <h2>Up and running in ten minutes.</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>Install the app</h3><p>From GitHub Releases, for Windows 10/11. Verify the SHA256 if you're meticulous: <code>certutil -hashfile oasis.exe SHA256</code>.</p></div>
+    <div class="step"><div class="n">2</div><h3>Download a model</h3><p>In the Models tab, pick a small Gemma or Qwen and hit download. Once, with internet. After that, you don't need it.</p></div>
+    <div class="step"><div class="n">3</div><h3>Talk</h3><p>Type or press to speak. Ask it to tidy Downloads, explain an error, or remind you about the dentist.</p></div>
+  </div>
+  <p class="cap">Requirements: Windows 10/11 · any modern CPU (NVIDIA GPU recommended, not required) · Docker only if you want it to run code. Spanish and English included. Keyboard-only friendly, scalable text, screen-reader compatible.</p>
+  <div class="ctas" style="margin-top:26px;">
+    <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Download the beta</a>
+  </div>
 </section>
 
-<!-- =======================================================
-8. USE CASES — plain grid, no cards
-======================================================= -->
-<section class="section-container" id="use-cases">
-<div class="section-header reveal"><h2>Built for real work</h2></div>
-<div class="usecase-grid">
-<div class="usecase-item reveal"><div class="card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h4>Software development</h4></div>
-<div class="usecase-item reveal" style="transition-delay:0.05s;"><div class="card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h4>Research</h4></div>
-<div class="usecase-item reveal" style="transition-delay:0.1s;"><div class="card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><h4>Writing</h4></div>
-<div class="usecase-item reveal" style="transition-delay:0.15s;"><div class="card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h4>Private documents</h4></div>
-<div class="usecase-item reveal"><div class="card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><h4>Automation</h4></div>
-<div class="usecase-item reveal" style="transition-delay:0.05s;"><div class="card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2 3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6l-9-4z"/></svg></div><h4>Offline AI</h4></div>
-<div class="usecase-item reveal" style="transition-delay:0.1s;"><div class="card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><h4>Education</h4></div>
-</div>
+<!-- ============ VS ============ -->
+<section class="sec" id="compare">
+  <div class="sec-head">
+    <p class="kicker">Why local</p>
+    <h2>OASIS vs. cloud assistants.</h2>
+  </div>
+  <table class="vs">
+    <thead><tr><th></th><th class="us">OASIS</th><th>Cloud assistants</th></tr></thead>
+    <tbody>
+      <tr><td>Works with no internet</td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td>No account, no subscription</td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td>Your files never leave home</td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td>Controls your PC directly</td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td>Speaks Spanish offline</td><td class="y">Yes</td><td class="n">Online only</td></tr>
+      <tr><td>You pay once, not monthly</td><td class="y">Yes</td><td class="n">Monthly</td></tr>
+    </tbody>
+  </table>
 </section>
 
-<!-- =======================================================
-9. BETA — full-bleed gradient band
-======================================================= -->
-<section class="beta-band">
-<div class="hero-badge reveal"><span class="live-dot"></span> Public Beta</div>
-<h3 class="reveal" style="transition-delay:0.05s;">Under active development.</h3>
-<p class="reveal" style="transition-delay:0.1s;">Some features may change. Your feedback shapes the project.</p>
+<!-- ============ PRICING ============ -->
+<section class="sec" id="pricing">
+  <div class="sec-head">
+    <p class="kicker">Pricing</p>
+    <h2>Free. And one payment if you want more.</h2>
+    <p>No subscriptions, no per-message limits, no per-model tolls.</p>
+  </div>
+  <div class="prices">
+    <div class="price">
+      <div class="pn">OASIS Personal</div>
+      <div class="pt">Free</div>
+      <p class="fine">Forever. No account.</p>
+      <ul>
+        <li>Unlimited chat and voice</li>
+        <li>Your choice of AI models</li>
+        <li>Screen and image vision</li>
+        <li>Everyday PC control</li>
+        <li>Memory and documents</li>
+        <li>Simple routines</li>
+      </ul>
+      <a class="btn ghost" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Download free</a>
+    </div>
+    <div class="price hot">
+      <div class="pn">OASIS Max · early access</div>
+      <div class="pt">€15 <small>one-time → €25 at 1.0</small></div>
+      <p class="fine">One payment, lifetime access.</p>
+      <ul>
+        <li>Everything in Personal, plus:</li>
+        <li>Full coding and isolated sandbox</li>
+        <li>Unlimited persistent memory</li>
+        <li>Scheduled conditional routines</li>
+        <li>Discord and Telegram with voice</li>
+        <li>Android app and browser extension</li>
+        <li>External tool servers</li>
+        <li>Voice cloning and encrypted backup</li>
+      </ul>
+      <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Get Max</a>
+    </div>
+  </div>
 </section>
 
-<!-- =======================================================
-10. ROADMAP — two columns
-======================================================= -->
-<section class="section-container">
-<div class="section-header reveal">
-<h2>Roadmap</h2>
-<p id="roadmap-updated"></p>
-</div>
-<div class="roadmap-cols reveal">
-<div>
-<h4>Shipped</h4>
-<ul class="roadmap-list" id="roadmap-shipped" data-roadmap="shipped">
-<li class="done"><span class="mark">✓</span> Local chat</li>
-<li class="done"><span class="mark">✓</span> GGUF models</li>
-<li class="done"><span class="mark">✓</span> Voice</li>
-<li class="done"><span class="mark">✓</span> Tool calling</li>
-</ul>
-</div>
-<div>
-<h4>Next</h4>
-<ul class="roadmap-list" id="roadmap-next" data-roadmap="next">
-<li class="todo"><span class="mark">○</span> Plugins</li>
-<li class="todo"><span class="mark">○</span> Linux</li>
-<li class="todo"><span class="mark">○</span> macOS</li>
-<li class="todo"><span class="mark">○</span> Multi-agent</li>
-</ul>
-</div>
-</div>
-<p class="roadmap-suggest"><a href="https://github.com/OASISLocal/oasis/discussions" target="_blank" rel="noopener noreferrer">Suggest a feature →</a></p>
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="sec-head">
+    <p class="kicker">Questions</p>
+    <h2>What people ask before installing.</h2>
+  </div>
+  <div class="faq">
+    <details><summary>Does it really work offline?</summary><p>Yes. After installing the app and downloading a model, unplug your router and try it: chat, dictate, ask it to remember something. Everything stays the same — because nothing ever left your PC.</p></details>
+    <details><summary>Do my files leave my computer?</summary><p>No. No telemetry, no accounts, no analytics. Your stuff lives in a local folder, the server listens on localhost only, and every tool has its own permission switch in Settings.</p></details>
+    <details><summary>What PC do I need?</summary><p>Any modern CPU runs small models. An NVIDIA GPU with 4&nbsp;GB or more makes it much snappier. Docker Desktop is only needed if you want it to run code in a sandbox.</p></details>
+    <details><summary>What about Mac or Linux?</summary><p>Not yet — Windows 10/11 only. Linux and macOS are on the roadmap, and the installer already prepares per-platform builds.</p></details>
+    <details><summary>Is Max a subscription?</summary><p>No. One payment: €15 in early access, €25 once 1.0 ships. No fees, ever.</p></details>
+  </div>
 </section>
 
-<!-- =======================================================
-10b. BLOG TEASER — latest posts, fed by /blog/posts.json
-======================================================= -->
-<section class="section-container" id="blog-teaser-section">
-<div class="section-header reveal"><h2>From the blog</h2><p>Release notes, deep dives, and what we're learning building OASIS.</p></div>
-<div class="blog-teaser-grid reveal" id="blog-teaser-grid"></div>
-<p class="blog-teaser-viewall"><a href="blog/">View all posts →</a></p>
-</section>
+<!-- ============ STATUS ============ -->
+<section class="sec" id="status">
+  <div class="sec-head">
+    <p class="kicker">Status</p>
+    <h2>A beta with the door open.</h2>
+    <p id="rm-updated">Recently updated.</p>
+  </div>
+  <div class="rm">
+    <div><h3>Already working</h3><ul id="rm-done"><li>Local chat, models, voice, tools and memory.</li></ul></div>
+    <div><h3>On the way</h3><ul id="rm-next"><li>Linux, macOS, plugins and multi-agent.</li></ul></div>
+  </div>
+  <p class="cap">Bugs get blogged about, not buried. New to local AI? Start with <a href="blog/2026/09/10/what-is-a-local-ai-assistant/">the plain-words guide</a>. Missing something? <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Ask in Discussions</a> — humans read it.</p>
+  <ul class="blogindex" id="blog-list"><li id="blog-empty">Loading posts…</li></ul>
+  <p class="cap"><a href="blog/">All posts →</a> · <a href="features.html">Full spec sheet →</a></p>
 
-<!-- =======================================================
-11. COMMUNITY — plain row, no cards
-======================================================= -->
-<section class="section-container" style="padding:0 0; max-width:1200px;">
-<div class="section-header reveal"><h2>Join the community</h2></div>
-<div class="community-row reveal">
-<a href="https://github.com/OASISLocal/oasis" target="_blank" rel="noopener noreferrer">
-<div class="card-icon" style="margin:0 auto 14px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></div>
-<h4>GitHub</h4><p>Source & releases</p>
-</a>
-<a href="https://github.com/OASISLocal/oasis/discussions" target="_blank" rel="noopener noreferrer">
-<div class="card-icon" style="margin:0 auto 14px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
-<h4>Discussions</h4><p>Questions & ideas</p>
-</a>
-<a href="https://github.com/OASISLocal/oasis/issues" target="_blank" rel="noopener noreferrer">
-<div class="card-icon" style="margin:0 auto 14px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-<h4>Issues</h4><p>Report a bug</p>
-</a>
-<a href="https://github.com/OASISLocal/oasis/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">
-<div class="card-icon" style="margin:0 auto 14px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
-<h4>Contribute</h4><p>Open a PR</p>
-</a>
-</div>
+  <div class="closer">
+    <div>
+      <h2>Your next PC already listens. Make sure it's yours.</h2>
+      <p class="fine">Download the beta, pick a model, and ask your first question with the router off — just to prove the point.</p>
+      <div class="ctas"><a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Download the beta</a></div>
+    </div>
+    <div class="kv">
+      <div><span>Plan</span><b>Personal, free</b></div>
+      <div><span>Max, early access</span><b>€15 once</b></div>
+      <div><span>Subscription</span><b>doesn't exist</b></div>
+      <div><span>Mandatory cloud</span><b>neither</b></div>
+    </div>
+  </div>
 </section>
-
-<!-- =======================================================
-12. FAQ — 6 questions
-======================================================= -->
-<section class="section-container">
-<div class="section-header reveal"><h2>Frequently asked questions</h2></div>
-<div class="reveal" style="max-width: 760px; margin: 0 auto;">
-<div class="faq-item">
-<button class="faq-trigger" aria-expanded="false" aria-controls="faq-a-1" id="faq-q-1"><div class="faq-question">Does it run on Mac? <span class="chevron">↓</span></div></button>
-<div class="faq-answer" id="faq-a-1" role="region" aria-labelledby="faq-q-1">Not yet. Windows 10/11 only for now — macOS and Linux are on the roadmap.</div>
-</div>
-<div class="faq-item">
-<button class="faq-trigger" aria-expanded="false" aria-controls="faq-a-2" id="faq-q-2"><div class="faq-question">Can I use it offline? <span class="chevron">↓</span></div></button>
-<div class="faq-answer" id="faq-a-2" role="region" aria-labelledby="faq-q-2">100%. Disconnect your router after downloading a model and it works identically.</div>
-</div>
-<div class="faq-item">
-<button class="faq-trigger" aria-expanded="false" aria-controls="faq-a-3" id="faq-q-3"><div class="faq-question">Is it really free? <span class="chevron">↓</span></div></button>
-<div class="faq-answer" id="faq-a-3" role="region" aria-labelledby="faq-q-3">The Personal plan is free forever, no account and no message limits. OASIS Max is an optional one-time payment for power features like coding and remote access.</div>
-</div>
-<div class="faq-item">
-<button class="faq-trigger" aria-expanded="false" aria-controls="faq-a-4" id="faq-q-4"><div class="faq-question">Is OASIS Max a subscription? <span class="chevron">↓</span></div></button>
-<div class="faq-answer" id="faq-a-4" role="region" aria-labelledby="faq-q-4">No. It's a single payment: 15€ during early access, rising to 25€ once v1.0 ships. No recurring fees.</div>
-</div>
-<div class="faq-item">
-<button class="faq-trigger" aria-expanded="false" aria-controls="faq-a-5" id="faq-q-5"><div class="faq-question">What hardware do I need? <span class="chevron">↓</span></div></button>
-<div class="faq-answer" id="faq-a-5" role="region" aria-labelledby="faq-q-5">Any modern CPU works for small models. A GPU with 4GB+ VRAM speeds things up but isn't required.</div>
-</div>
-<div class="faq-item">
-<button class="faq-trigger" aria-expanded="false" aria-controls="faq-a-6" id="faq-q-6"><div class="faq-question">Is any of my data sent anywhere? <span class="chevron">↓</span></div></button>
-<div class="faq-answer" id="faq-a-6" role="region" aria-labelledby="faq-q-6">No telemetry, no analytics, no account system. Everything stays in a local folder you control.</div>
-</div>
-</div>
-<p class="faq-more reveal">More questions? <a href="https://github.com/OASISLocal/oasis#readme" target="_blank" rel="noopener noreferrer">Read the README</a>.</p>
-</section>
-
-<!-- =======================================================
-13. FINAL CTA
-======================================================= -->
-<section class="final-cta reveal-blur">
-<!-- REPLACE: background-image should point to a real, blurred screenshot of the app -->
-<div class="final-cta-bg" style="background-image:url('assets/screenshot-app-full.png');" aria-hidden="true"></div>
-<div class="hero-badge" style="margin-bottom: 22px;">Offline • Free to start • One-time payment for Max</div>
-<h2>Ready to run AI<br>on your own computer?</h2>
-<a href="https://github.com/OASISLocal/oasis/releases/latest" class="btn btn-primary" style="padding: 16px 36px; font-size: 18px;" target="_blank" rel="noopener noreferrer">Download Beta</a>
-<div class="final-cta-badges"><span>Windows 10+</span><span>Free</span><span>No subscription</span><span>15€ early access</span></div>
-<p style="margin-top: 22px; font-size: 12px; color: var(--text-4);">Security-conscious? <a href="https://github.com/OASISLocal/oasis/releases/latest" target="_blank" rel="noopener noreferrer" style="color: var(--text-3); text-decoration: underline;">Check the SHA256 checksum</a> — on Windows: <code style="background:var(--bg-2);padding:2px 6px;border-radius:4px;">certutil -hashfile oasis.exe SHA256</code></p>
-</section>
-
 </main>
 
 <footer>
-<div class="footer-grid">
-<div class="footer-col">
-<h3 class="logo" style="margin-bottom: 16px; display: block;">OASIS</h3>
-<p style="color: var(--text-4); font-size: 14px; max-width: 300px; margin-bottom: 24px;">The definitive local AI environment. Private, fast, and built for modern hardware.</p>
-<div class="footer-icons">
-<a href="https://github.com/OASISLocal/oasis" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></a>
-<a href="https://github.com/OASISLocal/oasis/discussions" target="_blank" rel="noopener noreferrer" aria-label="Discussions"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
-<a href="https://github.com/OASISLocal/oasis/releases/latest" target="_blank" rel="noopener noreferrer" aria-label="Releases"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
-</div>
-</div>
-<div class="footer-col">
-<h4>Product</h4>
-<ul>
-<li><a href="https://github.com/OASISLocal/oasis/releases/latest" target="_blank" rel="noopener noreferrer">Download</a></li>
-<li><a href="#pricing">Pricing</a></li>
-<li><a href="https://github.com/OASISLocal/oasis#readme" target="_blank" rel="noopener noreferrer">Documentation</a></li>
-<li><a href="#ecosystem">Model Hub</a></li>
-</ul>
-</div>
-<div class="footer-col">
-<h4>Community</h4>
-<ul>
-<li><a href="https://github.com/OASISLocal/oasis" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-<li><a href="https://github.com/OASISLocal/oasis/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
-</ul>
-</div>
-</div>
+  <div class="foot">
+    <div>
+      <span class="fb">■ OASIS</span>
+      <p>A local AI assistant for Windows. Your stuff never leaves your disk.</p>
+    </div>
+    <div>
+      <h4>Product</h4>
+      <ul>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="how-it-works.html">How it works</a></li>
+        <li><a href="requirements.html">Requirements</a></li>
+        <li><a href="comparison.html">Compare</a></li>
+        <li><a href="features.html">Spec sheet</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="blog/">Blog</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="changelog.html">Changelog</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Community</h4>
+      <ul>
+        <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="https://github.com/OASISLocal/O.A.S.I.S./blob/main/legal/EULA.md" target="_blank" rel="noopener noreferrer">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="base"><span>OASIS · v0.2.0 · beta</span><span>no trackers on this page</span></div>
 </footer>
 
 <script>
-// 0. Inertial smooth scroll (finer control than native scroll-behavior: smooth)
 (function () {
-const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
-// Touch devices already have smooth native momentum scrolling; reduced-motion users get the plain CSS fallback.
-if (reduced || coarsePointer) return;
-
-document.documentElement.style.scrollBehavior = 'auto';
-
-let current = window.scrollY;
-let target = window.scrollY;
-let rafId = null;
-const ease = 0.065; // lower = smoother/slower glide
-
-function maxScroll() { return Math.max(0, document.documentElement.scrollHeight - window.innerHeight); }
-
-function loop() {
-current += (target - current) * ease;
-if (Math.abs(target - current) < 0.4) current = target;
-window.scrollTo(0, current);
-rafId = (current !== target) ? requestAnimationFrame(loop) : null;
-}
-function start() { if (rafId === null) rafId = requestAnimationFrame(loop); }
-function setTarget(next) { target = Math.min(Math.max(next, 0), maxScroll()); start(); }
-
-window.addEventListener('wheel', (e) => {
-e.preventDefault();
-setTarget(target + e.deltaY);
-}, { passive: false });
-
-window.addEventListener('keydown', (e) => {
-const nav = document.getElementById('navbar');
-const navHeight = nav ? nav.offsetHeight : 0;
-if (e.key === 'ArrowDown') setTarget(target + 90);
-else if (e.key === 'ArrowUp') setTarget(target - 90);
-else if (e.key === 'PageDown') setTarget(target + window.innerHeight * 0.9);
-else if (e.key === 'PageUp') setTarget(target - window.innerHeight * 0.9);
-else if (e.key === ' ' && !/^(INPUT|TEXTAREA|BUTTON|A)$/.test(document.activeElement.tagName)) { e.preventDefault(); setTarget(target + window.innerHeight * 0.9); }
-else if (e.key === 'End') setTarget(maxScroll());
-else if (e.key === 'Home') setTarget(0);
-});
-
-document.querySelectorAll('a[href^="#"]').forEach((a) => {
-a.addEventListener('click', (e) => {
-const id = a.getAttribute('href').slice(1);
-if (!id) return;
-const el = document.getElementById(id);
-if (!el) return;
-e.preventDefault();
-const nav = document.getElementById('navbar');
-const offset = (nav ? nav.offsetHeight : 0) + 24;
-setTarget(el.getBoundingClientRect().top + window.scrollY - offset);
-});
-});
-
-window.addEventListener('resize', () => { target = Math.min(target, maxScroll()); current = Math.min(current, maxScroll()); });
+  var root = document.documentElement, btn = document.getElementById('theme-btn');
+  function paint(t) { root.setAttribute('data-theme', t); btn.textContent = (t === 'light') ? 'Dark' : 'Light'; try { localStorage.setItem('oasis-theme', t); } catch (_) {} }
+  var saved = null;
+  try { saved = localStorage.getItem('oasis-theme'); } catch (_) {}
+  paint(saved === 'light' || saved === 'dark' ? saved : 'dark');
+  btn.addEventListener('click', function () { paint(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'); });
+  var burger = document.getElementById('burger'), mnav = document.getElementById('mnav');
+  burger.addEventListener('click', function () {
+    var open = mnav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  mnav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mnav.classList.remove('open'); }); });
 }());
-
-// 1. Scroll progress bar & navbar shrink
-window.addEventListener('scroll', () => {
-const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-const scrolled = (winScroll / height) * 100;
-document.getElementById('scroll-progress').style.width = scrolled + '%';
-if (winScroll > 50) { document.getElementById('navbar').classList.add('scrolled'); }
-else { document.getElementById('navbar').classList.remove('scrolled'); }
-});
-
-// 2. Scroll-reveal animations (multiple variants share the same observer)
-const revealSelector = '.reveal, .reveal-blur, .reveal-scale, .reveal-mask';
-const observer = new IntersectionObserver((entries) => {
-entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-}, { threshold: 0.1 });
-document.querySelectorAll(revealSelector).forEach(el => observer.observe(el));
-
-// 3. Mobile hamburger nav
+function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
 (function () {
-const btn = document.getElementById('nav-hamburger-btn');
-const drawer = document.getElementById('nav-mobile-drawer');
-if (!btn || !drawer) return;
-function closeMenu() { btn.classList.remove('is-open'); drawer.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); }
-function toggleMenu() { const isOpen = btn.classList.toggle('is-open'); drawer.classList.toggle('is-open', isOpen); btn.setAttribute('aria-expanded', String(isOpen)); }
-btn.addEventListener('click', toggleMenu);
-drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  var el = document.getElementById('star-count');
+  if (!el) return;
+  function cached() { try { var c = JSON.parse(localStorage.getItem('oasis_stars')); if (c && Date.now() - c.t < 1800000) return c.v; } catch (_) {} return null; }
+  var c = cached();
+  if (c !== null) el.textContent = c >= 1000 ? (c / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(c);
+  fetch('https://api.github.com/repos/OASISLocal/O.A.S.I.S.').then(function (r) { return r.json(); }).then(function (j) {
+    if (typeof j.stargazers_count === 'number') {
+      var v = j.stargazers_count;
+      el.textContent = v >= 1000 ? (v / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(v);
+      try { localStorage.setItem('oasis_stars', JSON.stringify({ t: Date.now(), v: v })); } catch (_) {}
+    } else if (c === null) { el.parentNode.parentNode.style.display = 'none'; }
+  }).catch(function () { if (c === null) el.parentNode.parentNode.style.display = 'none'; });
 }());
-
-// 4. Accessible FAQ accordion
-document.querySelectorAll('.faq-trigger').forEach(trigger => {
-trigger.addEventListener('click', () => {
-const item = trigger.closest('.faq-item');
-const isOpen = trigger.getAttribute('aria-expanded') === 'true';
-trigger.setAttribute('aria-expanded', String(!isOpen));
-item.classList.toggle('active', !isOpen);
+fetch('roadmap.json').then(function (r) { return r.json(); }).then(function (d) {
+  function fill(id, items) {
+    var el = document.getElementById(id);
+    if (!el || !Array.isArray(items) || !items.length) return;
+    el.innerHTML = items.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
+  }
+  fill('rm-done', d.shipped); fill('rm-next', d.next);
+  var u = document.getElementById('rm-updated');
+  if (u && d.updated) {
+    var dt = new Date(d.updated);
+    u.textContent = 'Updated ' + (isNaN(dt) ? d.updated : dt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })) + '.';
+  }
+}).catch(function () {});
+fetch('blog/posts.json').then(function (r) { return r.json(); }).then(function (posts) {
+  var ul = document.getElementById('blog-list');
+  if (!ul || !Array.isArray(posts) || !posts.length) return;
+  ul.innerHTML = posts.slice(0, 3).map(function (p) {
+    return '<li><a href="' + esc(p.url) + '"><span class="t">' + esc(p.title) + '</span><span class="d">' + esc(p.date) + '</span></a></li>';
+  }).join('');
+}).catch(function () {
+  var e = document.getElementById('blog-empty');
+  if (e) e.textContent = 'The blog lives at /blog/.';
 });
-});
-
-// 5. Animated count-up helper
-function formatCount(n) {
-if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
-return String(Math.round(n));
-}
-function animateCount(el, target, opts) {
-opts = opts || {};
-const duration = opts.duration || 1400;
-const decimals = opts.decimals || 0;
-const suffix = opts.suffix || '';
-const formatter = opts.formatter;
-const start = performance.now();
-function tick(now) {
-const p = Math.min((now - start) / duration, 1);
-const eased = 1 - Math.pow(1 - p, 3);
-const val = target * eased;
-el.textContent = (formatter ? formatter(val) : (decimals ? val.toFixed(decimals) : Math.round(val))) + suffix;
-if (p < 1) requestAnimationFrame(tick);
-}
-requestAnimationFrame(tick);
-}
-
-// 6. Hero terminal: typed command + staggered status lines + animated stats
-(function () {
-const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const cmdEl = document.getElementById('typed-cmd');
-const cursorEl = document.getElementById('type-cursor');
-const cmdText = 'Explain this repository.';
-const statusIds = ['t-status-1', 't-status-2', 't-status-3'];
-const timeEl = document.getElementById('t-count-time');
-const speedEl = document.getElementById('t-count-speed');
-
-function showStatuses() {
-statusIds.forEach((id, i) => {
-setTimeout(() => {
-const el = document.getElementById(id);
-if (el) el.classList.add('shown');
-if (i === statusIds.length - 1) {
-animateCount(timeEl, 2.4, { duration: 900, decimals: 1, suffix: 's' });
-animateCount(speedEl, 47, { duration: 1100, suffix: ' tok/s' });
-}
-}, reduced ? 0 : 500 * (i + 1));
-});
-}
-
-if (reduced) {
-if (cmdEl) cmdEl.textContent = cmdText;
-if (cursorEl) cursorEl.style.display = 'none';
-showStatuses();
-return;
-}
-
-let started = false;
-const heroTerminal = document.getElementById('hero-terminal');
-const heroObserver = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting && !started) {
-started = true;
-let i = 0;
-const typer = setInterval(() => {
-cmdEl.textContent = cmdText.slice(0, i + 1);
-i++;
-if (i >= cmdText.length) {
-clearInterval(typer);
-showStatuses();
-}
-}, 45);
-}
-});
-}, { threshold: 0.3 });
-if (heroTerminal) heroObserver.observe(heroTerminal);
-}());
-
-// 7. GitHub live stats — star count & total download count (cached 30 min), animated count-up
-(function () {
-function getCached(key, ttl) {
-try {
-const cached = localStorage.getItem(key);
-if (cached) { const parsed = JSON.parse(cached); if (Date.now() - parsed.timestamp < ttl) return parsed.count; }
-} catch (_) {}
-return null;
-}
-function setCached(key, count) { try { localStorage.setItem(key, JSON.stringify({ timestamp: Date.now(), count: count })); } catch (_) {} }
-const TTL = 30 * 60 * 1000;
-
-(function () {
-const el = document.getElementById('github-star-count');
-if (!el) return;
-const cached = getCached('oasis_star_count', TTL);
-if (cached !== null) animateCount(el, cached, { duration: 1200, formatter: formatCount });
-fetch('https://api.github.com/repos/OASISLocal/oasis')
-.then(res => res.json())
-.then(data => {
-if (typeof data.stargazers_count === 'number') {
-el.textContent = '0';
-animateCount(el, data.stargazers_count, { duration: 1200, formatter: formatCount });
-setCached('oasis_star_count', data.stargazers_count);
-} else if (cached === null) { el.textContent = '—'; }
-})
-.catch(() => { if (cached === null) el.textContent = '—'; });
-}());
-
-(function () {
-const el = document.getElementById('github-download-count');
-if (!el) return;
-const cached = getCached('oasis_download_count', TTL);
-if (cached !== null) animateCount(el, cached, { duration: 1200, formatter: formatCount });
-fetch('https://api.github.com/repos/OASISLocal/oasis/releases?per_page=100')
-.then(res => res.json())
-.then(data => {
-if (Array.isArray(data)) {
-let total = 0;
-data.forEach(release => (release.assets || []).forEach(a => { total += a.download_count || 0; }));
-el.textContent = '0';
-animateCount(el, total, { duration: 1200, formatter: formatCount });
-setCached('oasis_download_count', total);
-} else if (cached === null) { el.textContent = '—'; }
-})
-.catch(() => { if (cached === null) el.textContent = '—'; });
-}());
-}());
-
-// 8. Roadmap — fed by roadmap.json, falls back to the static markup above if it fails
-(function () {
-function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
-function renderList(el, items, state) {
-if (!el || !Array.isArray(items) || !items.length) return;
-const mark = state === 'done' ? '✓' : '○';
-el.innerHTML = items.map(item => `<li class="${state}"><span class="mark">${mark}</span> ${escapeHtml(item)}</li>`).join('');
-}
-fetch('roadmap.json')
-.then(res => res.json())
-.then(data => {
-renderList(document.getElementById('roadmap-shipped'), data.shipped, 'done');
-renderList(document.getElementById('roadmap-next'), data.next, 'todo');
-const updatedEl = document.getElementById('roadmap-updated');
-if (updatedEl && data.updated) {
-const d = new Date(data.updated);
-updatedEl.textContent = 'Updated ' + (isNaN(d) ? data.updated : d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
-}
-})
-.catch(() => {}); // static list already in the HTML stays as-is
-}());
-
-// 9. Blog teaser — fed by /blog/posts.json (built by Jekyll), hidden via CSS if empty/missing
-(function () {
-const grid = document.getElementById('blog-teaser-grid');
-if (!grid) return;
-function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
-fetch('blog/posts.json')
-.then(res => res.json())
-.then(posts => {
-if (!Array.isArray(posts) || !posts.length) return;
-grid.innerHTML = posts.slice(0, 3).map(p => `
-<a class="blog-teaser-card" href="${escapeHtml(p.url)}">
-<span class="blog-teaser-date">${escapeHtml(p.date)}</span>
-<h4>${escapeHtml(p.title)}</h4>
-<p>${escapeHtml(p.excerpt)}</p>
-</a>`).join('');
-})
-.catch(() => {}); // #blog-teaser-section:has(#blog-teaser-grid:empty) hides the whole section
-}());
 </script>
 </body>
 </html>

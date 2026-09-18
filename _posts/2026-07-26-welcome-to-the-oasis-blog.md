@@ -11,4 +11,4 @@ A few things to expect here:
 - **Deep dives** into how local inference, voice, and tool calling actually work under the hood.
 - **Open build-in-public updates** — what's slow, what's hard, and what we're doing about it.
 
-No account needed to read it, no tracking to measure it. If you want new posts delivered as they publish, subscribe to the [RSS feed]({{ '/blog/feed.xml' | relative_url }}) or watch [the repository](https://github.com/OASISLocal/oasis) on GitHub.
+No account needed to read it, no tracking to measure it. If you want new posts delivered as they publish, subscribe to the [RSS feed]({{ '/blog/feed.xml' | relative_url }}) or watch [the repository](https://github.com/OASISLocal/O.A.S.I.S.) on GitHub.

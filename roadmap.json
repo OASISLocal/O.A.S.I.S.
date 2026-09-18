@@ -1,15 +1,17 @@
 {
-  "updated": "2026-07-26",
+  "updated": "2026-09-17",
   "shipped": [
-    "Local chat",
-    "GGUF models",
-    "Voice",
-    "Tool calling"
+    "Chat local con streaming",
+    "Modelos GGUF v\u00eda llama.cpp",
+    "Voz en espa\u00f1ol (Whisper + Kokoro)",
+    "68 herramientas del sistema",
+    "Memoria local (ChromaDB + BM25)",
+    "Agente de c\u00f3digo en Docker"
   ],
   "next": [
-    "Plugins",
     "Linux",
     "macOS",
-    "Multi-agent"
+    "Plugins y marketplace",
+    "Multi-agente"
   ]
 }

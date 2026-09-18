@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download OASIS for Windows (Free Beta)</title>
+<meta name="description" content="Download the free OASIS beta for Windows 10/11. Verify the SHA256 checksum, pick an AI model, and you're offline-ready in ten minutes.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./download.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Download OASIS for Windows (Free Beta)">
+<meta property="og:description" content="Free beta for Windows 10/11. SHA256-verified releases, ten minutes to offline AI.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./download.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"OASIS",
+"operatingSystem":"Windows 10, Windows 11","applicationCategory":"UtilitiesApplication",
+"inLanguage":["es","en"],"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},
+"url":"https://oasislocal.github.io/O.A.S.I.S./download.html"}
+</script>
+</head>
+<body>
+<a href="#content" class="skip">Skip to content</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>OASIS <small>v0.2.0 beta</small></a>
+    <nav class="links" aria-label="Primary">
+      <a href="how-it-works.html">How it works</a>
+      <a href="requirements.html">Requirements</a>
+      <a href="comparison.html">Compare</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog/">Blog</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn">Light</button>
+      <a class="btn sm" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Download</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Mobile">
+    <a href="./">Home</a><a href="how-it-works.html">How it works</a><a href="requirements.html">Requirements</a>
+    <a href="download.html">Download</a><a href="comparison.html">Compare</a><a href="faq.html">FAQ</a>
+    <a href="blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+  </nav>
+</header>
+
+<main id="content" class="wrap">
+  <p class="crumb"><a href="./">Home</a> / Download</p>
+  <h1>Get the beta. Keep your data.</h1>
+  <p class="answer"><strong>OASIS is free for Windows 10 and 11, with no account and no time limit.</strong> Download the installer from GitHub Releases, verify its checksum if you like, install, download one AI model — and you're done. The whole process takes about ten minutes.</p>
+  <div class="ctas">
+    <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Download for Windows</a>
+    <a class="btn ghost" href="requirements.html">Check requirements</a>
+  </div>
+
+  <hr class="rule">
+  <p class="kicker">Verify first</p>
+  <h2>Trust, but checksum.</h2>
+  <p>Every release ships with a SHA256 hash. On Windows, open a terminal and run:</p>
+  <p><code>certutil -hashfile oasis.exe SHA256</code></p>
+  <p class="cap">Compare the output with the hash published on the release page. If it doesn't match, don't install it — and tell us in <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">Issues</a>.</p>
+
+  <hr class="rule">
+  <p class="kicker">Platforms</p>
+  <h2>Windows today. The rest is planned.</h2>
+  <table class="spec">
+    <thead><tr><th>Platform</th><th>Status</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Windows 10 / 11</td><td><span class="y">Available — beta</span></td><td>Full assistant: voice, memory, tools, sandbox.</td></tr>
+      <tr><td>Linux</td><td><span class="n">On the roadmap</span></td><td>Packaging work has started; no date yet.</td></tr>
+      <tr><td>macOS</td><td><span class="n">On the roadmap</span></td><td>After Linux. The models themselves are portable.</td></tr>
+    </tbody>
+  </table>
+
+  <hr class="rule">
+  <p class="kicker">After installing</p>
+  <h2>Three steps to offline.</h2>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>Open the app</h3><p>First launch suggests a model matched to your hardware. Accept it or pick another.</p></div>
+    <div class="step"><div class="n">2</div><h3>Download the model</h3><p>One download with pause and resume. This is the last thing that needs the internet.</p></div>
+    <div class="step"><div class="n">3</div><h3>Unplug and talk</h3><p>Seriously: try it with the router off. Chat, dictate, ask it to remember something.</p></div>
+  </div>
+  <p class="cap">Stuck? The <a href="faq.html">FAQ</a> covers the usual suspects; <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">Issues</a> covers the rest — include your Windows version and model.</p>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ OASIS</span><p>A local AI assistant for Windows. Your stuff never leaves your disk.</p></div>
+    <div><h4>Product</h4><ul>
+      <li><a href="download.html">Download</a></li><li><a href="how-it-works.html">How it works</a></li>
+      <li><a href="requirements.html">Requirements</a></li><li><a href="comparison.html">Compare</a></li>
+      <li><a href="features.html">Spec sheet</a></li></ul></div>
+    <div><h4>Resources</h4><ul>
+      <li><a href="blog/">Blog</a></li><li><a href="faq.html">FAQ</a></li>
+      <li><a href="changelog.html">Changelog</a></li><li><a href="about.html">About</a></li></ul></div>
+    <div><h4>Community</h4><ul>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
+      <li><a href="privacy.html">Privacy</a></li></ul></div>
+  </div>
+  <div class="base"><span>OASIS · v0.2.0 · beta</span><span>no trackers on this page</span></div>
+</footer>
+<script src="assets/site.js"></script>
+</body>
+</html>

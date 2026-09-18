@@ -1,6 +1,13 @@
 ---
 layout: default
 ---
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting",
+"headline":{{ page.title | jsonify }},
+"datePublished":"{{ page.date | date_to_xmlschema }}",
+"author":{"@type":"Organization","name":"OASIS","url":"https://oasislocal.github.io/O.A.S.I.S./"},
+"mainEntityOfPage":{"@type":"WebPage","@id":{{ page.url | absolute_url | jsonify }}}}
+</script>
 <article>
 <div class="blog-eyebrow">{% if page.tags.size > 0 %}{{ page.tags | first | upcase }}{% else %}UPDATE{% endif %}</div>
 <h1 class="blog-h1">{{ page.title }}</h1>
