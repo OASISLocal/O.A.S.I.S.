@@ -8,6 +8,7 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./">
 <meta name="theme-color" content="#111111">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
@@ -42,11 +43,13 @@
   --body: 'Inter', -apple-system, sans-serif;
   --mono: 'Space Mono', 'IBM Plex Mono', monospace;
   --code: 'IBM Plex Mono', monospace;
+  color-scheme: dark;
 }
 :root[data-theme="light"] {
   --bg: #f7f7f5; --surface: #ffffff; --panel: #f2f2ef; --hover: #ebebe7;
   --ink: #111111; --ink-2: #3f3f3c; --ink-3: #6b6b6b;
   --line: rgba(17,17,17,0.18); --strong: #111111;
+  color-scheme: light;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: var(--bg); color: var(--ink-2); font-family: var(--body); font-size: 16.5px; line-height: 1.7; -webkit-font-smoothing: antialiased; transition: background-color .25s, color .25s; }
@@ -297,8 +300,14 @@ footer { border-top: 2px solid var(--strong); margin-top: 88px; }
 .cbox button.mic { background: transparent; color: var(--ink-2); border-left: 1px solid var(--line); padding: 0 13px; display: flex; align-items: center; }
 .cbox button.mic:hover { color: var(--ink); }
 kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line); border-bottom-width: 2px; padding: 1px 6px; color: var(--ink-2); background: var(--panel); white-space: nowrap; }
-.dot { display: inline-block; width: 8px; height: 8px; background: var(--ink); margin-right: 7px; vertical-align: 0; }
-@media (max-width: 900px) { .top nav.links { display: none; } #burger { display: flex; } .appwin-cols { grid-template-columns: 1fr; } .rail { display: none; } }
+/* App window reads as a window: tab strip left, title center, controls right */
+.apptabs { display: flex; gap: 0; }
+.apptabs i { font-style: normal; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); padding: 6px 13px; border: 1px solid var(--line); border-left: none; }
+.apptabs i:first-child { border-left: 1px solid var(--line); }
+.apptabs i.on { color: var(--ink); border-color: var(--strong); background: var(--panel); }
+.appwin-title { color: var(--ink-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 640px) { .appwin-title { display: none; } }
+@media (max-width: 1024px) { .top nav.links { display: none; } #burger { display: flex; } .appwin-cols { grid-template-columns: 1fr; } .rail { display: none; } }
 </style>
 </head>
 <body>
@@ -353,7 +362,7 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
   </div>
 
   <div class="appwin" role="img" aria-label="The OASIS app: sidebar navigation, model picker, chat with tool calls and cited sources, command input and a local status bar">
-    <div class="appwin-bar"><span><span class="dot" aria-hidden="true"></span>OASIS — Chat · local engine</span><span class="winbtns" aria-hidden="true"><i>—</i><i>▢</i><i>✕</i></span></div>
+    <div class="appwin-bar"><span class="apptabs" aria-hidden="true"><i class="on">Chat</i><i>Models</i></span><span class="appwin-title" aria-hidden="true">OASIS · local engine</span><span class="winbtns" aria-hidden="true"><i>—</i><i>▢</i><i>✕</i></span></div>
     <div class="appwin-cols">
       <div class="rail" aria-hidden="true">
         <span>Workspace</span>

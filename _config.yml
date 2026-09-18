@@ -14,16 +14,10 @@ baseurl: "/O.A.S.I.S."
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/
 
-# All three plugins below are on GitHub Pages' whitelist, so the automatic
-# build (no GitHub Actions needed) supports them out of the box.
-# Static pages (index, features, how-it-works…) ship with their own hand-written
-# sitemap.xml, so jekyll-sitemap is intentionally off — it would clash with it.
+# jekyll-seo-tag is on the Pages whitelist. The Atom feed is hand-written
+# (blog/feed.xml + blog/feed.xsl) so it ships with a readable browser style.
 plugins:
-  - jekyll-feed
   - jekyll-seo-tag
-
-feed:
-  path: blog/feed.xml
 
 defaults:
   - scope:

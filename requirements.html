@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/site.css">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 </head>
 <body>
 <a href="#content" class="skip">Skip to content</a>
@@ -54,6 +55,30 @@
       <tr><td>Optimal</td><td>Recent CPU · 32&nbsp;GB RAM · NVIDIA 12&nbsp;GB+ VRAM</td><td>Larger models, everything at once: voice, vision, memory indexing and code sandbox.</td></tr>
     </tbody>
   </table>
+
+  <hr class="rule">
+  <p class="kicker">Check this PC</p>
+  <h2>Does your machine make the cut?</h2>
+  <p>Your browser can read basic specs — cores, memory, OS, graphics. <b>Nothing happens until you press the button, and nothing leaves your browser either way:</b> no requests, no storage, no analytics. A few things (exact VRAM, free disk space, Docker) browsers simply can't see — those stay manual checks.</p>
+  <div class="mock">
+    <div class="mock-bar"><span>this PC · read locally</span><span id="chk-state">idle</span></div>
+    <div class="mock-body">
+      <div class="ctas" style="margin:2px 0 4px;"><button class="btn" id="chk-btn">Check my PC</button></div>
+      <table class="spec" id="chk-table" hidden>
+        <thead><tr><th>Check</th><th>This PC</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Operating system</td><td id="chk-os-v">…</td><td id="chk-os-s">…</td></tr>
+          <tr><td>CPU cores</td><td id="chk-cpu-v">…</td><td id="chk-cpu-s">…</td></tr>
+          <tr><td>Memory (RAM)</td><td id="chk-ram-v">…</td><td id="chk-ram-s">…</td></tr>
+          <tr><td>Graphics</td><td id="chk-gpu-v">…</td><td id="chk-gpu-s">…</td></tr>
+          <tr><td>Video memory</td><td>Can't be read by browsers — Task Manager → Performance → GPU</td><td>manual</td></tr>
+          <tr><td>Free disk (10 GB+)</td><td>Can't be read by browsers — check File Explorer</td><td>manual</td></tr>
+          <tr><td>Docker (code sandbox only)</td><td>Can't be read by browsers — optional, skip if unsure</td><td>manual</td></tr>
+        </tbody>
+      </table>
+      <p class="cap" id="chk-verdict" hidden></p>
+    </div>
+  </div>
 
   <hr class="rule">
   <p class="kicker">Models &amp; sizes</p>
@@ -103,5 +128,88 @@
   <div class="base"><span>OASIS · v0.2.0 · beta</span><span>no trackers on this page</span></div>
 </footer>
 <script src="assets/site.js"></script>
+<script>
+/* Requirement self-check. Runs ONLY after an explicit click.
+   Everything is read with in-browser APIs; nothing is sent anywhere. */
+(function () {
+  var btn = document.getElementById('chk-btn');
+  if (!btn) return;
+  function set(id, val, ok) {
+    var v = document.getElementById('chk-' + id + '-v');
+    var s = document.getElementById('chk-' + id + '-s');
+    if (v) v.textContent = val;
+    if (s) {
+      if (ok === true) { s.textContent = 'Pass'; s.className = 'y'; }
+      else if (ok === false) { s.textContent = 'Fail'; s.className = 'n'; }
+      else { s.textContent = 'Unknown'; s.className = ''; }
+    }
+  }
+  btn.addEventListener('click', async function () {
+    btn.disabled = true;
+    btn.textContent = 'Reading…';
+    document.getElementById('chk-state').textContent = 'reading locally';
+    document.getElementById('chk-table').hidden = false;
+    var verdict = document.getElementById('chk-verdict');
+    verdict.hidden = false;
+
+    /* OS */
+    var isWin = false, osName = 'Not detected';
+    try {
+      if (navigator.userAgentData && navigator.userAgentData.platform) {
+        var plat = String(navigator.userAgentData.platform);
+        if (/windows/i.test(plat)) {
+          isWin = true;
+          try {
+            var hi = await navigator.userAgentData.getHighEntropyValues(['platformVersion']);
+            var pv = parseInt(hi.platformVersion || '0', 10);
+            osName = 'Windows ' + (pv >= 13 ? '11' : '10') + ' (as reported to the browser)';
+          } catch (_) { osName = 'Windows (exact version hidden by the browser)'; }
+        } else { osName = plat + ' — OASIS needs Windows 10/11'; }
+      } else {
+        var m = /Windows NT (\d+\.\d+)/.exec(navigator.userAgent || '');
+        if (m) { isWin = true; osName = 'Windows NT ' + m[1] + ' (legacy browser report)'; }
+        else { osName = 'Not Windows (as reported to the browser)'; }
+      }
+    } catch (_) { osName = 'Could not be read'; }
+    set('os', osName, isWin ? true : false);
+
+    /* CPU */
+    var cores = navigator.hardwareConcurrency || 0;
+    set('cpu', cores ? cores + ' logical cores' : 'Not visible to the browser', cores ? (cores >= 4) : null);
+
+    /* RAM (Chrome/Edge only; Firefox/Safari hide it) */
+    var ram = (typeof navigator.deviceMemory === 'number') ? navigator.deviceMemory : 0;
+    set('ram', ram ? ('~' + ram + ' GB (as reported to the browser)') : 'Hidden by this browser — check Settings → System → About', ram ? (ram >= 8) : null);
+
+    /* GPU via WebGL (name only, never VRAM) */
+    var gpuName = 'Not visible', dedicated = null;
+    try {
+      var cv = document.createElement('canvas');
+      var gl = cv.getContext('webgl') || cv.getContext('experimental-webgl');
+      if (gl) {
+        var ext = gl.getExtension('WEBGL_debug_renderer_info');
+        var raw = ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER);
+        gpuName = String(raw || 'Unknown renderer');
+        if (/nvidia|geforce|rtx|quadro/i.test(gpuName)) dedicated = true;
+        else if (/radeon|rx |amd/i.test(gpuName) && !/vega\s*[37]|renoir|cezanne|rembrandt|phoenix|hawk|strix|integrated/i.test(gpuName)) dedicated = true;
+        else if (/intel|apple|mali|adreno|uhd|iris xe/i.test(gpuName)) dedicated = false;
+      }
+    } catch (_) { gpuName = 'Could not be read'; }
+    set('gpu', gpuName, dedicated === true ? true : null);
+
+    /* Verdict */
+    var tier;
+    if (!isWin) tier = 'This device is not on Windows, so OASIS will not install here yet — Linux and macOS are on the roadmap.';
+    else if (ram >= 16 && cores >= 6 && dedicated) tier = 'Verdict: Recommended tier. Expect 7–8B models to feel fluid, including voice and vision.';
+    else if ((ram >= 8 || !ram) && cores >= 4) tier = 'Verdict: Minimum tier (or unknown RAM — check it manually). Start with a small 1–4B model; it will be correct, at a patient pace.';
+    else if (cores && cores < 4) tier = 'Verdict: below the Minimum tier on CPU cores. A tiny ~1B model may still work, slowly — or consider a newer machine.';
+    else tier = 'Verdict: the browser hid too much to judge (common in Firefox/Safari). Compare manually against the tiers above — when in doubt, start small.';
+    verdict.textContent = tier;
+    document.getElementById('chk-state').textContent = 'done · nothing sent';
+    btn.textContent = 'Check again';
+    btn.disabled = false;
+  });
+}());
+</script>
 </body>
 </html>
