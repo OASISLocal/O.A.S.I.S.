@@ -57,6 +57,25 @@ dl > div { display: grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 
 dl dt { font-family: var(--mono); font-size: 13px; color: var(--ink); }
 dl dd { font-size: 15.5px; }
 @media (max-width: 600px) { dl > div { grid-template-columns: 1fr; gap: 2px; } }
+
+/* Responsive: small phones, safe areas, touch */
+html, body { overflow-x: clip; }
+body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@supports (padding: max(0px)) {
+  .mast-in, .wrap, .foot-in {
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+  }
+}
+@media (max-width: 480px) {
+  h1 { font-size: clamp(30px, 9vw, 40px); }
+  .standfirst { font-size: 16.5px; }
+  .mast nav a { padding-top: 10px; padding-bottom: 10px; }
+}
+@media (pointer: coarse) {
+  .mast nav a { min-height: 44px; display: inline-flex; align-items: center; }
+  #theme-btn { min-height: 44px; }
+}
 ul.plain { list-style: none; margin-top: 10px; border-top: 1px solid var(--line-strong); }
 ul.plain li { padding: 8px 0 8px 22px; position: relative; border-bottom: 1px solid var(--line); font-size: 15.5px; }
 ul.plain li::before { content: '—'; position: absolute; left: 0; color: var(--ink-3); }

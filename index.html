@@ -307,7 +307,51 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
 .apptabs i.on { color: var(--ink); border-color: var(--strong); background: var(--panel); }
 .appwin-title { color: var(--ink-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 @media (max-width: 640px) { .appwin-title { display: none; } }
-@media (max-width: 1024px) { .top nav.links { display: none; } #burger { display: flex; } .appwin-cols { grid-template-columns: 1fr; } .rail { display: none; } }
+@media (max-width: 1100px) { .top nav.links { display: none; } #burger { display: flex; } .appwin-cols { grid-template-columns: 1fr; } .rail { display: none; } }
+
+/* ============ Responsive: phones, tablets, odd ratios ============ */
+html, body { overflow-x: clip; }
+body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@supports (padding: max(0px)) {
+  .top-in, .hero, .sec, .foot, .base {
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+  }
+}
+.tbl { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 26px; }
+.tbl table.vs { margin-top: 0; min-width: 520px; }
+@media (max-width: 700px) {
+  .hero { padding-top: 56px; }
+  .sec { padding-top: 64px; }
+  .chat { padding: 16px 14px; }
+  .msg { max-width: 94%; }
+  .cbox { margin: 0 14px 6px; }
+  .cbox button { padding: 0 14px; }
+  .flow { flex-wrap: wrap; }
+  .flow div { min-width: 150px; }
+  .proof { width: 100%; }
+  .proof span { flex: 1 1 40%; border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 480px) {
+  h1 { font-size: clamp(34px, 11vw, 46px); }
+  .top-in { flex-wrap: wrap; row-gap: 8px; padding-top: 10px; padding-bottom: 10px; }
+  .lede { font-size: 17px; }
+  .ctas .btn { flex: 1 1 100%; justify-content: center; }
+  .price .pt { font-size: 32px; }
+  .step .n { font-size: 34px; }
+  .appwin-bar { padding: 8px 10px; }
+  .toolbar { padding: 8px 10px; }
+  .statusbar { gap: 10px 14px; }
+}
+@media (pointer: coarse) {
+  .mnav a { min-height: 44px; display: flex; align-items: center; }
+  .btn.sm, #theme-btn, #burger { min-height: 44px; }
+  .faq summary { padding-top: 20px; padding-bottom: 20px; }
+  .top nav a { padding-top: 10px; padding-bottom: 10px; }
+}
+@media (max-height: 540px) and (min-width: 700px) {
+  .hero { padding-top: 40px; }
+}
 </style>
 </head>
 <body>
@@ -631,6 +675,7 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
     <p class="kicker">Why local</p>
     <h2>OASIS vs. cloud assistants.</h2>
   </div>
+  <div class="tbl">
   <table class="vs">
     <thead><tr><th></th><th class="us">OASIS</th><th>Cloud assistants</th></tr></thead>
     <tbody>
@@ -642,6 +687,7 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
       <tr><td>You pay once, not monthly</td><td class="y">Yes</td><td class="n">Monthly</td></tr>
     </tbody>
   </table>
+  </div>
 </section>
 
 <!-- ============ PRICING ============ -->

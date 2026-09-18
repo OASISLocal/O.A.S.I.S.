@@ -103,5 +103,42 @@ footer { border-top: 2px solid var(--strong); margin-top: 72px; }
 .foot p { font-size: 13.5px; }
 .base { max-width: 1160px; margin: 0 auto; padding: 16px 24px 26px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-3); border-top: 1px solid var(--line); }
 @media (max-width: 800px) { .foot { grid-template-columns: 1fr; } }
-@media (max-width: 900px) { .top nav.links { display: none; } #burger { display: flex; } }
+@media (max-width: 1100px) { .top nav.links { display: none; } #burger { display: flex; } }
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* ============ Responsive: phones, tablets, odd ratios ============ */
+html, body { overflow-x: clip; }
+body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@supports (padding: max(0px)) {
+  .top-in, .wrap, .foot, .base {
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+  }
+}
+/* Tables scroll instead of crushing (wrap tables in .tbl) */
+.tbl { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 18px; }
+.tbl table.spec { margin-top: 0; min-width: 620px; }
+@media (max-width: 700px) {
+  .tbl table.spec { min-width: 560px; }
+}
+@media (max-width: 480px) {
+  h1 { font-size: clamp(32px, 10vw, 44px); }
+  .top-in { flex-wrap: wrap; row-gap: 8px; padding-top: 10px; padding-bottom: 10px; }
+  h2 { font-size: clamp(22px, 6vw, 27px); }
+  .wrap { font-size: 16px; }
+  .foot { grid-template-columns: 1fr; gap: 26px; }
+  .ctas .btn { flex: 1 1 100%; justify-content: center; }
+  dl > div { grid-template-columns: 1fr; gap: 2px; }
+  .mock-body { padding: 13px; }
+}
+/* Touch-first devices: roomy targets */
+@media (pointer: coarse) {
+  .mnav a { min-height: 44px; display: flex; align-items: center; }
+  .btn.sm, #theme-btn { min-height: 44px; }
+  .faq summary { padding-top: 20px; padding-bottom: 20px; }
+}
+/* Short landscape screens: compress vertical rhythm */
+@media (max-height: 540px) {
+  .wrap .crumb { padding-top: 16px; }
+  h1 { margin-bottom: 8px; }
+}

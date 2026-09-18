@@ -86,6 +86,26 @@ main.blog-main { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
 .blog-footer a:hover { color: var(--text); text-decoration: underline; }
 
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* Responsive: phones, tablets, safe areas */
+html, body { overflow-x: clip; }
+body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@supports (padding: max(0px)) {
+  nav.site-nav, main.blog-main, .blog-footer {
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+  }
+}
+@media (max-width: 640px) {
+  nav.site-nav { flex-wrap: wrap; gap: 10px; }
+  main.blog-main { padding-top: 40px; padding-bottom: 70px; }
+  .blog-h1 { font-size: 31px; }
+  .prose { font-size: 16px; }
+  .prose pre { padding: 14px; }
+}
+@media (pointer: coarse) {
+  .site-nav a.nav-link, #theme-btn { min-height: 44px; display: inline-flex; align-items: center; }
+}
 </style>
 </head>
 <body>

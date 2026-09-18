@@ -49,6 +49,7 @@
   <h1>Will it run on your PC? Probably yes.</h1>
   <p class="answer"><strong>Any modern CPU runs small AI models; a GPU just makes them faster.</strong> There is no minimum GPU, no subscription gate, no cloud fallback. Pick the tier that matches your machine — the app recommends a model for your hardware on first launch.</p>
 
+  <div class="tbl">
   <table class="spec">
     <thead><tr><th>Tier</th><th>Hardware</th><th>What you get</th></tr></thead>
     <tbody>
@@ -57,6 +58,7 @@
       <tr><td>Optimal</td><td>Recent CPU · 32&nbsp;GB RAM · NVIDIA 12&nbsp;GB+ VRAM</td><td>Larger models, everything at once: voice, vision, memory indexing and code sandbox.</td></tr>
     </tbody>
   </table>
+  </div>
 
   <hr class="rule">
   <p class="kicker">Check this PC</p>
@@ -66,6 +68,7 @@
     <div class="mock-bar"><span>this PC · read locally</span><span id="chk-state">idle</span></div>
     <div class="mock-body">
       <div class="ctas" style="margin:2px 0 4px;"><button class="btn" id="chk-btn">Check my PC</button></div>
+      <div class="tbl">
       <table class="spec" id="chk-table" hidden>
         <thead><tr><th>Check</th><th>This PC</th><th>Status</th></tr></thead>
         <tbody>
@@ -78,6 +81,7 @@
           <tr><td>Docker (code sandbox only)</td><td>Can't be read by browsers — optional, skip if unsure</td><td>manual</td></tr>
         </tbody>
       </table>
+      </div>
       <p class="cap" id="chk-verdict" hidden></p>
     </div>
   </div>
@@ -86,6 +90,7 @@
   <p class="kicker">Models &amp; sizes</p>
   <h2>How big is a brain, exactly?</h2>
   <p>Models download once, then live on your disk. Approximate sizes for the popular quantized (Q4) builds:</p>
+  <div class="tbl">
   <table class="spec">
     <thead><tr><th>Size class</th><th>Download</th><th>Needs</th><th>Feels like</th></tr></thead>
     <tbody>
@@ -94,6 +99,7 @@
       <tr><td>13–14B</td><td>~8–10&nbsp;GB</td><td>16&nbsp;GB RAM or 8&nbsp;GB VRAM</td><td>Deeper reasoning, slower without GPU.</td></tr>
     </tbody>
   </table>
+  </div>
   <p class="cap">Families available: Llama, Gemma, Qwen, DeepSeek, Phi, Mistral — plus any GGUF file from Hugging Face. Sizes vary by quantization; the app shows exact numbers before downloading.</p>
 
   <hr class="rule">
