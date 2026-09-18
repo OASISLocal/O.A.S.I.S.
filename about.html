@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>About — An Independent Local-First Project</title>
 <meta name="description" content="OASIS is an independent project from Galicia, Spain, building a local-first AI assistant: your PC, your data, no cloud. People, values and how to reach us.">
 <meta name="robots" content="index, follow">
@@ -37,22 +37,18 @@
       <a href="blog/">Blog</a>
     </nav>
     <div style="display:flex;gap:8px;align-items:center;">
-      <button id="theme-btn">Light</button>
+      <button id="theme-btn" aria-label="Switch between light and dark">Light</button>
       <a class="btn sm" href="download.html">Download</a>
-      <button id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <nav class="mnav" id="mnav" aria-label="Mobile">
-    <a href="./">Home</a><a href="how-it-works.html">How it works</a><a href="requirements.html">Requirements</a>
-    <a href="download.html">Download</a><a href="comparison.html">Compare</a><a href="faq.html">FAQ</a>
-    <a href="blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
-  </nav>
+  <nav class="mnav" id="mnav" aria-label="Mobile"><noscript><a href="download.html">Download</a><a href="blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
 </header>
 
 <main id="content" class="wrap">
   <p class="crumb"><a href="./">Home</a> / About</p>
   <h1>Built by people who distrust the cloud.</h1>
-  <p class="answer"><strong>OASIS is an independent project from Galicia, Spain, with one conviction: your computer should work for you, not report on you.</strong> No venture funding, no data business, no growth team — just a small team building the assistant we'd want on our own desks, in the open.</p>
+  <p class="answer"><strong>OASIS is an independent project from Galicia, Spain, with one conviction: your computer should work for you, not report on you.</strong> No venture funding, no data business, no growth team — just a small team building the assistant we'd want on our own desks, and building it in the open.</p>
 
   <hr class="rule">
   <p class="kicker">Values</p>
@@ -60,7 +56,7 @@
   <ul class="plain">
     <li><b>No accounts, ever, for the core product.</b> If a feature needs an account, it's a different product.</li>
     <li><b>No telemetry.</b> We don't know who you are, and we'd like to keep it that way — this site runs no trackers either.</li>
-    <li><b>No subscriptions.</b> Max is a single payment because rent-seeking on your own PC felt wrong.</li>
+    <li><b>No subscriptions.</b> Max will be a single payment — charging rent on your own PC felt wrong.</li>
     <li><b>No dark patterns.</b> Permissions are explicit, risky actions ask first, uninstalling removes everything.</li>
     <li><b>No hiding bugs.</b> The <a href="changelog.html">changelog</a> and <a href="blog/">blog</a> say what's broken and what's next.</li>
   </ul>
@@ -82,14 +78,14 @@
 <footer>
   <div class="foot">
     <div><span class="fb">■ OASIS</span><p>A local AI assistant for Windows. Your stuff never leaves your disk.</p></div>
-    <div><h4>Product</h4><ul>
+    <div><h3 class="fth">Product</h3><ul>
       <li><a href="download.html">Download</a></li><li><a href="how-it-works.html">How it works</a></li>
       <li><a href="requirements.html">Requirements</a></li><li><a href="comparison.html">Compare</a></li>
       <li><a href="features.html">Spec sheet</a></li></ul></div>
-    <div><h4>Resources</h4><ul>
+    <div><h3 class="fth">Resources</h3><ul>
       <li><a href="blog/">Blog</a></li><li><a href="faq.html">FAQ</a></li>
       <li><a href="changelog.html">Changelog</a></li><li><a href="about.html">About</a></li></ul></div>
-    <div><h4>Community</h4><ul>
+    <div><h3 class="fth">Community</h3><ul>
       <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
       <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
       <li><a href="privacy.html">Privacy</a></li></ul></div>

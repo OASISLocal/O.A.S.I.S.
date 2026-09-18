@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>OASIS vs Ollama, LM Studio &amp; Cloud AI (2026)</title>
 <meta name="description" content="How does OASIS compare to Ollama, LM Studio, GPT4All and ChatGPT? An honest table: voice, memory, PC control, offline use, price. Different tools, different strengths.">
 <meta name="robots" content="index, follow">
@@ -32,16 +32,12 @@
       <a href="blog/">Blog</a>
     </nav>
     <div style="display:flex;gap:8px;align-items:center;">
-      <button id="theme-btn">Light</button>
+      <button id="theme-btn" aria-label="Switch between light and dark">Light</button>
       <a class="btn sm" href="download.html">Download</a>
-      <button id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <nav class="mnav" id="mnav" aria-label="Mobile">
-    <a href="./">Home</a><a href="how-it-works.html">How it works</a><a href="requirements.html">Requirements</a>
-    <a href="download.html">Download</a><a href="comparison.html">Compare</a><a href="faq.html">FAQ</a>
-    <a href="blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
-  </nav>
+  <nav class="mnav" id="mnav" aria-label="Mobile"><noscript><a href="download.html">Download</a><a href="blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
 </header>
 
 <main id="content" class="wrap wide" style="max-width:960px;">
@@ -62,7 +58,7 @@
       <tr><td>Scheduled routines</td><td class="y">Yes</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">Limited</td></tr>
       <tr><td>Windows installer + GUI</td><td class="y">Yes</td><td class="n">CLI-first</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">Browser/app</td></tr>
       <tr><td>Works fully offline</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">No</td></tr>
-      <tr><td>Price</td><td><b>Free / €15 once</b></td><td>Free</td><td>Free</td><td>Free</td><td>Free / monthly</td></tr>
+      <tr><td>Price</td><td><b>Free / waitlist</b></td><td>Free</td><td>Free</td><td>Free</td><td>Free / monthly</td></tr>
     </tbody>
   </table>
   </div>
@@ -88,14 +84,14 @@
 <footer>
   <div class="foot">
     <div><span class="fb">■ OASIS</span><p>A local AI assistant for Windows. Your stuff never leaves your disk.</p></div>
-    <div><h4>Product</h4><ul>
+    <div><h3 class="fth">Product</h3><ul>
       <li><a href="download.html">Download</a></li><li><a href="how-it-works.html">How it works</a></li>
       <li><a href="requirements.html">Requirements</a></li><li><a href="comparison.html">Compare</a></li>
       <li><a href="features.html">Spec sheet</a></li></ul></div>
-    <div><h4>Resources</h4><ul>
+    <div><h3 class="fth">Resources</h3><ul>
       <li><a href="blog/">Blog</a></li><li><a href="faq.html">FAQ</a></li>
       <li><a href="changelog.html">Changelog</a></li><li><a href="about.html">About</a></li></ul></div>
-    <div><h4>Community</h4><ul>
+    <div><h3 class="fth">Community</h3><ul>
       <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
       <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
       <li><a href="privacy.html">Privacy</a></li></ul></div>

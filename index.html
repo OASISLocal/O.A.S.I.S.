@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>OASIS — The AI assistant that lives on your PC</title>
 <meta name="description" content="OASIS is a free AI assistant for Windows that runs entirely on your computer. Talk or type in Spanish or English — it tidies files, summarizes PDFs, remembers things, explains code and controls your PC. No internet, no account.">
 <meta name="robots" content="index, follow">
@@ -26,10 +26,7 @@
 "operatingSystem": "Windows 10, Windows 11",
 "applicationCategory": "UtilitiesApplication",
 "inLanguage": ["es", "en"],
-"offers": [
-{ "@type": "Offer", "name": "OASIS Personal", "price": "0", "priceCurrency": "EUR" },
-{ "@type": "Offer", "name": "OASIS Max", "price": "15", "priceCurrency": "EUR" }
-],
+"offers": { "@type": "Offer", "name": "OASIS Personal", "price": "0", "priceCurrency": "EUR" },
 "url": "https://oasislocal.github.io/O.A.S.I.S./",
 "description": "A free AI assistant for Windows that runs entirely on your computer: chat, voice in Spanish and English, memory, PC control and coding. No internet, no account."
 }
@@ -47,7 +44,7 @@
 }
 :root[data-theme="light"] {
   --bg: #f7f7f5; --surface: #ffffff; --panel: #f2f2ef; --hover: #ebebe7;
-  --ink: #111111; --ink-2: #3f3f3c; --ink-3: #6b6b6b;
+  --ink: #111111; --ink-2: #3f3f3c; --ink-3: #595959;
   --line: rgba(17,17,17,0.18); --strong: #111111;
   color-scheme: light;
 }
@@ -56,6 +53,7 @@ body { background: var(--bg); color: var(--ink-2); font-family: var(--body); fon
 ::selection { background: var(--ink); color: var(--bg); }
 a { color: var(--ink); }
 a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+[tabindex="-1"]:focus { outline: none; }
 .skip { position: absolute; top: -100px; left: 16px; z-index: 99; background: var(--ink); color: var(--bg); font-weight: 600; font-size: 14px; padding: 10px 18px; text-decoration: none; }
 .skip:focus { top: 8px; }
 code { font-family: var(--code); font-size: .85em; background: var(--panel); border: 1px solid var(--line); padding: 1px 6px; color: var(--ink-2); }
@@ -180,7 +178,7 @@ h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; lin
 .dchat span { font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
 
 /* What-else long list (long-tail) */
-.else { border: 2px solid var(--strong); background: var(--surface); padding: 30px 32px; font-size: 17px; line-height: 1.9; }
+.else { border: 2px solid var(--strong); background: var(--surface); padding: 30px 32px; font-size: 17px; line-height: 1.9; max-width: 880px; }
 .else b { color: var(--ink); }
 
 /* Tool groups */
@@ -204,7 +202,7 @@ h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; lin
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--strong); }
 .step { padding: 26px 24px; border-right: 1px solid var(--strong); }
 .step:last-child { border-right: none; }
-.step .n { font-family: var(--display); font-size: 40px; font-weight: 700; color: var(--ink); line-height: 1; }
+.step .n { font-family: var(--display); font-size: 34px; font-weight: 700; color: var(--ink); line-height: 1; }
 .step h3 { font-size: 16px; color: var(--ink); margin: 10px 0 6px; }
 .step p { font-size: 14px; }
 @media (max-width: 800px) { .steps { grid-template-columns: 1fr; } .step { border-right: none; border-bottom: 1px solid var(--strong); } .step:last-child { border-bottom: none; } }
@@ -226,7 +224,7 @@ h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; lin
 .price.hot { background: var(--surface); }
 .price .pn { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); }
 .price.hot .pn { color: var(--ink); }
-.price .pt { font-family: var(--display); font-size: 38px; font-weight: 700; letter-spacing: -.03em; color: var(--ink); margin: 8px 0 2px; }
+.price .pt { font-family: var(--display); font-size: 34px; font-weight: 700; letter-spacing: -.03em; color: var(--ink); margin: 8px 0 2px; }
 .price .pt small { font-size: 14px; font-family: var(--body); font-weight: 400; color: var(--ink-3); letter-spacing: 0; }
 .price ul { list-style: none; margin: 18px 0 22px; }
 .price li { font-size: 14px; padding: 8px 0 8px 22px; position: relative; border-bottom: 1px solid var(--line); }
@@ -267,10 +265,21 @@ h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; lin
 .kv div { display: flex; justify-content: space-between; padding: 11px 16px; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); }
 .kv div:last-child { border-bottom: none; }
 .kv b { color: var(--ink); font-weight: 400; }
+/* Waitlist form */
+.wl-row { display: flex; gap: 0; border: 1px solid var(--strong); }
+.wl-row input[type="email"] { flex: 1; min-width: 0; background: transparent; border: none; color: var(--ink); font: 15px var(--body); padding: 13px 14px; }
+.wl-row input[type="email"]::placeholder { color: var(--ink-3); }
+.wl-row .btn { border: none; border-left: 1px solid var(--strong); white-space: nowrap; }
+.wl-checks { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 14px; font-size: 14px; }
+.wl-checks label { display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--ink-2); }
+.wl-checks input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--ink); cursor: pointer; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+#wl-status { margin-top: 12px; }
+@media (max-width: 480px) { .wl-row { flex-wrap: wrap; } .wl-row .btn { flex: 1 1 100%; justify-content: center; border-left: none; border-top: 1px solid var(--strong); } }
 @media (max-width: 800px) { .closer { grid-template-columns: 1fr; } }
-footer { border-top: 2px solid var(--strong); margin-top: 88px; }
+footer { border-top: 2px solid var(--strong); margin-top: 72px; }
 .foot { max-width: 1160px; margin: 0 auto; padding: 48px 24px 30px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; }
-.foot h4 { font-family: var(--mono); font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 14px; }
+.foot h3.fth { font-family: var(--mono); font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 14px; }
 .foot ul { list-style: none; }
 .foot li { margin-bottom: 9px; }
 .foot a { color: var(--ink-2); text-decoration: none; font-size: 14px; }
@@ -282,7 +291,7 @@ footer { border-top: 2px solid var(--strong); margin-top: 88px; }
 /* ---------- Hero pro ---------- */
 .announce { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--ink-2); text-decoration: none; border: 1px solid var(--strong); padding: 7px 14px; margin-bottom: 22px; background: var(--surface); }
 .announce:hover { background: var(--hover); color: var(--ink); }
-.announce b { color: var(--ink); font-weight: 400; background: var(--ink); color: var(--bg); padding: 1px 8px; }
+.announce b { font-weight: 400; background: var(--ink); color: var(--bg); padding: 1px 8px; }
 .btn svg { flex-shrink: 0; }
 .winbtns { display: flex; gap: 0; }
 .winbtns i { width: 34px; height: 26px; display: flex; align-items: center; justify-content: center; font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--ink-3); border-left: 1px solid var(--line); }
@@ -307,6 +316,10 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
 .apptabs i.on { color: var(--ink); border-color: var(--strong); background: var(--panel); }
 .appwin-title { color: var(--ink-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 @media (max-width: 640px) { .appwin-title { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .cursor { animation: none; opacity: 1; }
+}
 @media (max-width: 1100px) { .top nav.links { display: none; } #burger { display: flex; } .appwin-cols { grid-template-columns: 1fr; } .rail { display: none; } }
 
 /* ============ Responsive: phones, tablets, odd ratios ============ */
@@ -370,37 +383,27 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       <a href="blog/">Blog</a>
     </nav>
     <div style="display:flex;gap:8px;align-items:center;">
-      <button id="theme-btn">Light</button>
+      <button id="theme-btn" aria-label="Switch between light and dark">Light</button>
       <a class="btn sm" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Download</a>
-      <button id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <nav class="mnav" id="mnav" aria-label="Mobile">
-    <a href="#tour">Tour</a>
-    <a href="how-it-works.html">How it works</a>
-    <a href="requirements.html">Requirements</a>
-    <a href="#download">Download</a>
-    <a href="comparison.html">Compare</a>
-    <a href="#pricing">Pricing</a>
-    <a href="faq.html">FAQ</a>
-    <a href="blog/">Blog</a>
-    <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
-  </nav>
+  <nav class="mnav" id="mnav" aria-label="Mobile"><noscript><a href="download.html">Download</a><a href="blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
 </header>
 
-<main id="content">
+<main id="content" tabindex="-1">
 <!-- ============ HERO ============ -->
 <section class="hero">
   <a class="announce" href="changelog.html"><b>NEW</b> v0.2.0 — the Mono release · See what's new →</a>
   <h1>The AI assistant that lives on your PC.</h1>
-  <p class="lede">Meet OASIS: <strong>talk or type and get things done</strong> — tidy up files, summarize PDFs, set timers, remember the dentist, explain broken code, turn the volume down before a call. It all happens <strong>on your computer</strong>. Unplug the router and it keeps working.</p>
+  <p class="lede">Meet OASIS: <strong>type or talk to get things done</strong> — organize files, summarize PDFs, set timers, remember appointments, explain broken code, turn the volume down before a call. It all happens <strong>on your computer</strong>. Unplug the router and it keeps working.</p>
   <div class="ctas">
     <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.5V11H3zM11.5 4.3 21 3v8H11.5zM3 12h7.5v6.5L3 17.5zM11.5 12H21v8l-9.5-1.3z"/></svg>Download for Windows</a>
     <a class="btn ghost" href="how-it-works.html">How it works</a>
   </div>
-  <p class="fine">Free beta · v0.2.0 · Windows 10/11 · No account · <a href="download.html">Verify the SHA256 checksum</a></p>
+  <p class="fine">Free beta · v0.2.0 · Windows 10/11 · No account · <a href="download.html">Verify the SHA256 hash</a></p>
   <div class="proof">
-    <span><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">★ <b id="star-count">–</b> on GitHub</a></span>
+    <span><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">★<b id="star-count"></b> on GitHub</a></span>
     <span><a href="#status">Open roadmap</a></span>
     <span><a href="changelog.html">Public changelog</a></span>
     <span><a href="privacy.html">No trackers</a></span>
@@ -445,10 +448,10 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 <section class="sec" id="tour">
   <div class="sec-head">
     <p class="kicker">What else can it do?</p>
-    <h2>A lot more than chat.</h2>
+    <h2>More than chat: the full toolbox.</h2>
   </div>
   <div class="else">
-    It can <b>take notes</b>. Remind you about the <b>dentist</b>. <b>Add up your electricity bills</b> from a folder of PDFs. <b>Explain a Python traceback in plain words</b>. <b>Lower the volume</b> when you join a call. <b>Transcribe a meeting</b>. <b>Find any file</b>. <b>Control Spotify</b>. <b>Translate a paragraph</b>. <b>Read your screen</b>. <b>Test code in a sandbox</b> before touching your files. <b>Brief you every morning at 9</b>. And much more — <b>80 tools</b> and counting.
+    It can <b>take notes</b>, <b>remind you about appointments</b>, <b>add up electricity bills</b> from a folder of PDFs, <b>explain a Python traceback</b> in plain words, <b>lower the volume</b> when you join a call, <b>transcribe a meeting</b>, <b>find any file</b>, <b>control Spotify</b>, <b>translate a paragraph</b>, <b>read your screen</b>, <b>test code in a sandbox</b> before touching your files, and <b>brief you every morning at 9</b>. And much more — <b>80+ tools</b> and counting.
   </div>
 </section>
 
@@ -456,18 +459,18 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 <section class="sec">
   <div class="sec-head">
     <p class="kicker">Tour</p>
-    <h2>Six things it does every day.</h2>
+    <h2>Six everyday jobs, handled locally.</h2>
     <p>Each with its own corner of the app. None of it needs the internet once you're set up.</p>
   </div>
 
   <div class="split">
     <div>
       <h3>Talk to your computer like a person.</h3>
-      <p>Dictate, and it talks back — in Spanish or English, with natural voices, entirely offline. Say the wake word and it's listening. Interrupt mid-sentence, like a real conversation.</p>
+      <p>Dictate and it talks back — in Spanish or English, with natural voices, entirely offline. Say the wake word and it's listening. Interrupt mid-sentence, like a real conversation.</p>
       <ul class="check">
         <li><b>Voice in, voice out</b> — dictation, read-aloud, hands-free mode.</li>
         <li><b>Spoken reminders and timers</b> that actually remind you out loud.</li>
-        <li><b>Four personalities</b>: OASIS, TARS, NOVA and REBELDE — the last one has a dark sense of humor.</li>
+        <li><b>Four personalities</b>: OASIS, TARS, NOVA and REBELDE — the last one is sarcastic, with limits you set yourself.</li>
       </ul>
     </div>
     <div class="mock" role="img" aria-label="Voice meter with live transcription">
@@ -482,11 +485,11 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
   <div class="split flip" style="margin-top:64px;">
     <div>
-      <h3>Swap brains in one click.</h3>
-      <p>OASIS doesn't ship with a brain — you pick one. The app finds AI models for you, downloads them with pause and resume, and tunes itself to your hardware. Switching models feels like switching radio stations.</p>
+      <h3>Switch models in one click.</h3>
+      <p>OASIS doesn't ship with a brain — you pick one. The app finds AI models for you, downloads them with pause and resume, and tunes itself to your hardware. Trying a new model feels like switching radio stations.</p>
       <ul class="check">
-        <li><b>Any open model</b>: Llama, Gemma, Qwen, DeepSeek, Phi, Mistral.</li>
-        <li><b>Matched to your machine</b> — it tells you what your PC can handle.</li>
+        <li><b>Open models that run offline</b>: Llama 3.2, Gemma 4, Qwen 2.5 — plus any GGUF file, including DeepSeek, Phi or Mistral builds. (GGUF is simply the file format these models ship in; B stands for billions of parameters.)</li>
+        <li><b>Matched to your machine</b> — it recommends what your PC can run.</li>
         <li><b>Runs on plain CPU</b>; flies with an NVIDIA GPU.</li>
       </ul>
     </div>
@@ -503,11 +506,11 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   <div class="split" style="margin-top:64px;">
     <div>
       <h3>It remembers, so you don't have to.</h3>
-      <p>What you tell it, it keeps: conversations, notes, facts you ask it not to forget. It also reads your documents — PDFs, Word, Excel, code — and answers citing the exact file each fact came from. All in a database on your disk.</p>
+      <p>It keeps what you tell it: conversations, notes, facts you ask it not to forget. It also reads your documents — PDFs, Word, Excel, code — and answers citing the exact file each fact came from. All in a database on your disk.</p>
       <ul class="check">
         <li><b>Real memory</b>: facts, notes and conversations, searchable by meaning.</li>
         <li><b>Your documents as a source</b> — every answer shows where it came from.</li>
-        <li><b>Deletable</b>: by memory, by type or by file, whenever you want.</li>
+        <li><b>Easy to remove</b>: by item, by type, or by file, whenever you want.</li>
       </ul>
     </div>
     <div class="mock" role="img" aria-label="Saved memories with their sources">
@@ -523,9 +526,9 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   <div class="split flip" style="margin-top:64px;">
     <div>
       <h3>It codes carefully.</h3>
-      <p>Paste an error and get a plain-words explanation. Ask for a script and it writes it, tests it in an isolated sandbox, and shows you the diff before touching your files. If it fails, it retries on its own — up to three times.</p>
+      <p>Paste an error and get an explanation in plain language. Ask for a script and it writes it, tests it in an isolated sandbox, and shows you the diff before touching your files. If it fails, it retries on its own — up to three times.</p>
       <ul class="check">
-        <li><b>Explains repos and errors</b> without the jargon.</li>
+        <li><b>Explains repos and errors</b> without jargon.</li>
         <li><b>Runs in a sandbox first</b> — nothing executes on your system without your OK.</li>
         <li><b>Diffs before applying</b>: review every change line by line.</li>
       </ul>
@@ -544,7 +547,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   <div class="split" style="margin-top:64px;">
     <div>
       <h3>It sees your screen — only when asked.</h3>
-      <p>OASIS looks only when you tell it to — and understands what it sees: it describes images, reads your screen, clicks where you point. It also drives your PC: volume, windows, Spotify, timers, clipboard. Every permission has its own switch in Settings.</p>
+      <p>OASIS looks only when you tell it to — and understands what it sees: it describes images, reads your screen, clicks where you point. It also drives your PC: volume, windows, Spotify, timers, clipboard. Every permission (microphone, screen, files) has its own switch in Settings.</p>
       <ul class="check">
         <li><b>Local vision</b>: describes your screen or any image.</li>
         <li><b>Drives your PC</b>: apps, windows, audio, system.</li>
@@ -563,9 +566,9 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   <div class="split flip" style="margin-top:64px;">
     <div>
       <h3>It handles the boring parts on a schedule.</h3>
-      <p>Routines in plain words ("every day at 9"), proactive nudges when it spots something useful, and little skills that learn your phrases. And when you leave the house: your own Discord or Telegram bot with voice, an Android app over local network, and a browser extension.</p>
+      <p>Workflows in plain words ("every day at 9"), proactive nudges when it spots something useful, and little skills that learn your phrases. When you leave the house, take it with you: your own Discord or Telegram bot with voice, an Android app over the local network, and a browser extension.</p>
       <ul class="check">
-        <li><b>Scheduled routines</b> plus proactive notifications with a daily budget.</li>
+        <li><b>Scheduled workflows</b> plus proactive notifications — capped per day so they never nag.</li>
         <li><b>Discord and Telegram</b> with text and voice (Max edition).</li>
         <li><b>Android app and browser extension</b> talking to your PC over local network (Max).</li>
       </ul>
@@ -584,7 +587,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 <section class="sec" id="tools">
   <div class="sec-head">
     <p class="kicker">Under the hood</p>
-    <h2>80 tools. Here's the honest list.</h2>
+    <h2>80+ tools, and what they do.</h2>
     <p>Each one declares its risk level and asks permission before acting. Dangerous ones — deleting, shutting down, running code — never move without your explicit OK.</p>
   </div>
   <div class="groups">
@@ -634,7 +637,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       </ul>
     </div>
   </div>
-  <p class="cap">…plus more, up to 80. The exact inventory lives in the code — and the <a href="features.html">full spec sheet is here</a>.</p>
+  <p class="cap">…plus more, up to 80+. The exact inventory lives in the code — and the <a href="features.html">full spec sheet is here</a>.</p>
 </section>
 
 <!-- ============ MODELS ============ -->
@@ -726,7 +729,35 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
         <li>External tool servers</li>
         <li>Voice cloning and secure local backup</li>
       </ul>
-      <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Get Max</a>
+      <a class="btn" href="#early-access">Join the waitlist</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EARLY ACCESS ============ -->
+<section class="sec" id="early-access">
+  <div class="sec-head">
+    <p class="kicker">Early access</p>
+    <h2>Max isn't on sale yet. Get in line.</h2>
+    <p>One email when Max, Linux or macOS is ready — whichever you tick. No newsletter, no spam, no account. We store your address plus the date you joined, nothing else.</p>
+  </div>
+  <div class="mock">
+    <div class="mock-bar"><span>waitlist · one email when it's ready</span><span id="wl-state">idle</span></div>
+    <div class="mock-body">
+      <form id="wl-form" novalidate>
+        <div class="wl-row">
+          <input id="wl-email" type="email" name="email" placeholder="you@example.com" aria-label="Email address" autocomplete="email" required>
+          <button class="btn" type="submit" id="wl-btn">Notify me</button>
+        </div>
+        <div class="wl-checks" role="group" aria-label="I'm interested in">
+          <label><input type="checkbox" name="interest" value="max" checked> Max early access</label>
+          <label><input type="checkbox" name="interest" value="linux"> Linux build</label>
+          <label><input type="checkbox" name="interest" value="macos"> macOS build</label>
+        </div>
+        <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="cap" id="wl-status" role="status" hidden></p>
+        <noscript><p class="cap">No JavaScript? Email <a href="mailto:hello@oasislocal.dev?subject=Waitlist">hello@oasislocal.dev</a> with “waitlist” and what you're waiting for.</p></noscript>
+      </form>
     </div>
   </div>
 </section>
@@ -742,7 +773,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     <details><summary>Do my files leave my computer?</summary><p>No. No telemetry, no accounts, no analytics. Your stuff lives in a local folder, the server listens on localhost only, and every tool has its own permission switch in Settings.</p></details>
     <details><summary>What PC do I need?</summary><p>Any modern CPU runs small models. An NVIDIA GPU with 4&nbsp;GB or more makes it much snappier. Docker Desktop is only needed if you want it to run code in a sandbox.</p></details>
     <details><summary>What about Mac or Linux?</summary><p>Not yet — Windows 10/11 only. Linux and macOS are on the roadmap, and the installer already prepares per-platform builds.</p></details>
-    <details><summary>Is Max a subscription?</summary><p>No. One payment: €15 in early access, €25 once 1.0 ships. No fees, ever.</p></details>
+    <details><summary>Is Max a subscription?</summary><p>No — and there's nothing to pay yet. Max will be a single payment (€15 in early access, €25 at 1.0), never a subscription. <a href="#early-access">Join the waitlist</a> and we'll send one email when it opens.</p></details>
   </div>
 </section>
 
@@ -763,8 +794,8 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
   <div class="closer">
     <div>
-      <h2>Your next PC already listens. Make sure it's yours.</h2>
-      <p class="fine">Download the beta, pick a model, and ask your first question with the router off — just to prove the point.</p>
+      <h2>Ready when you are.</h2>
+      <p class="fine">Download the beta, pick a model, and ask your first question with the router off — just to see it work.</p>
       <div class="ctas"><a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Download the beta</a></div>
     </div>
     <div class="kv">
@@ -784,7 +815,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       <p>A local AI assistant for Windows. Your stuff never leaves your disk.</p>
     </div>
     <div>
-      <h4>Product</h4>
+      <h3 class="fth">Product</h3>
       <ul>
         <li><a href="download.html">Download</a></li>
         <li><a href="how-it-works.html">How it works</a></li>
@@ -794,7 +825,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       </ul>
     </div>
     <div>
-      <h4>Resources</h4>
+      <h3 class="fth">Resources</h3>
       <ul>
         <li><a href="blog/">Blog</a></li>
         <li><a href="faq.html">FAQ</a></li>
@@ -803,7 +834,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       </ul>
     </div>
     <div>
-      <h4>Community</h4>
+      <h3 class="fth">Community</h3>
       <ul>
         <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
         <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
@@ -818,7 +849,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 <script>
 (function () {
   var root = document.documentElement, btn = document.getElementById('theme-btn');
-  function paint(t) { root.setAttribute('data-theme', t); btn.textContent = (t === 'light') ? 'Dark' : 'Light'; try { localStorage.setItem('oasis-theme', t); } catch (_) {} }
+  function paint(t) { root.setAttribute('data-theme', t); if (!btn) return; btn.textContent = (t === 'light') ? 'Dark' : 'Light'; btn.setAttribute('aria-label', t === 'light' ? 'Switch to dark mode' : 'Switch to light mode'); var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.content = (t === 'light') ? '#f7f7f5' : '#111111'; try { localStorage.setItem('oasis-theme', t); } catch (_) {} }
   var saved = null;
   try { saved = localStorage.getItem('oasis-theme'); } catch (_) {}
   paint(saved === 'light' || saved === 'dark' ? saved : 'dark');
@@ -844,8 +875,21 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   burger.addEventListener('click', function () {
     var open = mnav.classList.toggle('open');
     burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (open) {
+      var first = mnav.querySelector('a');
+      if (first) first.focus();
+    }
   });
-  mnav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mnav.classList.remove('open'); }); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mnav.classList.contains('open')) {
+      mnav.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open menu');
+      burger.focus();
+    }
+  });
+  mnav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mnav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); burger.setAttribute('aria-label', 'Open menu'); }); });
 }());
 function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
 (function () {
@@ -854,7 +898,7 @@ function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ 
   function cached() { try { var c = JSON.parse(localStorage.getItem('oasis_stars')); if (c && Date.now() - c.t < 1800000) return c.v; } catch (_) {} return null; }
   var c = cached();
   if (c !== null) el.textContent = c >= 1000 ? (c / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(c);
-  fetch('https://api.github.com/repos/OASISLocal/O.A.S.I.S.').then(function (r) { return r.json(); }).then(function (j) {
+  fetch('https://api.github.com/repos/OASISLocal/O.A.S.I.S.', { signal: AbortSignal.timeout(8000) }).then(function (r) { return r.json(); }).then(function (j) {
     if (typeof j.stargazers_count === 'number') {
       var v = j.stargazers_count;
       el.textContent = v >= 1000 ? (v / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(v);
@@ -885,6 +929,68 @@ fetch('blog/posts.json').then(function (r) { return r.json(); }).then(function (
   var e = document.getElementById('blog-empty');
   if (e) e.textContent = 'The blog lives at /blog/.';
 });
+
+// Waitlist form — POSTs to the Cloudflare worker, nothing else.
+(function () {
+  var form = document.getElementById('wl-form');
+  if (!form) return;
+  var email = document.getElementById('wl-email');
+  var btn = document.getElementById('wl-btn');
+  var status = document.getElementById('wl-status');
+  var state = document.getElementById('wl-state');
+  function say(msg) {
+    status.hidden = false;
+    status.textContent = msg;
+  }
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var hp = form.querySelector('.hp');
+    if (hp && hp.value) { say("You're on the list. Check your inbox when we ship."); return; } // bots get a smile
+    var addr = (email.value || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)) {
+      say('That email doesn\u2019t look right — mind checking it?');
+      email.focus();
+      return;
+    }
+    var interests = Array.prototype.map.call(
+      form.querySelectorAll('input[name="interest"]:checked'),
+      function (c) { return c.value; }
+    );
+    btn.disabled = true;
+    btn.textContent = 'Joining…';
+    if (state) state.textContent = 'sending';
+    var ctrl = new AbortController();
+    var timer = setTimeout(function () { ctrl.abort(); }, 12000);
+    fetch('https://oasis-waitlist.sanitariorteba.workers.dev/collect', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: addr, interests: interests }),
+      signal: ctrl.signal
+    }).then(function (r) { return r.json().catch(function () { return {}; }); }).then(function (j) {
+      clearTimeout(timer);
+      if (j && j.ok) {
+        say(j.already
+          ? 'You were already on the list — we\u2019ll keep your new picks too.'
+          : 'You\u2019re on the list. One email when it\u2019s ready, nothing else.');
+        if (state) state.textContent = 'done';
+        btn.textContent = 'Joined ✓';
+      } else if (j && j.error === 'too_many_requests') {
+        say('Too many tries from here — give it an hour and try again.');
+        btn.disabled = false; btn.textContent = 'Notify me';
+        if (state) state.textContent = 'idle';
+      } else {
+        say('Hmm, that didn\u2019t go through. Check the address or try again in a bit.');
+        btn.disabled = false; btn.textContent = 'Notify me';
+        if (state) state.textContent = 'idle';
+      }
+    }).catch(function () {
+      clearTimeout(timer);
+      say('No connection to the list server. Check you\u2019re online and retry — or email us instead.');
+      btn.disabled = false; btn.textContent = 'Notify me';
+      if (state) state.textContent = 'idle';
+    });
+  });
+}());
 </script>
 </body>
 </html>

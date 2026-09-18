@@ -11,7 +11,7 @@
 }
 :root[data-theme="light"] {
   --bg: #f7f7f5; --surface: #ffffff; --panel: #f2f2ef; --hover: #ebebe7;
-  --ink: #111111; --ink-2: #3f3f3c; --ink-3: #6b6b6b;
+  --ink: #111111; --ink-2: #3f3f3c; --ink-3: #595959;
   --line: rgba(17,17,17,0.18); --strong: #111111;
   color-scheme: light;
 }
@@ -20,6 +20,7 @@ body { background: var(--bg); color: var(--ink-2); font-family: var(--body); fon
 ::selection { background: var(--ink); color: var(--bg); }
 a { color: var(--ink); }
 a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+[tabindex="-1"]:focus { outline: none; }
 .skip { position: absolute; top: -100px; left: 16px; z-index: 99; background: var(--ink); color: var(--bg); font-weight: 600; font-size: 14px; padding: 10px 18px; text-decoration: none; }
 .skip:focus { top: 8px; }
 code { font-family: var(--code); font-size: .85em; background: var(--panel); border: 1px solid var(--line); padding: 1px 6px; color: var(--ink-2); }
@@ -94,7 +95,7 @@ table.spec td:first-child { color: var(--ink); font-weight: 600; white-space: no
 .cap { font-size: 13.5px; color: var(--ink-3); margin-top: 12px; }
 footer { border-top: 2px solid var(--strong); margin-top: 72px; }
 .foot { max-width: 1160px; margin: 0 auto; padding: 44px 24px 28px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; }
-.foot h4 { font-family: var(--mono); font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 14px; }
+.foot h3.fth { font-family: var(--mono); font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 14px; }
 .foot ul { list-style: none; }
 .foot li { margin-bottom: 9px; }
 .foot a { color: var(--ink-2); text-decoration: none; font-size: 14px; }

@@ -3,7 +3,12 @@
   var root = document.documentElement, btn = document.getElementById('theme-btn');
   function paint(t) {
     root.setAttribute('data-theme', t);
-    if (btn) btn.textContent = (t === 'light') ? 'Dark' : 'Light';
+    if (btn) {
+      btn.textContent = (t === 'light') ? 'Dark' : 'Light';
+      btn.setAttribute('aria-label', t === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+    }
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = (t === 'light') ? '#f7f7f5' : '#111111';
     try { localStorage.setItem('oasis-theme', t); } catch (_) {}
   }
   var saved = null;
@@ -35,9 +40,26 @@
     burger.addEventListener('click', function () {
       var open = mnav.classList.toggle('open');
       burger.setAttribute('aria-expanded', String(open));
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      if (open) {
+        var first = mnav.querySelector('a');
+        if (first) first.focus();
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mnav.classList.contains('open')) {
+        mnav.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Open menu');
+        burger.focus();
+      }
     });
     mnav.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () { mnav.classList.remove('open'); });
+      a.addEventListener('click', function () {
+        mnav.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Open menu');
+      });
     });
   }
 }());

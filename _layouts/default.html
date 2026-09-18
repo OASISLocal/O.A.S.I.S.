@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>{% if page.title %}{{ page.title }} | {% endif %}OASIS Blog</title>
 
 <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
@@ -36,7 +36,7 @@ color-scheme: dark;
 }
 :root[data-theme="light"] {
 --bg-app: #f7f7f5; --bg-surface: #ffffff; --bg-panel: #f2f2ef;
---text: #111111; --text-2: #3f3f3c; --text-3: #6b6b6b;
+--text: #111111; --text-2: #3f3f3c; --text-3: #595959;
 --border: rgba(17,17,17,0.18); --border-strong: #111111;
 color-scheme: light;
 }
@@ -120,12 +120,12 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 </div>
 </nav>
 
-<main class="blog-main" id="main-content">
+<main class="blog-main" id="main-content" tabindex="-1">
 {{ content }}
 </main>
 
 <footer class="blog-footer">
-<a href="{{ '/blog/feed.xml' | relative_url }}">RSS feed</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Community</a>
+<a href="{{ '/' | relative_url }}">Home</a> · <a href="{{ '/blog/' | relative_url }}">Blog</a> · <a href="{{ '/faq.html' | relative_url }}">FAQ</a> · <a href="{{ '/about.html' | relative_url }}">About</a> · <a href="{{ '/blog/feed.xml' | relative_url }}">RSS feed</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Community</a>
 </footer>
 <script>
 (function(){var r=document.documentElement,b=document.getElementById('theme-btn');function p(t){r.setAttribute('data-theme',t);if(b)b.textContent=(t==='light')?'Dark':'Light';try{localStorage.setItem('oasis-theme',t);}catch(_){}}var s=null;try{s=localStorage.getItem('oasis-theme');}catch(_){}p(s==='light'||s==='dark'?s:'dark');if(b)b.addEventListener('click',function(){p(r.getAttribute('data-theme')==='light'?'dark':'light');});}());

@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Changelog — What's New in OASIS</title>
 <meta name="description" content="Every OASIS release, newest first: what shipped, what changed, what's beta. The full technical history lives in the repo CHANGELOG.">
 <meta name="robots" content="index, follow">
@@ -32,16 +32,12 @@
       <a href="blog/">Blog</a>
     </nav>
     <div style="display:flex;gap:8px;align-items:center;">
-      <button id="theme-btn">Light</button>
+      <button id="theme-btn" aria-label="Switch between light and dark">Light</button>
       <a class="btn sm" href="download.html">Download</a>
-      <button id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <nav class="mnav" id="mnav" aria-label="Mobile">
-    <a href="./">Home</a><a href="how-it-works.html">How it works</a><a href="requirements.html">Requirements</a>
-    <a href="download.html">Download</a><a href="comparison.html">Compare</a><a href="faq.html">FAQ</a>
-    <a href="blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
-  </nav>
+  <nav class="mnav" id="mnav" aria-label="Mobile"><noscript><a href="download.html">Download</a><a href="blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
 </header>
 
 <main id="content" class="wrap">
@@ -80,14 +76,14 @@
 <footer>
   <div class="foot">
     <div><span class="fb">■ OASIS</span><p>A local AI assistant for Windows. Your stuff never leaves your disk.</p></div>
-    <div><h4>Product</h4><ul>
+    <div><h3 class="fth">Product</h3><ul>
       <li><a href="download.html">Download</a></li><li><a href="how-it-works.html">How it works</a></li>
       <li><a href="requirements.html">Requirements</a></li><li><a href="comparison.html">Compare</a></li>
       <li><a href="features.html">Spec sheet</a></li></ul></div>
-    <div><h4>Resources</h4><ul>
+    <div><h3 class="fth">Resources</h3><ul>
       <li><a href="blog/">Blog</a></li><li><a href="faq.html">FAQ</a></li>
       <li><a href="changelog.html">Changelog</a></li><li><a href="about.html">About</a></li></ul></div>
-    <div><h4>Community</h4><ul>
+    <div><h3 class="fth">Community</h3><ul>
       <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
       <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
       <li><a href="privacy.html">Privacy</a></li></ul></div>
