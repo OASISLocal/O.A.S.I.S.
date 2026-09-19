@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Privacy — No Trackers, No Cloud, Your Disk</title>
-<meta name="description" content="OASIS privacy in one page: this site runs zero trackers, and the app is local-first by design — no telemetry, no accounts.">
+<title>Privacy — Local-First, Precisely Explained</title>
+<meta name="description" content="What stays on your PC and what can use the network: a per-feature Local/Network table for the OASIS app, plus the website's own data practices.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./privacy.html">
 <meta property="og:type" content="website">
@@ -41,8 +41,33 @@
 
 <main id="content" class="wrap">
   <p class="crumb"><a href="./">Home</a> / Privacy</p>
-  <h1>We can't leak what we never collect.</h1>
-  <p class="answer"><strong>This website runs zero trackers, and the OASIS app sends nothing anywhere.</strong> No analytics, no cookies, no accounts, no telemetry. Privacy here isn't a policy paragraph — it's that there's nowhere for your data to go.</p>
+  <h1>Local-first. Precisely.</h1>
+  <p class="answer"><strong>Local features run on your PC. Network-enabled features communicate externally only when you use or configure them.</strong> O.A.S.I.S. is offline-first, not network-blind. No analytics, no cookies, no accounts, no telemetry. This page separates what stays local from what can use the network.</p>
+
+  <hr class="rule">
+  <p class="kicker">Local or network</p>
+  <h2>Every feature, classified.</h2>
+  <div class="tbl">
+  <table class="spec">
+    <thead><tr><th>Function</th><th>Local</th><th>Network</th></tr></thead>
+    <tbody>
+      <tr><td>Local chat</td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td>Local model inference</td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td>Local memory</td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td>Local documents</td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td>Voice processing</td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td>Screen analysis</td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td>Web search</td><td class="n">No</td><td class="y">Yes</td></tr>
+      <tr><td>Online pages</td><td class="n">No</td><td class="y">Yes</td></tr>
+      <tr><td>Weather</td><td class="n">No</td><td class="y">Yes</td></tr>
+      <tr><td>External integrations</td><td class="n">Depends</td><td class="y">When enabled</td></tr>
+      <tr><td>External tool servers (MCP)</td><td class="n">No</td><td class="y">When enabled</td></tr>
+      <tr><td>Companion apps (Android, browser)</td><td class="y">Local network</td><td class="y">When configured</td></tr>
+      <tr><td>Model downloads</td><td class="n">No</td><td class="y">One-time</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="cap">Network tools only reach the internet when you invoke them. There is no silent background syncing.</p>
 
   <hr class="rule">
   <p class="kicker">This website</p>
@@ -56,15 +81,16 @@
   </ul>
 
   <hr class="rule">
-  <p class="kicker">The app</p>
-  <h2>What the app sends home: nothing. There is no home.</h2>
+  <p class="kicker">The desktop app</p>
+  <h2>What the app stores, and where.</h2>
   <ul class="plain">
-    <li><b>No telemetry, no crash reports, no accounts.</b> There is literally no endpoint that receives them.</li>
+    <li><b>No telemetry, no crash reports, no accounts.</b> There is no endpoint that receives them by default.</li>
     <li><b>Localhost only.</b> The app's internal server binds to your machine; nothing listens on your network.</li>
     <li><b>Per-tool permissions.</b> Microphone, screen and files each have their own switch in Settings — revocable anytime.</li>
     <li><b>Your data, your folder.</b> Models, memory and settings live in <code>%LOCALAPPDATA%\O.A.S.I.S.\</code>. Delete it and it's gone.</li>
-    <li><b>Encrypted backup, PIN lock, audit log</b> for whoever shares a machine or just sleeps better.</li>
-    <li><b>Network tools are the visible exception.</b> Web search, weather and optional integrations (Discord, mobile app) communicate with the outside — only when you use them, never silently.</li>
+    <li><b>Encrypted vault, PIN lock, action log</b> for whoever shares a machine or just sleeps better.</li>
+    <li><b>Optional diagnostics.</b> The only outbound channel that can be enabled is a diagnostics webhook you configure yourself.</li>
+    <li><b>App privacy ≠ website privacy.</b> This page describes both, separately, on purpose.</li>
   </ul>
   <p class="cap">The binding documents live with the product: <a href="https://github.com/OASISLocal/O.A.S.I.S./blob/main/legal/PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./blob/main/legal/EULA.md" target="_blank" rel="noopener noreferrer">EULA</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./blob/main/legal/THIRD-PARTY-NOTICES.md" target="_blank" rel="noopener noreferrer">Third-party notices</a></p>
 </main>

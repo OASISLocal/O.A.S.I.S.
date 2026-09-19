@@ -33,3 +33,8 @@ include:
 exclude:
   - README.md
   - "*.log"
+  - PRODUCT_TRUTH.md
+  - CLAIMS_AUDIT.md
+  - launch.json
+  - launch/
+  - sync-web.ps1

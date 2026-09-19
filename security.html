@@ -42,7 +42,7 @@
 <main id="content" tabindex="-1" class="wrap">
   <p class="crumb"><a href="./">Home</a> / Security</p>
   <h1>Control stays with you.</h1>
-  <p class="answer"><strong>An assistant that can touch your PC must prove it behaves.</strong> OASIS runs every action through three gates: a risk level on each tool, your per-tool permission, and mandatory confirmation for anything destructive. Telemetry ships off.</p>
+  <p class="answer"><strong>An assistant that can touch your PC must prove it behaves.</strong> OASIS runs every action through three gates: a risk level on each tool, your per-tool permission, and mandatory confirmation for anything destructive. Telemetry ships off. Security is a design goal, not a guarantee that every generated answer or action is correct.</p>
 
   <hr class="rule">
   <p class="kicker">Permissions</p>
@@ -75,6 +75,17 @@
   <p class="kicker">Telemetry</p>
   <h2>Off unless you say otherwise.</h2>
   <p>There is no usage tracking, no crash reporting, no account system. The only outbound channel that exists is an <b>optional</b> diagnostics webhook you configure yourself. Maximum-privacy mode is the default, not a toggle you have to find.</p>
+
+  <hr class="rule">
+  <p class="kicker">Known limitations</p>
+  <h2>What this is not.</h2>
+  <ul class="plain">
+    <li><b>Risk levels classify tools, not model output.</b> The model can still be wrong; confirmations protect actions, not answers.</li>
+    <li><b>The sandbox needs Docker.</b> Without Docker, code execution is simply unavailable — nothing else changes.</li>
+    <li><b>Permissions are local.</b> Anyone with access to your Windows account and the app data folder can change them.</li>
+    <li><b>Network tools are only as trustworthy as their provider</b> — that is why they are opt-in and never silent.</li>
+    <li><b>Beta software.</b> Report anything unexpected rather than assuming it is intended.</li>
+  </ul>
 
   <hr class="rule">
   <p class="kicker">Disclosure</p>

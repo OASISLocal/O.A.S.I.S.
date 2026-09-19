@@ -137,6 +137,7 @@ h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; lin
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
 .split.flip > div:first-child { order: 2; }
 .split h3 { font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); margin-bottom: 10px; }
+.tagmax { font-family: var(--mono); font-size: 10px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--strong); padding: 2px 7px; vertical-align: 3px; color: var(--ink); }
 .split p { font-size: 15.5px; margin-bottom: 12px; }
 .check { list-style: none; margin-top: 14px; }
 .check li { font-size: 14.5px; padding: 9px 0 9px 24px; position: relative; border-bottom: 1px solid var(--line); }
@@ -580,13 +581,14 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
   <div class="split flip" style="margin-top:64px;">
     <div>
-      <h3>It codes carefully.</h3>
+      <h3>It codes carefully. <span class="tagmax">Max</span></h3>
       <p>Paste an error and get an explanation in plain language. Ask for a script and it writes it, tests it in an isolated sandbox, and shows you the diff before touching your files. If it fails, it retries on its own — up to three times.</p>
       <ul class="check">
         <li><b>Explains repos and errors</b> without jargon.</li>
         <li><b>Runs in a sandbox first</b> — nothing executes on your system without your OK.</li>
         <li><b>Diffs before applying</b>: review every change line by line.</li>
       </ul>
+      <p class="cap">Coding, execution and the sandbox are part of <b>Max</b> (Docker required). Personal still explains errors and answers coding questions.</p>
     </div>
     <div class="mock" role="img" aria-label="Code change proposed by the assistant">
       <div class="mock-bar"><span>code · isolated sandbox</span><span>attempt 2 of 3</span></div>
@@ -601,7 +603,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
   <div class="split" style="margin-top:64px;">
     <div>
-      <h3>It sees your screen — only when asked.</h3>
+      <h3>It sees your screen — only when asked. <span class="tagmax">Max</span></h3>
       <p>OASIS looks only when you tell it to — and understands what it sees: it describes images, reads your screen, clicks where you point. It also drives your PC: volume, windows, Spotify, timers, clipboard. Every permission (microphone, screen, files) has its own switch in Settings.</p>
       <ul class="check">
         <li><b>Local vision</b>: describes your screen or any image.</li>
@@ -620,7 +622,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
   <div class="split flip" style="margin-top:64px;">
     <div>
-      <h3>It handles the boring parts on a schedule.</h3>
+      <h3>It handles the boring parts on a schedule. <span class="tagmax">Max</span></h3>
       <p>Workflows in plain words ("every day at 9"), proactive nudges when it spots something useful, and little skills that learn your phrases. When you leave the house, take it with you: your own Discord or Telegram bot with voice, an Android app over the local network, and a browser extension.</p>
       <ul class="check">
         <li><b>Scheduled workflows</b> plus proactive notifications — capped per day so they never nag.</li>
@@ -711,7 +713,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       </ul>
     </div>
   </div>
-  <p class="cap">*Always asks first — high-impact tools require explicit confirmation. …plus more, up to 80+. The exact inventory lives in the code — and the <a href="features.html">full spec sheet is here</a>.</p>
+  <p class="cap">*Always asks first — high-impact tools require explicit confirmation. 80+ tools across six categories; the exact inventory lives in the code, and the <a href="features.html">full spec sheet is here</a>.</p>
 </section>
 
 <!-- ============ PERMISSIONS ============ -->
@@ -735,7 +737,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     <tbody>
       <tr><td>Low</td><td>Read system info, search files</td><td class="y">Automatic</td></tr>
       <tr><td>Medium</td><td>Write files, clipboard</td><td class="y">Your setting: allow, deny or ask</td></tr>
-      <tr><td>High</td><td>Run code, run workflows</td><td class="y">Confirmation required</td></tr>
+      <tr><td>High</td><td>Run code, run workflows (Max)</td><td class="y">Confirmation required</td></tr>
       <tr><td>Critical</td><td>Delete files, shut down</td><td class="y">Explicit confirmation, every time</td></tr>
     </tbody>
   </table>
@@ -754,9 +756,9 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     <div><b>Llama 3.2</b><span>ready to download</span></div>
     <div><b>Gemma 4</b><span>recommended</span></div>
     <div><b>Qwen 2.5</b><span>lightest, fastest</span></div>
-    <div><b>Any GGUF</b><span>DeepSeek · Phi · Mistral…</span></div>
+    <div><b>GGUF-compatible</b><span>DeepSeek · Phi · Mistral…</span></div>
   </div>
-  <p class="cap">O.A.S.I.S. is designed around local models, not one hosted AI service. <a href="requirements.html">Which model fits your PC? →</a></p>
+  <p class="cap">GGUF is the model file format. O.A.S.I.S. supports compatible GGUF models — not every GGUF build is guaranteed to run. <a href="requirements.html">Which model fits your PC? →</a></p>
 </section>
 
 <!-- ============ USE CASES ============ -->
@@ -797,22 +799,22 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 <section class="sec" id="compare">
   <div class="sec-head">
     <p class="kicker">Why local</p>
-    <h2>OASIS vs. cloud assistants.</h2>
+    <h2>O.A.S.I.S. vs. typical cloud assistants.</h2>
   </div>
   <div class="tbl">
   <table class="vs">
-    <thead><tr><th></th><th class="us">OASIS</th><th>Cloud assistants</th></tr></thead>
+    <thead><tr><th></th><th class="us">O.A.S.I.S.</th><th>Typical cloud assistants</th></tr></thead>
     <tbody>
-      <tr><td>Works with no internet</td><td class="y">Yes</td><td class="n">No</td></tr>
-      <tr><td>No account, no subscription</td><td class="y">Yes</td><td class="n">No</td></tr>
-      <tr><td>Your files stay on your PC*</td><td class="y">Yes</td><td class="n">No</td></tr>
-      <tr><td>Controls your PC directly</td><td class="y">Yes</td><td class="n">Limited</td></tr>
+      <tr><td>Local features work with no internet</td><td class="y">Yes</td><td class="n">Usually no</td></tr>
+      <tr><td>Account required</td><td class="y">No</td><td class="n">Usually</td></tr>
+      <tr><td>Your files processed on your PC*</td><td class="y">Yes</td><td class="n">Usually cloud</td></tr>
+      <tr><td>Controls your PC directly</td><td class="y">Yes</td><td class="n">Depends on provider</td></tr>
       <tr><td>Speaks Spanish offline</td><td class="y">Yes</td><td class="n">Online only</td></tr>
-      <tr><td>You pay once, not monthly</td><td class="y">Yes</td><td class="n">Monthly</td></tr>
+      <tr><td>Payment model</td><td class="y">Free / one-time</td><td class="n">Subscription commonly used</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="cap">*Local workflows stay on your PC. Network-dependent tools (web search, weather, optional integrations) only communicate when you use them. Cloud assistants vary — this compares typical defaults.</p>
+  <p class="cap">*Local features stay on your PC. Network-enabled features (web search, weather, optional integrations) communicate externally only when you use or configure them. Typical cloud assistants vary by provider — this compares common defaults, not a specific product.</p>
 </section>
 
 <!-- ============ PRICING ============ -->
@@ -830,30 +832,54 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       <ul>
         <li>Chat and voice, no message limits</li>
         <li>Your choice of AI models</li>
-        <li>Screen and image vision</li>
-        <li>Everyday PC control</li>
         <li>Memory and documents</li>
-        <li>Simple routines</li>
+        <li>Everyday PC control</li>
+        <li>Projects (up to 3)</li>
       </ul>
       <a class="btn ghost" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Download free</a>
     </div>
     <div class="price hot">
-      <div class="pn">OASIS Max · early access</div>
+      <div class="pn">O.A.S.I.S. Max · early access</div>
       <div class="pt">€15 <small>one-time → €25 at 1.0</small></div>
       <p class="fine">One payment, lifetime access.</p>
       <ul>
         <li>Everything in Personal, plus:</li>
+        <li>Vision and screen analysis</li>
         <li>Full coding and isolated sandbox</li>
-        <li>Persistent memory, no monthly caps</li>
-        <li>Scheduled conditional routines</li>
+        <li>Workflows and scheduled automations</li>
+        <li>External tool servers (MCP)</li>
         <li>Discord and Telegram with voice</li>
         <li>Android app and browser extension</li>
-        <li>External tool servers</li>
-        <li>Voice cloning and secure local backup</li>
+        <li>Voice cloning and advanced voice</li>
+        <li>Advanced memory (no caps) and semantic file map</li>
       </ul>
       <a class="btn" href="#early-access">Join the waitlist</a>
     </div>
   </div>
+  <h3 class="fth" style="margin:34px 0 0;">Personal vs Max — full matrix</h3>
+  <div class="tbl" style="margin-top:12px;">
+  <table class="vs">
+    <thead><tr><th>Feature</th><th class="us">Personal</th><th>Max</th></tr></thead>
+    <tbody>
+      <tr><td>Local chat</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>Voice (speech in / out)</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>Memory and documents (basic)</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>Everyday PC control</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>Projects</td><td class="y">Up to 3</td><td class="y">Unlimited</td></tr>
+      <tr><td>Vision / screen analysis</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>Coding (full code agent)</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>Isolated Docker sandbox</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>Workflows and scheduling</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>Discord / Telegram</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>Android app</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>Browser extension</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>External tool servers (MCP)</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>Voice cloning / advanced voice</td><td class="n">—</td><td class="y">✓</td></tr>
+      <tr><td>Advanced memory + semantic file map</td><td class="n">—</td><td class="y">✓</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="cap">Source of truth: the app's own feature catalog. Max is not on sale yet — <a href="#early-access">join the waitlist</a>.</p>
 </section>
 
 <!-- ============ EARLY ACCESS ============ -->
@@ -891,7 +917,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     <h2>What people ask before installing.</h2>
   </div>
   <div class="faq">
-    <details><summary>Does it really work offline?</summary><p>Yes. After installing the app and downloading a model, unplug your router and try it: chat, dictate, ask it to remember something. Everything stays the same — because nothing ever left your PC.</p></details>
+    <details><summary>Does it really work offline?</summary><p>Local chat, voice, memory and other local workflows keep working without an internet connection once the models are installed. Features such as web search, weather and external integrations need network access when you use them — offline-first, not network-blind.</p></details>
     <details><summary>Do my files leave my computer?</summary><p>No. No telemetry, no accounts, no analytics. Your stuff lives in a local folder, the server listens on localhost only, and every tool has its own permission switch in Settings.</p></details>
     <details><summary>What PC do I need?</summary><p>Any modern CPU runs small models. An NVIDIA GPU with 4&nbsp;GB or more makes it much snappier. Docker Desktop is only needed if you want it to run code in a sandbox.</p></details>
     <details><summary>What about Mac or Linux?</summary><p>Not yet — Windows 10/11 only. Linux and macOS are on the roadmap, and the installer already prepares per-platform builds.</p></details>
@@ -919,9 +945,9 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
   <div class="closer">
     <div>
-      <h2>Ready when you are.</h2>
-      <p class="fine">Your computer is ready. Meet the AI assistant that lives on your PC.</p>
-      <div class="ctas"><a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Download for Windows</a><a class="btn ghost" href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">View on GitHub</a></div>
+      <h2>Your AI can live on your PC.</h2>
+      <p class="fine">Free beta. Windows 10/11. No account required. Local-first — network features are optional.</p>
+      <div class="ctas"><a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Download O.A.S.I.S.</a><a class="btn ghost" href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">View GitHub</a></div>
     </div>
     <div class="kv">
       <div><span>Plan</span><b>Personal, free</b></div>
