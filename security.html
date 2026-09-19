@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Security — How OASIS Handles Permissions &amp; Risk</title>
+<title>Security — How O.A.S.I.S. Handles Permissions &amp; Risk</title>
 <meta name="description" content="How OASIS keeps control in your hands: per-tool permissions, mandatory confirmation for risky actions, isolated code sandbox, encrypted local vault, and no telemetry by default.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./security.html">
@@ -13,7 +13,8 @@
 <meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./security.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="assets/site.css">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 </head>
@@ -21,11 +22,12 @@
 <a href="#content" class="skip">Skip to content</a>
 <header class="top">
   <div class="top-in">
-    <a class="brand" href="./"><i></i>OASIS <small>v0.2.0 beta</small></a>
+    <a class="brand" href="./"><i></i>O.A.S.I.S. <small>v0.2.0 beta</small></a>
     <nav class="links" aria-label="Primary">
       <a href="./">Product</a>
       <a href="how-it-works.html">How it works</a>
-      <a href="./#tools">Tools</a>
+      <a href="tools.html">Tools</a>
+      <a href="models.html">Models</a>
       <a href="privacy.html">Privacy</a>
       <a href="blog/">Journal</a>
       <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -47,7 +49,7 @@
   <hr class="rule">
   <p class="kicker">Permissions</p>
   <h2>Allow, deny, or ask — per tool.</h2>
-  <p>Each of the 80+ tools declares what it can touch. You set each one to <b>allow</b>, <b>deny</b>, or <b>ask every time</b>, in Settings → Permissions. Microphone, screen and files have their own master switches on top.</p>
+  <p>Each of the 100+ tools declares what it can touch. You set each one to <b>allow</b>, <b>deny</b>, or <b>ask every time</b>, in Settings → Permissions. Microphone, screen and files have their own master switches on top.</p>
   <div class="tbl">
   <table class="spec">
     <thead><tr><th>Level</th><th>Example tools</th><th>Behavior</th></tr></thead>
@@ -59,7 +61,7 @@
     </tbody>
   </table>
   </div>
-  <p class="cap">Nine high-impact tools (<span class="mono">custom_command, system_control, kill_process, system_cleanup, clipboard_control, code_agent, python_sandbox, file_manager, run_workflow</span>) can never run silently — even if a permission says otherwise.</p>
+  <p class="cap">Ten high-impact tools (<span class="mono">custom_command, system_control, kill_process, system_cleanup, clipboard_control, code_agent, python_sandbox, file_manager, run_workflow, git_ops</span>) can never run silently — even if a permission says otherwise.</p>
 
   <hr class="rule">
   <p class="kicker">Sandbox</p>

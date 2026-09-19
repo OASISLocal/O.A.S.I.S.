@@ -12,12 +12,13 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
-<meta property="og:title" content="OASIS — The AI assistant that lives on your PC">
+<meta property="og:title" content="O.A.S.I.S. — The AI assistant that lives on your PC">
 <meta property="og:description" content="Talk or type in Spanish or English. OASIS tidies files, summarizes PDFs, remembers things, explains code and controls your PC — all offline. Free for Windows.">
 <meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
@@ -413,11 +414,12 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
 <header class="top">
   <div class="top-in">
-    <a class="brand" href="./"><i></i>OASIS <small>v0.2.0 beta</small></a>
+    <a class="brand" href="./"><i></i>O.A.S.I.S. <small>v0.2.0 beta</small></a>
     <nav class="links" aria-label="Primary">
       <a href="./" aria-current="page">Product</a>
       <a href="how-it-works.html">How it works</a>
-      <a href="./#tools">Tools</a>
+      <a href="tools.html">Tools</a>
+      <a href="models.html">Models</a>
       <a href="privacy.html">Privacy</a>
       <a href="blog/">Journal</a>
       <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -489,6 +491,26 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   <p class="cap">The actual app: sidebar navigation, one-click model picker, tool calls with your approval, cited sources, and a status bar that shows where everything runs. Demo figures are illustrative examples, not benchmarks. Shortcuts: <kbd>Ctrl K</kbd> commands · <kbd>Ctrl ⇧ V</kbd> voice · <kbd>/</kbd> tools.</p>
 </section>
 
+<!-- ============ OFFLINE DEMO ============ -->
+<section class="sec" id="offline">
+  <div class="sec-head">
+    <p class="kicker">Offline</p>
+    <h2>Pull the plug. It keeps working.</h2>
+    <p>Local features do not need the network. Network features do — and they only ask for it when you use them.</p>
+  </div>
+  <div class="mock" role="img" aria-label="Offline demo: network disconnected, local features still working">
+    <div class="mock-bar"><span>network: disconnected</span><span>engine: local</span></div>
+    <div class="mock-body">
+      <div class="dstep done"><span>chat</span><b>Working — local model</b></div>
+      <div class="dstep done" style="margin-top:8px;"><span>voice</span><b>Working — on-device speech</b></div>
+      <div class="dstep done" style="margin-top:8px;"><span>memory</span><b>Working — local database</b></div>
+      <div class="dstep done" style="margin-top:8px;"><span>local files &amp; PC control</span><b>Working</b></div>
+      <div class="dstep perm" style="margin-top:8px;"><span>web search</span><b>Needs network — only when you ask</b></div>
+    </div>
+  </div>
+  <p class="cap">Exactly why we say offline-first, not network-blind. <a href="privacy.html">See the full Local / Network table →</a></p>
+</section>
+
 <!-- ============ WHAT ELSE ============ -->
 <section class="sec" id="tour">
   <div class="sec-head">
@@ -496,7 +518,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     <h2>More than chat: the full toolbox.</h2>
   </div>
   <div class="else">
-    It can <b>take notes</b>, <b>remind you about appointments</b>, <b>add up electricity bills</b> from a folder of PDFs, <b>explain a Python traceback</b> in plain words, <b>lower the volume</b> when you join a call, <b>transcribe a meeting</b>, <b>find any file</b>, <b>control Spotify</b>, <b>translate a paragraph</b>, <b>read your screen</b>, <b>test code in a sandbox</b> before touching your files, and <b>brief you every morning at 9</b>. And much more — <b>80+ tools</b> and counting.
+    It can <b>take notes</b>, <b>remind you about appointments</b>, <b>add up electricity bills</b> from a folder of PDFs, <b>explain a Python traceback</b> in plain words, <b>lower the volume</b> when you join a call, <b>transcribe a meeting</b>, <b>find any file</b>, <b>control Spotify</b>, <b>translate a paragraph</b>, <b>read your screen</b>, <b>test code in a sandbox</b> before touching your files, and <b>brief you every morning at 9</b>. And much more — <b>100+ tools</b> and counting.
   </div>
 </section>
 
@@ -577,12 +599,14 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       </ul>
       <p class="cap" style="margin-top:12px;"><a href="how-it-works.html">See how memory works →</a></p>
     </div>
-    <div class="mock" role="img" aria-label="Saved memories with their sources">
+    <div class="mock" role="img" aria-label="Memory demo: saving a preference, then recalling it">
       <div class="mock-bar"><span>memory · local</span><span>on your disk</span></div>
       <div class="mock-body">
-        <div class="fact"><span>fact · high confidence</span>Dentist checkup every 6 months, last reminder in March.</div>
-        <div class="fact"><span>document · power_bill_q2.pdf</span>Q2 power: €184.20 — summed from 3 bills.</div>
-        <div class="fact"><span>note · dictated by voice</span>Buy coffee-machine filters before Friday.</div>
+        <div class="msg user" style="max-width:100%"><small>you</small>Remember that I prefer Spanish for reminders.</div>
+        <div class="msg ai" style="max-width:100%;margin-top:10px"><small>oasis</small>Saved to memory.</div>
+        <div class="msg user" style="max-width:100%;margin-top:10px"><small>you</small>When is my next reminder?</div>
+        <div class="msg ai" style="max-width:100%;margin-top:10px"><small>oasis</small>Tomorrow at 9:00 — in Spanish, as you asked.</div>
+        <p class="cap" style="margin-top:14px;">memory → local database · <span class="mono">searchable by meaning</span></p>
       </div>
     </div>
   </div>
@@ -652,7 +676,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 <section class="sec" id="tools">
   <div class="sec-head">
     <p class="kicker">Under the hood</p>
-    <h2>80+ tools, and what they do.</h2>
+    <h2>100+ tools, and what they do.</h2>
     <p>Each one declares its risk level and asks permission before acting. Dangerous ones — deleting, shutting down, running code — never move without your explicit OK.</p>
   </div>
   <div class="groups">
@@ -721,7 +745,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
       </ul>
     </div>
   </div>
-  <p class="cap">*Always asks first — high-impact tools require explicit confirmation. 80+ tools across six categories; the exact inventory lives in the code, and the <a href="features.html">full spec sheet is here</a>.</p>
+  <p class="cap">*Always asks first — high-impact tools require explicit confirmation. 100+ tools across seven categories; the exact inventory lives in the code, and the <a href="features.html">full spec sheet is here</a>.</p>
 </section>
 
 <!-- ============ PERMISSIONS ============ -->
@@ -729,7 +753,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   <div class="sec-head">
     <p class="kicker">Permissions</p>
     <h2>Your AI should ask before it acts.</h2>
-    <p>Every tool carries a risk level. Low-risk reads run automatically; everything else follows your per-tool setting — allow, deny, or ask. Nine high-impact tools always ask, no matter what.</p>
+    <p>Every tool carries a risk level. Low-risk reads run automatically; everything else follows your per-tool setting — allow, deny, or ask. Ten high-impact tools always ask, no matter what.</p>
   </div>
   <div class="pdem">
     <div class="mock" role="img" aria-label="Permission dialog asking to create a file">
@@ -761,7 +785,7 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     </tbody>
   </table>
   </div>
-  <p class="cap">Nine high-impact tools can never run silently: <span class="mono">custom_command, system_control, kill_process, system_cleanup, clipboard_control, code_agent, python_sandbox, file_manager, run_workflow</span>. <a href="security.html">How security works →</a></p>
+  <p class="cap">Ten high-impact tools can never run silently: <span class="mono">custom_command, system_control, kill_process, system_cleanup, clipboard_control, code_agent, python_sandbox, file_manager, run_workflow, git_ops</span>. <a href="security.html">How security works →</a></p>
 </section>
 
 <!-- ============ MODELS ============ -->

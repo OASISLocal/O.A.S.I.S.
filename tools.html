@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Tools — The O.A.S.I.S. Inventory, With Permissions</title>
+<meta name="description" content="The full O.A.S.I.S. tool inventory: 100+ tools grouped by category, each with its permission level, whether it's Personal or Max, and whether it stays local.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./tools.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tools — The O.A.S.I.S. Inventory, With Permissions">
+<meta property="og:description" content="100+ tools grouped by category, each with permission level, plan and local/network status.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./tools.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="assets/site.css">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://oasislocal.github.io/O.A.S.I.S./"},
+{"@type":"ListItem","position":2,"name":"Tools","item":"https://oasislocal.github.io/O.A.S.I.S./tools.html"}]}
+</script>
+</head>
+<body>
+<a href="#content" class="skip">Skip to content</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>O.A.S.I.S. <small>v0.2.0 beta</small></a>
+    <nav class="links" aria-label="Primary">
+      <a href="./">Product</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="tools.html" aria-current="page">Tools</a>
+      <a href="models.html">Models</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="blog/">Journal</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn" aria-label="Switch between light and dark">Light</button>
+      <a class="btn sm" href="download.html">Download</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Mobile"><noscript><a href="download.html">Download</a><a href="blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
+</header>
+
+<main id="content" tabindex="-1" class="wrap wide" style="max-width:1000px;">
+  <div class="wrap" style="padding:0;">
+  <p class="crumb"><a href="./">Home</a> / Tools</p>
+  <h1>100+ tools, and exactly how each behaves.</h1>
+  <p class="answer"><strong>Every tool declares a risk level, a plan and whether it stays on your PC.</strong> Low-risk reads run automatically. High-impact tools always ask for confirmation, in every plan. <span class="mono">P</span> = Personal · <span class="mono">M</span> = Max · <span class="mono">Net</span> = uses the network when you invoke it.</p>
+  </div>
+
+  <h2 class="fth">Full inventory by category</h2>
+
+  <div class="tbl">
+  <table class="spec">
+    <thead><tr><th>Control your PC</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <tbody>
+      <tr><td>system_info</td><td>CPU, RAM, disk, network stats</td><td>Low</td><td>P</td></tr>
+      <tr><td>wifi_info</td><td>Wi-Fi SSID, signal, IP</td><td>Low</td><td>P</td></tr>
+      <tr><td>volume_control</td><td>System volume</td><td>Medium</td><td>P</td></tr>
+      <tr><td>app_control</td><td>Open applications</td><td>Medium</td><td>P</td></tr>
+      <tr><td>media_control</td><td>Play / pause / next / previous</td><td>Medium</td><td>P</td></tr>
+      <tr><td>window_manager</td><td>Arrange, move, minimise windows</td><td>Medium</td><td>P</td></tr>
+      <tr><td>screenshot</td><td>Capture the screen</td><td>Medium</td><td>P</td></tr>
+      <tr><td>battery</td><td>Battery status</td><td>Low</td><td>P</td></tr>
+      <tr><td>list_processes</td><td>List running processes</td><td>Low</td><td>P</td></tr>
+      <tr><td>clipboard_control</td><td>Read / write clipboard</td><td>High</td><td>P</td></tr>
+      <tr><td>system_control</td><td>Sleep, lock, restart, shut down</td><td>Critical</td><td>P</td></tr>
+      <tr><td>kill_process</td><td>Stop a process</td><td>Critical</td><td>P</td></tr>
+      <tr><td>system_cleanup</td><td>Clean temp files, recycle bin</td><td>Critical</td><td>P</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tbl">
+  <table class="spec">
+    <thead><tr><th>Work with files</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <tbody>
+      <tr><td>file_search</td><td>Find files by name</td><td>Low</td><td>P</td></tr>
+      <tr><td>search_files</td><td>Search inside files</td><td>Low</td><td>P</td></tr>
+      <tr><td>read_file_lines</td><td>Read specific lines</td><td>Low</td><td>P</td></tr>
+      <tr><td>list_directory</td><td>List a folder</td><td>Low</td><td>P</td></tr>
+      <tr><td>get_file_metadata</td><td>Size, dates, permissions</td><td>Low</td><td>P</td></tr>
+      <tr><td>file_analyzer</td><td>Analyse file content</td><td>Low</td><td>P</td></tr>
+      <tr><td>ocr_read</td><td>Text from images or screenshots</td><td>Low</td><td>P</td></tr>
+      <tr><td>zip</td><td>Compress / extract archives</td><td>Medium</td><td>P</td></tr>
+      <tr><td>write_file / edit_file / apply_patch</td><td>Create or modify files</td><td>Medium</td><td>M*</td></tr>
+      <tr><td>replace_in_files</td><td>Bulk find &amp; replace</td><td>Medium</td><td>M*</td></tr>
+      <tr><td>file_manager</td><td>Copy, move, rename, delete</td><td>Critical</td><td>P</td></tr>
+      <tr><td>smart_file_organizer</td><td>Tidy folders by rules</td><td>Medium</td><td>M</td></tr>
+      <tr><td>document_tool</td><td>Read PDF / DOCX / XLSX</td><td>Low</td><td>P</td></tr>
+      <tr><td>file_map</td><td>Semantic map of a codebase</td><td>Low</td><td>M</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tbl">
+  <table class="spec">
+    <thead><tr><th>Build &amp; code</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <tbody>
+      <tr><td>code_generator</td><td>Generate code via the model</td><td>Low</td><td>P</td></tr>
+      <tr><td>git_status</td><td>Repo state, log, diff</td><td>Low</td><td>P</td></tr>
+      <tr><td>repo_map</td><td>Map a repository</td><td>Low</td><td>M</td></tr>
+      <tr><td>code_agent</td><td>Write, test and retry code</td><td>High</td><td>M</td></tr>
+      <tr><td>python_sandbox</td><td>Run Python isolated</td><td>High</td><td>M</td></tr>
+      <tr><td>sandbox_run</td><td>Run inside the Docker sandbox</td><td>High</td><td>M</td></tr>
+      <tr><td>verify_code</td><td>Check a result before applying</td><td>Low</td><td>M</td></tr>
+      <tr><td>git_ops</td><td>Commit, branch, checkpoint</td><td>High</td><td>M</td></tr>
+      <tr><td>opencode</td><td>Delegate to OpenCode</td><td>High</td><td>M</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tbl">
+  <table class="spec">
+    <thead><tr><th>Connect <span class="mono">Net</span></th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <tbody>
+      <tr><td>internet_search</td><td>Web search + scrape</td><td>Low</td><td>P</td></tr>
+      <tr><td>open_url</td><td>Open a page in the browser</td><td>Low</td><td>P</td></tr>
+      <tr><td>open_maps</td><td>Maps + geocoding</td><td>Low</td><td>P</td></tr>
+      <tr><td>web_translate</td><td>Translate text</td><td>Low</td><td>P</td></tr>
+      <tr><td>browser_tabs</td><td>List / open / close tabs</td><td>Medium</td><td>P</td></tr>
+      <tr><td>weather</td><td>Current weather</td><td>Low</td><td>P</td></tr>
+      <tr><td>email / email_assistant</td><td>Send and search mail</td><td>High</td><td>P</td></tr>
+      <tr><td>calendar / calendar_manage</td><td>Read and edit events</td><td>Medium</td><td>P</td></tr>
+      <tr><td>list_mcp_tools</td><td>External MCP tool servers</td><td>High</td><td>M</td></tr>
+      <tr><td>hermes</td><td>Hermes agent integration</td><td>High</td><td>M</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tbl">
+  <table class="spec">
+    <thead><tr><th>Remember</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <tbody>
+      <tr><td>manage_memory</td><td>Save / recall / list / delete memories</td><td>Medium</td><td>P</td></tr>
+      <tr><td>search_memory</td><td>Semantic search over memory</td><td>Low</td><td>P</td></tr>
+      <tr><td>notes / create_note</td><td>Quick notes</td><td>Medium</td><td>P</td></tr>
+      <tr><td>todos</td><td>Task list</td><td>Medium</td><td>P</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tbl">
+  <table class="spec">
+    <thead><tr><th>Automate</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <tbody>
+      <tr><td>set_timer</td><td>Timers with spoken alerts</td><td>Low</td><td>P</td></tr>
+      <tr><td>reminder</td><td>Reminders</td><td>Low</td><td>P</td></tr>
+      <tr><td>daily_brief</td><td>Morning briefing</td><td>Low</td><td>P</td></tr>
+      <tr><td>notify</td><td>Proactive notification</td><td>Low</td><td>P</td></tr>
+      <tr><td>create_workflow / run_workflow</td><td>Build and run workflows</td><td>High</td><td>M</td></tr>
+      <tr><td>save_plan_as_workflow</td><td>Turn a plan into a routine</td><td>High</td><td>M</td></tr>
+      <tr><td>focus_mode</td><td>Focus / do-not-disturb</td><td>Low</td><td>P</td></tr>
+      <tr><td>productivity_status</td><td>Productivity metrics</td><td>Low</td><td>P</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tbl">
+  <table class="spec">
+    <thead><tr><th>See &amp; speak</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <tbody>
+      <tr><td>vision_screen</td><td>Describe the screen</td><td>Medium</td><td>M</td></tr>
+      <tr><td>screen_map</td><td>Detect interactive elements</td><td>Medium</td><td>M</td></tr>
+      <tr><td>screen_click / _region / _text</td><td>Click by area, image or OCR</td><td>High</td><td>M</td></tr>
+      <tr><td>ocr_read</td><td>Read text from screen</td><td>Low</td><td>P</td></tr>
+      <tr><td>transcribe_meeting</td><td>Transcribe audio</td><td>Medium</td><td>P</td></tr>
+      <tr><td>type_text / key_press / scroll</td><td>Send input</td><td>High</td><td>M</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="wrap" style="padding:0;">
+  <p class="cap">*File writes are Max where they are part of the code agent; basic saving is covered by your permission setting. The exact registry is the source of truth (<span class="mono">core/tools/registry.py</span>); this page mirrors it. Nothing here runs without your permission model: <a href="security.html">read how security works →</a></p>
+  <div class="ctas">
+    <a class="btn" href="download.html">Download O.A.S.I.S.</a>
+    <a class="btn ghost" href="how-it-works.html">How it works</a>
+  </div>
+  </div>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ O.A.S.I.S.</span><p>The AI assistant that lives on your PC. Local features stay on your PC.</p></div>
+    <div><h3 class="fth">Product</h3><ul>
+      <li><a href="download.html">Download</a></li><li><a href="how-it-works.html">How it works</a></li>
+      <li><a href="tools.html">Tools</a></li><li><a href="models.html">Models</a></li>
+      <li><a href="requirements.html">Requirements</a></li><li><a href="comparison.html">Compare</a></li></ul></div>
+    <div><h3 class="fth">Resources</h3><ul>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentation</a></li>
+      <li><a href="blog/">Journal</a></li><li><a href="./#status">Roadmap</a></li>
+      <li><a href="changelog.html">Changelog</a></li></ul></div>
+    <div><h3 class="fth">Trust &amp; Community</h3><ul>
+      <li><a href="privacy.html">Privacy</a></li><li><a href="security.html">Security</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li></ul></div>
+  </div>
+  <div class="base"><span>© O.A.S.I.S. · v0.2.0 · beta</span><span>no trackers on this page</span></div>
+</footer>
+<div class="sticky-cta"><a class="btn sm" href="download.html">Download for Windows</a></div>
+<script src="assets/site.js"></script>
+</body>
+</html>

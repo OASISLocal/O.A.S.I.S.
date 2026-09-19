@@ -11,8 +11,8 @@
 | Windows 10/11 | VERIFIED | `installer/oasis.nsi` | 2026-09-19 | x64 only |
 | Free beta, no account | VERIFIED | `config.py`, installer | 2026-09-19 | no account system exists |
 | Works offline (local features) | QUALIFIED | `data_flow_audit.md` | 2026-09-19 | after model download; network tools excepted |
-| 80+ tools | VERIFIED | `registry.py` (81 calls) | 2026-09-19 | 5 conditional |
-| 9 high-impact tools | VERIFIED | `registry.py:166` | 2026-09-19 | always confirm |
+| 100+ tools | VERIFIED | `registry.py` (101 calls) | 2026-09-19 | 5 conditional |
+| 10 high-impact tools | VERIFIED | `registry.py:188` | 2026-09-19 | always confirm |
 | Voice in Spanish/English | VERIFIED | `core/voice.py`, `config.tts_language` | 2026-09-19 | Whisper + Kokoro |
 | Screen analysis only when asked | VERIFIED | `vision_screen` tool is on-demand | 2026-09-19 | no background watcher for vision |
 | Coding requires Max | VERIFIED | `Feature.CODE_MODE` | 2026-09-19 | explanations stay Personal |

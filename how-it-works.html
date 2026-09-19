@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>How OASIS Works — 100% Local AI on Your PC</title>
-<meta name="description" content="OASIS runs entirely on your PC: your voice is transcribed on-device, a local AI model thinks, and 80 tools act. No servers, no API calls. See the full data flow.">
+<title>How O.A.S.I.S. Works — Local AI on Your PC</title>
+<meta name="description" content="OASIS runs entirely on your PC: your voice is transcribed on-device, a local AI model thinks, and 100 tools act. No servers, no API calls. See the full data flow.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./how-it-works.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="How OASIS Works — 100% Local AI on Your PC">
-<meta property="og:description" content="Your voice, a local AI model, and 80 PC tools — all inside one box labelled your computer. Local by default.">
+<meta property="og:title" content="How O.A.S.I.S. Works — 100% Local AI on Your PC">
+<meta property="og:description" content="Your voice, a local AI model, and 100 PC tools — all inside one box labelled your computer. Local by default.">
 <meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./how-it-works.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="assets/site.css">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 </head>
@@ -21,11 +22,12 @@
 <a href="#content" class="skip">Skip to content</a>
 <header class="top">
   <div class="top-in">
-    <a class="brand" href="./"><i></i>OASIS <small>v0.2.0 beta</small></a>
+    <a class="brand" href="./"><i></i>O.A.S.I.S. <small>v0.2.0 beta</small></a>
     <nav class="links" aria-label="Primary">
       <a href="./">Product</a>
       <a href="how-it-works.html" aria-current="page">How it works</a>
-      <a href="./#tools">Tools</a>
+      <a href="tools.html">Tools</a>
+      <a href="models.html">Models</a>
       <a href="privacy.html">Privacy</a>
       <a href="blog/">Journal</a>
       <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -65,7 +67,7 @@
         <text x="418" y="164" font-size="10" style="fill:var(--ink-3)">on your disk</text>
         <rect x="540" y="120" width="164" height="64" fill="none" style="stroke:var(--strong)" stroke-width="1.5"/>
         <text x="554" y="146" style="fill:var(--ink)">Files + PC tools</text>
-        <text x="554" y="164" font-size="10" style="fill:var(--ink-3)">80 tools, local</text>
+        <text x="554" y="164" font-size="10" style="fill:var(--ink-3)">100 tools, local</text>
         <rect x="404" y="232" width="120" height="60" fill="none" style="stroke:var(--ink-3)" stroke-width="1"/>
         <text x="418" y="256" style="fill:var(--ink)">Memory</text>
         <text x="418" y="274" font-size="10" style="fill:var(--ink-3)">notes · docs</text>
@@ -96,7 +98,7 @@
     <h3>2. A model on your disk thinks.</h3>
     <p>The text reaches an open AI model (Llama, Gemma, Qwen and friends) running locally. It reads the conversation, checks its memory of you, and decides: answer directly, or use a tool. Small models answer fast on CPU; bigger ones run better with a GPU.</p>
     <h3>3. Hands, not just words.</h3>
-    <p>When action is needed, the model calls one of 80 declared tools — set a timer, lower the volume, read a PDF, run code in an isolated sandbox. Risky tools (deleting, shutting down, executing) pause for your explicit approval first.</p>
+    <p>When action is needed, the model calls one of 100+ declared tools — set a timer, lower the volume, read a PDF, run code in an isolated sandbox. Risky tools (deleting, shutting down, executing) pause for your explicit approval first.</p>
     <h3>4. It remembers — on your disk.</h3>
     <p>Exchanges, notes and documents land in a local database with semantic search, so "that electricity total from last spring" is retrievable months later. Delete by item, by type, or by file whenever you like.</p>
   </div>

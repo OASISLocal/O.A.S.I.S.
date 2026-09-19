@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Models — Compatible GGUF Models for O.A.S.I.S.</title>
+<meta name="description" content="Which GGUF models O.A.S.I.S. downloads and runs: bundled profiles with context length, RAM and VRAM needs, tier and capabilities. No benchmark promises.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./models.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Models — Compatible GGUF Models for O.A.S.I.S.">
+<meta property="og:description" content="Bundled model profiles with context, RAM/VRAM and tier — plus how GGUF compatibility actually works.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./models.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="assets/site.css">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://oasislocal.github.io/O.A.S.I.S./"},
+{"@type":"ListItem","position":2,"name":"Models","item":"https://oasislocal.github.io/O.A.S.I.S./models.html"}]}
+</script>
+</head>
+<body>
+<a href="#content" class="skip">Skip to content</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>O.A.S.I.S. <small>v0.2.0 beta</small></a>
+    <nav class="links" aria-label="Primary">
+      <a href="./">Product</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="tools.html">Tools</a>
+      <a href="models.html" aria-current="page">Models</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="blog/">Journal</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn" aria-label="Switch between light and dark">Light</button>
+      <a class="btn sm" href="download.html">Download</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Mobile"><noscript><a href="download.html">Download</a><a href="blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
+</header>
+
+<main id="content" tabindex="-1" class="wrap">
+  <p class="crumb"><a href="./">Home</a> / Models</p>
+  <h1>Your assistant. Your model.</h1>
+  <p class="answer"><strong>O.A.S.I.S. is designed around local models, not one hosted AI service.</strong> It downloads and runs compatible <b>GGUF</b> models on your machine — the profile data below comes straight from the app's model manifest, not from marketing.</p>
+
+  <hr class="rule">
+  <p class="kicker">Bundled profiles</p>
+  <h2>What ships tested in the app.</h2>
+  <div class="tbl">
+  <table class="spec">
+    <thead><tr><th>Model</th><th>Context</th><th>RAM</th><th>VRAM</th><th>Tier</th></tr></thead>
+    <tbody>
+      <tr><td>Gemma 4B IT <span class="mono">Q4_K_M</span></td><td>16,384</td><td>4&nbsp;GB</td><td>2&nbsp;GB</td><td>Mid / High</td></tr>
+      <tr><td>Qwen 2.5 1.5B <span class="mono">Q4_K_M</span></td><td>32,768</td><td>2&nbsp;GB</td><td>1&nbsp;GB</td><td>Low / Mid</td></tr>
+      <tr><td>Llama 3.2 3B <span class="mono">Q4_K_M</span></td><td>131,072</td><td>4&nbsp;GB</td><td>3&nbsp;GB</td><td>Mid / High</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="cap">Recommended starter: <b>Gemma 4B</b> (Q4, ~4&nbsp;GB download). Figures are the app's declared requirements, not measured benchmarks.</p>
+
+  <hr class="rule">
+  <p class="kicker">Compatibility</p>
+  <h2>GGUF is a format, not a promise.</h2>
+  <ul class="plain">
+    <li><b>What GGUF means:</b> a single-file model format readable by the local runtime. It is the packaging, not a guarantee.</li>
+    <li><b>What is supported:</b> compatible GGUF builds in the families the app lists — including DeepSeek, Phi and Mistral builds — subject to runtime and hardware.</li>
+    <li><b>What is not promised:</b> that <em>any</em> GGUF file runs. Very large models, exotic architectures or unusual quantisations may not fit your RAM/VRAM or the runtime's support.</li>
+    <li><b>How you find out:</b> the app inspects the file and warns you before downloading what your machine can realistically run.</li>
+  </ul>
+
+  <hr class="rule">
+  <p class="kicker">What changes with a bigger model</p>
+  <h2>Size versus speed.</h2>
+  <div class="tbl">
+  <table class="spec">
+    <thead><tr><th>Size class</th><th>Download</th><th>Needs</th><th>Feels like</th></tr></thead>
+    <tbody>
+      <tr><td>1–3B</td><td>~1–2&nbsp;GB</td><td>Any CPU</td><td>Snappy drafts, reminders, simple Q&amp;A.</td></tr>
+      <tr><td>7–8B</td><td>~4–5&nbsp;GB</td><td>CPU ok · GPU better</td><td>The daily-driver sweet spot.</td></tr>
+      <tr><td>13–14B</td><td>~8–10&nbsp;GB</td><td>16&nbsp;GB RAM or 8&nbsp;GB VRAM</td><td>Deeper reasoning, slower without GPU.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <hr class="rule">
+  <p class="kicker">Licences</p>
+  <h2>Model licences are not the app licence.</h2>
+  <p>O.A.S.I.S. itself is <b>proprietary software</b> (see the EULA). Each AI model carries its <em>own</em> licence, set by whoever published it — some are permissive, some restrict commercial use. Before you rely on a model for work, check its licence on the source page the app links to.</p>
+  <p class="cap">See <a href="https://github.com/OASISLocal/O.A.S.I.S./blob/main/legal/THIRD-PARTY-NOTICES.md" target="_blank" rel="noopener noreferrer">Third-party notices</a> for the components that ship with the app.</p>
+
+  <div class="ctas">
+    <a class="btn" href="download.html">Download O.A.S.I.S.</a>
+    <a class="btn ghost" href="requirements.html">Check your hardware</a>
+  </div>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ O.A.S.I.S.</span><p>The AI assistant that lives on your PC. Local features stay on your PC.</p></div>
+    <div><h3 class="fth">Product</h3><ul>
+      <li><a href="download.html">Download</a></li><li><a href="how-it-works.html">How it works</a></li>
+      <li><a href="tools.html">Tools</a></li><li><a href="models.html">Models</a></li>
+      <li><a href="requirements.html">Requirements</a></li><li><a href="comparison.html">Compare</a></li></ul></div>
+    <div><h3 class="fth">Resources</h3><ul>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentation</a></li>
+      <li><a href="blog/">Journal</a></li><li><a href="./#status">Roadmap</a></li>
+      <li><a href="changelog.html">Changelog</a></li></ul></div>
+    <div><h3 class="fth">Trust &amp; Community</h3><ul>
+      <li><a href="privacy.html">Privacy</a></li><li><a href="security.html">Security</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li></ul></div>
+  </div>
+  <div class="base"><span>© O.A.S.I.S. · v0.2.0 · beta</span><span>no trackers on this page</span></div>
+</footer>
+<div class="sticky-cta"><a class="btn sm" href="download.html">Download for Windows</a></div>
+<script src="assets/site.js"></script>
+</body>
+</html>

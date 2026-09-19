@@ -68,9 +68,19 @@ Source of truth: `src/core/freemium.py` (`_FREE_FEATURES = {}`, `_PRO_FEATURES =
 
 | Fact | Value | Source |
 |---|---|---|
-| Registered tools | **81 `register()` calls**, 5 conditional → ~80 active | `core/tools/registry.py` |
-| Public figure | **80+ tools** (use this everywhere) | decision |
-| High-impact (always confirm) | **9**: `custom_command, system_control, kill_process, system_cleanup, clipboard_control, code_agent, python_sandbox, file_manager, run_workflow` | `registry.py:166` |
+| Registered tools | **101 `register()` calls**, 5 conditional → ~100 active | `core/tools/registry.py` |
+| Public figure | **100+ tools** (use this everywhere) | decision · verified 2026-09-19 |
+| High-impact (always confirm) | **10**: `custom_command, system_control, kill_process, system_cleanup, clipboard_control, code_agent, python_sandbox, file_manager, run_workflow, git_ops` | `registry.py:188` |
+
+> **Code fixes made while verifying (2026-09-19):**
+> - `PRIVACY_SENSITIVE_TOOLS` listed the removed tool `recording`; replaced with
+>   the real capture tools (`transcribe_meeting`, `video_frame`) so max-privacy
+>   mode actually blocks them.
+> - `CODE_TOOLS` listed `open_code`, which no longer exists; corrected to
+>   `opencode`, so the Max gate applies to the real tool.
+> - `tests/test_security_negative.py` added: asserts unapproved high-impact tools
+>   never run, deny/permission gating works, Free can't run code tools, privacy
+>   mode blocks capture tools, and the high-impact list matches what we publish.
 
 ## 4. Local / Network matrix
 
