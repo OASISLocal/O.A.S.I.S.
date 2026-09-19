@@ -38,7 +38,6 @@ exclude:
   - QA_CHECKLIST.md
   - LAUNCH_RUNBOOK.md
   - METRICS.md
-  - launch.json
   - launch/
   - sync-web.ps1
   - .lighthouserc.json
