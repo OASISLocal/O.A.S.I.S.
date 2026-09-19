@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>{% if page.title %}{{ page.title }} | {% endif %}OASIS Blog</title>
+
+<meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta name="theme-color" content="#111111">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:title" content="{{ page.title | default: site.title }}">
+<meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.title | default: site.title }}">
+<meta name="twitter:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+<link rel="alternate" type="application/atom+xml" title="OASIS Blog" href="{{ '/blog/feed.xml' | relative_url }}">
+{% seo %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* Blog — esquema Mono (igual que la app por defecto) */
+:root {
+--bg-app: #111111; --bg-surface: #161616; --bg-panel: #1c1c1c;
+--text: #ffffff; --text-2: #b4b4b4; --text-3: #8f8f8f;
+--border: rgba(255,255,255,0.16); --border-strong: #ffffff;
+color-scheme: dark;
+}
+:root[data-theme="light"] {
+--bg-app: #f7f7f5; --bg-surface: #ffffff; --bg-panel: #f2f2ef;
+--text: #111111; --text-2: #3f3f3c; --text-3: #595959;
+--border: rgba(17,17,17,0.18); --border-strong: #111111;
+color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg-app); color: var(--text-2); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+
+.skip-link { position: absolute; left: -9999px; top: 0; background: var(--text); color: var(--bg-app); padding: 10px 16px; z-index: 2000; font-weight: 600; text-decoration: none; }
+.skip-link:focus { left: 0; }
+
+nav.site-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; border-bottom: 2px solid var(--border-strong); max-width: 1200px; margin: 0 auto; background: var(--bg-surface); }
+.logo { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -0.04em; text-decoration: none; }
+.site-nav a.nav-link { color: var(--text-2); text-decoration: none; margin-left: 8px; font-size: 14px; font-weight: 500; padding: 8px 12px; border: 1px solid transparent; }
+.site-nav a.nav-link:hover, .site-nav a.nav-link.active { color: var(--text); border-color: var(--border); }
+#theme-btn { font-family: 'Space Mono', monospace; font-size: 11px; background: none; border: 1px solid var(--border-strong); color: var(--text); padding: 7px 11px; cursor: pointer; margin-left: 8px; }
+#theme-btn:hover { background: var(--text); color: var(--bg-app); }
+
+main.blog-main { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
+.blog-eyebrow { font-family: 'Space Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-3); font-weight: 400; margin-bottom: 12px; border: 1px solid var(--border-strong); display: inline-block; padding: 5px 10px; }
+.blog-h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4vw, 44px); font-weight: 700; color: var(--text); letter-spacing: -0.03em; line-height: 1.05; margin: 16px 0 14px; }
+.blog-meta { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 40px; }
+
+.post-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 2px solid var(--border-strong); }
+.post-list li { border-bottom: 1px solid var(--border-strong); padding: 28px 0; }
+.post-list a.post-title { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+.post-list a.post-title:hover { text-decoration: underline; }
+.post-list .post-date { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 8px; }
+.post-list .post-excerpt { font-size: 15px; color: var(--text-3); margin-top: 8px; line-height: 1.6; }
+
+/* Article prose (used by post.html) */
+.prose { font-size: 17px; line-height: 1.75; color: var(--text-2); }
+.prose h2 { font-family: 'Space Grotesk', sans-serif; font-size: 26px; color: var(--text); font-weight: 700; letter-spacing: -0.02em; margin: 44px 0 16px; }
+.prose h3 { font-family: 'Space Grotesk', sans-serif; font-size: 21px; color: var(--text); font-weight: 600; margin: 36px 0 14px; }
+.prose p { margin: 0 0 20px; }
+.prose a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
+.prose ul, .prose ol { margin: 0 0 20px; padding-left: 22px; }
+.prose li { margin-bottom: 8px; }
+.prose img { max-width: 100%; border: 2px solid var(--border-strong); }
+.prose code { font-family: 'IBM Plex Mono', monospace; background: var(--bg-panel); border: 1px solid var(--border); padding: 2px 6px; font-size: 0.9em; color: var(--text); }
+.prose pre { background: var(--bg-surface); border: 2px solid var(--border-strong); padding: 18px 20px; overflow-x: auto; }
+.prose pre code { background: none; padding: 0; border: none; }
+.prose blockquote { margin: 0 0 20px; padding-left: 18px; border-left: 2px solid var(--border-strong); color: var(--text-3); }
+
+.blog-footer { border-top: 2px solid var(--border-strong); padding: 32px 24px; text-align: center; font-family: 'Space Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); }
+.blog-footer a { color: var(--text-2); text-decoration: none; }
+.blog-footer a:hover { color: var(--text); text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* Responsive: phones, tablets, safe areas */
+html, body { overflow-x: clip; }
+body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@supports (padding: max(0px)) {
+  nav.site-nav, main.blog-main, .blog-footer {
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+  }
+}
+@media (max-width: 640px) {
+  nav.site-nav { flex-wrap: wrap; gap: 10px; }
+  main.blog-main { padding-top: 40px; padding-bottom: 70px; }
+  .blog-h1 { font-size: 31px; }
+  .prose { font-size: 16px; }
+  .prose pre { padding: 14px; }
+}
+@media (pointer: coarse) {
+  .site-nav a.nav-link, #theme-btn { min-height: 44px; display: inline-flex; align-items: center; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<nav class="site-nav">
+<a class="logo" href="{{ '/' | relative_url }}">■ OASIS</a>
+<div>
+<a class="nav-link active" href="{{ '/blog/' | relative_url }}">Journal</a>
+<a class="nav-link" href="{{ '/' | relative_url }}">← Back to site</a>
+<button id="theme-btn" aria-label="Switch between light and dark">Light</button>
+</div>
+</nav>
+
+<main class="blog-main" id="main-content" tabindex="-1">
+{{ content }}
+</main>
+
+<footer class="blog-footer">
+<a href="{{ '/' | relative_url }}">Home</a> · <a href="{{ '/blog/' | relative_url }}">Blog</a> · <a href="{{ '/faq.html' | relative_url }}">FAQ</a> · <a href="{{ '/about.html' | relative_url }}">About</a> · <a href="{{ '/blog/feed.xml' | relative_url }}">RSS feed</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Community</a>
+</footer>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('theme-btn');function p(t){r.setAttribute('data-theme',t);if(b)b.textContent=(t==='light')?'Dark':'Light';try{localStorage.setItem('oasis-theme',t);}catch(_){}}var s=null;try{s=localStorage.getItem('oasis-theme');}catch(_){}p(s==='light'||s==='dark'?s:'dark');if(b)b.addEventListener('click',function(){p(r.getAttribute('data-theme')==='light'?'dark':'light');});}());
+</script>
+</body>
+</html>

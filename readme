@@ -1,0 +1,36 @@
+# How to publish a new blog post
+
+No build step, no Node, no local setup required. Just:
+
+1. Copy `_posts/2026-07-26-welcome-to-the-oasis-blog.md` as a template.
+2. Create a new file in `_posts/` named `YYYY-MM-DD-your-title-slug.md` (the date in the filename controls the publish date and sort order — it must come first).
+3. Fill in the front matter and write the body in Markdown:
+
+   ```markdown
+   ---
+   title: "Your post title"
+   tags: [release]
+   ---
+
+   Your first paragraph becomes the excerpt shown on /blog/ and in the
+   homepage teaser, so make it count.
+
+   ## A subheading
+
+   Regular Markdown from here: **bold**, _italic_, lists, images, code
+   blocks, links — all supported.
+   ```
+4. `git add`, `git commit`, `git push` to your default branch.
+
+GitHub Pages rebuilds the whole site automatically (usually within a minute). The new post appears on `/blog/`, in the RSS feed, in the sitemap, and — once it's one of the 3 most recent — in the "From the blog" section on the homepage. Nothing else needs to be touched.
+
+### Optional front matter
+- `tags: [announcement]` — shown as the small label above the title. Use one main tag per post (`release`, `announcement`, `deep-dive`, `guide`...).
+
+### Previewing locally (optional)
+If you have Ruby installed:
+```
+bundle install
+bundle exec jekyll serve
+```
+Then open `http://localhost:4000/OASIS/blog/`. Not required — you can also just push and check the live site.

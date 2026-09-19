@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>FAQ — Local AI Assistant Questions, Answered</title>
+<meta name="description" content="Real answers about OASIS: offline use, privacy, hardware, Mac/Linux, Docker, pricing and how it differs from Ollama or ChatGPT.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./faq.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FAQ — Local AI Assistant Questions, Answered">
+<meta property="og:description" content="Offline? Private? What PC? Mac? The honest answers, no marketing fog.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./faq.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is a local AI assistant?","acceptedAnswer":{"@type":"Answer","text":"A local AI assistant runs its AI model on your own hardware instead of calling a server. OASIS runs entirely on Windows PCs: chat, voice, memory and tools work without internet after a one-time model download."}},
+{"@type":"Question","name":"Does OASIS really work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. After installing the app and downloading a model, everything — chat, voice, memory, PC tools — works with the router unplugged."}},
+{"@type":"Question","name":"Do my files leave my computer?","acceptedAnswer":{"@type":"Answer","text":"No. No telemetry, no accounts, no analytics. Data lives in a local folder, the server binds to localhost only, and every tool has its own permission switch."}},
+{"@type":"Question","name":"What PC do I need to run local AI?","acceptedAnswer":{"@type":"Answer","text":"Any modern CPU runs small models; 16 GB RAM and an NVIDIA GPU with 4 GB+ VRAM is the comfortable setup for 7-8B models. Docker is only needed for the code sandbox."}},
+{"@type":"Question","name":"Is there a Mac or Linux version?","acceptedAnswer":{"@type":"Answer","text":"Not yet — Windows 10/11 only. Linux and macOS are on the public roadmap."}},
+{"@type":"Question","name":"How is OASIS different from Ollama or LM Studio?","acceptedAnswer":{"@type":"Answer","text":"Ollama, LM Studio, GPT4All and Jan are excellent at running local models. OASIS turns them into a full assistant: offline voice, persistent memory, 80 PC tools, scheduled workflows and messaging channels."}},
+{"@type":"Question","name":"Is OASIS Max a subscription?","acceptedAnswer":{"@type":"Answer","text":"No, and there is nothing to pay yet. Max will be a single payment (15 EUR early access, 25 EUR at 1.0), never a subscription. A waitlist collects one email per person for launch day."}},
+{"@type":"Question","name":"How do I uninstall it?","acceptedAnswer":{"@type":"Answer","text":"Like any Windows program, plus deleting one data folder (%LOCALAPPDATA%\\O.A.S.I.S.\\) removes models, memory and settings. Nothing stays in a cloud because nothing ever went there."}}
+{"@type":"Question","name":"What happens when an action is dangerous?","acceptedAnswer":{"@type":"Answer","text":"It stops and asks. Deleting files, shutting down or running code always requires explicit confirmation; high-impact tools can never run silently."}},
+{"@type":"Question","name":"Can it access my screen?","acceptedAnswer":{"@type":"Answer","text":"Only when you ask it to look, for example to describe a window. It never watches in the background."}},
+{"@type":"Question","name":"Is O.A.S.I.S. open source?","acceptedAnswer":{"@type":"Answer","text":"No. It is proprietary software with a public changelog and roadmap; the source code is not publicly available."}}
+]}
+</script>
+</head>
+<body>
+<a href="#content" class="skip">Skip to content</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>OASIS <small>v0.2.0 beta</small></a>
+    <nav class="links" aria-label="Primary">
+      <a href="./">Product</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="./#tools">Tools</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="blog/">Journal</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn" aria-label="Switch between light and dark">Light</button>
+      <a class="btn sm" href="download.html">Download</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Mobile"><noscript><a href="download.html">Download</a><a href="blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
+</header>
+
+<main id="content" class="wrap">
+  <p class="crumb"><a href="./">Home</a> / FAQ</p>
+  <h1>Questions, answered straight.</h1>
+  <p class="answer"><strong>These are the questions people actually ask before installing a local AI assistant</strong> — collected from early testers and GitHub issues, not made up for marketing. Short answers, no fog.</p>
+
+  <div class="faq">
+    <details open><summary>What is a local AI assistant?</summary><p>A program that runs its AI model on your own hardware instead of calling a server. OASIS runs entirely on Windows PCs: chat, voice, memory and tools keep working with no internet after a one-time model download.</p></details>
+    <details><summary>Does it really work offline?</summary><p>Yes. Install the app, download one model, then unplug the router and try everything: chat, dictation, reminders, file tools. It all stays the same — because nothing ever left your PC.</p></details>
+    <details><summary>Do my files leave my computer?</summary><p>No. No telemetry, no accounts, no analytics. Your stuff lives in <code>%LOCALAPPDATA%\O.A.S.I.S.\</code>, the server binds to localhost only, and mic, screen and files each have their own permission switch. Read the full <a href="privacy.html">privacy page</a>.</p></details>
+    <details><summary>What PC do I need?</summary><p>Any modern CPU runs small models well. The comfortable setup is 16&nbsp;GB RAM plus an NVIDIA GPU with 4&nbsp;GB or more for 7–8B models. Details and honest caveats on the <a href="requirements.html">requirements page</a>.</p></details>
+    <details><summary>Is there a Mac or Linux version?</summary><p>Not yet — Windows 10/11 only. Linux and macOS are on the public roadmap; the models themselves are portable, the packaging isn't done.</p></details>
+    <details><summary>How is it different from Ollama or LM Studio?</summary><p>Those are excellent at <em>running</em> local models. OASIS is the layer that turns them into an <em>assistant</em>: offline voice, persistent memory, 80 PC tools, scheduled workflows, Discord/Telegram. Full table on the <a href="comparison.html">comparison page</a>.</p></details>
+    <details><summary>Is OASIS Max a subscription?</summary><p>No — and there's nothing to pay yet. Max will be a single payment (€15 in early access, €25 at 1.0), never a subscription. <a href="./#early-access">Join the waitlist</a> and we'll send one email when it opens.</p></details>
+    <details><summary>What happens when an action is dangerous?</summary><p>It stops and asks. Deleting files, shutting down or running code always requires your explicit confirmation. <a href="security.html">How security works →</a></p></details>
+    <details><summary>Can it access my screen?</summary><p>Only when you ask it to look — for example, to describe a window or click something for you. It never watches in the background.</p></details>
+    <details><summary>Is O.A.S.I.S. open source?</summary><p>No. It's proprietary software with a public changelog and roadmap — the source code is not publicly available. See the EULA shipped with the installer.</p></details>
+    <details><summary>How do I uninstall it?</summary><p>Like any Windows program — plus deleting one data folder removes models, memory and settings. Nothing stays in a cloud, because nothing ever went there.</p></details>
+  </div>
+  <p class="cap">Asked something else? <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Ask in Discussions</a> — good questions get added here.</p>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ O.A.S.I.S.</span><p>The AI assistant that lives on your PC. Local workflows stay on your PC.</p></div>
+    <div><h3 class="fth">Product</h3><ul>
+      <li><a href="download.html">Download</a></li><li><a href="how-it-works.html">How it works</a></li>
+      <li><a href="requirements.html">Requirements</a></li><li><a href="comparison.html">Compare</a></li>
+      <li><a href="./#pricing">Pricing</a></li><li><a href="features.html">Spec sheet</a></li></ul></div>
+    <div><h3 class="fth">Resources</h3><ul>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentation</a></li>
+      <li><a href="blog/">Journal</a></li><li><a href="./#status">Roadmap</a></li>
+      <li><a href="changelog.html">Changelog</a></li></ul></div>
+    <div><h3 class="fth">Trust &amp; Community</h3><ul>
+      <li><a href="privacy.html">Privacy</a></li><li><a href="security.html">Security</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li></ul></div>
+  </div>
+  <div class="base"><span>© O.A.S.I.S. · v0.2.0 · beta</span><span>no trackers on this page</span></div>
+</footer>
+<div class="sticky-cta"><a class="btn sm" href="download.html">Download for Windows</a></div>
+<script src="assets/site.js"></script>
+</body>
+</html>

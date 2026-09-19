@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>OASIS — Full spec sheet, no adjectives</title>
+<meta name="description" content="The complete, unembellished list of what OASIS does: models, tools, requirements and editions. For people who want the detail before installing.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./features.html">
+<meta name="theme-color" content="#111111">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root, :root[data-theme="dark"] {
+  --bg: #111111; --surface: #161616; --panel: #1c1c1c;
+  --ink: #ffffff; --ink-2: #c9c9c9; --ink-3: #8f8f8f;
+  --line: rgba(255,255,255,0.16); --line-strong: #ffffff;
+  --display: 'Space Grotesk', 'Inter', sans-serif;
+  --body: 'Inter', -apple-system, sans-serif;
+  --mono: 'Space Mono', 'IBM Plex Mono', monospace;
+  --code: 'IBM Plex Mono', monospace;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #f7f7f5; --surface: #ffffff; --panel: #f2f2ef;
+  --ink: #111111; --ink-2: #3f3f3c; --ink-3: #595959;
+  --line: rgba(17,17,17,0.18); --line-strong: #111111;
+  color-scheme: light;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink-2); font-family: var(--body); font-size: 16.5px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+::selection { background: var(--ink); color: var(--bg); }
+a { color: var(--ink); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.skip { position: absolute; top: -100px; left: 16px; z-index: 99; background: var(--ink); color: var(--bg); font-weight: 600; font-size: 14px; padding: 10px 18px; text-decoration: none; }
+.skip:focus { top: 8px; }
+[tabindex="-1"]:focus { outline: none; }
+.mast { border-bottom: 2px solid var(--line-strong); }
+.mast-in { max-width: 780px; margin: 0 auto; padding: 18px 24px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand { font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: -.03em; color: var(--ink); text-decoration: none; }
+.mast nav { display: flex; gap: 2px; align-items: center; flex-wrap: wrap; }
+.mast nav a { font-size: 14px; color: var(--ink-2); text-decoration: none; padding: 6px 10px; border: 1px solid transparent; }
+.mast nav a:hover { color: var(--ink); border-color: var(--line); }
+#theme-btn { font-family: var(--mono); font-size: 11px; background: none; border: 1px solid var(--line-strong); color: var(--ink); padding: 6px 10px; cursor: pointer; margin-left: 6px; }
+.wrap { max-width: 780px; margin: 0 auto; padding: 0 24px 20px; }
+.crumb { font-family: var(--mono); font-size: 12px; color: var(--ink-3); padding: 0; margin: 30px 0 0; }
+.crumb a { color: var(--ink-2); }
+h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.03em; color: var(--ink); font-size: clamp(34px, 6vw, 52px); line-height: 1.05; margin: 10px 0 12px; }
+.standfirst { font-size: 18px; }
+hr.rule { border: none; border-top: 2px solid var(--line-strong); margin: 46px 0 0; }
+.kicker { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin: 14px 0 6px; }
+h2 { font-family: var(--display); font-weight: 700; letter-spacing: -.02em; color: var(--ink); font-size: clamp(23px, 3.4vw, 29px); margin-bottom: 10px; }
+p + p { margin-top: 1em; }
+code { font-family: var(--code); font-size: .85em; background: var(--panel); border: 1px solid var(--line); padding: 1px 6px; color: var(--ink-2); }
+dl { margin-top: 14px; border-top: 1px solid var(--line-strong); }
+dl > div { display: grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+dl dt { font-family: var(--mono); font-size: 13px; color: var(--ink); }
+dl dd { font-size: 15.5px; }
+@media (max-width: 600px) { dl > div { grid-template-columns: 1fr; gap: 2px; } }
+
+/* Responsive: small phones, safe areas, touch */
+html, body { overflow-x: clip; }
+body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@supports (padding: max(0px)) {
+  .mast-in, .wrap, .foot-in {
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+  }
+}
+@media (max-width: 480px) {
+  h1 { font-size: clamp(30px, 9vw, 40px); }
+  .standfirst { font-size: 16.5px; }
+  .mast nav a { padding-top: 10px; padding-bottom: 10px; }
+}
+@media (pointer: coarse) {
+  .mast nav a { min-height: 44px; display: inline-flex; align-items: center; }
+  #theme-btn { min-height: 44px; }
+}
+ul.plain { list-style: none; margin-top: 10px; border-top: 1px solid var(--line-strong); }
+ul.plain li { padding: 8px 0 8px 22px; position: relative; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+ul.plain li::before { content: '—'; position: absolute; left: 0; color: var(--ink-3); }
+.small { font-size: 14px; color: var(--ink-3); }
+footer { border-top: 2px solid var(--line-strong); margin-top: 72px; }
+.foot-in { max-width: 780px; margin: 0 auto; padding: 26px 24px 38px; font-size: 14px; color: var(--ink-3); }
+.foot-in nav { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 12px; }
+.foot-in .firma { font-family: var(--mono); font-size: 12px; }
+</style>
+</head>
+<body>
+<a href="#content" class="skip">Skip to content</a>
+<header class="mast">
+  <div class="mast-in">
+    <a class="brand" href="./">■ OASIS</a>
+    <nav aria-label="Primary">
+      <a href="./">Product</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="./#tools">Tools</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="blog/">Journal</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+      <button id="theme-btn" aria-label="Switch between light and dark">Light</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="content" tabindex="-1">
+  <p class="crumb"><a href="./">Home</a> / Spec sheet</p>
+  <h1>Full spec sheet, no adjectives.</h1>
+  <p class="standfirst">The full spec sheet: every capability below exists in the app today. No adjectives necessary.</p>
+
+  <hr class="rule">
+  <p class="kicker">Models</p>
+  <h2>The brain downloads separately.</h2>
+  <p>OASIS ships without a model: you pick one in GGUF format — the open file format these models ship in — from inside the app (it searches Hugging Face, downloads with pause and resume) and it runs on your machine via llama.cpp. A small Gemma or Qwen is a fine start. With an NVIDIA GPU with 4&nbsp;GB or more it flies; on CPU it still gets there.</p>
+  <dl>
+    <div><dt>Families</dt><dd>Llama, Gemma, Qwen, DeepSeek, Phi, Mistral — and any GGUF you hand it.</dd></div>
+    <div><dt>Languages</dt><dd>Spanish and English, across interface, chat and voice.</dd></div>
+    <div><dt>Personalities</dt><dd>OASIS, TARS, NOVA and REBELDE. The last one is sarcastic, with limits you set yourself.</dd></div>
+  </dl>
+
+  <hr class="rule">
+  <p class="kicker">What it can do</p>
+  <h2>80 tools, grouped so they make sense.</h2>
+  <dl>
+    <div><dt>Talk &amp; listen</dt><dd>Dictation and read-aloud in Spanish (faster-whisper and Kokoro/Piper voices), wake word, background-noise filtering.</dd></div>
+    <div><dt>Remember</dt><dd>Conversation memory, notes and saved facts, plus indexed PDF, DOCX, XLSX and code — all on your disk.</dd></div>
+    <div><dt>Drive the PC</dt><dd>Volume, windows, opening apps, Spotify, screenshots, weather, calculator, timers, clipboard, shutdown. Each asks its own permission.</dd></div>
+    <div><dt>See</dt><dd>Looks at your screen or an image and describes it; can click by coordinates, region or recognized text.</dd></div>
+    <div><dt>Code</dt><dd>Explains code and — with Docker installed — tests it in an isolated sandbox before touching anything of yours. Up to three automatic retries.</dd></div>
+    <div><dt>Automate</dt><dd>Scheduled workflows in plain words ("every day at 9"), proactive nudges and small trigger-based skills.</dd></div>
+    <div><dt>Connect (Max)</dt><dd>Your own Discord or Telegram bot with voice, an Android app over local network with QR pairing, and a browser extension.</dd></div>
+  </dl>
+  <p class="small">The exact list lives in the code (<code>core/tools/registry.py</code>). This page summarizes; the code rules.</p>
+
+  <hr class="rule">
+  <p class="kicker">Requirements</p>
+  <h2>The minimum for it to run well.</h2>
+  <ul class="plain">
+    <li>Windows 10 or 11. Everything else comes later.</li>
+    <li>Any modern CPU for small models; GPU recommended, not required.</li>
+    <li>Docker Desktop, only if you want it to run code.</li>
+    <li>Internet, only to download the app and a model. Afterwards, optional.</li>
+  </ul>
+
+  <hr class="rule">
+  <p class="kicker">Editions</p>
+  <h2>One free, one single payment.</h2>
+  <p><strong style="color:var(--ink)">Personal, free:</strong> chat, voice, vision, basic PC control, memory and core skills. No account, no message limits.</p>
+  <p><strong style="color:var(--ink)">Max, planned as a single payment (€15 early access, €25 at 1.0):</strong> full coding, unlimited memory, scheduled workflows, Docker sandbox, Discord/Telegram, mobile app, browser extension and external MCP servers. The current public build ships the free plan; <a href="./#early-access">join the waitlist</a> and we'll email you once when Max opens.</p>
+
+  <hr class="rule">
+  <p class="kicker">Download</p>
+  <h2>The beta lives on GitHub.</h2>
+  <p><a href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer" style="font-weight:600;">Go to the latest release →</a></p>
+  <p class="small">Check the SHA256 hash for extra assurance: <code>certutil -hashfile OASIS.exe SHA256</code>. If setup fails, <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">report it in Issues</a> with your Windows version and the model you were using.</p>
+</main>
+
+<footer>
+  <div class="foot-in">
+    <nav aria-label="Footer">
+      <a href="./">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="requirements.html">Requirements</a>
+      <a href="download.html">Download</a>
+      <a href="comparison.html">Compare</a>
+      <a href="./#pricing">Pricing</a>
+      <a href="faq.html">FAQ</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="blog/">Blog</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Discussions</a>
+    </nav>
+    <p class="firma">OASIS · v0.2.0 · no trackers on this page</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement, btn = document.getElementById('theme-btn');
+  function paint(t) { root.setAttribute('data-theme', t); if (!btn) return; btn.textContent = (t === 'light') ? 'Dark' : 'Light'; btn.setAttribute('aria-label', t === 'light' ? 'Switch to dark mode' : 'Switch to light mode'); var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.content = (t === 'light') ? '#f7f7f5' : '#111111'; try { localStorage.setItem('oasis-theme', t); } catch (_) {} }
+  var saved = null;
+  try { saved = localStorage.getItem('oasis-theme'); } catch (_) {}
+  paint(saved === 'light' || saved === 'dark' ? saved : 'dark');
+  btn.addEventListener('click', function () { paint(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'); });
+}());
+</script>
+</body>
+</html>

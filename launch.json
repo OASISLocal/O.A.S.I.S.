@@ -1,0 +1,5 @@
+{
+  "mode": "live",
+  "revealDate": "2026-12-01T12:00:00Z",
+  "_comment": "Deployment phase for sync-web.ps1. mode: live = full site. teaser/countdown = ONLY the shell is deployed, nothing else (not even in view-source). revealDate: ISO-8601 UTC used when countdown is deployed (overridable with -RevealDate). IMPORTANT: editing this file (here or on GitHub) does NOT deploy anything by itself — the phase is applied when you RUN sync-web.ps1 locally, which rebuilds the deploy snapshot."
+}

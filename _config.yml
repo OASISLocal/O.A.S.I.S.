@@ -1,0 +1,35 @@
+# ---------------------------------------------------------------
+# Jekyll config — powers only the /blog/ section.
+# index.html at the root stays a plain static file, untouched by Jekyll.
+# ---------------------------------------------------------------
+
+title: OASIS Blogs
+description: "Release notes, deep dives, and what we're learning building OASIS."
+
+# Canonical deployment: https://oasislocal.github.io/O.A.S.I.S./
+# (project page of the OASISLocal/O.A.S.I.S. repo, branch github-pages).
+url: "https://oasislocal.github.io"
+baseurl: "/O.A.S.I.S."
+
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+
+# jekyll-seo-tag is on the Pages whitelist. The Atom feed is hand-written
+# (blog/feed.xml + blog/feed.xsl) so it ships with a readable browser style.
+plugins:
+  - jekyll-seo-tag
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Only these are processed by Jekyll; index.html and its existing
+# assets/ folder are left completely alone.
+include:
+  - _posts
+exclude:
+  - README.md
+  - "*.log"
