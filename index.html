@@ -33,6 +33,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/tooltip.css">
+<link rel="stylesheet" href="assets/launch.css">
 <style>
 :root, :root[data-theme="dark"] {
   --bg: #111111; --surface: #161616; --panel: #1c1c1c; --hover: #242424;
@@ -308,7 +309,7 @@ footer { border-top: 2px solid var(--strong); margin-top: 72px; }
 /* ---------- Hero pro ---------- */
 .announce { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--ink-2); text-decoration: none; border: 1px solid var(--strong); padding: 7px 14px; margin-bottom: 22px; background: var(--surface); }
 .announce:hover { background: var(--hover); color: var(--ink); }
-.announce b { font-weight: 400; background: var(--ink); color: var(--bg); padding: 1px 8px; }
+.announce b { font-weight: 400; background: var(--ink); color: var(--bg); padding: 1px 8px; white-space: nowrap; flex-shrink: 0; }
 .btn svg { flex-shrink: 0; }
 .winbtns { display: flex; gap: 0; }
 .winbtns i { width: 34px; height: 26px; display: flex; align-items: center; justify-content: center; font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--ink-3); border-left: 1px solid var(--line); }
@@ -364,6 +365,10 @@ kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line)
 /* ============ Responsive: phones, tablets, odd ratios ============ */
 html, body { overflow-x: clip; }
 body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+img, svg, video, canvas, table.spec, table.vs, pre { max-width: 100%; }
+pre { overflow-x: auto; }
+code, a { overflow-wrap: anywhere; }
+:target, [id] { scroll-margin-top: 76px; }
 @supports (padding: max(0px)) {
   .top-in, .hero, .sec, .foot, .base {
     padding-left: max(24px, env(safe-area-inset-left));
@@ -395,9 +400,19 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .ctas .btn { flex: 1 1 100%; justify-content: center; }
   .price .pt { font-size: 32px; }
   .step .n { font-size: 34px; }
+  .appwin { margin-top: 30px; }
   .appwin-bar { padding: 8px 10px; }
-  .toolbar { padding: 8px 10px; }
-  .statusbar { gap: 10px 14px; }
+  .toolbar { padding: 8px 10px; gap: 6px; }
+  .statusbar { gap: 8px 12px; padding: 8px 12px; }
+  .chat { padding: 14px 12px; gap: 12px; }
+  .msg { max-width: 100%; font-size: 14px; }
+  .cbox { margin: 0 12px 6px; }
+  .cbox input { padding: 12px 12px; }
+  .cbox button { padding: 0 12px; }
+}
+/* iOS zooms when a focused field is under 16px */
+@media (pointer: coarse) {
+  .cbox input, .wl-row input[type="email"], #wl-email { font-size: 16px; }
 }
 @media (pointer: coarse) {
   .mnav a { min-height: 44px; display: flex; align-items: center; }
@@ -725,7 +740,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
     <div class="mock-body">
       <form id="wl-form" novalidate>
         <div class="wl-row">
-          <input id="wl-email" type="email" name="email" placeholder="you@example.com" aria-label="Email address" autocomplete="email" required>
+          <input id="wl-email" type="email" name="email" inputmode="email" enterkeyhint="done" placeholder="you@example.com" aria-label="Email address" autocomplete="email" required>
           <button class="btn" type="submit" id="wl-btn">Notify me</button>
         </div>
         <div class="wl-checks" role="group" aria-label="I'm interested in">
@@ -945,6 +960,7 @@ function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ 
 }());
 </script>
 <script src="assets/tooltip.js"></script>
+<script src="assets/launch.js"></script>
 <div class="sticky-cta"><a class="btn sm" href="download.html">Download for Windows</a></div>
 </body>
 </html>

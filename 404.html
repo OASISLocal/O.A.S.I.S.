@@ -80,6 +80,11 @@ footer { border-top: 2px solid var(--strong); }
   main { padding-top: 48px; }
   .ctas .btn { flex: 1 1 100%; justify-content: center; }
 }
+/* iOS zooms when a focused field is under 16px */
+@media (pointer: coarse) {
+  .find input { font-size: 16px; }
+  .ctas .btn { min-height: 44px; }
+}
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 
 /* Text cursor (I-beam) ------------------------------------------------------

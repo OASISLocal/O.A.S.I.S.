@@ -110,6 +110,12 @@ footer { border-top: 2px solid var(--strong); margin-top: 72px; }
 /* ============ Responsive: phones, tablets, odd ratios ============ */
 html, body { overflow-x: clip; }
 body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+/* Media and code never push the page wider than the screen */
+img, svg, video, canvas, table.spec, pre { max-width: 100%; }
+pre { overflow-x: auto; }
+code, a { overflow-wrap: anywhere; }
+/* Sticky header must not cover anchors jumped to */
+:target, [id] { scroll-margin-top: 76px; }
 @supports (padding: max(0px)) {
   .top-in, .wrap, .foot, .base {
     padding-left: max(24px, env(safe-area-inset-left));
@@ -135,10 +141,18 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   dl > div { grid-template-columns: 1fr; gap: 2px; }
   .mock-body { padding: 13px; }
 }
+/* iOS zooms the page when a focused input is under 16px. Keep form fields >=16px
+   on touch screens (the phone number/email keyboard is the one that matters). */
+@media (pointer: coarse) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]),
+  select, textarea { font-size: 16px; }
+}
 /* Touch-first devices: roomy targets */
 @media (pointer: coarse) {
   .mnav a { min-height: 44px; display: flex; align-items: center; }
-  .btn.sm, #theme-btn { min-height: 44px; }
+  .btn.sm, #theme-btn, #burger { min-height: 44px; }
+  .top nav a { min-height: 44px; display: inline-flex; align-items: center; }
+  .foot a { min-height: 40px; display: inline-flex; align-items: center; }
   .faq summary { padding-top: 20px; padding-bottom: 20px; }
 }
 /* Short landscape screens: compress vertical rhythm */

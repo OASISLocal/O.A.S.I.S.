@@ -1,0 +1,22 @@
+/* Preview modes (?mode=teaser | ?mode=countdown) — Home only.
+   Built by launch.js. Also used by the deploy shells (launch/*.html). */
+.launch-overlay { position: fixed; inset: 0; z-index: 200; background: var(--bg, #111111); display: flex; align-items: center; justify-content: center; padding: 24px; padding-left: max(24px, env(safe-area-inset-left)); padding-right: max(24px, env(safe-area-inset-right)); }
+.launch-box { text-align: center; max-width: 560px; width: 100%; }
+.launch-box .mark { width: 34px; height: 34px; border: 2px solid var(--strong, #fff); margin: 0 auto 22px; }
+.launch-box h2 { font-family: var(--display, 'Space Grotesk', sans-serif); font-size: clamp(30px, 5vw, 52px); font-weight: 700; letter-spacing: -.03em; color: var(--ink, #fff); margin-bottom: 12px; line-height: 1.04; }
+.launch-box p { color: var(--ink-3, #8f8f8f); font-size: 15px; }
+.launch-box nav { display: flex; gap: 18px; justify-content: center; margin-top: 26px; font-size: 14px; flex-wrap: wrap; }
+.cd-grid { display: flex; gap: 0; justify-content: center; margin: 26px 0 6px; border: 2px solid var(--strong, #fff); }
+.cd-grid div { flex: 1; padding: 16px 8px; border-right: 1px solid var(--line, rgba(255,255,255,.16)); }
+.cd-grid div:last-child { border-right: none; }
+.cd-grid b { display: block; font-family: var(--display, 'Space Grotesk', sans-serif); font-size: clamp(28px, 6vw, 48px); color: var(--ink, #fff); font-variant-numeric: tabular-nums; }
+.cd-grid span { font-family: var(--mono, monospace); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3, #8f8f8f); }
+.cd-date { margin-top: 10px; }
+.launch-exit { margin-top: 22px; font-family: var(--mono, monospace); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+.launch-exit a { color: var(--ink-3, #8f8f8f); }
+.launch-exit a:hover { color: var(--ink, #fff); }
+@media (max-width: 480px) {
+  .cd-grid b { font-size: clamp(22px, 8vw, 34px); }
+  .launch-box nav { gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .launch-overlay * { animation: none !important; transition: none !important; } }
