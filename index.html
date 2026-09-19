@@ -32,6 +32,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="assets/tooltip.css">
 <style>
 :root, :root[data-theme="dark"] {
   --bg: #111111; --surface: #161616; --panel: #1c1c1c; --hover: #242424;
@@ -408,6 +409,27 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .hero { padding-top: 40px; }
 }
 
+/* Home: cards, badges, offline strip */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--strong); }
+.cards > div { padding: 24px 22px; border-right: 1px solid var(--strong); }
+.cards > div:nth-child(3n) { border-right: none; }
+.cards > div:nth-child(-n+3) { border-bottom: 1px solid var(--strong); }
+.cards > div:nth-last-child(-n+3) { border-bottom: none; }
+.cards h3 { font-family: var(--display); font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; letter-spacing: -.01em; }
+.cards p { font-size: 14.5px; color: var(--ink-3); margin-bottom: 12px; }
+.cards .more { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--strong); padding-bottom: 2px; }
+.cards .more:hover { background: var(--ink); color: var(--bg); }
+@media (max-width: 800px) { .cards { grid-template-columns: 1fr; } .cards > div { border-right: none; border-bottom: 1px solid var(--strong); } .cards > div:last-child { border-bottom: none; } }
+.badge-max { font-family: var(--mono); font-size: 9px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--strong); padding: 2px 6px; vertical-align: 3px; color: var(--ink); }
+.badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.badges span { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; border: 1px solid var(--line); padding: 5px 11px; color: var(--ink-3); }
+.badges span.on { border-color: var(--strong); color: var(--ink); }
+.offline { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); border: 2px solid var(--strong); margin-top: 20px; }
+.offline div { padding: 14px 16px; border-right: 1px solid var(--line); font-size: 14.5px; color: var(--ink); display: flex; justify-content: space-between; gap: 10px; }
+.offline div:last-child { border-right: none; }
+.offline div i { font-style: normal; color: var(--ink); }
+.offline div.off { color: var(--ink-3); }
+.offline div.off i { color: var(--ink-3); }
 /* Text cursor (I-beam) ------------------------------------------------------
    Windows can draw the default I-beam in white (dark-mode cursor schemes),
    which vanishes on a near-white page. CSS cannot recolour the OS cursor, so
@@ -459,19 +481,28 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
 <section class="hero">
   <a class="announce" href="changelog.html"><b>NEW</b> v0.2.0 — the Mono release · See what's new →</a>
   <h1>The AI assistant that lives on your PC.</h1>
-  <p class="lede">Meet OASIS: <strong>type or talk to get things done</strong> — organize files, summarize PDFs, set timers, remember appointments, explain broken code, turn the volume down before a call. It all happens <strong>on your computer</strong>. Unplug the router and it keeps working.</p>
+  <p class="lede">Type or talk. O.A.S.I.S. can work with your files, remember things, control your PC and complete tasks — <strong>on your own computer</strong>.</p>
   <div class="ctas">
     <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.5V11H3zM11.5 4.3 21 3v8H11.5zM3 12h7.5v6.5L3 17.5zM11.5 12H21v8l-9.5-1.3z"/></svg>Download for Windows</a>
     <a class="btn ghost" href="how-it-works.html">How it works</a>
   </div>
-  <p class="fine">Free beta · v0.2.0 · Windows 10/11 · No account · <a href="download.html">Verify the SHA256 hash</a></p>
+    <p class="fine">Free beta · Windows 10/11 · No account · <a href="download.html">Verify the SHA256 hash</a></p>
   <div class="proof">
     <span><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">★<b id="star-count"></b> on GitHub</a></span>
-    <span><a href="#status">Open roadmap</a></span>
+    <span><a href="changelog.html#roadmap">Open roadmap</a></span>
     <span><a href="changelog.html">Public changelog</a></span>
     <span><a href="privacy.html">No trackers</a></span>
   </div>
 
+
+
+<!-- ============ DEMO ============ -->
+<section class="sec" id="demo">
+  <div class="sec-head">
+    <p class="kicker">One request, done</p>
+    <h2>It acts, not just answers.</h2>
+    <p>“Find my electricity bills, calculate my Q2 total and save a summary.”</p>
+  </div>
   <div class="appwin" role="img" aria-label="The OASIS app: sidebar navigation, model picker, chat with tool calls and cited sources, command input and a local status bar">
     <div class="appwin-bar"><span class="apptabs" aria-hidden="true"><i class="on">Chat</i><i>Models</i></span><span class="appwin-title" aria-hidden="true">OASIS · local engine</span><span class="winbtns" aria-hidden="true"><i>—</i><i>▢</i><i>✕</i></span></div>
     <div class="appwin-cols">
@@ -486,61 +517,29 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
       </div>
       <div class="stage">
         <div class="toolbar" aria-hidden="true">
-          <span class="modelpill">gemma-4 · Q4_K_M ▾</span>
+          <span class="modelpill">Local model</span>
           <span class="tool live">text</span><span class="tool">voice</span><span class="tool">vision</span>
-          <span style="margin-left:auto" class="tool">47 tok/s</span>
+          
         </div>
         <div class="chat">
-          <div class="msg user"><small>you · 8:59 AM</small>remind me about the dentist tomorrow at 9?</div>
-          <div class="msg ai"><small>oasis · on your PC</small>Done: <b>dentist tomorrow at 9</b>. I'll nudge you at 8:15.
-            <div class="tcard"><header>2 actions · approved by you</header><div>timer — tomorrow 8:15 AM <span class="ok">✓</span></div><div>reminder — spoken alert <span class="ok">✓</span></div></div>
-          </div>
-          <div class="msg user"><small>you · 9:02 AM</small>Find my electricity bills, calculate my Q2 total and save a summary.</div>
+          <div class="msg user"><small>you</small>Find my electricity bills, calculate my Q2 total and save a summary.</div>
           <div class="demo" id="hero-demo">
             <div class="dstep" style="--d:.1s"><span>Searching files…</span><b>17 documents found</b></div>
-            <div class="dstep" style="--d:.7s"><span>Reading…</span><b>3 Q2 bills</b></div>
-            <div class="dstep" style="--d:1.3s"><span>Calculating…</span><b>€184.20 total</b></div>
+            <div class="dstep" style="--d:.7s"><span>Reading Q2 bills…</span><b>3 documents</b></div>
+            <div class="dstep" style="--d:1.3s"><span>Calculating…</span><b>€184.20</b></div>
             <div class="dstep perm" style="--d:1.9s"><span>Permission required</span><b>Create summary.pdf?</b><span class="pbtns"><i>Allow</i><i>Cancel</i></span></div>
-            <div class="dstep done" style="--d:2.5s"><span>Done.</span><b>Saved locally, nothing uploaded</b></div>
+            <div class="dstep done" style="--d:2.5s"><span>Done.</span><b>Saved locally.</b></div>
           </div>
         </div>
         <div class="cbox" aria-hidden="true"><input value="turn the volume down, I'm joining a call" readonly tabindex="-1"><button class="mic" tabindex="-1"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button><button tabindex="-1">Send</button></div>
-        <div class="statusbar" aria-hidden="true"><span>engine <b>local</b></span><span>model <b>on your disk</b></span><span>network <b>unused</b></span><span style="margin-left:auto">mem <b>5.8 GB</b></span></div>
+        <div class="statusbar" aria-hidden="true"><span>engine <b>local</b></span><span>network <b>unused</b></span><span>memory <b>enabled</b></span></div>
       </div>
     </div>
   </div>
-  <p class="cap">The actual app: sidebar navigation, one-click model picker, tool calls with your approval, cited sources, and a status bar that shows where everything runs. Demo figures are illustrative examples, not benchmarks. Shortcuts: <kbd>Ctrl K</kbd> commands · <kbd>Ctrl ⇧ V</kbd> voice · <kbd>/</kbd> tools.</p>
-</section>
-
-<!-- ============ OFFLINE DEMO ============ -->
-<section class="sec" id="offline">
-  <div class="sec-head">
-    <p class="kicker">Offline</p>
-    <h2>Pull the plug. It keeps working.</h2>
-    <p>Local features do not need the network. Network features do — and they only ask for it when you use them.</p>
+  <div class="badges">
+    <span class="on">Local</span><span>Network unused</span><span>Memory enabled</span><span>Permission required</span>
   </div>
-  <div class="mock" role="img" aria-label="Offline demo: network disconnected, local features still working">
-    <div class="mock-bar"><span>network: disconnected</span><span>engine: local</span></div>
-    <div class="mock-body">
-      <div class="dstep done"><span>chat</span><b>Working — local model</b></div>
-      <div class="dstep done" style="margin-top:8px;"><span>voice</span><b>Working — on-device speech</b></div>
-      <div class="dstep done" style="margin-top:8px;"><span>memory</span><b>Working — local database</b></div>
-      <div class="dstep done" style="margin-top:8px;"><span>local files &amp; PC control</span><b>Working</b></div>
-      <div class="dstep perm" style="margin-top:8px;"><span>web search</span><b>Needs network — only when you ask</b></div>
-    </div>
-  </div>
-  <p class="cap">Exactly why we say offline-first, not network-blind. <a href="privacy.html">See the full Local / Network table →</a></p>
-</section>
-
-<!-- ============ WHAT ELSE ============ -->
-<section class="sec" id="tour">
-  <div class="sec-head">
-    <p class="kicker">What else can it do?</p>
-    <h2>More than chat: the full toolbox.</h2>
-  </div>
-  <div class="else">
-    It can <b>take notes</b>, <b>remind you about appointments</b>, <b>add up electricity bills</b> from a folder of PDFs, <b>explain a Python traceback</b> in plain words, <b>lower the volume</b> when you join a call, <b>transcribe a meeting</b>, <b>find any file</b>, <b>control Spotify</b>, <b>translate a paragraph</b>, <b>read your screen</b>, <b>test code in a sandbox</b> before touching your files, and <b>brief you every morning at 9</b>. And much more — <b>100+ tools</b> and counting.
-  </div>
+  <p class="cap">Figures are illustrative examples, not benchmarks. <a href="how-it-works.html">See how it works →</a></p>
 </section>
 
 <!-- ============ AGENT CYCLE ============ -->
@@ -561,285 +560,98 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
   <p class="cap"><a href="how-it-works.html">Read the technical overview →</a></p>
 </section>
 
-<!-- ============ TOUR ============ -->
-<section class="sec">
+<!-- ============ WHAT CAN IT DO ============ -->
+<section class="sec" id="does">
   <div class="sec-head">
-    <p class="kicker">Tour</p>
+    <p class="kicker">What can it do?</p>
     <h2>Six everyday jobs, handled locally.</h2>
-    <p>Each with its own corner of the app. None of it needs the internet once you're set up.</p>
   </div>
-
-  <div class="split">
-    <div>
-      <h3>Talk to your computer like a person.</h3>
-      <p>Dictate and it talks back — in Spanish or English, with natural voices, entirely offline. Say the wake word and it's listening. Interrupt mid-sentence, like a real conversation.</p>
-      <ul class="check">
-        <li><b>Voice in, voice out</b> — dictation, read-aloud, hands-free mode.</li>
-        <li><b>Spoken reminders and timers</b> that actually remind you out loud.</li>
-        <li><b>Four personalities</b>: OASIS, TARS, NOVA and REBELDE — the last one is sarcastic, with limits you set yourself.</li>
-      </ul>
-    </div>
-    <div class="mock" role="img" aria-label="Voice meter with live transcription">
-      <div class="mock-bar"><span>voice · listening</span><span>on-device</span></div>
-      <div class="mock-body">
-        <div class="wave" aria-hidden="true"><i style="height:30%"></i><i style="height:55%"></i><i class="hot" style="height:90%"></i><i class="hot" style="height:70%"></i><i class="hot" style="height:100%"></i><i style="height:45%"></i><i style="height:60%"></i><i class="hot" style="height:85%"></i><i style="height:35%"></i><i style="height:50%"></i><i class="hot" style="height:75%"></i><i style="height:40%"></i></div>
-        <p style="font-size:13px;">"…remind me about the dentist tomorrow at nine"</p>
-        <p class="fine" style="margin-top:6px;">transcribed right here · 0 bytes sent anywhere</p>
-      </div>
-    </div>
+  <div class="cards">
+    <div><h3>Voice</h3><p>Talk naturally and get spoken replies.</p><a class="more" href="how-it-works.html#voice">More →</a></div>
+    <div><h3>Files &amp; documents</h3><p>Find, read and organize files on your PC.</p><a class="more" href="tools.html#files">More →</a></div>
+    <div><h3>Memory</h3><p>Remember useful things across conversations.</p><a class="more" href="how-it-works.html#memory">More →</a></div>
+    <div><h3>PC control</h3><p>Control supported parts of your computer when you ask.</p><a class="more" href="tools.html#pc">More →</a></div>
+    <div><h3>Coding <span class="badge-max">Max</span></h3><p>Understand, edit and test code with permission.</p><a class="more" href="tools.html#code">More →</a></div>
+    <div><h3>Automation <span class="badge-max">Max</span></h3><p>Let O.A.S.I.S. handle recurring tasks.</p><a class="more" href="tools.html#automate">More →</a></div>
   </div>
+</section>
 
-  <div class="split flip" style="margin-top:64px;">
-    <div>
-      <h3>Switch models in one click.</h3>
-      <p>OASIS doesn't ship with a brain — you pick one. The app finds AI models for you, downloads them with pause and resume, and tunes itself to your hardware. Trying a new model feels like switching radio stations.</p>
-      <ul class="check">
-        <li><b>Open models that run offline</b>: Llama 3.2, Gemma 4, Qwen 2.5 — plus any GGUF file, including DeepSeek, Phi or Mistral builds. (GGUF is simply the file format these models ship in; B stands for billions of parameters.)</li>
-        <li><b>Matched to your machine</b> — it recommends what your PC can run.</li>
-        <li><b>Runs on plain CPU</b>; flies with an NVIDIA GPU.</li>
-      </ul>
-    </div>
-    <div class="mock" role="img" aria-label="Model manager downloading a model">
-      <div class="mock-bar"><span>models · on your disk</span><span>2 installed</span></div>
-      <div class="mock-body">
-        <div class="mrow"><div><div class="nm">gemma-4 · recommended</div><div class="prog" aria-hidden="true"><i style="width:100%"></i></div></div><span class="tag">ready</span></div>
-        <div class="mrow"><div><div class="nm">qwen2.5-1.5b</div><div class="prog" aria-hidden="true"><i style="width:64%"></i></div></div><span class="tag">64%</span></div>
-        <div class="mrow"><div><div class="nm">llama-3.2-3b</div></div><span class="tag">paused</span></div>
-      </div>
-    </div>
+<!-- ============ CONTROL ============ -->
+<section class="sec" id="control">
+  <div class="sec-head">
+    <p class="kicker">Built around your control</p>
+    <h2>Local. Mindful. Permissioned.</h2>
   </div>
-
-  <div class="split" style="margin-top:64px;">
-    <div>
-      <h3>It remembers, so you don't have to.</h3>
-      <p>It keeps what you tell it: conversations, notes, facts you ask it not to forget. It also reads your documents — PDFs, Word, Excel, code — and answers citing the exact file each fact came from. All in a database on your disk.</p>
-      <ul class="check">
-        <li><b>Real memory</b>: facts, notes and conversations, searchable by meaning.</li>
-        <li><b>Your documents as a source</b> — every answer shows where it came from.</li>
-        <li><b>Easy to remove</b>: by item, by type, or by file, whenever you want.</li>
-      </ul>
-      <p class="cap" style="margin-top:12px;"><a href="how-it-works.html">See how memory works →</a></p>
-    </div>
-    <div class="mock" role="img" aria-label="Memory demo: saving a preference, then recalling it">
-      <div class="mock-bar"><span>memory · local</span><span>on your disk</span></div>
-      <div class="mock-body">
-        <div class="msg user" style="max-width:100%"><small>you</small>Remember that I prefer Spanish for reminders.</div>
-        <div class="msg ai" style="max-width:100%;margin-top:10px"><small>oasis</small>Saved to memory.</div>
-        <div class="msg user" style="max-width:100%;margin-top:10px"><small>you</small>When is my next reminder?</div>
-        <div class="msg ai" style="max-width:100%;margin-top:10px"><small>oasis</small>Tomorrow at 9:00 — in Spanish, as you asked.</div>
-        <p class="cap" style="margin-top:14px;">memory → local database · <span class="mono">searchable by meaning</span></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="split flip" style="margin-top:64px;">
-    <div>
-      <h3>It codes carefully. <span class="tagmax">Max</span></h3>
-      <p>Paste an error and get an explanation in plain language. Ask for a script and it writes it, tests it in an isolated sandbox, and shows you the diff before touching your files. If it fails, it retries on its own — up to three times.</p>
-      <ul class="check">
-        <li><b>Explains repos and errors</b> without jargon.</li>
-        <li><b>Runs in a sandbox first</b> — nothing executes on your system without your OK.</li>
-        <li><b>Diffs before applying</b>: review every change line by line.</li>
-      </ul>
-      <p class="cap">Coding, execution and the sandbox are part of <b>Max</b> (Docker required). Personal still explains errors and answers coding questions.</p>
-    </div>
-    <div class="mock" role="img" aria-label="Code change proposed by the assistant">
-      <div class="mock-bar"><span>code · isolated sandbox</span><span>attempt 2 of 3</span></div>
-      <div class="mock-body diff">
-        <div class="h">budget.py · proposed</div>
-        <div class="del">- total = sum(bills)</div>
-        <div class="add">+ total = sum(b for b in bills if b.quarter == "Q2")</div>
-        <div class="add">+ print(f"Q2 total: €{total:.2f}")</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="split" style="margin-top:64px;">
-    <div>
-      <h3>It sees your screen — only when asked. <span class="tagmax">Max</span></h3>
-      <p>OASIS looks only when you tell it to — and understands what it sees: it describes images, reads your screen, clicks where you point. It also drives your PC: volume, windows, Spotify, timers, clipboard. Every permission (microphone, screen, files) has its own switch in Settings.</p>
-      <ul class="check">
-        <li><b>Local vision</b>: describes your screen or any image.</li>
-        <li><b>Drives your PC</b>: apps, windows, audio, system.</li>
-        <li><b>Per-tool permissions</b>: mic, screen and files, each with its own off switch.</li>
-      </ul>
-    </div>
-    <div class="mock" role="img" aria-label="Screen analysis and action log">
-      <div class="mock-bar"><span>vision · only when asked</span><span>screen 1</span></div>
-      <div class="mock-body">
-        <div class="shot" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="log"><div>09:02 — volume → 30% ✓</div><div>09:03 — screen read: "3 windows, VS Code in front"</div><div>09:04 — 20-min timer ✓</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="split flip" style="margin-top:64px;">
-    <div>
-      <h3>It handles the boring parts on a schedule. <span class="tagmax">Max</span></h3>
-      <p>Workflows in plain words ("every day at 9"), proactive nudges when it spots something useful, and little skills that learn your phrases. When you leave the house, take it with you: your own Discord or Telegram bot with voice, an Android app over the local network, and a browser extension.</p>
-      <ul class="check">
-        <li><b>Scheduled workflows</b> plus proactive notifications — capped per day so they never nag.</li>
-        <li><b>Discord and Telegram</b> with text and voice (Max edition).</li>
-        <li><b>Android app and browser extension</b> talking to your PC over local network (Max).</li>
-      </ul>
-    </div>
-    <div class="mock" role="img" aria-label="Automatic routine and Discord message">
-      <div class="mock-bar"><span>routines · scheduler</span><span>3 active</span></div>
-      <div class="mock-body">
-        <div class="flow" aria-hidden="true"><div><span>daily 9:00 AM</span><b>Briefing</b></div><div><span>reads</span><b>Calendar + weather</b></div><div><span>sends</span><b>Notification</b></div></div>
-        <div class="dchat" style="margin-top:12px;"><span>discord · your server</span><br><b>oasis:</b> Good morning. 3 meetings today, rain at 6 PM — take an umbrella.</div>
-      </div>
-    </div>
+  <div class="cards">
+    <div><h3>Local</h3><p>Your <span class="term" data-term="local-first">local-first</span> tasks run on your PC, without sending them to a server.</p><a class="more" href="how-it-works.html">How it works →</a></div>
+    <div><h3>Memory</h3><p>Useful information stays available between conversations, found by <span class="term" data-term="semantic-search">semantic search</span> rather than exact words.</p><a class="more" href="how-it-works.html#memory">How memory works →</a></div>
+    <div><h3>Permissions</h3><p>It asks before actions that need your approval. Every <span class="term" data-term="permission">permission</span> is yours to change.</p><a class="more" href="security.html">See the security model →</a></div>
   </div>
 </section>
 
 <!-- ============ TOOLS ============ -->
 <section class="sec" id="tools">
   <div class="sec-head">
-    <p class="kicker">Under the hood</p>
-    <h2>100+ tools, and what they do.</h2>
-    <p>Each one declares its risk level and asks permission before acting. Dangerous ones — deleting, shutting down, running code — never move without your explicit OK.</p>
+    <p class="kicker">Tools</p>
+    <h2>A toolbox, not just a chatbot.</h2>
+    <p>100+ tools across six areas of your PC. Each one declares what it can touch, and asks before it acts.</p>
   </div>
-  <div class="groups">
-    <div>
-      <h3>Control your PC</h3>
-      <ul>
-        <li><code>system_control</code> sleep, lock, restart</li>
-        <li><code>window_manager</code> arrange windows</li>
-        <li><code>volume_control</code> system volume</li>
-        <li><code>app_control</code> open applications</li>
-        <li><code>screenshot</code> capture screen</li>
-        <li><code>kill_process</code> stop processes*</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Work with files</h3>
-      <ul>
-        <li><code>file_search</code> find by name</li>
-        <li><code>search_files</code> search inside</li>
-        <li><code>file_manager</code> copy, move, rename*</li>
-        <li><code>read_file_lines</code> read precisely</li>
-        <li><code>ocr_read</code> text from images</li>
-        <li><code>smart_file_organizer</code> tidy folders</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Build &amp; code</h3>
-      <ul>
-        <li><code>code_agent</code> write code*</li>
-        <li><code>python_sandbox</code> run isolated*</li>
-        <li><code>apply_patch</code> edit files</li>
-        <li><code>git_status</code> repo state</li>
-        <li><code>verify_code</code> check results</li>
-        <li><code>repo_map</code> map codebases</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Connect</h3>
-      <ul>
-        <li><code>internet_search</code> web search</li>
-        <li><code>open_url</code> open pages</li>
-        <li><code>web_translate</code> translate text</li>
-        <li><code>browser_tabs</code> manage tabs</li>
-        <li><code>list_mcp_tools</code> external servers</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Remember</h3>
-      <ul>
-        <li><code>manage_memory</code> save &amp; recall</li>
-        <li><code>search_memory</code> semantic search</li>
-        <li><code>notes</code> quick notes</li>
-        <li><code>create_note</code> capture fast</li>
-        <li><code>calendar</code> manage events</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Automate</h3>
-      <ul>
-        <li><code>set_timer</code> timers + alerts</li>
-        <li><code>reminder</code> reminders</li>
-        <li><code>daily_brief</code> morning briefing</li>
-        <li><code>run_workflow</code> run routines*</li>
-        <li><code>create_workflow</code> build routines</li>
-        <li><code>notify</code> proactive nudges</li>
-      </ul>
-    </div>
+  <div class="cards">
+    <div><h3>PC</h3><p>Apps, windows, volume, system.</p><a class="more" href="tools.html#pc">Explore →</a></div>
+    <div><h3>Files</h3><p>Find, read, organize, documents.</p><a class="more" href="tools.html#files">Explore →</a></div>
+    <div><h3>Code</h3><p>Write, review and test — sandboxed.</p><a class="more" href="tools.html#code">Explore →</a></div>
+    <div><h3>Web</h3><p>Search and open pages when you ask.</p><a class="more" href="tools.html#connect">Explore →</a></div>
+    <div><h3>Memory</h3><p>Notes, facts and documents.</p><a class="more" href="tools.html#remember">Explore →</a></div>
+    <div><h3>Automation</h3><p>Timers, reminders, routines.</p><a class="more" href="tools.html#automate">Explore →</a></div>
   </div>
-  <p class="cap">*Always asks first — high-impact tools require explicit confirmation. 100+ tools across seven categories; the exact inventory lives in the code, and the <a href="features.html">full spec sheet is here</a>.</p>
+  <p class="cap">Includes external tool servers via <span class="term" data-term="mcp">MCP</span>, the protocol used to connect AI systems to outside tools.</p>
 </section>
 
-<!-- ============ PERMISSIONS ============ -->
+<!-- ============ SECURITY ============ -->
 <section class="sec" id="permissions">
   <div class="sec-head">
-    <p class="kicker">Permissions</p>
+    <p class="kicker">Security</p>
     <h2>Your AI should ask before it acts.</h2>
-    <p>Every tool carries a risk level. Low-risk reads run automatically; everything else follows your per-tool setting — allow, deny, or ask. Ten high-impact tools always ask, no matter what.</p>
+    <p>Different actions have different permission levels. High-impact actions require confirmation.</p>
   </div>
-  <div class="pdem">
-    <div class="mock" role="img" aria-label="Permission dialog asking to create a file">
-      <div class="mock-bar"><span>permission required · medium</span><span>oasis · local</span></div>
-      <div class="mock-body">
-        <p style="font-size:14.5px;color:var(--ink);margin-bottom:4px;">Create <b>summary.pdf</b>?</p>
-        <p style="font-size:13px;">Requested by <span class="mono">write_file</span> · reversible</p>
-        <div class="pbtns" style="margin-top:12px;"><i>Allow once</i><i>Always allow</i><i>Cancel</i></div>
-      </div>
-    </div>
-    <div class="mock" role="img" aria-label="Permission dialog for deleting temporary files">
-      <div class="mock-bar"><span>permission required · critical</span><span>oasis · local</span></div>
-      <div class="mock-body">
-        <p style="font-size:14.5px;color:var(--ink);margin-bottom:4px;">Delete <b>12 temporary files</b>?</p>
-        <p style="font-size:13px;">Requested by <span class="mono">file_manager</span> · irreversible</p>
-        <div class="pbtns" style="margin-top:12px;"><i>Allow once</i><i>Cancel</i></div>
-        <p class="cap" style="margin-top:12px;">→ 12 files deleted · verified</p>
-      </div>
-    </div>
-  </div>
-  <div class="tbl" style="margin-top:22px;">
+  <div class="tbl" style="margin-top:0;">
   <table class="vs">
-    <thead><tr><th>Level</th><th>Example</th><th>Behavior</th></tr></thead>
+    <thead><tr><th>Action</th><th>What happens</th></tr></thead>
     <tbody>
-      <tr><td>Low</td><td>Read system info, search files</td><td class="y">Automatic</td></tr>
-      <tr><td>Medium</td><td>Write files, clipboard</td><td class="y">Your setting: allow, deny or ask</td></tr>
-      <tr><td>High</td><td>Run code, run workflows (Max)</td><td class="y">Confirmation required</td></tr>
-      <tr><td>Critical</td><td>Delete files, shut down</td><td class="y">Explicit confirmation, every time</td></tr>
+      <tr><td>Read a file</td><td>Automatic</td></tr>
+      <tr><td>Write a file</td><td>Ask</td></tr>
+      <tr><td>Run code</td><td>Confirm — inside a <span class="term" data-term="sandbox">sandbox</span></td></tr>
+      <tr><td>Delete files</td><td>Confirm every time</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="cap">Ten high-impact tools can never run silently: <span class="mono">custom_command, system_control, kill_process, system_cleanup, clipboard_control, code_agent, python_sandbox, file_manager, run_workflow, git_ops</span>. <a href="security.html">How security works →</a></p>
+  <p class="cap"><a href="security.html">See the security model →</a></p>
 </section>
 
 <!-- ============ MODELS ============ -->
 <section class="sec" id="models">
   <div class="sec-head">
-    <p class="kicker">Models</p>
-    <h2>Your assistant. Your model.</h2>
-    <p>Downloaded inside the app, with pause and resume. Start small; size up when you want more. All are open models that run on your machine.</p>
+    <p class="kicker">Models &amp; hardware</p>
+    <h2>Choose the model that fits your PC.</h2>
+    <p>O.A.S.I.S. supports compatible <span class="term" data-term="gguf">GGUF</span> models from several families. Pick one when you set up, and change it any time.</p>
   </div>
   <div class="fams">
-    <div><b>Llama 3.2</b><span>ready to download</span></div>
-    <div><b>Gemma 4</b><span>recommended</span></div>
-    <div><b>Qwen 2.5</b><span>lightest, fastest</span></div>
-    <div><b>GGUF-compatible</b><span>DeepSeek · Phi · Mistral…</span></div>
+    <div><b>Llama</b><span>all-rounder</span></div>
+    <div><b>Gemma</b><span>recommended start</span></div>
+    <div><b>Qwen</b><span>lightest</span></div>
+    <div><b>DeepSeek</b><span>reasoning</span></div>
+    <div><b>Phi</b><span>modest PCs</span></div>
+    <div><b>Mistral</b><span>+ more</span></div>
   </div>
-  <p class="cap">GGUF is the model file format. O.A.S.I.S. supports compatible GGUF models — not every GGUF build is guaranteed to run. <a href="requirements.html">Which model fits your PC? →</a></p>
-</section>
+  <p class="cap"><a href="models.html">See supported models →</a></p>
 
-<!-- ============ USE CASES ============ -->
-<section class="sec" id="use-cases">
-  <div class="sec-head">
-    <p class="kicker">Results, not features</p>
-    <h2>What people actually get done.</h2>
+  <h2 style="margin-top:56px; font-size:clamp(24px,3.2vw,32px); font-family:var(--display); letter-spacing:-.02em; color:var(--ink);">Start with the hardware you have.</h2>
+  <div class="offline" style="margin-top:18px;">
+    <div><span>CPU</span><i>Works</i></div>
+    <div><span>NVIDIA GPU</span><i>Faster</i></div>
+    <div><span>More memory &amp; <span class="term" data-term="vram">VRAM</span></span><i>Larger models</i></div>
   </div>
-  <div class="groups">
-    <div><h3>Coding</h3><ul><li>Find a bug, review the diff, run the tests, get the fix explained.</li></ul></div>
-    <div><h3>Documents</h3><ul><li>Summarize a folder of PDFs into one page.</li></ul></div>
-    <div><h3>Research</h3><ul><li>Search, compare and summarize — with sources attached.</li></ul></div>
-    <div><h3>Automation</h3><ul><li>Recurring workflows that run while you sleep.</li></ul></div>
-    <div><h3>PC control</h3><ul><li>Apps, windows, audio and system — by voice.</li></ul></div>
-    <div><h3>Personal</h3><ul><li>Notes, projects and preferences it remembers.</li></ul></div>
-  </div>
-  <p class="cap"><a href="how-it-works.html">See how the agent loop works →</a></p>
+  <p class="cap"><a href="requirements.html">See hardware requirements →</a></p>
 </section>
 
 <!-- ============ DOWNLOAD ============ -->
@@ -851,34 +663,12 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
   <div class="steps">
     <div class="step"><div class="n">1</div><h3>Install the app</h3><p>From GitHub Releases, for Windows 10/11. Verify the SHA256 if you're meticulous: <code>certutil -hashfile OASIS.exe SHA256</code>.</p></div>
     <div class="step"><div class="n">2</div><h3>Download a model</h3><p>In the Models tab, pick a small Gemma or Qwen and hit download. Once, with internet. After that, you don't need it.</p></div>
-    <div class="step"><div class="n">3</div><h3>Talk</h3><p>Type or press to speak. Ask it to tidy Downloads, explain an error, or remind you about the dentist.</p></div>
+    <div class="step"><div class="n">3</div><h3>Talk</h3><p>Type or press to speak. Ask it to tidy Downloads, explain an error, or set a reminder.</p></div>
   </div>
-  <p class="cap">Requirements: Windows 10/11 · any modern CPU (NVIDIA GPU recommended, not required) · Docker only if you want it to run code. Spanish and English included. Keyboard-only friendly, scalable text, screen-reader compatible.</p>
+  <p class="cap">Requirements: Windows 10/11 · any modern CPU (NVIDIA GPU recommended, not required) · Docker only if you want it to run code. <a href="download.html">Installation guide →</a></p>
   <div class="ctas" style="margin-top:26px;">
     <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Download the beta</a>
   </div>
-</section>
-
-<!-- ============ VS ============ -->
-<section class="sec" id="compare">
-  <div class="sec-head">
-    <p class="kicker">Why local</p>
-    <h2>O.A.S.I.S. vs. typical cloud assistants.</h2>
-  </div>
-  <div class="tbl">
-  <table class="vs">
-    <thead><tr><th></th><th class="us">O.A.S.I.S.</th><th>Typical cloud assistants</th></tr></thead>
-    <tbody>
-      <tr><td>Local features work with no internet</td><td class="y">Yes</td><td class="n">Usually no</td></tr>
-      <tr><td>Account required</td><td class="y">No</td><td class="n">Usually</td></tr>
-      <tr><td>Your files processed on your PC*</td><td class="y">Yes</td><td class="n">Usually cloud</td></tr>
-      <tr><td>Controls your PC directly</td><td class="y">Yes</td><td class="n">Depends on provider</td></tr>
-      <tr><td>Speaks Spanish offline</td><td class="y">Yes</td><td class="n">Online only</td></tr>
-      <tr><td>Payment model</td><td class="y">Free / one-time</td><td class="n">Subscription commonly used</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="cap">*Local features stay on your PC. Network-enabled features (web search, weather, optional integrations) communicate externally only when you use or configure them. Typical cloud assistants vary by provider — this compares common defaults, not a specific product.</p>
 </section>
 
 <!-- ============ PRICING ============ -->
@@ -920,30 +710,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
       <a class="btn" href="#early-access">Join the waitlist</a>
     </div>
   </div>
-  <h3 class="fth" style="margin:34px 0 0;">Personal vs Max — full matrix</h3>
-  <div class="tbl" style="margin-top:12px;">
-  <table class="vs">
-    <thead><tr><th>Feature</th><th class="us">Personal</th><th>Max</th></tr></thead>
-    <tbody>
-      <tr><td>Local chat</td><td class="y">✓</td><td class="y">✓</td></tr>
-      <tr><td>Voice (speech in / out)</td><td class="y">✓</td><td class="y">✓</td></tr>
-      <tr><td>Memory and documents (basic)</td><td class="y">✓</td><td class="y">✓</td></tr>
-      <tr><td>Everyday PC control</td><td class="y">✓</td><td class="y">✓</td></tr>
-      <tr><td>Projects</td><td class="y">Up to 3</td><td class="y">Unlimited</td></tr>
-      <tr><td>Vision / screen analysis</td><td class="n">—</td><td class="y">✓</td></tr>
-      <tr><td>Coding (full code agent)</td><td class="n">—</td><td class="y">✓</td></tr>
-      <tr><td>Isolated Docker sandbox</td><td class="n">—</td><td class="y">✓</td></tr>
-      <tr><td>Workflows and scheduling</td><td class="n">—</td><td class="y">✓</td></tr>
-      <tr><td>Discord / Telegram</td><td class="n">—</td><td class="y">✓</td></tr>
-      <tr><td>Android app</td><td class="n">—</td><td class="y">✓</td></tr>
-      <tr><td>Browser extension</td><td class="n">—</td><td class="y">✓</td></tr>
-      <tr><td>External tool servers (MCP)</td><td class="n">—</td><td class="y">✓</td></tr>
-      <tr><td>Voice cloning / advanced voice</td><td class="n">—</td><td class="y">✓</td></tr>
-      <tr><td>Advanced memory + semantic file map</td><td class="n">—</td><td class="y">✓</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p class="cap">Source of truth: the app's own feature catalog. Max is not on sale yet — <a href="#early-access">join the waitlist</a>.</p>
+    <p class="cap"><a href="pricing.html">Compare the full plans →</a></p>
 </section>
 
 <!-- ============ EARLY ACCESS ============ -->
@@ -987,26 +754,8 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
     <details><summary>What about Mac or Linux?</summary><p>Not yet — Windows 10/11 only. Linux and macOS are on the roadmap, and the installer already prepares per-platform builds.</p></details>
     <details><summary>Is Max a subscription?</summary><p>No — and there's nothing to pay yet. Max will be a single payment (€15 in early access, €25 at 1.0), never a subscription. <a href="#early-access">Join the waitlist</a> and we'll send one email when it opens.</p></details>
     <details><summary>What happens when an action is dangerous?</summary><p>It stops and asks. Deleting files, shutting down or running code always requires your explicit confirmation — high-impact tools can never run silently. <a href="#permissions">How permissions work →</a></p></details>
-    <details><summary>Can it see my screen?</summary><p>Only when you ask it to look — for example, to describe a window or click something for you. It never watches in the background.</p></details>
-    <details><summary>Is O.A.S.I.S. open source?</summary><p>No. It's proprietary software with a public website, changelog and roadmap — the code itself is not open source. The license ships with the installer.</p></details>
   </div>
 </section>
-
-<!-- ============ STATUS ============ -->
-<section class="sec" id="status">
-  <div class="sec-head">
-    <p class="kicker">Status</p>
-    <h2>A beta with the door open.</h2>
-    <p id="rm-updated">Recently updated.</p>
-  </div>
-  <div class="rm rm3">
-    <div><h3>Now</h3><ul id="rm-now"><li>Local chat, models, voice, tools and memory.</li></ul></div>
-    <div><h3>Next</h3><ul id="rm-next"><li>Max early access, Linux, macOS.</li></ul></div>
-    <div><h3>Later</h3><ul id="rm-later"><li>Multi-agent, more runtimes.</li></ul></div>
-  </div>
-  <p class="cap">Bugs get blogged about, not buried. New to local AI? Start with <a href="blog/2026/09/10/what-is-a-local-ai-assistant/">the plain-words guide</a>. Missing something? <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Ask in Discussions</a> — humans read it.</p>
-  <ul class="blogindex" id="blog-list"><li id="blog-empty">Loading posts…</li></ul>
-  <p class="cap"><a href="blog/">All posts →</a> · <a href="features.html">Full spec sheet →</a></p>
 
   <div class="closer">
     <div>
@@ -1046,7 +795,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
       <ul>
         <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentation</a></li>
         <li><a href="blog/">Journal</a></li>
-        <li><a href="./#status">Roadmap</a></li>
+        <li><a href="changelog.html#roadmap">Roadmap</a></li>
         <li><a href="changelog.html">Changelog</a></li>
       </ul>
     </div>
@@ -1120,30 +869,6 @@ function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ 
     } else if (c === null) { el.parentNode.parentNode.style.display = 'none'; }
   }).catch(function () { if (c === null) el.parentNode.parentNode.style.display = 'none'; });
 }());
-fetch('site-data.json').then(function (r) { return r.json(); }).then(function (d) {
-  function fill(id, items) {
-    var el = document.getElementById(id);
-    if (!el || !Array.isArray(items) || !items.length) return;
-    el.innerHTML = items.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
-  }
-  var rm = d.roadmap || {};
-  fill('rm-now', rm.now); fill('rm-next', rm.next); fill('rm-later', rm.later);
-  var u = document.getElementById('rm-updated');
-  if (u && d.updated) {
-    var dt = new Date(d.updated);
-    u.textContent = 'Updated ' + (isNaN(dt) ? d.updated : dt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })) + '.';
-  }
-}).catch(function () {});
-fetch('blog/posts.json').then(function (r) { return r.json(); }).then(function (posts) {
-  var ul = document.getElementById('blog-list');
-  if (!ul || !Array.isArray(posts) || !posts.length) return;
-  ul.innerHTML = posts.slice(0, 3).map(function (p) {
-    return '<li><a href="' + esc(p.url) + '"><span class="t">' + esc(p.title) + '</span><span class="d">' + esc(p.date) + '</span></a></li>';
-  }).join('');
-}).catch(function () {
-  var e = document.getElementById('blog-empty');
-  if (e) e.textContent = 'The blog lives at /blog/.';
-});
 // Hero agent demo: stage steps, play when scrolled into view.
 (function () {
   var demo = document.getElementById('hero-demo');
@@ -1219,6 +944,7 @@ fetch('blog/posts.json').then(function (r) { return r.json(); }).then(function (
   });
 }());
 </script>
+<script src="assets/tooltip.js"></script>
 <div class="sticky-cta"><a class="btn sm" href="download.html">Download for Windows</a></div>
 </body>
 </html>

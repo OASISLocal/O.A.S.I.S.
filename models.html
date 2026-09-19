@@ -18,6 +18,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/tooltip.css">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -55,10 +56,10 @@
 
   <hr class="rule">
   <p class="kicker">Bundled profiles</p>
-  <h2>What ships tested in the app.</h2>
+  <h2 id="inference">What ships tested in the app.</h2>
   <div class="tbl">
   <table class="spec">
-    <thead><tr><th>Model</th><th>Context</th><th>RAM</th><th>VRAM</th><th>Tier</th></tr></thead>
+    <thead><tr><th>Model</th><th><span class="term" data-term="context-window">Context</span></th><th>RAM</th><th><span class="term" data-term="vram">VRAM</span></th><th>Tier</th></tr></thead>
     <tbody>
       <tr><td>Gemma 4B IT <span class="mono">Q4_K_M</span></td><td>16,384</td><td>4&nbsp;GB</td><td>2&nbsp;GB</td><td>Mid / High</td></tr>
       <tr><td>Qwen 2.5 1.5B <span class="mono">Q4_K_M</span></td><td>32,768</td><td>2&nbsp;GB</td><td>1&nbsp;GB</td><td>Low / Mid</td></tr>
@@ -70,17 +71,17 @@
 
   <hr class="rule">
   <p class="kicker">Compatibility</p>
-  <h2>GGUF is a format, not a promise.</h2>
+  <h2 id="gguf"><span class="term" data-term="gguf">GGUF</span> is a format, not a promise.</h2>
   <ul class="plain">
     <li><b>What GGUF means:</b> a single-file model format readable by the local runtime. It is the packaging, not a guarantee.</li>
     <li><b>What is supported:</b> compatible GGUF builds in the families the app lists — including DeepSeek, Phi and Mistral builds — subject to runtime and hardware.</li>
-    <li><b>What is not promised:</b> that <em>any</em> GGUF file runs. Very large models, exotic architectures or unusual quantisations may not fit your RAM/VRAM or the runtime's support.</li>
+    <li><b>What is not promised:</b> that <em>any</em> GGUF file runs. Very large models, exotic architectures or unusual <span class="term" data-term="quantization">quantisations</span> may not fit your RAM/VRAM or the runtime's support.</li>
     <li><b>How you find out:</b> the app inspects the file and warns you before downloading what your machine can realistically run.</li>
   </ul>
 
   <hr class="rule">
   <p class="kicker">What changes with a bigger model</p>
-  <h2>Size versus speed.</h2>
+  <h2 id="sizes">Size versus speed.</h2>
   <div class="tbl">
   <table class="spec">
     <thead><tr><th>Size class</th><th>Download</th><th>Needs</th><th>Feels like</th></tr></thead>
@@ -113,7 +114,7 @@
       <li><a href="requirements.html">Requirements</a></li><li><a href="comparison.html">Compare</a></li></ul></div>
     <div><h3 class="fth">Resources</h3><ul>
       <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentation</a></li>
-      <li><a href="blog/">Journal</a></li><li><a href="./#status">Roadmap</a></li>
+      <li><a href="blog/">Journal</a></li><li><a href="changelog.html#roadmap">Roadmap</a></li>
       <li><a href="changelog.html">Changelog</a></li></ul></div>
     <div><h3 class="fth">Trust &amp; Community</h3><ul>
       <li><a href="privacy.html">Privacy</a></li><li><a href="security.html">Security</a></li>
@@ -124,5 +125,6 @@
 </footer>
 <div class="sticky-cta"><a class="btn sm" href="download.html">Download for Windows</a></div>
 <script src="assets/site.js"></script>
+<script src="assets/tooltip.js"></script>
 </body>
 </html>

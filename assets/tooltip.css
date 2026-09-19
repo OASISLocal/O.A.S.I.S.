@@ -1,0 +1,48 @@
+/* Tooltip system — see tooltips.json for the dictionary.
+   Fixed-position overlay: never shifts layout. */
+.term {
+  border-bottom: 1px dotted var(--ink-3, #8f8f8f);
+  cursor: help;
+}
+.term:focus-visible { outline: 2px solid var(--ink, #fff); outline-offset: 2px; }
+
+.tt {
+  position: fixed;
+  z-index: 300;
+  max-width: 320px;
+  background: var(--surface, #161616);
+  color: var(--ink-2, #c9c9c9);
+  border: 1px solid var(--strong, #fff);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.14s ease, transform 0.14s ease;
+  pointer-events: none;
+}
+.tt.open { opacity: 1; transform: none; pointer-events: auto; }
+.tt-term {
+  display: block;
+  font-family: var(--font-label, 'Space Mono', monospace);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink, #fff);
+  margin-bottom: 6px;
+  font-weight: 400;
+}
+.tt-short { margin: 0 0 8px; }
+.tt-more {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--ink, #fff);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.tt-more:hover { color: var(--ink, #fff); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tt { transition: none; transform: none; }
+}

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>How O.A.S.I.S. Works — Local AI on Your PC</title>
-<meta name="description" content="OASIS runs entirely on your PC: your voice is transcribed on-device, a local AI model thinks, and 100 tools act. No servers, no API calls. See the full data flow.">
+<meta name="description" content="OASIS runs entirely on your PC: your voice is transcribed on-device, a <span class="term" data-term="local-inference">local model</span> thinks, and 100 tools act. No servers, no API calls. See the full data flow.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./how-it-works.html">
 <meta name="theme-color" content="#111111">
@@ -18,6 +18,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/tooltip.css">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 </head>
 <body>
@@ -93,16 +94,16 @@
 
   <hr class="rule">
   <p class="kicker">Step by step</p>
-  <h2>What happens when you speak.</h2>
+  <h2 id="voice">What happens when you speak.</h2>
   <div class="block">
     <h3>1. Your PC listens locally.</h3>
     <p>Press to talk, or say the wake word. The microphone stream goes to an on-device recognizer, never to a transcription API. Background noise gets filtered; you can interrupt the reply mid-sentence and it stops, like a person would.</p>
-    <h3>2. A model on your disk thinks.</h3>
+    <h3 id="agent">2. A model on your disk thinks.</h3>
     <p>The text reaches an open AI model (Llama, Gemma, Qwen and friends) running locally. It reads the conversation, checks its memory of you, and decides: answer directly, or use a tool. Small models answer fast on CPU; bigger ones run better with a GPU.</p>
     <h3>3. Hands, not just words.</h3>
     <p>When action is needed, the model calls one of 100+ declared tools — set a timer, lower the volume, read a PDF, run code in an isolated sandbox. Risky tools (deleting, shutting down, executing) pause for your explicit approval first.</p>
-    <h3>4. It remembers — on your disk.</h3>
-    <p>Exchanges, notes and documents land in a local database with semantic search, so "that electricity total from last spring" is retrievable months later. Delete by item, by type, or by file whenever you like.</p>
+    <h3 id="memory">4. It remembers — on your disk.</h3>
+    <p>Exchanges, notes and documents land in a local database with <span class="term" data-term="semantic-search">semantic search</span>, so "that electricity total from last spring" is retrievable months later. Delete by item, by type, or by file whenever you like.</p>
   </div>
 
   <hr class="rule">
@@ -129,7 +130,7 @@
       <li><a href="./#pricing">Pricing</a></li><li><a href="features.html">Spec sheet</a></li></ul></div>
     <div><h3 class="fth">Resources</h3><ul>
       <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentation</a></li>
-      <li><a href="blog/">Journal</a></li><li><a href="./#status">Roadmap</a></li>
+      <li><a href="blog/">Journal</a></li><li><a href="changelog.html#roadmap">Roadmap</a></li>
       <li><a href="changelog.html">Changelog</a></li></ul></div>
     <div><h3 class="fth">Trust &amp; Community</h3><ul>
       <li><a href="privacy.html">Privacy</a></li><li><a href="security.html">Security</a></li>
@@ -140,5 +141,6 @@
 </footer>
 <div class="sticky-cta"><a class="btn sm" href="download.html">Download for Windows</a></div>
 <script src="assets/site.js"></script>
+<script src="assets/tooltip.js"></script>
 </body>
 </html>

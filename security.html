@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Security — How O.A.S.I.S. Handles Permissions &amp; Risk</title>
-<meta name="description" content="How OASIS keeps control in your hands: per-tool permissions, mandatory confirmation for risky actions, isolated code sandbox, encrypted local vault, and no telemetry by default.">
+<meta name="description" content="How OASIS keeps control in your hands: per-tool <span class="term" data-term="permission">permissions</span>, mandatory confirmation for risky actions, isolated code <span class="term" data-term="sandbox">sandbox</span>, encrypted local vault, and no telemetry by default.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./security.html">
 <meta name="theme-color" content="#111111">
@@ -18,6 +18,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/tooltip.css">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 </head>
 <body>
@@ -50,7 +51,7 @@
 
   <hr class="rule">
   <p class="kicker">Permissions</p>
-  <h2>Allow, deny, or ask — per tool.</h2>
+  <h2 id="permissions">Allow, deny, or ask — per tool.</h2>
   <p>Each of the 100+ tools declares what it can touch. You set each one to <b>allow</b>, <b>deny</b>, or <b>ask every time</b>, in Settings → Permissions. Microphone, screen and files have their own master switches on top.</p>
   <div class="tbl">
   <table class="spec">
@@ -67,12 +68,12 @@
 
   <hr class="rule">
   <p class="kicker">Sandbox</p>
-  <h2>Code runs in a cage first.</h2>
+  <h2 id="sandbox">Code runs in a cage first.</h2>
   <p>Generated code executes inside an isolated Docker sandbox with memory and CPU limits — never directly on your system. You review the diff before anything it produces touches your files. Skip Docker and code execution simply stays off; everything else keeps working.</p>
 
   <hr class="rule">
   <p class="kicker">Storage</p>
-  <h2>Encrypted vault, local folder.</h2>
+  <h2 id="storage">Encrypted vault, local folder.</h2>
   <p>Secrets live in an encrypted local vault, not in config files. Models, memory and settings live in <code>%LOCALAPPDATA%\O.A.S.I.S.\</code> — a folder you can open, back up, or delete. A PIN lock protects shared machines, and an action log records what the assistant did.</p>
 
   <hr class="rule">
@@ -110,7 +111,7 @@
       <li><a href="./#pricing">Pricing</a></li><li><a href="features.html">Spec sheet</a></li></ul></div>
     <div><h3 class="fth">Resources</h3><ul>
       <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentation</a></li>
-      <li><a href="blog/">Journal</a></li><li><a href="./#status">Roadmap</a></li>
+      <li><a href="blog/">Journal</a></li><li><a href="changelog.html#roadmap">Roadmap</a></li>
       <li><a href="changelog.html">Changelog</a></li></ul></div>
     <div><h3 class="fth">Trust &amp; Community</h3><ul>
       <li><a href="privacy.html">Privacy</a></li><li><a href="security.html">Security</a></li>
@@ -120,5 +121,6 @@
   <div class="base"><span>© O.A.S.I.S. · v0.2.0 · beta</span><span>no trackers on this page</span></div>
 </footer>
 <script src="assets/site.js"></script>
+<script src="assets/tooltip.js"></script>
 </body>
 </html>

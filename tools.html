@@ -18,6 +18,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/tooltip.css">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
@@ -57,7 +58,7 @@
 
   <h2 class="fth">Full inventory by category</h2>
 
-  <div class="tbl">
+  <div class="tbl" id="pc">
   <table class="spec">
     <thead><tr><th>Control your PC</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
     <tbody>
@@ -78,7 +79,7 @@
   </table>
   </div>
 
-  <div class="tbl">
+  <div class="tbl" id="files">
   <table class="spec">
     <thead><tr><th>Work with files</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
     <tbody>
@@ -100,7 +101,7 @@
   </table>
   </div>
 
-  <div class="tbl">
+  <div class="tbl" id="code">
   <table class="spec">
     <thead><tr><th>Build &amp; code</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
     <tbody>
@@ -117,7 +118,7 @@
   </table>
   </div>
 
-  <div class="tbl">
+  <div class="tbl" id="connect">
   <table class="spec">
     <thead><tr><th>Connect <span class="mono">Net</span></th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
     <tbody>
@@ -129,13 +130,13 @@
       <tr><td>weather</td><td>Current weather</td><td>Low</td><td>P</td></tr>
       <tr><td>email / email_assistant</td><td>Send and search mail</td><td>High</td><td>P</td></tr>
       <tr><td>calendar / calendar_manage</td><td>Read and edit events</td><td>Medium</td><td>P</td></tr>
-      <tr><td>list_mcp_tools</td><td>External MCP tool servers</td><td>High</td><td>M</td></tr>
+      <tr><td>list_mcp_tools</td><td>External <span class="term" data-term="mcp">MCP</span> tool servers</td><td>High</td><td>M</td></tr>
       <tr><td>hermes</td><td>Hermes agent integration</td><td>High</td><td>M</td></tr>
     </tbody>
   </table>
   </div>
 
-  <div class="tbl">
+  <div class="tbl" id="remember">
   <table class="spec">
     <thead><tr><th>Remember</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
     <tbody>
@@ -147,7 +148,7 @@
   </table>
   </div>
 
-  <div class="tbl">
+  <div class="tbl" id="automate">
   <table class="spec">
     <thead><tr><th>Automate</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
     <tbody>
@@ -163,7 +164,7 @@
   </table>
   </div>
 
-  <div class="tbl">
+  <div class="tbl" id="see">
   <table class="spec">
     <thead><tr><th>See &amp; speak</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
     <tbody>
@@ -195,7 +196,7 @@
       <li><a href="requirements.html">Requirements</a></li><li><a href="comparison.html">Compare</a></li></ul></div>
     <div><h3 class="fth">Resources</h3><ul>
       <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentation</a></li>
-      <li><a href="blog/">Journal</a></li><li><a href="./#status">Roadmap</a></li>
+      <li><a href="blog/">Journal</a></li><li><a href="changelog.html#roadmap">Roadmap</a></li>
       <li><a href="changelog.html">Changelog</a></li></ul></div>
     <div><h3 class="fth">Trust &amp; Community</h3><ul>
       <li><a href="privacy.html">Privacy</a></li><li><a href="security.html">Security</a></li>
@@ -206,5 +207,6 @@
 </footer>
 <div class="sticky-cta"><a class="btn sm" href="download.html">Download for Windows</a></div>
 <script src="assets/site.js"></script>
+<script src="assets/tooltip.js"></script>
 </body>
 </html>

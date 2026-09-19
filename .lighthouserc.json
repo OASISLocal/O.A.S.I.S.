@@ -6,6 +6,7 @@
         "http://localhost/",
         "http://localhost/tools.html",
         "http://localhost/models.html",
+        "http://localhost/pricing.html",
         "http://localhost/faq.html"
       ],
       "numberOfRuns": 1,
