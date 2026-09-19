@@ -1,62 +1,124 @@
 <#
 .SYNOPSIS
-  Sync the OASIS website: checks, commit, push to origin + production (github-pages).
+  Sync the OASIS website: checks, commit, push to origin + deploy to production.
 .DESCRIPTION
-  1. Pre-push checks (old URLs, JSON validity, canonicals).
-  2. Commits everything on main.
-  3. Pushes to origin (staging) and production (OASISLocal/O.A.S.I.S. : github-pages).
-  Run from anywhere: the script cds to its own folder.
+  Reads launch.json for the deployment phase:
+    live      -> deploys the full site (current main tree).
+    teaser    -> deploys ONLY launch/teaser.html as index.html. Nothing else.
+    countdown -> deploys ONLY launch/countdown.html as index.html (date baked in).
+  Non-live deploys contain just index.html + a minimal 404 + robots (disallow all).
+  No sitemap, no blog, no full site anywhere — not even in view-source.
+  Deploy is a snapshot commit on production/github-pages via a temp worktree,
+  so history stays linear and merges never conflict.
 .EXAMPLE
   .\sync-web.ps1
   .\sync-web.ps1 -Message "Hero: new announcement pill"
+  .\sync-web.ps1 -Mode countdown -RevealDate "2026-12-01T12:00:00Z"
 #>
-param([string]$Message = "")
+param(
+  [string]$Message = "",
+  [ValidateSet("", "live", "teaser", "countdown")][string]$Mode = "",
+  [string]$RevealDate = ""
+)
 
 $ErrorActionPreference = "Stop"
 Set-Location -LiteralPath $PSScriptRoot
 
 function Fail($msg) { Write-Host "SYNC ABORTED: $msg" -ForegroundColor Red; exit 1 }
 
-# ---------- 1. Pre-push checks ----------
+# ---------- 0. Resolve phase ----------
+$launch = Get-Content -Raw launch.json | ConvertFrom-Json
+if (-not $Mode) { $Mode = $launch.mode }
+if (-not $Mode) { $Mode = "live" }
+if ($Mode -eq "countdown" -and -not $RevealDate) { $RevealDate = $launch.revealDate }
+if ($Mode -eq "countdown" -and -not $RevealDate) { Fail "countdown needs -RevealDate ISO-8601 or launch.json revealDate" }
+Write-Host "== phase: $Mode ==" -ForegroundColor Cyan
+
+# ---------- 1. Pre-push checks (full tree, always) ----------
 Write-Host "== checks ==" -ForegroundColor Cyan
 
-$badOld = Select-String -Path *.html, *.xml, *.txt, _layouts/*.html, _posts/*.md, blog/*.html, blog/*.json -Pattern "OASISLocal/oasis[^.]|github\.io/OASIS[^.]" -ErrorAction SilentlyContinue |
+$badOld = Select-String -Path *.html, *.xml, *.txt, launch/*.html, _layouts/*.html, _posts/*.md, blog/*.html, blog/*.json -Pattern "OASISLocal/oasis[^.]|github\.io/OASIS[^.]" -ErrorAction SilentlyContinue |
   Where-Object { $_.Line -notmatch "O\.A\.S\.I\.S\." }
 if ($badOld) { $badOld | ForEach-Object { Write-Host ("  " + $_.Filename + ":" + $_.LineNumber) }; Fail "old repo/paths URLs found above" }
 
 try { Get-Content -Raw roadmap.json | ConvertFrom-Json | Out-Null } catch { Fail "roadmap.json is not valid JSON" }
+try { Get-Content -Raw launch.json | ConvertFrom-Json | Out-Null } catch { Fail "launch.json is not valid JSON" }
 
 $missingCanon = Get-ChildItem -Filter *.html | Where-Object {
   (Get-Content -Raw $_.FullName) -notmatch 'rel="canonical"'
 } | Select-Object -ExpandProperty Name
 if ($missingCanon) { Fail ("pages without canonical: " + ($missingCanon -join ", ")) }
 
+if ($Mode -ne "live") {
+  foreach ($f in @("launch/teaser.html", "launch/countdown.html")) {
+    if (-not (Test-Path $f)) { Fail "missing $f" }
+  }
+}
+
 Write-Host "checks OK" -ForegroundColor Green
 
-# ---------- 2. Commit ----------
+# ---------- 2. Commit sources ----------
 Write-Host "== commit ==" -ForegroundColor Cyan
 git add -A
 $pending = git status --porcelain
-if (-not $pending) { Write-Host "nothing to commit, continuing to push" }
+if (-not $pending) { Write-Host "nothing to commit, continuing" }
 else {
-  if (-not $Message) { $Message = "Web update " + (Get-Date -Format "yyyy-MM-dd HH:mm") }
+  if (-not $Message) { $Message = "Web update " + (Get-Date -Format "yyyy-MM-dd HH:mm") + " [$Mode]" }
   git commit -m $Message
   if ($LASTEXITCODE -ne 0) { Fail "git commit failed" }
 }
 
-# ---------- 3. Push origin (staging) ----------
+# ---------- 3. Push origin (staging, full sources always) ----------
 Write-Host "== push origin/main ==" -ForegroundColor Cyan
 git push origin main
 if ($LASTEXITCODE -ne 0) { Fail "push to origin failed" }
 
-# ---------- 4. Merge production + push github-pages ----------
-Write-Host "== sync production/github-pages ==" -ForegroundColor Cyan
+# ---------- 4. Deploy snapshot to production ----------
+Write-Host "== deploy $Mode to production/github-pages ==" -ForegroundColor Cyan
 git fetch production github-pages
-if ($LASTEXITCODE -ne 0) { Fail "fetch production failed (check PAT / access)" }
-git merge --no-edit -X ours production/github-pages
-if ($LASTEXITCODE -ne 0) { Fail "merge conflict: resolve manually, then re-run" }
-git push production main:github-pages
-if ($LASTEXITCODE -ne 0) { Fail "push to production failed" }
+if ($LASTEXITCODE -ne 0) { Fail "fetch production failed (check access)" }
+
+$wt = Join-Path ([System.IO.Path]::GetTempPath()) "oasis-deploy-wt"
+if (Test-Path $wt) { git worktree remove --force $wt 2>$null; Remove-Item -LiteralPath $wt -Recurse -Force -ErrorAction SilentlyContinue }
+git worktree prune
+git worktree add --detach $wt production/github-pages
+if ($LASTEXITCODE -ne 0) { Fail "worktree setup failed" }
+try {
+  Push-Location -LiteralPath $wt
+  # Empty the tree (keep .git), then lay out exactly what this phase serves.
+  git rm -r -q . ; if ($LASTEXITCODE -ne 0) { Fail "tree clear failed" }
+  if ($Mode -eq "live") {
+    git checkout main -- .
+    if ($LASTEXITCODE -ne 0) { Fail "tree restore from main failed" }
+  } else {
+    $shell = if ($Mode -eq "teaser") { "launch/teaser.html" } else { "launch/countdown.html" }
+    $html = Get-Content -Raw (Join-Path $PSScriptRoot $shell)
+    if ($Mode -eq "countdown") {
+      try { [void][DateTime]$RevealDate } catch { Fail "RevealDate is not valid ISO-8601: $RevealDate" }
+      $dt = [DateTime]$RevealDate
+      $human = $dt.ToUniversalTime().ToString("dddd, dd MMMM yyyy HH:mm 'UTC'")
+      $html = $html.Replace("__REVEAL_ISO__", $RevealDate).Replace("__REVEAL_HUMAN__", $human)
+    }
+    Set-Content -LiteralPath (Join-Path $wt "index.html") -Value $html -Encoding utf8NoBOM
+    Copy-Item -LiteralPath (Join-Path $PSScriptRoot "launch/404.html") -Destination (Join-Path $wt "404.html")
+    Set-Content -LiteralPath (Join-Path $wt "robots.txt") -Value "User-agent: *`nDisallow: /`n" -Encoding utf8NoBOM
+    New-Item -ItemType File -Path (Join-Path $wt ".nojekyll") -Force | Out-Null
+    git add -A
+  }
+  $stamp = (Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm')
+  git commit -m "Deploy: $Mode ($stamp UTC)"
+  if ($LASTEXITCODE -ne 0) { Fail "deploy commit failed" }
+  git push production HEAD:github-pages
+  if ($LASTEXITCODE -ne 0) { Fail "push to production failed" }
+} finally {
+  Pop-Location
+  git worktree remove --force $wt
+}
 
 Write-Host ""
-Write-Host "SYNC DONE: live in ~1-3 min at https://oasislocal.github.io/O.A.S.I.S./" -ForegroundColor Green
+if ($Mode -eq "live") {
+  Write-Host "SYNC DONE: full site live in ~1-3 min at https://oasislocal.github.io/O.A.S.I.S./" -ForegroundColor Green
+} else {
+  Write-Host "SYNC DONE: $Mode shell live in ~1-3 min. Full site NOT deployed (not even in view-source)." -ForegroundColor Green
+  Write-Host "To go live later: set launch.json mode to live (or run with -Mode live) and re-run." -ForegroundColor Yellow
+}

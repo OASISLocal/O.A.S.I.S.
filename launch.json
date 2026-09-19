@@ -1,0 +1,5 @@
+{
+  "mode": "live",
+  "revealDate": "",
+  "_comment": "Deployment phase for sync-web.ps1. mode: live = full site. teaser/countdown = ONLY the shell is deployed, nothing else (not even in view-source). revealDate: ISO-8601 UTC used when countdown is deployed (overridable with -RevealDate)."
+}

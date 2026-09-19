@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>O.A.S.I.S. — Something local is coming</title>
+<meta name="description" content="O.A.S.I.S. — an AI assistant that lives on your PC. Join the waitlist for the reveal.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+:root { color-scheme: dark; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  background: #111111; color: #c9c9c9;
+  font-family: 'Space Grotesk', 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; padding-left: max(24px, env(safe-area-inset-left)); padding-right: max(24px, env(safe-area-inset-right));
+  -webkit-text-size-adjust: 100%;
+}
+.box { text-align: center; max-width: 520px; width: 100%; }
+.mark { width: 34px; height: 34px; border: 2px solid #fff; margin: 0 auto 24px; }
+h1 { color: #fff; font-size: clamp(32px, 6vw, 56px); font-weight: 700; letter-spacing: -.03em; line-height: 1.02; margin-bottom: 14px; }
+.sub { font-size: 16px; margin-bottom: 28px; }
+.sub strong { color: #fff; }
+form { border: 2px solid #fff; background: #161616; text-align: left; }
+.row { display: flex; }
+.row input[type="email"] { flex: 1; min-width: 0; background: transparent; border: none; color: #fff; caret-color: #fff; font-size: 15px; padding: 14px 16px; font-family: inherit; }
+.row input[type="email"]::placeholder { color: #8f8f8f; }
+.row button { background: #fff; color: #111; border: none; border-left: 2px solid #fff; font-weight: 600; font-size: 14px; padding: 0 24px; cursor: pointer; white-space: nowrap; font-family: inherit; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.status { font-size: 14px; margin-top: 12px; min-height: 22px; color: #fff; }
+.links { margin-top: 26px; font-size: 14px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.links a { color: #fff; }
+.fine { margin-top: 18px; font-size: 12px; color: #8f8f8f; font-family: ui-monospace, monospace; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+@media (max-width: 480px) {
+  .row { flex-wrap: wrap; }
+  .row button { flex: 1 1 100%; padding: 13px; border-left: none; border-top: 2px solid #fff; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<main class="box">
+  <div class="mark" aria-hidden="true"></div>
+  <h1>Something local is coming.</h1>
+  <p class="sub">An AI assistant that <strong>lives on your PC</strong> — no cloud, no account. Leave your email and get <strong>one message</strong> at the reveal. Nothing else, ever.</p>
+  <form id="wl" novalidate>
+    <div class="row">
+      <input id="email" type="email" name="email" placeholder="you@example.com" aria-label="Email address" autocomplete="email" required>
+      <button type="submit" id="btn">Notify me</button>
+    </div>
+    <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+  </form>
+  <p class="status" id="status" role="status"></p>
+  <noscript><p class="status">No JavaScript? Email hello@oasislocal.dev with “waitlist”.</p></noscript>
+  <div class="links">
+    <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+  </div>
+  <p class="fine">O.A.S.I.S. · TEASER · no trackers on this page</p>
+</main>
+<script>
+(function () {
+  var form = document.getElementById('wl');
+  if (!form) return;
+  var email = document.getElementById('email');
+  var btn = document.getElementById('btn');
+  var status = document.getElementById('status');
+  function say(m) { status.textContent = m; }
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var hp = form.querySelector('.hp');
+    if (hp && hp.value) { say("You're on the list."); return; }
+    var addr = (email.value || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)) { say('That email doesn\u2019t look right.'); email.focus(); return; }
+    btn.disabled = true; btn.textContent = 'Joining…';
+    var ctrl = new AbortController();
+    var timer = setTimeout(function () { ctrl.abort(); }, 12000);
+    fetch('https://oasis-waitlist.sanitariorteba.workers.dev/collect', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: addr, interests: ['max'] }),
+      signal: ctrl.signal
+    }).then(function (r) { return r.json().catch(function () { return {}; }); }).then(function (j) {
+      clearTimeout(timer);
+      if (j && j.ok) { say(j.already ? 'Already on the list — see you at the reveal.' : 'You\u2019re on the list. One email, that\u2019s it.'); btn.textContent = 'Joined ✓'; }
+      else if (j && j.error === 'too_many_requests') { say('Too many tries — give it an hour.'); btn.disabled = false; btn.textContent = 'Notify me'; }
+      else { say('Didn\u2019t go through. Try again in a bit.'); btn.disabled = false; btn.textContent = 'Notify me'; }
+    }).catch(function () {
+      clearTimeout(timer);
+      say('No connection. Check you\u2019re online and retry.');
+      btn.disabled = false; btn.textContent = 'Notify me';
+    });
+  });
+}());
+</script>
+</body>
+</html>
