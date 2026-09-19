@@ -18,6 +18,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/tooltip.css">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 </head>
 <body>
@@ -54,9 +55,9 @@
   <ul class="plain">
     <li><b>Mono by default:</b> the whole app now wears the monochrome Swiss scheme, light and dark, with verified contrast.</li>
     <li><b>Voice that holds up:</b> faster recognition startup, adaptive noise filtering, barge-in that doesn't eat your words.</li>
-    <li><b>Discord &amp; Telegram bots</b> with voice calls, per-server settings and speaker recognition (Max).</li>
-    <li><b>Android app + browser extension</b> talking to your PC over the local network (Max).</li>
-    <li><b>Scheduled workflows</b> in plain words, proactive notifications, code sandbox with retries.</li>
+    <li><b>Discord &amp; Telegram bots</b> with voice calls, per-<span class="term" data-term="server">server</span> settings and speaker recognition (<span class="term" data-term="max">Max</span>).</li>
+    <li><b>Android app + <span class="term" data-term="browser-extension">browser extension</span></b> talking to your PC over the local <span class="term" data-term="network">network</span> (Max).</li>
+    <li><b>Scheduled <span class="term" data-term="workflow">workflows</span></b> in plain words, proactive notifications, code <span class="term" data-term="sandbox">sandbox</span> with retries.</li>
     <li><b>Accessibility pass:</b> keyboard-only use, screen-reader labels, honest loading and error states everywhere.</li>
   </ul>
 
@@ -64,10 +65,10 @@
   <p class="kicker">Earlier</p>
   <h2>v0.1.x — first public beta.</h2>
   <ul class="plain">
-    <li><b>Local chat</b> with streaming, model manager and Hugging Face downloads.</li>
-    <li><b>Spanish voice</b> in and out, wake word included.</li>
-    <li><b>Memory + documents:</b> semantic search over conversations, notes, PDF, Word and Excel.</li>
-    <li><b>100+ system tools</b> with per-tool permissions and approval for risky actions.</li>
+    <li><b>Local chat</b> with streaming, <span class="term" data-term="model">model</span> manager and <span class="term" data-term="hugging-face">Hugging Face</span> downloads.</li>
+    <li><b>Spanish voice</b> in and out, <span class="term" data-term="wake-word">wake word</span> included.</li>
+    <li><b><span class="term" data-term="memory">Memory</span> + documents:</b> <span class="term" data-term="semantic-search">semantic search</span> over conversations, notes, PDF, Word and Excel.</li>
+    <li><b>100+ system <span class="term" data-term="tool">tools</span></b> with per-tool <span class="term" data-term="permission">permissions</span> and approval for risky actions.</li>
   </ul>
   <p class="cap">Full history with every fix: <a href="https://github.com/OASISLocal/O.A.S.I.S./blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">CHANGELOG.md in the repo →</a></p>
   <div class="ctas">
@@ -84,9 +85,9 @@
   <table class="spec">
     <thead><tr><th>Stage</th><th>What</th></tr></thead>
     <tbody>
-      <tr><td>Now</td><td>Local chat, GGUF models, voice in Spanish and English, memory and documents, everyday PC control, 100+ tools.</td></tr>
-      <tr><td>Next</td><td>Max early access opens, Linux build, macOS build.</td></tr>
-      <tr><td>Later</td><td>Plugin/marketplace foundations, multi-agent workflows, more local runtimes.</td></tr>
+      <tr><td>Now</td><td>Local chat, <span class="term" data-term="gguf">GGUF</span> <span class="term" data-term="model">models</span>, voice in Spanish and English, <span class="term" data-term="memory">memory</span> and documents, everyday PC control, 100+ <span class="term" data-term="tool">tools</span>.</td></tr>
+      <tr><td>Next</td><td><span class="term" data-term="max">Max</span> early access opens, Linux build, macOS build.</td></tr>
+      <tr><td>Later</td><td>Plugin/marketplace foundations, multi-<span class="term" data-term="agent">agent</span> <span class="term" data-term="workflow">workflows</span>, more local runtimes.</td></tr>
     </tbody>
   </table>
   </div>
@@ -112,5 +113,6 @@
 </footer>
 <div class="sticky-cta"><a class="btn sm" href="download.html">Download for Windows</a></div>
 <script src="assets/site.js"></script>
+<script src="assets/tooltip.js"></script>
 </body>
 </html>

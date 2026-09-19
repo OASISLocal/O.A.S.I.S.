@@ -51,15 +51,15 @@
 
 <main id="content" tabindex="-1" class="wrap">
   <p class="crumb"><a href="./">Home</a> / Models</p>
-  <h1>Your assistant. Your model.</h1>
-  <p class="answer"><strong>O.A.S.I.S. is designed around local models, not one hosted AI service.</strong> It downloads and runs compatible <b>GGUF</b> models on your machine — the profile data below comes straight from the app's model manifest, not from marketing.</p>
+  <h1>Your assistant. Your <span class="term" data-term="model">model</span>.</h1>
+  <p class="answer"><strong>O.A.S.I.S. is designed around local models, not one hosted AI service.</strong> It downloads and runs compatible <b><span class="term" data-term="gguf">GGUF</span></b> models on your machine — the profile data below comes straight from the app's model manifest, not from marketing.</p>
 
   <hr class="rule">
   <p class="kicker">Bundled profiles</p>
   <h2 id="inference">What ships tested in the app.</h2>
   <div class="tbl">
   <table class="spec">
-    <thead><tr><th>Model</th><th><span class="term" data-term="context-window">Context</span></th><th>RAM</th><th><span class="term" data-term="vram">VRAM</span></th><th>Tier</th></tr></thead>
+    <thead><tr><th><span class="term" data-term="model">Model</span></th><th><span class="term" data-term="context-window">Context</span></th><th><span class="term" data-term="ram">RAM</span></th><th><span class="term" data-term="vram">VRAM</span></th><th>Tier</th></tr></thead>
     <tbody>
       <tr><td>Gemma 4B IT <span class="mono">Q4_K_M</span></td><td>16,384</td><td>4&nbsp;GB</td><td>2&nbsp;GB</td><td>Mid / High</td></tr>
       <tr><td>Qwen 2.5 1.5B <span class="mono">Q4_K_M</span></td><td>32,768</td><td>2&nbsp;GB</td><td>1&nbsp;GB</td><td>Low / Mid</td></tr>
@@ -73,9 +73,9 @@
   <p class="kicker">Compatibility</p>
   <h2 id="gguf"><span class="term" data-term="gguf">GGUF</span> is a format, not a promise.</h2>
   <ul class="plain">
-    <li><b>What GGUF means:</b> a single-file model format readable by the local runtime. It is the packaging, not a guarantee.</li>
+    <li><b>What <span class="term" data-term="gguf">GGUF</span> means:</b> a single-file model format readable by the local <span class="term" data-term="runtime">runtime</span>. It is the packaging, not a guarantee.</li>
     <li><b>What is supported:</b> compatible GGUF builds in the families the app lists — including DeepSeek, Phi and Mistral builds — subject to runtime and hardware.</li>
-    <li><b>What is not promised:</b> that <em>any</em> GGUF file runs. Very large models, exotic architectures or unusual <span class="term" data-term="quantization">quantisations</span> may not fit your RAM/VRAM or the runtime's support.</li>
+    <li><b>What is not promised:</b> that <em>any</em> GGUF file runs. Very large models, exotic architectures or unusual <span class="term" data-term="quantization">quantisations</span> may not fit your <span class="term" data-term="ram">RAM</span>/<span class="term" data-term="vram">VRAM</span> or the runtime's support.</li>
     <li><b>How you find out:</b> the app inspects the file and warns you before downloading what your machine can realistically run.</li>
   </ul>
 
@@ -84,11 +84,11 @@
   <h2 id="sizes">Size versus speed.</h2>
   <div class="tbl">
   <table class="spec">
-    <thead><tr><th>Size class</th><th>Download</th><th>Needs</th><th>Feels like</th></tr></thead>
+    <thead><tr><th><span class="term" data-term="model-size">Size class</span></th><th>Download</th><th>Needs</th><th>Feels like</th></tr></thead>
     <tbody>
-      <tr><td>1–3B</td><td>~1–2&nbsp;GB</td><td>Any CPU</td><td>Snappy drafts, reminders, simple Q&amp;A.</td></tr>
-      <tr><td>7–8B</td><td>~4–5&nbsp;GB</td><td>CPU ok · GPU better</td><td>The daily-driver sweet spot.</td></tr>
-      <tr><td>13–14B</td><td>~8–10&nbsp;GB</td><td>16&nbsp;GB RAM or 8&nbsp;GB VRAM</td><td>Deeper reasoning, slower without GPU.</td></tr>
+      <tr><td>1–3B</td><td>~1–2&nbsp;GB</td><td>Any <span class="term" data-term="cpu">CPU</span></td><td>Snappy drafts, reminders, simple Q&amp;A.</td></tr>
+      <tr><td>7–8B</td><td>~4–5&nbsp;GB</td><td>CPU ok · <span class="term" data-term="gpu">GPU</span> better</td><td>The daily-driver sweet spot.</td></tr>
+      <tr><td>13–14B</td><td>~8–10&nbsp;GB</td><td>16&nbsp;GB RAM or 8&nbsp;GB <span class="term" data-term="vram">VRAM</span></td><td>Deeper reasoning, slower without GPU.</td></tr>
     </tbody>
   </table>
   </div>
@@ -96,7 +96,7 @@
   <hr class="rule">
   <p class="kicker">Licences</p>
   <h2>Model licences are not the app licence.</h2>
-  <p>O.A.S.I.S. itself is <b>proprietary software</b> (see the EULA). Each AI model carries its <em>own</em> licence, set by whoever published it — some are permissive, some restrict commercial use. Before you rely on a model for work, check its licence on the source page the app links to.</p>
+  <p>O.A.S.I.S. itself is <b><span class="term" data-term="proprietary">proprietary</span> software</b> (see the <span class="term" data-term="eula">EULA</span>). Each AI model carries its <em>own</em> licence, set by whoever published it — some are permissive, some restrict commercial use. Before you rely on a model for work, check its licence on the source page the app links to.</p>
   <p class="cap">See <a href="https://github.com/OASISLocal/O.A.S.I.S./blob/main/legal/THIRD-PARTY-NOTICES.md" target="_blank" rel="noopener noreferrer">Third-party notices</a> for the components that ship with the app.</p>
 
   <div class="ctas">

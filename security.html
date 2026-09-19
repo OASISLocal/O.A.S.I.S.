@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Security — How O.A.S.I.S. Handles Permissions &amp; Risk</title>
-<meta name="description" content="How OASIS keeps control in your hands: per-tool <span class="term" data-term="permission">permissions</span>, mandatory confirmation for risky actions, isolated code <span class="term" data-term="sandbox">sandbox</span>, encrypted local vault, and no telemetry by default.">
+<meta name="description" content="How OASIS keeps control in your hands: per-tool permissions, mandatory confirmation for risky actions, isolated code sandbox, encrypted local vault, and no telemetry by default.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./security.html">
 <meta name="theme-color" content="#111111">
@@ -47,12 +47,12 @@
 <main id="content" tabindex="-1" class="wrap">
   <p class="crumb"><a href="./">Home</a> / Security</p>
   <h1>Control stays with you.</h1>
-  <p class="answer"><strong>An assistant that can touch your PC must prove it behaves.</strong> OASIS runs every action through three gates: a risk level on each tool, your per-tool permission, and mandatory confirmation for anything destructive. Telemetry ships off. Security is a design goal, not a guarantee that every generated answer or action is correct.</p>
+  <p class="answer"><strong>An assistant that can touch your PC must prove it behaves.</strong> OASIS runs every action through three gates: a risk level on each <span class="term" data-term="tool">tool</span>, your per-tool <span class="term" data-term="permission">permission</span>, and mandatory confirmation for anything destructive. <span class="term" data-term="telemetry">Telemetry</span> ships off. Security is a design goal, not a guarantee that every generated answer or action is correct.</p>
 
   <hr class="rule">
   <p class="kicker">Permissions</p>
-  <h2 id="permissions">Allow, deny, or ask — per tool.</h2>
-  <p>Each of the 100+ tools declares what it can touch. You set each one to <b>allow</b>, <b>deny</b>, or <b>ask every time</b>, in Settings → Permissions. Microphone, screen and files have their own master switches on top.</p>
+  <h2 id="permissions">Allow, deny, or ask — per <span class="term" data-term="tool">tool</span>.</h2>
+  <p>Each of the 100+ tools declares what it can touch. You set each one to <b>allow</b>, <b>deny</b>, or <b>ask every time</b>, in Settings → <span class="term" data-term="permission">Permissions</span>. Microphone, screen and files have their own master switches on top.</p>
   <div class="tbl">
   <table class="spec">
     <thead><tr><th>Level</th><th>Example tools</th><th>Behavior</th></tr></thead>
@@ -64,31 +64,31 @@
     </tbody>
   </table>
   </div>
-  <p class="cap">Ten high-impact tools (<span class="mono">custom_command, system_control, kill_process, system_cleanup, clipboard_control, code_agent, python_sandbox, file_manager, run_workflow, git_ops</span>) can never run silently — even if a permission says otherwise.</p>
+  <p class="cap">Ten <span class="term" data-term="high-impact">high-impact</span> tools (<span class="mono">custom_command, system_control, kill_process, system_cleanup, clipboard_control, code_agent, python_sandbox, file_manager, run_workflow, git_ops</span>) can never run silently — even if a permission says otherwise.</p>
 
   <hr class="rule">
-  <p class="kicker">Sandbox</p>
+  <p class="kicker"><span class="term" data-term="sandbox">Sandbox</span></p>
   <h2 id="sandbox">Code runs in a cage first.</h2>
-  <p>Generated code executes inside an isolated Docker sandbox with memory and CPU limits — never directly on your system. You review the diff before anything it produces touches your files. Skip Docker and code execution simply stays off; everything else keeps working.</p>
+  <p>Generated code executes inside an <span class="term" data-term="isolation">isolated</span> <span class="term" data-term="docker">Docker</span> <span class="term" data-term="sandbox">sandbox</span> with <span class="term" data-term="memory">memory</span> and <span class="term" data-term="cpu">CPU</span> limits — never directly on your system. You review the diff before anything it produces touches your files. Skip Docker and code execution simply stays off; everything else keeps working.</p>
 
   <hr class="rule">
   <p class="kicker">Storage</p>
-  <h2 id="storage">Encrypted vault, local folder.</h2>
-  <p>Secrets live in an encrypted local vault, not in config files. Models, memory and settings live in <code>%LOCALAPPDATA%\O.A.S.I.S.\</code> — a folder you can open, back up, or delete. A PIN lock protects shared machines, and an action log records what the assistant did.</p>
+  <h2 id="storage"><span class="term" data-term="encryption">Encrypted</span> <span class="term" data-term="vault">vault</span>, local folder.</h2>
+  <p>Secrets live in an encrypted local vault, not in config files. <span class="term" data-term="model">Models</span>, <span class="term" data-term="memory">memory</span> and settings live in <code>%LOCALAPPDATA%\O.A.S.I.S.\</code> — a folder you can open, back up, or delete. A PIN lock protects shared machines, and an <span class="term" data-term="audit-log">action log</span> records what the assistant did.</p>
 
   <hr class="rule">
-  <p class="kicker">Telemetry</p>
+  <p class="kicker"><span class="term" data-term="telemetry">Telemetry</span></p>
   <h2>Off unless you say otherwise.</h2>
-  <p>There is no usage tracking, no crash reporting, no account system. The only outbound channel that exists is an <b>optional</b> diagnostics webhook you configure yourself. Maximum-privacy mode is the default, not a toggle you have to find.</p>
+  <p>There is no usage tracking, no crash reporting, no account system. The only outbound channel that exists is an <b>optional</b> diagnostics <span class="term" data-term="webhook">webhook</span> you configure yourself. Maximum-privacy mode is the default, not a toggle you have to find.</p>
 
   <hr class="rule">
   <p class="kicker">Known limitations</p>
   <h2>What this is not.</h2>
   <ul class="plain">
-    <li><b>Risk levels classify tools, not model output.</b> The model can still be wrong; confirmations protect actions, not answers.</li>
-    <li><b>The sandbox needs Docker.</b> Without Docker, code execution is simply unavailable — nothing else changes.</li>
+    <li><b>Risk levels classify tools, not <span class="term" data-term="model">model</span> output.</b> The model can still be wrong; confirmations protect actions, not answers.</li>
+    <li><b>The sandbox needs <span class="term" data-term="docker">Docker</span>.</b> Without Docker, code execution is simply unavailable — nothing else changes.</li>
     <li><b>Permissions are local.</b> Anyone with access to your Windows account and the app data folder can change them.</li>
-    <li><b>Network tools are only as trustworthy as their provider</b> — that is why they are opt-in and never silent.</li>
+    <li><b><span class="term" data-term="network">Network</span> tools are only as trustworthy as their provider</b> — that is why they are opt-in and never silent.</li>
     <li><b>Beta software.</b> Report anything unexpected rather than assuming it is intended.</li>
   </ul>
 

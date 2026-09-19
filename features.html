@@ -135,9 +135,9 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
   <p class="standfirst">The full spec sheet: every capability below exists in the app today. No adjectives necessary.</p>
 
   <hr class="rule">
-  <p class="kicker">Models</p>
+  <p class="kicker"><span class="term" data-term="model">Models</span></p>
   <h2>The brain downloads separately.</h2>
-  <p>OASIS ships without a model: you pick one in GGUF format — the open file format these models ship in — from inside the app (it searches Hugging Face, downloads with pause and resume) and it runs on your machine via llama.cpp. A small Gemma or Qwen is a fine start. With an NVIDIA GPU with 4&nbsp;GB or more it flies; on CPU it still gets there.</p>
+  <p>OASIS ships without a <span class="term" data-term="model">model</span>: you pick one in <span class="term" data-term="gguf">GGUF</span> format — the open file format these models ship in — from inside the app (it searches <span class="term" data-term="hugging-face">Hugging Face</span>, downloads with pause and resume) and it runs on your machine via <span class="term" data-term="llama-cpp">llama.cpp</span>. A small Gemma or Qwen is a fine start. With an NVIDIA <span class="term" data-term="gpu">GPU</span> with 4&nbsp;GB or more it flies; on <span class="term" data-term="cpu">CPU</span> it still gets there.</p>
   <dl>
     <div><dt>Families</dt><dd>Llama, Gemma, Qwen, DeepSeek, Phi, Mistral — and any GGUF you hand it.</dd></div>
     <div><dt>Languages</dt><dd>Spanish and English, across interface, chat and voice.</dd></div>
@@ -146,15 +146,15 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
 
   <hr class="rule">
   <p class="kicker">What it can do</p>
-  <h2>100 tools, grouped so they make sense.</h2>
+  <h2>100 <span class="term" data-term="tool">tools</span>, grouped so they make sense.</h2>
   <dl>
-    <div><dt>Talk &amp; listen</dt><dd>Dictation and read-aloud in Spanish (faster-whisper and Kokoro/Piper voices), wake word, background-noise filtering.</dd></div>
-    <div><dt>Remember</dt><dd>Conversation memory, notes and saved facts, plus indexed PDF, DOCX, XLSX and code — all on your disk.</dd></div>
-    <div><dt>Drive the PC</dt><dd>Volume, windows, opening apps, Spotify, screenshots, weather, calculator, timers, clipboard, shutdown. Each asks its own permission.</dd></div>
+    <div><dt>Talk &amp; listen</dt><dd>Dictation and read-aloud in Spanish (faster-whisper and Kokoro/Piper voices), <span class="term" data-term="wake-word">wake word</span>, background-noise filtering.</dd></div>
+    <div><dt>Remember</dt><dd>Conversation <span class="term" data-term="memory">memory</span>, notes and saved facts, plus indexed PDF, DOCX, XLSX and code — all on your disk.</dd></div>
+    <div><dt>Drive the PC</dt><dd>Volume, windows, opening apps, Spotify, screenshots, weather, calculator, timers, clipboard, shutdown. Each asks its own <span class="term" data-term="permission">permission</span>.</dd></div>
     <div><dt>See</dt><dd>Looks at your screen or an image and describes it; can click by coordinates, region or recognized text.</dd></div>
-    <div><dt>Code</dt><dd>Explains code and — with Docker installed — tests it in an isolated sandbox before touching anything of yours. Up to three automatic retries.</dd></div>
-    <div><dt>Automate</dt><dd>Scheduled workflows in plain words ("every day at 9"), proactive nudges and small trigger-based skills.</dd></div>
-    <div><dt>Connect (Max)</dt><dd>Your own Discord or Telegram bot with voice, an Android app over local network with QR pairing, and a browser extension.</dd></div>
+    <div><dt>Code</dt><dd>Explains code and — with <span class="term" data-term="docker">Docker</span> installed — tests it in an <span class="term" data-term="isolation">isolated</span> <span class="term" data-term="sandbox">sandbox</span> before touching anything of yours. Up to three automatic retries.</dd></div>
+    <div><dt>Automate</dt><dd>Scheduled <span class="term" data-term="workflow">workflows</span> in plain words ("every day at 9"), proactive nudges and small trigger-based <span class="term" data-term="skill">skills</span>.</dd></div>
+    <div><dt>Connect (<span class="term" data-term="max">Max</span>)</dt><dd>Your own Discord or Telegram bot with voice, an Android app over local <span class="term" data-term="network">network</span> with QR pairing, and a <span class="term" data-term="browser-extension">browser extension</span>.</dd></div>
   </dl>
   <p class="small">The exact list lives in the code (<code>core/tools/registry.py</code>). This page summarizes; the code rules.</p>
 
@@ -163,22 +163,22 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
   <h2>The minimum for it to run well.</h2>
   <ul class="plain">
     <li>Windows 10 or 11. Everything else comes later.</li>
-    <li>Any modern CPU for small models; GPU recommended, not required.</li>
-    <li>Docker Desktop, only if you want it to run code.</li>
+    <li>Any modern <span class="term" data-term="cpu">CPU</span> for small models; <span class="term" data-term="gpu">GPU</span> recommended, not required.</li>
+    <li><span class="term" data-term="docker">Docker</span> Desktop, only if you want it to run code.</li>
     <li>Internet, only to download the app and a model. Afterwards, optional.</li>
   </ul>
 
   <hr class="rule">
   <p class="kicker">Editions</p>
   <h2>One free, one single payment.</h2>
-  <p><strong style="color:var(--ink)">Personal, free:</strong> chat, local voice, memory, documents, everyday PC control and core tools. No account, no message limits. Projects up to 3.</p>
-  <p><strong style="color:var(--ink)">Max, planned as a single payment (€15 early access, €25 at 1.0):</strong> vision and screen analysis, full coding with isolated Docker sandbox, workflows and scheduling, Discord/Telegram, Android app, browser extension, external MCP tool servers, voice cloning and advanced memory. The current public build ships the free plan; <a href="./#early-access">join the waitlist</a> and we'll email you once when Max opens.</p>
+  <p><strong style="color:var(--ink)"><span class="term" data-term="personal">Personal</span>, free:</strong> chat, local voice, <span class="term" data-term="memory">memory</span>, documents, everyday PC control and core <span class="term" data-term="tool">tools</span>. No account, no message limits. Projects up to 3.</p>
+  <p><strong style="color:var(--ink)"><span class="term" data-term="max">Max</span>, planned as a single payment (€15 early access, €25 at 1.0):</strong> <span class="term" data-term="vision">vision</span> and screen analysis, full coding with <span class="term" data-term="isolation">isolated</span> Docker <span class="term" data-term="sandbox">sandbox</span>, <span class="term" data-term="workflow">workflows</span> and scheduling, Discord/Telegram, Android app, <span class="term" data-term="browser-extension">browser extension</span>, external <span class="term" data-term="mcp">MCP</span> <span class="term" data-term="tool-server">tool servers</span>, <span class="term" data-term="voice-cloning">voice cloning</span> and advanced memory. The current public build ships the free plan; <a href="./#early-access">join the waitlist</a> and we'll email you once when Max opens.</p>
 
   <hr class="rule">
   <p class="kicker">Download</p>
   <h2>The beta lives on GitHub.</h2>
   <p><a href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer" style="font-weight:600;">Go to the latest release →</a></p>
-  <p class="small">Check the SHA256 hash for extra assurance: <code>certutil -hashfile OASIS.exe SHA256</code>. If setup fails, <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">report it in Issues</a> with your Windows version and the model you were using.</p>
+  <p class="small">Check the <span class="term" data-term="hash">SHA256</span> hash for extra assurance: <code>certutil -hashfile OASIS.exe SHA256</code>. If setup fails, <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">report it in Issues</a> with your Windows version and the model you were using.</p>
 </main>
 
 <footer>

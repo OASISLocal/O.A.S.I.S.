@@ -18,6 +18,9 @@
     'how-it-works.html': 'See how it works',
     'tools.html': 'Explore tools',
     'privacy.html': 'See privacy details',
+    'pricing.html': 'See pricing',
+    'comparison.html': 'See the comparison',
+    'download.html': 'Go to download',
     'faq.html': 'Read the FAQ'
   };
 

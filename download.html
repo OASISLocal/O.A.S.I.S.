@@ -18,6 +18,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/tooltip.css">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"OASIS",
@@ -52,7 +53,7 @@
 <main id="content" class="wrap">
   <p class="crumb"><a href="./">Home</a> / Download</p>
   <h1>Get the beta. Keep your data.</h1>
-  <p class="answer"><strong>OASIS is free for Windows 10 and 11, with no account and no time limit.</strong> Download the installer from GitHub Releases and verify its checksum if you like. Install it, download one AI model, and you're done.</p>
+  <p class="answer"><strong>OASIS is free for Windows 10 and 11, with no account and no time limit.</strong> Download the installer from GitHub Releases and verify its checksum if you like. Install it, download one AI <span class="term" data-term="model">model</span>, and you're done.</p>
   <div class="ctas">
     <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Download for Windows</a>
     <a class="btn ghost" href="requirements.html">Check requirements</a>
@@ -61,7 +62,7 @@
   <hr class="rule">
   <p class="kicker">Verify first</p>
   <h2>Trust, then verify.</h2>
-  <p>Every release ships with a SHA256 hash. On Windows, open a terminal and run:</p>
+  <p>Every release ships with a <span class="term" data-term="hash">SHA256</span> hash. On Windows, open a terminal and run:</p>
   <p><code>certutil -hashfile OASIS.exe SHA256</code></p>
   <p class="cap">Compare the output with the hash published on the release page. If it doesn't match, don't install it — and tell us in <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">Issues</a>.</p>
 
@@ -72,22 +73,22 @@
   <table class="spec">
     <thead><tr><th>Platform</th><th>Status</th><th>Notes</th></tr></thead>
     <tbody>
-      <tr><td>Windows 10 / 11</td><td><span class="y">Available — beta</span></td><td>Full assistant: voice, memory, tools, sandbox.</td></tr>
+      <tr><td>Windows 10 / 11</td><td><span class="y">Available — beta</span></td><td>Full assistant: voice, <span class="term" data-term="memory">memory</span>, <span class="term" data-term="tool">tools</span>, <span class="term" data-term="sandbox">sandbox</span>.</td></tr>
       <tr><td>Linux</td><td><span class="n">On the roadmap</span></td><td>Packaging work has started; no date yet.</td></tr>
-      <tr><td>macOS</td><td><span class="n">On the roadmap</span></td><td>After Linux. The models themselves are portable.</td></tr>
+      <tr><td>macOS</td><td><span class="n">On the roadmap</span></td><td>After Linux. The <span class="term" data-term="model">models</span> themselves are portable.</td></tr>
     </tbody>
   </table>
   </div>
 
   <hr class="rule">
   <p class="kicker">After installing</p>
-  <h2>Three steps to offline.</h2>
+  <h2>Three steps to <span class="term" data-term="offline">offline</span>.</h2>
   <div class="steps">
     <div class="step"><div class="n">1</div><h3>Open the app</h3><p>First launch suggests a model matched to your hardware. Accept it or pick another.</p></div>
     <div class="step"><div class="n">2</div><h3>Download the model</h3><p>One download with pause and resume. This is the last thing that needs the internet.</p></div>
     <div class="step"><div class="n">3</div><h3>Unplug and talk</h3><p>Seriously: try it with the router off. Chat, dictate, ask it to remember something.</p></div>
   </div>
-  <p class="cap">Before you start, make sure you have: Windows 10/11 · 8 GB RAM or more · ~10 GB free disk for app plus models · internet for the initial downloads only · Docker Desktop only if you want code execution. First model to try: Gemma 4 (Q4, ~4 GB).</p>
+  <p class="cap">Before you start, make sure you have: Windows 10/11 · 8 GB <span class="term" data-term="ram">RAM</span> or more · ~10 GB free disk for app plus models · internet for the initial downloads only · <span class="term" data-term="docker">Docker</span> Desktop only if you want code execution. First model to try: Gemma 4 (Q4, ~4 GB).</p>
   <p class="cap">Stuck? The <a href="faq.html">FAQ</a> covers the usual suspects; <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">Issues</a> covers the rest — include your Windows version and model.</p>
 </main>
 
@@ -111,5 +112,6 @@
 </footer>
 <div class="sticky-cta"><a class="btn sm" href="download.html">Download for Windows</a></div>
 <script src="assets/site.js"></script>
+<script src="assets/tooltip.js"></script>
 </body>
 </html>

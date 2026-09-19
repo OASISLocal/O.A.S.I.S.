@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>How O.A.S.I.S. Works — Local AI on Your PC</title>
-<meta name="description" content="OASIS runs entirely on your PC: your voice is transcribed on-device, a <span class="term" data-term="local-inference">local model</span> thinks, and 100 tools act. No servers, no API calls. See the full data flow.">
+<meta name="description" content="OASIS runs entirely on your PC: your voice is transcribed on-device, a local model thinks, and 100 tools act. No servers, no API calls. See the full data flow.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./how-it-works.html">
 <meta name="theme-color" content="#111111">
@@ -47,7 +47,7 @@
 <main id="content" class="wrap">
   <p class="crumb"><a href="./">Home</a> / How it works</p>
   <h1>Everything happens inside this box.</h1>
-  <p class="answer"><strong>A local AI assistant is a program that runs its AI model on your own hardware instead of calling a server.</strong> With OASIS, your words are transcribed on your PC, understood by a model stored on your disk, and answered with tools that live on your machine. The internet is only needed to download the app and a model — afterwards, it's optional.</p>
+  <p class="answer"><strong>A <span class="term" data-term="local-ai">local AI assistant</span> is a program that runs its AI <span class="term" data-term="model">model</span> on your own hardware instead of calling a <span class="term" data-term="server">server</span>.</strong> With OASIS, your words are transcribed on your PC, understood by a model stored on your disk, and answered with <span class="term" data-term="tool">tools</span> that live on your machine. The internet is only needed to download the app and a model — afterwards, it's optional.</p>
 
   <div class="mock" role="img" aria-label="Diagram: your request flows through on-device speech recognition, a local AI model, memory and PC tools — all inside your computer">
     <div class="mock-bar"><span>local workflow · 0 external calls</span><span>network: unused</span></div>
@@ -90,30 +90,30 @@
     </svg>
     </div>
   </div>
-  <p class="cap">Simplified, but honest: there is no hidden sync step. The server component listens on localhost only.</p>
+  <p class="cap">Simplified, but honest: there is no hidden sync step. The server component listens on <span class="term" data-term="localhost">localhost</span> only.</p>
 
   <hr class="rule">
   <p class="kicker">Step by step</p>
   <h2 id="voice">What happens when you speak.</h2>
   <div class="block">
     <h3>1. Your PC listens locally.</h3>
-    <p>Press to talk, or say the wake word. The microphone stream goes to an on-device recognizer, never to a transcription API. Background noise gets filtered; you can interrupt the reply mid-sentence and it stops, like a person would.</p>
-    <h3 id="agent">2. A model on your disk thinks.</h3>
-    <p>The text reaches an open AI model (Llama, Gemma, Qwen and friends) running locally. It reads the conversation, checks its memory of you, and decides: answer directly, or use a tool. Small models answer fast on CPU; bigger ones run better with a GPU.</p>
+    <p>Press to talk, or say the <span class="term" data-term="wake-word">wake word</span>. The microphone stream goes to an <span class="term" data-term="on-device">on-device</span> recognizer, never to a transcription <span class="term" data-term="api">API</span>. Background noise gets filtered; you can interrupt the reply mid-sentence and it stops, like a person would.</p>
+    <h3 id="agent">2. A <span class="term" data-term="model">model</span> on your disk thinks.</h3>
+    <p>The text reaches an open AI model (Llama, Gemma, Qwen and friends) running locally. It reads the conversation, checks its <span class="term" data-term="memory">memory</span> of you, and decides: answer directly, or use a <span class="term" data-term="tool">tool</span>. Small models answer fast on <span class="term" data-term="cpu">CPU</span>; bigger ones run better with a <span class="term" data-term="gpu">GPU</span>.</p>
     <h3>3. Hands, not just words.</h3>
-    <p>When action is needed, the model calls one of 100+ declared tools — set a timer, lower the volume, read a PDF, run code in an isolated sandbox. Risky tools (deleting, shutting down, executing) pause for your explicit approval first.</p>
+    <p>When action is needed, the model calls one of 100+ declared tools — set a timer, lower the volume, read a PDF, run code in an <span class="term" data-term="isolation">isolated</span> <span class="term" data-term="sandbox">sandbox</span>. Risky tools (deleting, shutting down, executing) pause for your explicit approval first.</p>
     <h3 id="memory">4. It remembers — on your disk.</h3>
-    <p>Exchanges, notes and documents land in a local database with <span class="term" data-term="semantic-search">semantic search</span>, so "that electricity total from last spring" is retrievable months later. Delete by item, by type, or by file whenever you like.</p>
+    <p>Exchanges, notes and documents land in a local <span class="term" data-term="database">database</span> with <span class="term" data-term="semantic-search">semantic search</span>, so "that electricity total from last spring" is retrievable months later. Delete by item, by type, or by file whenever you like.</p>
   </div>
 
   <hr class="rule">
   <p class="kicker">Trust, technically</p>
   <h2>How you can verify all this.</h2>
   <ul class="plain">
-    <li><b>Pull the plug to prove it.</b> With a model downloaded, everything above keeps working offline. That's the whole test.</li>
-    <li><b>Watch the network.</b> The app's server binds to localhost; there is no account system to phone home to.</li>
-    <li><b>Open the folder.</b> Models, memory and settings live in <code>%LOCALAPPDATA%\O.A.S.I.S.\</code> — plain files you can inspect.</li>
-    <li><b>Read the code paths.</b> Per-tool permissions, an action log and an encrypted local vault are in the app today, not on a roadmap slide.</li>
+    <li><b>Pull the plug to prove it.</b> With a model downloaded, everything above keeps working <span class="term" data-term="offline">offline</span>. That's the whole test.</li>
+    <li><b>Watch the <span class="term" data-term="network">network</span>.</b> The app's <span class="term" data-term="server">server</span> binds to <span class="term" data-term="localhost">localhost</span>; there is no account system to phone home to.</li>
+    <li><b>Open the folder.</b> Models, <span class="term" data-term="memory">memory</span> and settings live in <code>%LOCALAPPDATA%\O.A.S.I.S.\</code> — plain files you can inspect.</li>
+    <li><b>Read the code paths.</b> Per-tool <span class="term" data-term="permission">permissions</span>, an <span class="term" data-term="audit-log">action log</span> and an <span class="term" data-term="encryption">encrypted</span> local <span class="term" data-term="vault">vault</span> are in the app today, not on a roadmap slide.</li>
   </ul>
   <div class="ctas">
     <a class="btn" href="download.html">Download the beta</a>

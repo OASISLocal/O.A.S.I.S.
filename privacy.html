@@ -46,41 +46,41 @@
 
 <main id="content" class="wrap">
   <p class="crumb"><a href="./">Home</a> / Privacy</p>
-  <h1>Local-first. Precisely.</h1>
-  <p class="answer"><strong>Local features run on your PC. Network-enabled features communicate externally only when you use or configure them.</strong> O.A.S.I.S. is offline-first, not network-blind. No analytics, no cookies, no accounts, no telemetry. This page separates what stays local from what can use the network.</p>
+  <h1><span class="term" data-term="local-first">Local-first</span>. Precisely.</h1>
+  <p class="answer"><strong>Local features run on your PC. <span class="term" data-term="network">Network</span>-enabled features communicate externally only when you use or configure them.</strong> O.A.S.I.S. is <span class="term" data-term="offline-first">offline-first</span>, not network-blind. No <span class="term" data-term="analytics">analytics</span>, no cookies, no accounts, no <span class="term" data-term="telemetry">telemetry</span>. This page separates what stays local from what can use the network.</p>
 
   <hr class="rule">
   <p class="kicker">Local or network</p>
   <h2 id="network">Every feature, classified.</h2>
   <div class="tbl">
   <table class="spec">
-    <thead><tr><th>Function</th><th>Local</th><th>Network</th></tr></thead>
+    <thead><tr><th>Function</th><th>Local</th><th><span class="term" data-term="network">Network</span></th></tr></thead>
     <tbody>
       <tr><td>Local chat</td><td class="y">Yes</td><td class="n">No</td></tr>
-      <tr><td>Local model inference</td><td class="y">Yes</td><td class="n">No</td></tr>
-      <tr><td>Local memory</td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td><span class="term" data-term="local-inference">Local model inference</span></td><td class="y">Yes</td><td class="n">No</td></tr>
+      <tr><td>Local <span class="term" data-term="memory">memory</span></td><td class="y">Yes</td><td class="n">No</td></tr>
       <tr><td>Local documents</td><td class="y">Yes</td><td class="n">No</td></tr>
       <tr><td>Voice processing</td><td class="y">Yes</td><td class="n">No</td></tr>
       <tr><td>Screen analysis</td><td class="y">Yes</td><td class="n">No</td></tr>
       <tr><td>Web search</td><td class="n">No</td><td class="y">Yes</td></tr>
       <tr><td>Online pages</td><td class="n">No</td><td class="y">Yes</td></tr>
       <tr><td>Weather</td><td class="n">No</td><td class="y">Yes</td></tr>
-      <tr><td>External integrations</td><td class="n">Depends</td><td class="y">When enabled</td></tr>
-      <tr><td>External tool servers (MCP)</td><td class="n">No</td><td class="y">When enabled</td></tr>
-      <tr><td>Companion apps (Android, browser)</td><td class="y">Local network</td><td class="y">When configured</td></tr>
-      <tr><td>Model downloads</td><td class="n">No</td><td class="y">One-time</td></tr>
+      <tr><td>External <span class="term" data-term="integration">integrations</span></td><td class="n">Depends</td><td class="y">When enabled</td></tr>
+      <tr><td>External <span class="term" data-term="tool-server">tool servers</span> (<span class="term" data-term="mcp">MCP</span>)</td><td class="n">No</td><td class="y">When enabled</td></tr>
+      <tr><td><span class="term" data-term="companion">Companion</span> apps (Android, browser)</td><td class="y">Local network</td><td class="y">When configured</td></tr>
+      <tr><td><span class="term" data-term="model">Model</span> downloads</td><td class="n">No</td><td class="y">One-time</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="cap">Network tools only reach the internet when you invoke them. There is no silent background syncing.</p>
+  <p class="cap">Network <span class="term" data-term="tool">tools</span> only reach the internet when you invoke them. There is no silent background syncing.</p>
 
   <hr class="rule">
   <p class="kicker">This website</p>
   <h2>What this site knows about you: nothing.</h2>
   <ul class="plain">
-    <li><b>No analytics.</b> No Google Analytics, no Plausible, no pixels. We count nothing.</li>
+    <li><b>No <span class="term" data-term="analytics">analytics</span>.</b> No Google Analytics, no Plausible, no pixels. We count nothing.</li>
     <li><b>No cookies.</b> The only thing stored in your browser is your light/dark preference, on your device only.</li>
-    <li><b>Two fetches, both optional:</b> the roadmap file and the blog index, from this same site. The GitHub star count calls GitHub's public API — your browser talking to GitHub, not to us.</li>
+    <li><b>Two fetches, both optional:</b> the roadmap file and the blog index, from this same site. The GitHub star count calls GitHub's public <span class="term" data-term="api">API</span> — your browser talking to GitHub, not to us.</li>
     <li><b>No third-party requests on page load.</b> Fonts are served from this same site, not a CDN. The only external call is the optional GitHub star count, and it degrades silently if blocked.</li>
     <li><b>One exception: the waitlist.</b> If you join it, we store your email, your picks and the join date on Cloudflare KV — only to send one launch email. Nothing else, no sharing, and we'll delete you on request.</li>
   </ul>
@@ -89,12 +89,12 @@
   <p class="kicker">The desktop app</p>
   <h2>What the app stores, and where.</h2>
   <ul class="plain">
-    <li><b>No telemetry, no crash reports, no accounts.</b> There is no endpoint that receives them by default.</li>
-    <li><b>Localhost only.</b> The app's internal server binds to your machine; nothing listens on your network.</li>
-    <li><b>Per-tool permissions.</b> Microphone, screen and files each have their own switch in Settings — revocable anytime.</li>
-    <li><b>Your data, your folder.</b> Models, memory and settings live in <code>%LOCALAPPDATA%\O.A.S.I.S.\</code>. Delete it and it's gone.</li>
-    <li><b>Encrypted vault, PIN lock, action log</b> for whoever shares a machine or just sleeps better.</li>
-    <li><b>Optional diagnostics.</b> The only outbound channel that can be enabled is a diagnostics webhook you configure yourself.</li>
+    <li><b>No <span class="term" data-term="telemetry">telemetry</span>, no crash reports, no accounts.</b> There is no <span class="term" data-term="endpoint">endpoint</span> that receives them by default.</li>
+    <li><b><span class="term" data-term="localhost">Localhost</span> only.</b> The app's internal <span class="term" data-term="server">server</span> binds to your machine; nothing listens on your network.</li>
+    <li><b>Per-<span class="term" data-term="tool">tool</span> <span class="term" data-term="permission">permissions</span>.</b> Microphone, screen and files each have their own switch in Settings — revocable anytime.</li>
+    <li><b>Your data, your folder.</b> <span class="term" data-term="model">Models</span>, <span class="term" data-term="memory">memory</span> and settings live in <code>%LOCALAPPDATA%\O.A.S.I.S.\</code>. Delete it and it's gone.</li>
+    <li><b><span class="term" data-term="encryption">Encrypted</span> <span class="term" data-term="vault">vault</span>, PIN lock, <span class="term" data-term="audit-log">action log</span></b> for whoever shares a machine or just sleeps better.</li>
+    <li><b>Optional diagnostics.</b> The only outbound channel that can be enabled is a diagnostics <span class="term" data-term="webhook">webhook</span> you configure yourself.</li>
     <li><b>App privacy ≠ website privacy.</b> This page describes both, separately, on purpose.</li>
   </ul>
   <p class="cap">The binding documents live with the product: <a href="https://github.com/OASISLocal/O.A.S.I.S./blob/main/legal/PRIVACY_POLICY.md" target="_blank" rel="noopener noreferrer">Privacy Policy</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./blob/main/legal/EULA.md" target="_blank" rel="noopener noreferrer">EULA</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./blob/main/legal/THIRD-PARTY-NOTICES.md" target="_blank" rel="noopener noreferrer">Third-party notices</a></p>

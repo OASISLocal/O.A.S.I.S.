@@ -18,6 +18,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/tooltip.css">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"OASIS",
@@ -50,7 +51,7 @@
 
 <main id="content" class="wrap">
   <p class="crumb"><a href="./">Home</a> / About</p>
-  <h1>Built by people who distrust the cloud.</h1>
+  <h1>Built by people who distrust the <span class="term" data-term="cloud">cloud</span>.</h1>
   <p class="answer"><strong>OASIS is an independent project from Galicia, Spain, with one conviction: your computer should work for you, not report on you.</strong> No venture funding, no data business, no growth team — just a small team building the assistant we'd want on our own desks, and building it in the open.</p>
 
   <hr class="rule">
@@ -58,9 +59,9 @@
   <h2>What we won't do.</h2>
   <ul class="plain">
     <li><b>No accounts, ever, for the core product.</b> If a feature needs an account, it's a different product.</li>
-    <li><b>No telemetry.</b> We don't know who you are, and we'd like to keep it that way — this site runs no trackers either.</li>
-    <li><b>No subscriptions.</b> Max will be a single payment — charging rent on your own PC felt wrong.</li>
-    <li><b>No dark patterns.</b> Permissions are explicit, risky actions ask first, uninstalling removes everything.</li>
+    <li><b>No <span class="term" data-term="telemetry">telemetry</span>.</b> We don't know who you are, and we'd like to keep it that way — this site runs no trackers either.</li>
+    <li><b>No subscriptions.</b> <span class="term" data-term="max">Max</span> will be a single payment — charging rent on your own PC felt wrong.</li>
+    <li><b>No dark patterns.</b> <span class="term" data-term="permission">Permissions</span> are explicit, risky actions ask first, uninstalling removes everything.</li>
     <li><b>No hiding bugs.</b> The <a href="changelog.html">changelog</a> and <a href="blog/">blog</a> say what's broken and what's next.</li>
   </ul>
 
@@ -69,7 +70,7 @@
   <h2>Talk to humans.</h2>
   <ul class="plain">
     <li><b>Questions &amp; ideas:</b> <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">GitHub Discussions</a></li>
-    <li><b>Bug reports:</b> <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a> — Windows version + model + what happened.</li>
+    <li><b>Bug reports:</b> <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a> — Windows version + <span class="term" data-term="model">model</span> + what happened.</li>
     <li><b>Code:</b> <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">the repository</a>, where the real roadmap lives.</li>
   </ul>
   <div class="ctas">
@@ -98,5 +99,6 @@
 </footer>
 <div class="sticky-cta"><a class="btn sm" href="download.html">Download for Windows</a></div>
 <script src="assets/site.js"></script>
+<script src="assets/tooltip.js"></script>
 </body>
 </html>

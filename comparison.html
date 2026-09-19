@@ -18,6 +18,7 @@
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/tooltip.css">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 </head>
 <body>
@@ -46,17 +47,17 @@
 <main id="content" class="wrap wide" style="max-width:960px;">
   <div class="wrap" style="padding:0;">
   <p class="crumb"><a href="./">Home</a> / Compare</p>
-  <h1>Different tools, different strengths.</h1>
-  <p class="answer"><strong>Ollama, LM Studio, GPT4All and Jan are excellent at running local models — OASIS is the one that turns them into a full assistant.</strong> If you want a model server or a chat window, those tools are great. If you want something that talks, remembers, drives your PC and runs errands on a schedule, that's the gap OASIS fills.</p>
+  <h1>Different <span class="term" data-term="tool">tools</span>, different strengths.</h1>
+  <p class="answer"><strong><span class="term" data-term="ollama">Ollama</span>, <span class="term" data-term="lm-studio">LM Studio</span>, GPT4All and Jan are excellent at running local <span class="term" data-term="model">models</span> — OASIS is the one that turns them into a full assistant.</strong> If you want a model <span class="term" data-term="server">server</span> or a chat window, those tools are great. If you want something that talks, remembers, drives your PC and runs errands on a schedule, that's the gap OASIS fills.</p>
   </div>
 
   <div class="tbl">
   <table class="spec" style="margin-top:0;">
-    <thead><tr><th>Capability</th><th>OASIS</th><th>Ollama</th><th>LM Studio</th><th>GPT4All / Jan</th><th>Cloud assistants</th></tr></thead>
+    <thead><tr><th>Capability</th><th>OASIS</th><th>Ollama</th><th>LM Studio</th><th>GPT4All / Jan</th><th><span class="term" data-term="cloud">Cloud</span> assistants</th></tr></thead>
     <tbody>
       <tr><td>Runs models locally</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">No</td></tr>
-      <tr><td>Voice in &amp; out</td><td class="y">Yes, offline</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="y">Online only</td></tr>
-      <tr><td>Persistent memory &amp; documents</td><td class="y">Yes</td><td class="n">No</td><td class="n">Basic</td><td class="n">Basic</td><td class="y">Yes, on their servers</td></tr>
+      <tr><td>Voice in &amp; out</td><td class="y">Yes, <span class="term" data-term="offline">offline</span></td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="y">Online only</td></tr>
+      <tr><td><span class="term" data-term="persistent-memory">Persistent memory</span> &amp; documents</td><td class="y">Yes</td><td class="n">No</td><td class="n">Basic</td><td class="n">Basic</td><td class="y">Yes, on their servers</td></tr>
       <tr><td>Controls your PC (apps, system)</td><td class="y">100 tools</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td></tr>
       <tr><td>Scheduled routines</td><td class="y">Yes</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">Limited</td></tr>
       <tr><td>Windows installer + GUI</td><td class="y">Yes</td><td class="n">CLI-first</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">Browser/app</td></tr>
@@ -72,9 +73,9 @@
   <p class="kicker">The short version</p>
   <h2>When to pick what.</h2>
   <ul class="plain">
-    <li><b>Pick Ollama</b> if you want a local model server to build on — it's the engine room, not the assistant.</li>
-    <li><b>Pick LM Studio, GPT4All or Jan</b> if you want a clean window to chat with local models.</li>
-    <li><b>Pick a cloud assistant</b> if you need frontier reasoning and don't mind accounts, fees and uploads.</li>
+    <li><b>Pick <span class="term" data-term="ollama">Ollama</span></b> if you want a local <span class="term" data-term="model">model</span> <span class="term" data-term="server">server</span> to build on — it's the engine room, not the assistant.</li>
+    <li><b>Pick <span class="term" data-term="lm-studio">LM Studio</span>, GPT4All or Jan</b> if you want a clean window to chat with local models.</li>
+    <li><b>Pick a <span class="term" data-term="cloud">cloud</span> assistant</b> if you need frontier reasoning and don't mind accounts, fees and uploads.</li>
     <li><b>Pick OASIS</b> if you want the whole job done on your PC: talking, remembering, organizing, coding and automating — with nothing leaving home.</li>
   </ul>
   <div class="ctas">
@@ -104,5 +105,6 @@
 </footer>
 <div class="sticky-cta"><a class="btn sm" href="download.html">Download for Windows</a></div>
 <script src="assets/site.js"></script>
+<script src="assets/tooltip.js"></script>
 </body>
 </html>

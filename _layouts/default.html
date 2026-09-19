@@ -27,6 +27,7 @@
 <link rel="preload" as="font" type="font/woff2" href="{{ '/assets/fonts/inter-400.woff2' | relative_url }}" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="{{ '/assets/fonts/space-grotesk-500.woff2' | relative_url }}" crossorigin>
 <link rel="stylesheet" href="{{ '/assets/fonts/fonts.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/tooltip.css' | relative_url }}">
 <style>
 /* Blog — esquema Mono (igual que la app por defecto) */
 :root {
@@ -152,5 +153,6 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
 <script>
 (function(){var r=document.documentElement,b=document.getElementById('theme-btn');function p(t){r.setAttribute('data-theme',t);if(b)b.textContent=(t==='light')?'Dark':'Light';try{localStorage.setItem('oasis-theme',t);}catch(_){}}var s=null;try{s=localStorage.getItem('oasis-theme');}catch(_){}p(s==='light'||s==='dark'?s:'dark');if(b)b.addEventListener('click',function(){p(r.getAttribute('data-theme')==='light'?'dark':'light');});}());
 </script>
+<script src="{{ '/assets/tooltip.js' | relative_url }}"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Requirements — Hardware &amp; Models for Local AI</title>
-<meta name="description" content="What PC runs OASIS well? Honest hardware tiers, model download sizes and <span class="term" data-term="vram">VRAM</span> needs. Any modern CPU works; a GPU just makes it faster.">
+<meta name="description" content="What PC runs OASIS well? Honest hardware tiers, model download sizes and VRAM needs. Any modern CPU works; a GPU just makes it faster.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./requirements.html">
 <meta name="theme-color" content="#111111">
@@ -47,15 +47,15 @@
 <main id="content" class="wrap">
   <p class="crumb"><a href="./">Home</a> / Requirements</p>
   <h1>Will it run on your PC? Probably yes.</h1>
-  <p class="answer"><strong>Any modern CPU runs small AI models; a GPU just makes them faster.</strong> There is no minimum GPU, no subscription gate, no cloud fallback. Pick the tier that matches your machine — the app recommends a model for your hardware on first launch.</p>
+  <p class="answer"><strong>Any modern <span class="term" data-term="cpu">CPU</span> runs small AI <span class="term" data-term="model">models</span>; a <span class="term" data-term="gpu">GPU</span> just makes them faster.</strong> There is no minimum GPU, no subscription gate, no <span class="term" data-term="cloud">cloud</span> fallback. Pick the tier that matches your machine — the app recommends a model for your hardware on first launch.</p>
 
   <div class="tbl" id="tiers">
   <table class="spec">
     <thead><tr><th>Tier</th><th>Hardware</th><th>What you get</th></tr></thead>
     <tbody>
-      <tr><td>Minimum</td><td>Modern quad-core CPU · 8&nbsp;GB RAM · 10&nbsp;GB free disk · Windows 10/11</td><td>Small models (1–4B params). Accurate answers at a slower pace. Voice works.</td></tr>
-      <tr><td>Recommended</td><td>6+ core CPU · 16&nbsp;GB RAM · NVIDIA 4–8&nbsp;GB VRAM</td><td>7–8B models in Q4 quantization. Fluid chat, fast transcription, vision included.</td></tr>
-      <tr><td>Optimal</td><td>Recent CPU · 32&nbsp;GB RAM · NVIDIA 12&nbsp;GB+ VRAM</td><td>Larger models, everything at once: voice, vision, memory indexing and code sandbox.</td></tr>
+      <tr><td>Minimum</td><td>Modern quad-core CPU · 8&nbsp;GB <span class="term" data-term="ram">RAM</span> · 10&nbsp;GB free disk · Windows 10/11</td><td>Small models (1–4B params). Accurate answers at a slower pace. Voice works.</td></tr>
+      <tr><td>Recommended</td><td>6+ core CPU · 16&nbsp;GB RAM · NVIDIA 4–8&nbsp;GB <span class="term" data-term="vram">VRAM</span></td><td>7–8B models in Q4 <span class="term" data-term="quantization">quantization</span>. Fluid chat, fast transcription, <span class="term" data-term="vision">vision</span> included.</td></tr>
+      <tr><td>Optimal</td><td>Recent CPU · 32&nbsp;GB RAM · NVIDIA 12&nbsp;GB+ VRAM</td><td>Larger models, everything at once: voice, vision, <span class="term" data-term="memory">memory</span> indexing and code <span class="term" data-term="sandbox">sandbox</span>.</td></tr>
     </tbody>
   </table>
   </div>
@@ -63,7 +63,7 @@
   <hr class="rule">
   <p class="kicker">Check this PC</p>
   <h2>Does your machine make the cut?</h2>
-  <p>Your browser can read basic specs — cores, memory, OS, graphics. <b>This check runs only after you press the button, and it stays in your browser:</b> no requests, no storage, no analytics. A few things (exact VRAM, free disk space, Docker) browsers simply can't see — those stay manual checks.</p>
+  <p>Your browser can read basic specs — cores, <span class="term" data-term="memory">memory</span>, OS, graphics. <b>This check runs only after you press the button, and it stays in your browser:</b> no requests, no storage, no <span class="term" data-term="analytics">analytics</span>. A few things (exact <span class="term" data-term="vram">VRAM</span>, free disk space, <span class="term" data-term="docker">Docker</span>) browsers simply can't see — those stay manual checks.</p>
   <div class="mock">
     <div class="mock-bar"><span>this PC · read locally</span><span id="chk-state" role="status">idle</span></div>
     <div class="mock-body">
@@ -87,28 +87,28 @@
   </div>
 
   <hr class="rule">
-  <p class="kicker">Models &amp; sizes</p>
+  <p class="kicker"><span class="term" data-term="model">Models</span> &amp; sizes</p>
   <h2>How big is a brain, exactly?</h2>
   <p>Models download once, then live on your disk. Approximate sizes for the popular quantized (Q4) builds:</p>
   <div class="tbl">
   <table class="spec">
     <thead><tr><th><span class="term" data-term="model-size">Size class</span></th><th>Download</th><th>Needs</th><th>Feels like</th></tr></thead>
     <tbody>
-      <tr><td>1–3B</td><td>~1–2&nbsp;GB</td><td>Any CPU</td><td>Snappy drafts, reminders, simple Q&amp;A.</td></tr>
-      <tr><td>7–8B</td><td>~4–5&nbsp;GB</td><td>CPU ok · GPU better</td><td>The sweet spot: daily assistant work.</td></tr>
-      <tr><td>13–14B</td><td>~8–10&nbsp;GB</td><td>16&nbsp;GB RAM or 8&nbsp;GB VRAM</td><td>Deeper reasoning, slower without GPU.</td></tr>
+      <tr><td>1–3B</td><td>~1–2&nbsp;GB</td><td>Any <span class="term" data-term="cpu">CPU</span></td><td>Snappy drafts, reminders, simple Q&amp;A.</td></tr>
+      <tr><td>7–8B</td><td>~4–5&nbsp;GB</td><td>CPU ok · <span class="term" data-term="gpu">GPU</span> better</td><td>The sweet spot: daily assistant work.</td></tr>
+      <tr><td>13–14B</td><td>~8–10&nbsp;GB</td><td>16&nbsp;GB <span class="term" data-term="ram">RAM</span> or 8&nbsp;GB VRAM</td><td>Deeper reasoning, slower without GPU.</td></tr>
     </tbody>
   </table>
   </div>
-  <p class="cap">Families available: Llama, Gemma, Qwen, DeepSeek, Phi, Mistral — plus any GGUF file from Hugging Face. Sizes vary by quantization; the app shows exact numbers before downloading.</p>
+  <p class="cap">Families available: Llama, Gemma, Qwen, DeepSeek, Phi, Mistral — plus any <span class="term" data-term="gguf">GGUF</span> file from <span class="term" data-term="hugging-face">Hugging Face</span>. Sizes vary by <span class="term" data-term="quantization">quantization</span>; the app shows exact numbers before downloading.</p>
 
   <hr class="rule">
   <p class="kicker">Honest notes</p>
   <h2>What we'd rather tell you now.</h2>
   <ul class="plain">
-    <li><b>CPU-only is genuinely usable</b> for chat, voice and memory — just don't expect 50 tokens/sec from an 8B model.</li>
-    <li><b>Laptops run warm.</b> Sustained inference is a workout; plug in, and the app's CPU/GPU-layer settings help.</li>
-    <li><b>Docker is only for code execution.</b> Skip it and everything else still works.</li>
+    <li><b>CPU-only is genuinely usable</b> for chat, voice and memory — just don't expect 50 <span class="term" data-term="token">tokens/sec</span> from an 8B model.</li>
+    <li><b>Laptops run warm.</b> Sustained <span class="term" data-term="inference">inference</span> is a workout; plug in, and the app's CPU/GPU-layer settings help.</li>
+    <li><b><span class="term" data-term="docker">Docker</span> is only for code execution.</b> Skip it and everything else still works.</li>
     <li><b>Internet is needed twice:</b> downloading the app and the model. Afterwards it's optional — test it with the router off.</li>
     <li><b>Windows 10/11 only for now.</b> Linux and macOS builds are on the <a href="changelog.html#roadmap">roadmap</a>, not in the download folder.</li>
   </ul>
