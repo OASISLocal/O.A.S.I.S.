@@ -1153,23 +1153,32 @@ fetch('blog/posts.json').then(function (r) { return r.json(); }).then(function (
   var box = document.createElement('div');
   box.className = 'launch-box';
   function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function lockSite(lock) {
+    Array.prototype.forEach.call(
+      document.querySelectorAll('header.top, main, footer, .sticky-cta'),
+      function (el) { if (lock) el.setAttribute('inert', ''); else el.removeAttribute('inert'); }
+    );
+    document.body.style.overflow = lock ? 'hidden' : '';
+  }
   if (mode === 'teaser') {
     box.innerHTML = '<div class="mark" aria-hidden="true"></div>' +
       '<h2>Something local is coming.</h2>' +
       '<p>An AI assistant that lives on your PC — no cloud, no account. Watch this space, or follow along:</p>' +
       '<nav><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>' +
-      '<a href="blog/">Journal</a><a href="./">Enter the site →</a></nav>';
+      '<a href="blog/">Journal</a></nav>';
     ov.appendChild(box);
     document.body.appendChild(ov);
+    lockSite(true);
     return;
   }
   var target = new Date(q.get('date') || '');
   box.innerHTML = '<div class="mark" aria-hidden="true"></div>' +
     '<h2>O.A.S.I.S. — the reveal</h2><div class="cd" aria-live="polite"></div><p class="cd-date"></p>' +
     '<nav><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>' +
-    '<a href="blog/">Journal</a><a href="./">Enter the site →</a></nav>';
+    '<a href="blog/">Journal</a></nav>';
   ov.appendChild(box);
   document.body.appendChild(ov);
+  lockSite(true);
   var cd = box.querySelector('.cd'), dd = box.querySelector('.cd-date');
   if (isNaN(target.getTime())) {
     cd.innerHTML = '<p>Date to be announced — watch the Journal.</p>';
@@ -1178,7 +1187,7 @@ fetch('blog/posts.json').then(function (r) { return r.json(); }).then(function (
   dd.textContent = target.toUTCString() + '  ·  ' + target.toLocaleString();
   function tick() {
     var ms = target.getTime() - Date.now();
-    if (ms <= 0) { ov.remove(); return; } // reveal: full site
+    if (ms <= 0) { lockSite(false); ov.remove(); return; } // reveal: full site
     var s = Math.floor(ms / 1000);
     var d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600),
         m = Math.floor(s % 3600 / 60), ss = s % 60;
