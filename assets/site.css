@@ -80,9 +80,9 @@ table.spec td:first-child { color: var(--ink); font-weight: 600; white-space: no
 .diagram text { font-family: var(--mono); }
 .faq { border-top: 2px solid var(--strong); margin-top: 18px; }
 .faq details { border-bottom: 1px solid var(--strong); }
-.faq summary { cursor: pointer; padding: 18px 4px; font-weight: 600; font-size: 16px; color: var(--ink); list-style: none; display: flex; justify-content: space-between; gap: 14px; }
+.faq summary { cursor: pointer; padding: 18px 30px 18px 4px; font-weight: 600; font-size: 16px; color: var(--ink); list-style: none; display: block; position: relative; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: '+'; font-family: var(--mono); color: var(--ink-3); }
+.faq summary::after { content: '+'; font-family: var(--mono); color: var(--ink-3); position: absolute; right: 4px; top: 50%; transform: translateY(-50%); }
 .faq details[open] summary::after { content: '–'; color: var(--ink); }
 .faq details p, .faq details div.a { padding: 0 4px 20px; font-size: 15px; }
 .steps { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--strong); margin-top: 18px; }
