@@ -107,9 +107,9 @@ h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; lin
 .sq i:first-child { background: var(--ink); border-color: var(--ink); }
 .appwin-cols { display: grid; grid-template-columns: 190px 1fr; min-height: 420px; }
 .rail { border-right: 1px solid var(--strong); padding: 14px 10px; display: flex; flex-direction: column; gap: 2px; }
-.rail span { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); padding: 0 8px 8px; }
-.rail a { font-size: 13px; color: var(--ink-2); text-decoration: none; padding: 8px; border-left: 2px solid transparent; display: block; }
-.rail a.on { color: var(--ink); background: var(--hover); border-left-color: var(--strong); }
+.rail .rl { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); padding: 0 8px 8px; }
+.rail .ri { font-size: 13px; color: var(--ink-2); padding: 8px; border-left: 2px solid transparent; display: block; cursor: default; }
+.rail .ri.on { color: var(--ink); background: var(--hover); border-left-color: var(--strong); }
 .rail .ver { margin-top: auto; font-family: var(--mono); font-size: 10px; color: var(--ink-3); padding: 8px; }
 .stage { display: flex; flex-direction: column; min-width: 0; }
 .toolbar { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
@@ -312,8 +312,8 @@ footer { border-top: 2px solid var(--strong); margin-top: 72px; }
 .winbtns { display: flex; gap: 0; }
 .winbtns i { width: 34px; height: 26px; display: flex; align-items: center; justify-content: center; font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--ink-3); border-left: 1px solid var(--line); }
 .winbtns i:last-child:hover { background: var(--ink); color: var(--bg); }
-.rail a { display: flex; align-items: center; gap: 9px; }
-.rail a svg { flex-shrink: 0; }
+.rail .ri { display: flex; align-items: center; gap: 9px; }
+.rail .ri svg { flex-shrink: 0; }
 .tcard { border: 1px solid var(--line); margin-top: 9px; font-size: 12.5px; }
 .tcard header { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); padding: 6px 10px; border-bottom: 1px solid var(--line); }
 .tcard div { padding: 6px 10px; border-bottom: 1px dotted var(--line); font-family: var(--code); font-size: 12px; }
@@ -455,12 +455,12 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     <div class="appwin-bar"><span class="apptabs" aria-hidden="true"><i class="on">Chat</i><i>Models</i></span><span class="appwin-title" aria-hidden="true">OASIS · local engine</span><span class="winbtns" aria-hidden="true"><i>—</i><i>▢</i><i>✕</i></span></div>
     <div class="appwin-cols">
       <div class="rail" aria-hidden="true">
-        <span>Workspace</span>
-        <a class="on"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H9l-5 4z"/></svg>Chat</a>
-        <a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12L4 7.5M12 12v9"/></svg>Models</a>
-        <a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>Memory</a>
-        <a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.5 8 10.5 16M16.5 8 13.5 16M8.5 6h7"/></svg>Workflows</a>
-        <a><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>Settings</a>
+        <span class="rl">Workspace</span>
+        <span class="ri on"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H9l-5 4z"/></svg>Chat</span>
+        <span class="ri"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12L4 7.5M12 12v9"/></svg>Models</span>
+        <span class="ri"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>Memory</span>
+        <span class="ri"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.5 8 10.5 16M16.5 8 13.5 16M8.5 6h7"/></svg>Workflows</span>
+        <span class="ri"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>Settings</span>
         <div class="ver">v0.2.0 · offline</div>
       </div>
       <div class="stage">

@@ -41,3 +41,4 @@ exclude:
   - launch.json
   - launch/
   - sync-web.ps1
+  - .lighthouserc.json

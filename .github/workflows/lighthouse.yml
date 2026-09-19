@@ -1,0 +1,39 @@
+name: Lighthouse CI
+
+# Audits the static site on every push/PR. Runs entirely on GitHub's runners:
+# no analytics, no external service, nothing added to the page itself.
+# Thresholds live in .lighthouserc.json (calibrated locally, see QA_CHECKLIST.md).
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    name: Lighthouse audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run Lighthouse CI
+        run: npx --yes @lhci/cli@0.14.x autorun
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci
+          retention-days: 7
+          if-no-files-found: warn

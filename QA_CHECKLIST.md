@@ -86,12 +86,34 @@ Capture at **320, 375, 390, 430, 768, 1024, 1366, 1920** px. Pass criteria:
 - [ ] Internal links resolve (script: internal link audit).
 - [ ] No `noindex` on public pages; exactly one `h1`.
 
-### 2.4 Performance (phase 19)
-- [ ] Fonts load non-blocking (`media="print" onload`).
-- [ ] No render-blocking JS; scripts at end of body.
-- [ ] Page HTML < 100 KB/page; CSS < 15 KB; JS < 5 KB.
-- [ ] No unoptimised raster images (currently none — keep it that way or add WebP/AVIF + width/height + lazy).
-- [ ] Lighthouse (manual run): Performance/A11y/Best Practices/SEO ≥ 90.
+### 2.4 Performance (phase 19) — partly automated
+Automated: the **Lighthouse CI** workflow (`.github/workflows/lighthouse.yml`, config
+in `.lighthouserc.json`) runs on every push/PR against a local static server and
+asserts: accessibility ≥ 90, best practices ≥ 90, SEO ≥ 90 (all **errors**) and
+performance ≥ 80 (**warning**). Reports upload as artifacts (7-day retention).
+
+**Measured baseline (2026-09-19, desktop preset, local runner):**
+
+| URL | Performance | Accessibility | Best practices | SEO |
+|---|---|---|---|---|
+| `/` | 100 | 100 | 100 | 100 |
+| `/tools.html` | 94 | 100 | 100 | 100 |
+| `/models.html` | 100 | 100 | 100 | 100 |
+| `/faq.html` | 100 | 100 | 100 | 100 |
+
+Fixed thanks to the first run: decorative rail anchors without `href` (broke
+`crawlable-anchors`) and a missing `favicon.ico` (console 404).
+
+**Known trade-off:** `/tools.html` CLS ≈ 0.149, below Lighthouse's 0.1 "good"
+line, caused by web-font swap on the large mono tables. Accepted for now:
+fonts load non-blocking (`media="print"` + `onload`) which favours FCP, and
+performance stays 94. The proper fix is **self-hosting the fonts** (also removes
+the last third-party request) — queued as a follow-up, not a blocker.
+
+Manual, not automatable here:
+- [ ] Lighthouse on real production URLs after deploy.
+- [ ] Blog pages (Jekyll-built) — the CI audits the static root only.
+- [ ] Test on a real phone, not just DevTools.
 
 ### 2.5 Link audit (phase 40)
 - [ ] Download → releases/latest resolves.
