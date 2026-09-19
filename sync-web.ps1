@@ -101,7 +101,7 @@ try {
     }
     Set-Content -LiteralPath (Join-Path $wt "index.html") -Value $html -Encoding utf8NoBOM
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot "launch/404.html") -Destination (Join-Path $wt "404.html")
-    Set-Content -LiteralPath (Join-Path $wt "robots.txt") -Value "User-agent: *`nDisallow: /`n" -Encoding utf8NoBOM
+    [System.IO.File]::WriteAllText((Join-Path $wt "robots.txt"), "User-agent: *`nDisallow: /`n")
     New-Item -ItemType File -Path (Join-Path $wt ".nojekyll") -Force | Out-Null
     git add -A
   }
