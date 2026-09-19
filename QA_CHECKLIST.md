@@ -90,25 +90,26 @@ Capture at **320, 375, 390, 430, 768, 1024, 1366, 1920** px. Pass criteria:
 Automated: the **Lighthouse CI** workflow (`.github/workflows/lighthouse.yml`, config
 in `.lighthouserc.json`) runs on every push/PR against a local static server and
 asserts: accessibility ≥ 90, best practices ≥ 90, SEO ≥ 90 (all **errors**) and
-performance ≥ 80 (**warning**). Reports upload as artifacts (7-day retention).
+performance ≥ 90 (**warning**). Reports upload as artifacts (7-day retention).
 
-**Measured baseline (2026-09-19, desktop preset, local runner):**
+**Baseline (2026-09-19, desktop preset, local runner) — 100 across the board:**
 
 | URL | Performance | Accessibility | Best practices | SEO |
 |---|---|---|---|---|
 | `/` | 100 | 100 | 100 | 100 |
-| `/tools.html` | 94 | 100 | 100 | 100 |
+| `/tools.html` | 100 | 100 | 100 | 100 |
 | `/models.html` | 100 | 100 | 100 | 100 |
 | `/faq.html` | 100 | 100 | 100 | 100 |
 
-Fixed thanks to the first run: decorative rail anchors without `href` (broke
-`crawlable-anchors`) and a missing `favicon.ico` (console 404).
-
-**Known trade-off:** `/tools.html` CLS ≈ 0.149, below Lighthouse's 0.1 "good"
-line, caused by web-font swap on the large mono tables. Accepted for now:
-fonts load non-blocking (`media="print"` + `onload`) which favours FCP, and
-performance stays 94. The proper fix is **self-hosting the fonts** (also removes
-the last third-party request) — queued as a follow-up, not a blocker.
+Fixes that got us here:
+1. Decorative rail anchors without `href` (broke `crawlable-anchors`).
+2. Missing `favicon.ico` (console 404).
+3. **Web fonts are now self-hosted** (`assets/fonts/`, latin subset, 136 KB, OFL).
+   Google Fonts is gone — no third-party request on page load. The two variable
+   families are deduplicated to a single file each. `inter-400.woff2` and
+   `space-grotesk-500.woff2` are preloaded, which eliminated the font-swap CLS on
+   `/tools.html` (**0.149 → 0.0004**). Blocking the fonts instead made CLS *worse*
+   (0.193), which is why self-hosting+preload was the fix rather than reverting.
 
 Manual, not automatable here:
 - [ ] Lighthouse on real production URLs after deploy.

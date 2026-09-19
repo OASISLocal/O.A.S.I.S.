@@ -22,11 +22,10 @@
 <link rel="alternate" type="application/atom+xml" title="OASIS Blog" href="{{ '/blog/feed.xml' | relative_url }}">
 {% seo %}
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;700&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
 
+<link rel="preload" as="font" type="font/woff2" href="{{ '/assets/fonts/inter-400.woff2' | relative_url }}" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="{{ '/assets/fonts/space-grotesk-500.woff2' | relative_url }}" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/fonts/fonts.css' | relative_url }}">
 <style>
 /* Blog — esquema Mono (igual que la app por defecto) */
 :root {

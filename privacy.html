@@ -11,10 +11,9 @@
 <meta property="og:title" content="Privacy — No Trackers, No Cloud, Your Disk">
 <meta property="og:description" content="Zero trackers here. Zero telemetry there. The full picture.">
 <meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./privacy.html">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 <link rel="stylesheet" href="assets/site.css">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 </head>
@@ -78,7 +77,7 @@
     <li><b>No analytics.</b> No Google Analytics, no Plausible, no pixels. We count nothing.</li>
     <li><b>No cookies.</b> The only thing stored in your browser is your light/dark preference, on your device only.</li>
     <li><b>Two fetches, both optional:</b> the roadmap file and the blog index, from this same site. The GitHub star count calls GitHub's public API — your browser talking to GitHub, not to us.</li>
-    <li><b>Fonts come from Google Fonts.</b> If even that bothers you, the site works fine with them blocked — system fonts take over.</li>
+    <li><b>No third-party requests on page load.</b> Fonts are served from this same site, not a CDN. The only external call is the optional GitHub star count, and it degrades silently if blocked.</li>
     <li><b>One exception: the waitlist.</b> If you join it, we store your email, your picks and the join date on Cloudflare KV — only to send one launch email. Nothing else, no sharing, and we'll delete you on request.</li>
   </ul>
 
