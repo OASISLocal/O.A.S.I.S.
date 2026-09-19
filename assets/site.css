@@ -119,8 +119,11 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 /* Tables scroll instead of crushing (wrap tables in .tbl) */
 .tbl { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 18px; }
 .tbl table.spec { margin-top: 0; min-width: 620px; }
+.sticky-cta { display: none; }
 @media (max-width: 700px) {
-  .tbl table.spec { min-width: 560px; }
+  .sticky-cta { display: block; position: fixed; bottom: 0; left: 0; right: 0; z-index: 60; background: var(--surface); border-top: 2px solid var(--strong); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); }
+  .sticky-cta .btn { width: 100%; justify-content: center; }
+  body { padding-bottom: 84px; }
 }
 @media (max-width: 480px) {
   h1 { font-size: clamp(32px, 10vw, 44px); }

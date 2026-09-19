@@ -33,10 +33,6 @@
     var dl = document.createElement('a');
     dl.href = 'download.html'; dl.textContent = 'Download';
     mnav.appendChild(dl);
-    var gh = document.createElement('a');
-    gh.href = 'https://github.com/OASISLocal/O.A.S.I.S.';
-    gh.target = '_blank'; gh.rel = 'noopener noreferrer'; gh.textContent = 'GitHub';
-    mnav.appendChild(gh);
     burger.addEventListener('click', function () {
       var open = mnav.classList.toggle('open');
       burger.setAttribute('aria-expanded', String(open));
