@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>O.A.S.I.S. â€” Something local is coming</title>
-<meta name="description" content="O.A.S.I.S. â€” an AI assistant that lives on your PC. Join the waitlist for the reveal.">
+<title>O.A.S.I.S. — Something local is coming</title>
+<meta name="description" content="O.A.S.I.S. — an AI assistant that lives on your PC. Join the waitlist for the reveal.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#111111">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
@@ -46,7 +46,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 <main class="box">
   <div class="mark" aria-hidden="true"></div>
   <h1>Something local is coming.</h1>
-  <p class="sub">An AI assistant that <strong>lives on your PC</strong> â€” no cloud, no account. Leave your email and get <strong>one message</strong> at the reveal. Nothing else, ever.</p>
+  <p class="sub">An AI assistant that <strong>lives on your PC</strong> — no cloud, no account. Leave your email and get <strong>one message</strong> at the reveal. Nothing else, ever.</p>
   <form id="wl" novalidate>
     <div class="row">
       <input id="email" type="email" name="email" placeholder="you@example.com" aria-label="Email address" autocomplete="email" required>
@@ -55,11 +55,11 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
     <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
   </form>
   <p class="status" id="status" role="status"></p>
-  <noscript><p class="status">No JavaScript? Email hello@oasislocal.dev with â€œwaitlistâ€.</p></noscript>
+  <noscript><p class="status">No JavaScript? Email hello@oasislocal.dev with “waitlist”.</p></noscript>
   <div class="links">
     <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
   </div>
-  <p class="fine">O.A.S.I.S. Â· TEASER Â· no trackers on this page</p>
+  <p class="fine">O.A.S.I.S. · TEASER · no trackers on this page</p>
 </main>
 <script>
 (function () {
@@ -75,7 +75,7 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
     if (hp && hp.value) { say("You're on the list."); return; }
     var addr = (email.value || '').trim().toLowerCase();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)) { say('That email doesn\u2019t look right.'); email.focus(); return; }
-    btn.disabled = true; btn.textContent = 'Joiningâ€¦';
+    btn.disabled = true; btn.textContent = 'Joining…';
     var ctrl = new AbortController();
     var timer = setTimeout(function () { ctrl.abort(); }, 12000);
     fetch('https://oasis-waitlist.sanitariorteba.workers.dev/collect', {
@@ -85,8 +85,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
       signal: ctrl.signal
     }).then(function (r) { return r.json().catch(function () { return {}; }); }).then(function (j) {
       clearTimeout(timer);
-      if (j && j.ok) { say(j.already ? 'Already on the list â€” see you at the reveal.' : 'You\u2019re on the list. One email, that\u2019s it.'); btn.textContent = 'Joined âœ“'; }
-      else if (j && j.error === 'too_many_requests') { say('Too many tries â€” give it an hour.'); btn.disabled = false; btn.textContent = 'Notify me'; }
+      if (j && j.ok) { say(j.already ? 'Already on the list — see you at the reveal.' : 'You\u2019re on the list. One email, that\u2019s it.'); btn.textContent = 'Joined ✓'; }
+      else if (j && j.error === 'too_many_requests') { say('Too many tries — give it an hour.'); btn.disabled = false; btn.textContent = 'Notify me'; }
       else { say('Didn\u2019t go through. Try again in a bit.'); btn.disabled = false; btn.textContent = 'Notify me'; }
     }).catch(function () {
       clearTimeout(timer);
