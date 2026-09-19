@@ -55,16 +55,14 @@ Source of truth: `src/core/freemium.py` (`_FREE_FEATURES = {}`, `_PRO_FEATURES =
 | OpenCode integration | ❌ | ✅ | `opencode_integration` | Implemented |
 | Parallel sessions | ❌ | ✅ | `parallel_sessions` | Implemented |
 
-### ⚠️ Open conflicts to resolve with the product owner
+### Confirmed decisions (product owner, 2026-09-19)
 
-1. **Vision in Personal?** `plan.md` lists Vision as Personal-available, but the
-   code gates `vision` behind Max. **Site currently follows the code (Vision = Max).**
-   If Vision is meant to be Personal, the code must change first.
-2. **"Simple routines" in Personal?** `plan.md` says Personal = simple workflows,
-   but `workflows`/`scheduled_workflows` are both Max in code.
-3. **Local backup** — `plan.md` lists it as Max; not found as a gated feature.
-   Local backup appears available generally (`privacy.html` lists it as app-wide).
-   **Currently treated as Personal**, pending confirmation.
+1. **Vision is Max.** `plan.md` was wrong; the code is correct. Site now matches code.
+2. **Workflows (incl. scheduled) are Max.** Same: code is authoritative.
+3. **Local backup is available generally** (Personal), not Max-gated. The old
+   plan listing it under Max is deprecated.
+4. **Coding:** full code agent + sandbox = Max. Personal keeps code *explanations*
+   and answering coding questions (no execution).
 
 ## 3. Tools
 

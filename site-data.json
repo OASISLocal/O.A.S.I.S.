@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "status": "beta",
+  "platform": ["Windows 10", "Windows 11"],
+  "tools": "80+",
+  "updated": "2026-09-19",
+  "roadmap": {
+    "now": [
+      "Local chat with streaming",
+      "GGUF models via llama.cpp",
+      "Voice in Spanish and English",
+      "Memory and documents (basic)",
+      "Everyday PC control",
+      "80+ tools across six categories"
+    ],
+    "next": [
+      "Max early access opens",
+      "Linux build",
+      "macOS build",
+      "Plugin/marketplace foundations"
+    ],
+    "later": [
+      "Multi-agent workflows",
+      "More local model runtimes",
+      "Additional companion apps"
+    ]
+  }
+}

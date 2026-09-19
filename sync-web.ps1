@@ -41,8 +41,8 @@ $badOld = Select-String -Path *.html, *.xml, *.txt, launch/*.html, _layouts/*.ht
   Where-Object { $_.Line -notmatch "O\.A\.S\.I\.S\." }
 if ($badOld) { $badOld | ForEach-Object { Write-Host ("  " + $_.Filename + ":" + $_.LineNumber) }; Fail "old repo/paths URLs found above" }
 
-try { Get-Content -Raw roadmap.json | ConvertFrom-Json | Out-Null } catch { Fail "roadmap.json is not valid JSON" }
-try { Get-Content -Raw launch.json | ConvertFrom-Json | Out-Null } catch { Fail "launch.json is not valid JSON" }
+try { [System.IO.File]::ReadAllText((Join-Path $PSScriptRoot "site-data.json")) | ConvertFrom-Json | Out-Null } catch { Fail "site-data.json is not valid JSON" }
+try { [System.IO.File]::ReadAllText((Join-Path $PSScriptRoot "launch.json")) | ConvertFrom-Json | Out-Null } catch { Fail "launch.json is not valid JSON" }
 
 $missingCanon = Get-ChildItem -Filter *.html | Where-Object {
   (Get-Content -Raw $_.FullName) -notmatch 'rel="canonical"'

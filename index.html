@@ -138,6 +138,9 @@ h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; lin
 .split.flip > div:first-child { order: 2; }
 .split h3 { font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); margin-bottom: 10px; }
 .tagmax { font-family: var(--mono); font-size: 10px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--strong); padding: 2px 7px; vertical-align: 3px; color: var(--ink); }
+.pdem { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.pdem .mock { margin-top: 0; }
+@media (max-width: 760px) { .pdem { grid-template-columns: 1fr; } }
 .split p { font-size: 15.5px; margin-bottom: 12px; }
 .check { list-style: none; margin-top: 14px; }
 .check li { font-size: 14.5px; padding: 9px 0 9px 24px; position: relative; border-bottom: 1px solid var(--line); }
@@ -250,6 +253,11 @@ h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; lin
 
 /* Status + blog */
 .rm { display: grid; grid-template-columns: 1fr 1fr; border: 2px solid var(--strong); max-width: 780px; }
+.rm.rm3 { grid-template-columns: repeat(3, 1fr); max-width: 100%; }
+.rm.rm3 > div:first-child { border-right: 1px solid var(--strong); }
+.rm.rm3 > div { border-right: 1px solid var(--strong); }
+.rm.rm3 > div:last-child { border-right: none; }
+@media (max-width: 760px) { .rm.rm3 { grid-template-columns: 1fr; } .rm.rm3 > div { border-right: none; border-bottom: 1px solid var(--strong); } .rm.rm3 > div:last-child { border-bottom: none; } }
 .rm > div { padding: 24px; }
 .rm > div:first-child { border-right: 1px solid var(--strong); }
 .rm h3 { font-family: var(--mono); font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 10px; }
@@ -723,12 +731,23 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     <h2>Your AI should ask before it acts.</h2>
     <p>Every tool carries a risk level. Low-risk reads run automatically; everything else follows your per-tool setting — allow, deny, or ask. Nine high-impact tools always ask, no matter what.</p>
   </div>
-  <div class="mock" role="img" aria-label="Permission dialog asking to create a file">
-    <div class="mock-bar"><span>permission required</span><span>oasis · local</span></div>
-    <div class="mock-body">
-      <p style="font-size:14.5px;color:var(--ink);margin-bottom:4px;">Create <b>summary.pdf</b>?</p>
-      <p style="font-size:13px;">Requested by <span class="mono">write_file</span> · medium risk · reversible</p>
-      <div class="pbtns" style="margin-top:12px;"><i>Allow once</i><i>Always allow</i><i>Cancel</i></div>
+  <div class="pdem">
+    <div class="mock" role="img" aria-label="Permission dialog asking to create a file">
+      <div class="mock-bar"><span>permission required · medium</span><span>oasis · local</span></div>
+      <div class="mock-body">
+        <p style="font-size:14.5px;color:var(--ink);margin-bottom:4px;">Create <b>summary.pdf</b>?</p>
+        <p style="font-size:13px;">Requested by <span class="mono">write_file</span> · reversible</p>
+        <div class="pbtns" style="margin-top:12px;"><i>Allow once</i><i>Always allow</i><i>Cancel</i></div>
+      </div>
+    </div>
+    <div class="mock" role="img" aria-label="Permission dialog for deleting temporary files">
+      <div class="mock-bar"><span>permission required · critical</span><span>oasis · local</span></div>
+      <div class="mock-body">
+        <p style="font-size:14.5px;color:var(--ink);margin-bottom:4px;">Delete <b>12 temporary files</b>?</p>
+        <p style="font-size:13px;">Requested by <span class="mono">file_manager</span> · irreversible</p>
+        <div class="pbtns" style="margin-top:12px;"><i>Allow once</i><i>Cancel</i></div>
+        <p class="cap" style="margin-top:12px;">→ 12 files deleted · verified</p>
+      </div>
     </div>
   </div>
   <div class="tbl" style="margin-top:22px;">
@@ -935,9 +954,10 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     <h2>A beta with the door open.</h2>
     <p id="rm-updated">Recently updated.</p>
   </div>
-  <div class="rm">
-    <div><h3>Already working</h3><ul id="rm-done"><li>Local chat, models, voice, tools and memory.</li></ul></div>
-    <div><h3>On the way</h3><ul id="rm-next"><li>Linux, macOS, plugins and multi-agent.</li></ul></div>
+  <div class="rm rm3">
+    <div><h3>Now</h3><ul id="rm-now"><li>Local chat, models, voice, tools and memory.</li></ul></div>
+    <div><h3>Next</h3><ul id="rm-next"><li>Max early access, Linux, macOS.</li></ul></div>
+    <div><h3>Later</h3><ul id="rm-later"><li>Multi-agent, more runtimes.</li></ul></div>
   </div>
   <p class="cap">Bugs get blogged about, not buried. New to local AI? Start with <a href="blog/2026/09/10/what-is-a-local-ai-assistant/">the plain-words guide</a>. Missing something? <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Ask in Discussions</a> — humans read it.</p>
   <ul class="blogindex" id="blog-list"><li id="blog-empty">Loading posts…</li></ul>
@@ -1055,13 +1075,14 @@ function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ 
     } else if (c === null) { el.parentNode.parentNode.style.display = 'none'; }
   }).catch(function () { if (c === null) el.parentNode.parentNode.style.display = 'none'; });
 }());
-fetch('roadmap.json').then(function (r) { return r.json(); }).then(function (d) {
+fetch('site-data.json').then(function (r) { return r.json(); }).then(function (d) {
   function fill(id, items) {
     var el = document.getElementById(id);
     if (!el || !Array.isArray(items) || !items.length) return;
     el.innerHTML = items.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
   }
-  fill('rm-done', d.shipped); fill('rm-next', d.next);
+  var rm = d.roadmap || {};
+  fill('rm-now', rm.now); fill('rm-next', rm.next); fill('rm-later', rm.later);
   var u = document.getElementById('rm-updated');
   if (u && d.updated) {
     var dt = new Date(d.updated);

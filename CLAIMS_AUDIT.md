@@ -15,10 +15,10 @@
 | 9 high-impact tools | VERIFIED | `registry.py:166` | 2026-09-19 | always confirm |
 | Voice in Spanish/English | VERIFIED | `core/voice.py`, `config.tts_language` | 2026-09-19 | Whisper + Kokoro |
 | Screen analysis only when asked | VERIFIED | `vision_screen` tool is on-demand | 2026-09-19 | no background watcher for vision |
-| Coding requires Max | VERIFIED | `Feature.CODE_MODE` | 2026-09-19 | site was wrong before |
+| Coding requires Max | VERIFIED | `Feature.CODE_MODE` | 2026-09-19 | explanations stay Personal |
 | Sandbox requires Max | VERIFIED | `Feature.DOCKER_SANDBOX` | 2026-09-19 | + Docker installed |
-| Vision requires Max | VERIFIED | `Feature.VISION` | 2026-09-19 | ⚠️ conflicts with old plan doc |
-| Workflows require Max | VERIFIED | `Feature.WORKFLOWS` | 2026-09-19 | ⚠️ conflicts with old plan doc |
+| Vision requires Max | VERIFIED | `Feature.VISION` | 2026-09-19 | confirmed by owner |
+| Workflows require Max | VERIFIED | `Feature.WORKFLOWS` | 2026-09-19 | confirmed by owner |
 | Discord/Telegram require Max | VERIFIED | `Feature.MESSAGING` | 2026-09-19 | |
 | Mobile/browser ext require Max | VERIFIED | `mobile_app`, `browser_extension` | 2026-09-19 | |
 | External MCP servers require Max | VERIFIED | `Feature.MCP_SERVERS` | 2026-09-19 | |
