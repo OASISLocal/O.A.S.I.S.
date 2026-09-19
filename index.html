@@ -407,6 +407,27 @@ body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 @media (max-height: 540px) and (min-width: 700px) {
   .hero { padding-top: 40px; }
 }
+
+/* Text cursor (I-beam) ------------------------------------------------------
+   Windows can draw the default I-beam in white (dark-mode cursor schemes),
+   which vanishes on a near-white page. CSS cannot recolour the OS cursor, so
+   text areas use a small inline SVG I-beam: ink stem + paper halo in light
+   mode, inverted in dark mode. Falls back to the native `text` cursor where
+   SVG cursors are unsupported. Remove this block to hand cursors back to the OS. */
+:root, :root[data-theme="dark"] { --ibeam: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%3E%3Cpath%20d='M8%202.5v11M6%202.5h4M6%2013.5h4'%20fill='none'%20stroke='%23111111'%20stroke-width='4'%20stroke-linecap='round'/%3E%3Cpath%20d='M8%202.5v11M6%202.5h4M6%2013.5h4'%20fill='none'%20stroke='%23ffffff'%20stroke-width='1.6'%20stroke-linecap='round'/%3E%3C/svg%3E") 8 8, text; }
+:root[data-theme="light"] { --ibeam: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%3E%3Cpath%20d='M8%202.5v11M6%202.5h4M6%2013.5h4'%20fill='none'%20stroke='%23f7f7f5'%20stroke-width='4'%20stroke-linecap='round'/%3E%3Cpath%20d='M8%202.5v11M6%202.5h4M6%2013.5h4'%20fill='none'%20stroke='%23111111'%20stroke-width='1.6'%20stroke-linecap='round'/%3E%3C/svg%3E") 8 8, text; }
+p, li, td, th, h1, h2, h3, h4, dt, dd, blockquote, figcaption, pre,
+.answer, .cap, .fine, .small, .else, .fact, .log, .dchat, .msg, .tcard,
+.kv, .prose, .statusbar, .modelpill, .mock-body, .groups li, .price li {
+  cursor: var(--ibeam);
+}
+input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]),
+textarea, [contenteditable="true"] { cursor: var(--ibeam); }
+/* Interactive controls keep their own cursor */
+a, a *, button, button *, summary, label, select, option,
+input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; }
+.pbtns i, .rail .ri, .winbtns i, .apptabs i, .tool { cursor: default; }
+
 </style>
 </head>
 <body>
