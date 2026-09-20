@@ -1,6 +1,7 @@
 ---
 title: "Welcome to the OASIS blog"
 tags: [announcement]
+es_url: /es/blog/2026/07/26/bienvenido-al-journal.html
 ---
 
 This is where we'll post release notes, technical deep dives, and honest updates on where OASIS is headed — the same [roadmap]({{ '/changelog.html#roadmap' | relative_url }}) you see in the changelog, with the reasoning behind it.

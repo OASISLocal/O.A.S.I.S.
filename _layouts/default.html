@@ -8,6 +8,9 @@
 <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="alternate" hreflang="en" href="{{ page.url | absolute_url }}">
+<link rel="alternate" hreflang="es" href="{{ page.es_url | default: '/es/blog/' | absolute_url }}">
+<link rel="alternate" hreflang="x-default" href="{{ page.url | absolute_url }}">
 <meta name="theme-color" content="#111111">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
@@ -140,6 +143,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
 <a class="logo" href="{{ '/' | relative_url }}">■ O.A.S.I.S. Journal</a>
 <div>
 <a class="nav-link" href="{{ '/' | relative_url }}">← Back to site</a>
+<a class="nav-link" href="{{ page.es_url | default: '/es/blog/' | relative_url }}" lang="es" hreflang="es">ES</a>
 <button id="theme-btn" aria-label="Switch between light and dark">Light</button>
 </div>
 </nav>

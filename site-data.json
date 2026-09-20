@@ -2,8 +2,8 @@
   "version": "0.2.0",
   "status": "beta",
   "platform": ["Windows 10", "Windows 11"],
-  "tools": "80+",
-  "updated": "2026-09-19",
+  "tools": "100+",
+  "updated": "2026-09-20",
   "roadmap": {
     "now": [
       "Local chat with streaming",

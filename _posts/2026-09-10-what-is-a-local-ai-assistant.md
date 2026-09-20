@@ -2,6 +2,7 @@
 title: "What Is a Local AI Assistant? The Plain-Words Guide"
 permalink: /blog/2026/09/10/what-is-a-local-ai-assistant/
 tags: [ia-local, guide]
+es_url: /es/blog/2026/09/10/que-es-un-asistente-de-ia-local.html
 ---
 
 **A <span class="term" data-term="local-ai">local AI assistant</span> is a program that runs its AI <span class="term" data-term="model">model</span> on your own computer instead of sending your words to a <span class="term" data-term="server">server</span>.** You install it, download a model once, and from then on everything — chat, voice, memory — works on your hardware, with or without internet.

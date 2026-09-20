@@ -1,42 +1,34 @@
 # O.A.S.I.S.
 
-> Free AI assistant for Windows. Runs open models 100% locally — no cloud, no telemetry, no subscriptions.
+> Local-first AI assistant for Windows 10/11 x64. Public beta v0.2.0.
 
-## What it is
+## Product
 
-O.A.S.I.S. is an agentic AI system that runs open models (Llama 3.2, Gemma 4, Qwen 2.5, plus any GGUF) on your own PC. Unlike chat wrappers, it has 80+ built-in tools that let the assistant actually do things: control Windows apps, manage files, run code in an isolated sandbox, search the web, talk and listen in Spanish and English, and maintain persistent memory across sessions.
+O.A.S.I.S. runs compatible GGUF models locally and adds chat, voice, memory, documents, everyday PC tools and explicit permissions. The Personal edition is free and does not require an account. The application is proprietary; this public repository contains releases, documentation and transparency material, not application source code.
 
-## Key features
+## Capabilities
 
-- **Local inference** — local workflows are processed on your machine
-- **80+ built-in tools** — system control, files, code sandbox, web search, voice, memory, MCP
-- **App control** — open, close, and interact with any Windows app via 5-level fallback chain
-- **Skills & Workflows** — custom triggers with multi-step automated routines
-- **Voice** — offline STT (speech-to-text) and TTS (text-to-speech)
-- **Persistent memory** — ChromaDB + cross-encoder reranking for semantic recall
-- **Proactivity engine** — suggests actions, monitors system health, reminds of events
-- **MCP client** — connect to external MCP servers for additional capabilities
+- Local chat with compatible GGUF models
+- Spanish and English voice input/output
+- Basic local memory and document workflows
+- Everyday low-risk PC control
+- Up to three Personal projects
+- 100+ registered product tools, with 10 high-impact tools requiring confirmation
+- Max-only or planned: vision, advanced RAG, full coding agent, Docker sandbox, workflows, scheduled workflows, messaging, mobile/browser companions, MCP servers, voice cloning, encrypted sync, OpenCode integration and parallel sessions
 
-## Quick start
+## Network model
 
-1. Download the installer from https://github.com/OASISLocal/O.A.S.I.S./releases/latest
-2. Run it on Windows 10+ or Windows 11
-3. Pick a model from the built-in catalog
-4. Start chatting
+Local features run on your PC. Network-enabled features communicate externally only when you use or configure them. O.A.S.I.S. is offline-first, not network-blind. Web search, online pages, weather, translation fallbacks, Spotify, messaging, companions and external MCP servers can require network access.
 
-## Requirements
+## Models
 
-- Windows 10 or Windows 11
-- 8 GB RAM minimum (16 GB recommended)
-- NVIDIA GPU optional (automatic layer offloading)
-- No account, no API key, no internet required
+Compatible GGUF models are supported. Bundled profiles include `gemma-4b-it`, `qwen-2.5-1.5b` and `llama-3.2-3b`. Compatibility depends on model, quantization, context size, backend and hardware.
 
-## Pricing
-
-Personal plan free forever. OASIS Max is a one-time payment (EUR 15 in early access, EUR 25 at 1.0) with coding, automations, messaging and mobile. No subscriptions. Details: https://oasislocal.github.io/O.A.S.I.S./#pricing
-
-## Links
+## Official links
 
 - Website: https://oasislocal.github.io/O.A.S.I.S./
-- GitHub: https://github.com/OASISLocal/O.A.S.I.S.
+- Spanish website: https://oasislocal.github.io/O.A.S.I.S./es/
 - Releases: https://github.com/OASISLocal/O.A.S.I.S./releases
+- Documentation: https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs
+- Issues: https://github.com/OASISLocal/O.A.S.I.S./issues
+- Privacy: https://oasislocal.github.io/O.A.S.I.S./privacy.html

@@ -6,7 +6,7 @@ permalink: /blog/feed.xml
 <?xml-stylesheet type="text/xsl" href="feed.xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>OASIS Blog</title>
-  <subtitle>Release notes, deep dives, and what we're learning building a 100% local AI assistant.</subtitle>
+<subtitle>Release notes, deep dives, and what we're learning building a local-first AI assistant.</subtitle>
   <link href="{{ '/blog/feed.xml' | absolute_url }}" rel="self"/>
   <link href="{{ '/blog/' | absolute_url }}"/>
   <updated>{{ site.posts.first.date | date_to_xmlschema }}</updated>

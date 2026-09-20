@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ page.title }} | O.A.S.I.S.</title>
+<meta name="description" content="{{ page.description }}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="alternate" hreflang="es" href="{{ page.url | absolute_url }}">
+<link rel="alternate" hreflang="en" href="{{ page.en_url | absolute_url }}">
+<link rel="alternate" hreflang="x-default" href="{{ page.en_url | absolute_url }}">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
+<link rel="preload" as="font" type="font/woff2" href="{{ '/assets/fonts/inter-400.woff2' | relative_url }}" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="{{ '/assets/fonts/space-grotesk-500.woff2' | relative_url }}" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/fonts/fonts.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/es.css' | relative_url }}">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+{% if page.schema %}<script type="application/ld+json">{{ page.schema }}</script>{% endif %}
+</head>
+<body>
+<a class="skip" href="#content">Saltar al contenido</a>
+<header class="top"><div class="top-in">
+  <a class="brand" href="{{ '/es/' | relative_url }}"><i aria-hidden="true"></i><span translate="no">O.A.S.I.S.</span></a>
+  <nav class="links" aria-label="Principal">
+    <a href="{{ '/es/' | relative_url }}">Producto</a>
+    <a href="{{ '/es/how-it-works.html' | relative_url }}">Cómo funciona</a>
+    <a href="{{ '/es/tools.html' | relative_url }}">Herramientas</a>
+    <a href="{{ '/es/models.html' | relative_url }}">Modelos</a>
+    <a href="{{ '/es/privacy.html' | relative_url }}">Privacidad</a>
+    <a href="{{ '/es/blog/' | relative_url }}">Journal</a>
+  </nav>
+  <div class="es-actions">
+    <a class="lang-switch" href="{{ page.en_url | relative_url }}" lang="en" hreflang="en">EN</a>
+    <button id="theme-btn" aria-label="Cambiar entre modo claro y oscuro">Claro</button>
+    <a class="btn sm" href="{{ '/es/download.html' | relative_url }}">Descargar</a>
+    <button id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+  </div>
+</div><nav class="mnav" id="mnav" aria-label="Móvil"></nav></header>
+<main id="content" class="wrap" tabindex="-1">{{ content }}</main>
+<footer><div class="foot">
+  <div><span class="fb"><span translate="no">O.A.S.I.S.</span></span><p>Asistente local-first para Windows. Las funciones locales se ejecutan en tu PC.</p></div>
+  <div><h3 class="fth">Producto</h3><ul><li><a href="{{ '/es/download.html' | relative_url }}">Descargar</a></li><li><a href="{{ '/es/pricing.html' | relative_url }}">Planes</a></li><li><a href="{{ '/es/requirements.html' | relative_url }}">Requisitos</a></li><li><a href="{{ '/es/models.html' | relative_url }}">Modelos</a></li></ul></div>
+  <div><h3 class="fth">Confianza</h3><ul><li><a href="{{ '/es/privacy.html' | relative_url }}">Privacidad</a></li><li><a href="{{ '/es/security.html' | relative_url }}">Seguridad</a></li><li><a href="{{ '/es/faq.html' | relative_url }}">Preguntas frecuentes</a></li><li><a href="{{ '/es/changelog.html' | relative_url }}">Roadmap</a></li></ul></div>
+  <div><h3 class="fth">Comunidad</h3><ul><li><a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">Issues</a></li><li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li><li><a href="https://discord.gg/88yfW5UwGC" target="_blank" rel="noopener noreferrer">Discord</a></li></ul></div>
+</div><div class="base"><span translate="no">© O.A.S.I.S. · v0.2.0 · beta</span><span>sin trackers en esta página</span></div></footer>
+<script src="{{ '/assets/site.js' | relative_url }}"></script>
+<script src="{{ '/assets/es.js' | relative_url }}"></script>
+</body></html>

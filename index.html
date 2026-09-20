@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>O.A.S.I.S. — The AI assistant that lives on your PC</title>
-<meta name="description" content="OASIS is a free AI assistant for Windows that runs entirely on your computer. Talk or type in Spanish or English — it tidies files, summarizes PDFs, remembers things, explains code and controls your PC. No internet, no account.">
+<meta name="description" content="O.A.S.I.S. is a free local-first AI assistant for Windows. Use compatible local models with files, documents, voice, memory and everyday PC tools. Network features are optional.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./">
+<link rel="alternate" hreflang="en" href="https://oasislocal.github.io/O.A.S.I.S./">
+<link rel="alternate" hreflang="es" href="https://oasislocal.github.io/O.A.S.I.S./es/">
+<link rel="alternate" hreflang="x-default" href="https://oasislocal.github.io/O.A.S.I.S./">
 <meta name="theme-color" content="#111111">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -14,7 +17,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:title" content="O.A.S.I.S. — The AI assistant that lives on your PC">
-<meta property="og:description" content="Talk or type in Spanish or English. OASIS tidies files, summarizes PDFs, remembers things, explains code and controls your PC — all offline. Free for Windows.">
+<meta property="og:description" content="Talk or type in Spanish or English. O.A.S.I.S. works with compatible local models, files, documents, memory and everyday PC tools. Network features are optional.">
 <meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./">
 <meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
 <meta name="twitter:card" content="summary_large_image">
@@ -29,7 +32,7 @@
 "inLanguage": ["es", "en"],
 "offers": { "@type": "Offer", "name": "OASIS Personal", "price": "0", "priceCurrency": "EUR" },
 "url": "https://oasislocal.github.io/O.A.S.I.S./",
-"description": "A free AI assistant for Windows that runs entirely on your computer: chat, voice in Spanish and English, memory, PC control and coding. No internet, no account."
+"description": "A free local-first AI assistant for Windows with compatible local models, chat, voice, memory, documents and everyday PC tools."
 }
 </script>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400.woff2" crossorigin>
@@ -62,7 +65,6 @@ body { background: var(--bg); color: var(--ink-2); font-family: var(--body); fon
 .msg.user::selection, .btn::selection, .cbox button::selection, .announce b::selection { background: var(--bg); color: var(--ink); }
 a { color: var(--ink); }
 a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-[tabindex="-1"]:focus { outline: none; }
 .skip { position: absolute; top: -100px; left: 16px; z-index: 99; background: var(--ink); color: var(--bg); font-weight: 600; font-size: 14px; padding: 10px 18px; text-decoration: none; }
 .skip:focus { top: 8px; }
 code { font-family: var(--code); font-size: .85em; background: var(--panel); border: 1px solid var(--line); padding: 1px 6px; color: var(--ink-2); }
@@ -486,6 +488,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
       <a href="models.html">Models</a>
       <a href="privacy.html">Privacy</a>
       <a href="blog/">Journal</a>
+      <a href="es/" lang="es" hreflang="es">ES</a>
       <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
     </nav>
     <div style="display:flex;gap:8px;align-items:center;">
@@ -502,17 +505,17 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
 <section class="hero">
   <a class="announce" href="changelog.html"><b>NEW</b> v0.2.0 — the Mono release · See what's new →</a>
   <h1>The AI assistant that lives on your PC.</h1>
-  <p class="lede">O.A.S.I.S. is a local Windows assistant for files, documents and everyday PC tasks — <strong>on your own computer</strong>.</p>
+  <p class="lede">O.A.S.I.S. is a local-first Windows assistant for files, documents, voice, memory and everyday PC tasks — <strong>running on your own computer where supported</strong>.</p>
   <div class="ctas">
-    <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.5V11H3zM11.5 4.3 21 3v8H11.5zM3 12h7.5v6.5L3 17.5zM11.5 12H21v8l-9.5-1.3z"/></svg>Download for Windows</a>
-    <a class="btn ghost" href="how-it-works.html">How it works</a>
+    <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.5V11H3zM11.5 4.3 21 3v8H11.5zM3 12h7.5v6.5L3 17.5zM11.5 12H21v8l-9.5-1.3z"/></svg>Download Personal</a>
+    <a class="btn ghost" href="privacy.html">See privacy &amp; permissions</a>
   </div>
     <p class="fine">Free beta · Windows 10/11 · No account · <a href="download.html">Verify the SHA256 hash</a></p>
   <div class="proof">
     <span><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">★<b id="star-count"></b> on GitHub</a></span>
-    <span><a href="changelog.html#roadmap">Open roadmap</a></span>
-    <span><a href="changelog.html">Public changelog</a></span>
-    <span><a href="privacy.html">No trackers</a></span>
+    <span><a href="privacy.html">Local-first</a></span>
+    <span><a href="security.html">Permissions visible</a></span>
+    <span><a href="changelog.html">Public roadmap</a></span>
   </div>
 
 
@@ -592,7 +595,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
     <div><h3>Files &amp; documents</h3><p>Find, read and organize files on your PC.</p><a class="more" href="tools.html#files">More →</a></div>
     <div><h3><span class="term" data-term="memory">Memory</span></h3><p>Remember useful things across conversations.</p><a class="more" href="how-it-works.html#memory">More →</a></div>
     <div><h3>PC control</h3><p>Control supported parts of your computer when you ask.</p><a class="more" href="tools.html#pc">More →</a></div>
-    <div><h3>Coding <span class="badge-max"><span class="term" data-term="max">Max</span></span></h3><p>Understand, edit and test code with permission.</p><a class="more" href="tools.html#code">More →</a></div>
+    <div><h3>Coding <span class="badge-max"><span class="term" data-term="max">Max</span></span></h3><p>Get code explanations in Personal; full coding workflows are Max.</p><a class="more" href="tools.html#code">More →</a></div>
     <div><h3>Automation <span class="badge-max"><span class="term" data-term="max">Max</span></span></h3><p>Let O.A.S.I.S. handle recurring tasks.</p><a class="more" href="tools.html#automate">More →</a></div>
   </div>
 </section>
@@ -604,7 +607,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
     <h2>Local. Mindful. Permissioned.</h2>
   </div>
   <div class="cards">
-    <div><h3>Local</h3><p>Your <span class="term" data-term="local-first">local-first</span> tasks run on your PC, without sending them to a <span class="term" data-term="server">server</span>.</p><a class="more" href="how-it-works.html">How it works →</a></div>
+    <div><h3>Local-first</h3><p>Local features run on your PC. Network-enabled features communicate externally only when you use or configure them.</p><a class="more" href="privacy.html">See the privacy model →</a></div>
     <div><h3>Memory</h3><p>Useful information stays available between conversations, found by <span class="term" data-term="semantic-search">semantic search</span> rather than exact words.</p><a class="more" href="how-it-works.html#memory">How memory works →</a></div>
     <div><h3>Permissions</h3><p>It asks before actions that need your approval. Every <span class="term" data-term="permission">permission</span> is yours to change.</p><a class="more" href="security.html">See the security model →</a></div>
   </div>
@@ -620,7 +623,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
   <div class="cards">
     <div><h3>PC</h3><p>Apps, windows, volume, system.</p><a class="more" href="tools.html#pc">Explore →</a></div>
     <div><h3>Files</h3><p>Find, read, organize, documents.</p><a class="more" href="tools.html#files">Explore →</a></div>
-    <div><h3>Code</h3><p>Write, review and test — <span class="term" data-term="sandbox">sandboxed</span>.</p><a class="more" href="tools.html#code">Explore →</a></div>
+    <div><h3>Code</h3><p>Explain code in Personal; Max adds coding and <span class="term" data-term="sandbox">sandbox</span> workflows.</p><a class="more" href="tools.html#code">Explore →</a></div>
     <div><h3>Web</h3><p>Search and open pages when you ask.</p><a class="more" href="tools.html#connect">Explore →</a></div>
     <div><h3>Memory</h3><p>Notes, facts and documents.</p><a class="more" href="tools.html#remember">Explore →</a></div>
     <div><h3>Automation</h3><p>Timers, reminders, routines.</p><a class="more" href="tools.html#automate">Explore →</a></div>
@@ -683,7 +686,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
   </div>
   <div class="steps">
     <div class="step"><div class="n">1</div><h3>Install the app</h3><p>From GitHub Releases, for Windows 10/11. Verify the <span class="term" data-term="hash">SHA256</span> if you're meticulous: <code>certutil -hashfile OASIS.exe SHA256</code>.</p></div>
-    <div class="step"><div class="n">2</div><h3>Download a model</h3><p>In the Models tab, pick a small Gemma or Qwen and hit download. Once, with internet. After that, you don't need it.</p></div>
+    <div class="step"><div class="n">2</div><h3>Download a model</h3><p>In the Models tab, pick a compatible profile such as Gemma or Qwen. Network access is needed for the download.</p></div>
     <div class="step"><div class="n">3</div><h3>Talk</h3><p>Type or press to speak. Ask it to tidy Downloads, explain an error, or set a reminder.</p></div>
   </div>
   <p class="cap">Requirements: Windows 10/11 · any modern <span class="term" data-term="cpu">CPU</span> (NVIDIA <span class="term" data-term="gpu">GPU</span> recommended, not required) · <span class="term" data-term="docker">Docker</span> only if you want it to run code. <a href="download.html">Installation guide →</a></p>

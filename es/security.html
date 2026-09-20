@@ -1,0 +1,10 @@
+---
+layout: es
+title: Seguridad y permisos
+description: Modelo de permisos de O.A.S.I.S. para herramientas locales, acciones sensibles y código.
+en_url: /security.html
+permalink: /es/security.html
+---
+<p class="crumb"><a href="{{ '/es/' | relative_url }}">Inicio</a> / Seguridad</p><h1>La IA pide permiso antes de actuar.</h1><p class="answer">Cada herramienta declara su riesgo. Las acciones de mayor impacto requieren confirmación explícita y no deben ejecutarse silenciosamente.</p>
+<table class="es-table"><thead><tr><th>Nivel</th><th>Ejemplos</th><th>Control</th></tr></thead><tbody><tr><td>Bajo</td><td>Consultar CPU, RAM o buscar archivos</td><td>Automático</td></tr><tr><td>Medio</td><td>Escribir archivos o modificar portapapeles</td><td>Permitir, denegar o preguntar</td></tr><tr><td>Alto</td><td>Ejecutar código o workflows</td><td>Confirmación</td></tr><tr><td>Crítico</td><td>Control del sistema, matar procesos o limpiar datos</td><td>Confirmación explícita cada vez</td></tr></tbody></table>
+<p class="cap">La aplicación sigue siendo software beta: revisa resultados importantes y reporta comportamientos inesperados en <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>

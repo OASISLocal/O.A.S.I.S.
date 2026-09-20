@@ -49,6 +49,12 @@ $missingCanon = Get-ChildItem -Filter *.html | Where-Object {
 } | Select-Object -ExpandProperty Name
 if ($missingCanon) { Fail ("pages without canonical: " + ($missingCanon -join ", ")) }
 
+$requiredSpanish = @("es/index.html", "es/download.html", "es/pricing.html", "es/privacy.html", "es/security.html", "es/faq.html", "es/blog/index.html")
+$missingSpanish = $requiredSpanish | Where-Object { -not (Test-Path -LiteralPath $_) }
+if ($missingSpanish) { Fail ("missing Spanish pages: " + ($missingSpanish -join ", ")) }
+
+try { [xml](Get-Content -Raw sitemap.xml) | Out-Null } catch { Fail "sitemap.xml is not valid XML" }
+
 if ($Mode -ne "live") {
   foreach ($f in @("launch/teaser.html", "launch/countdown.html")) {
     if (-not (Test-Path $f)) { Fail "missing $f" }
@@ -108,7 +114,7 @@ try {
   $stamp = (Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm')
   git commit -m "Deploy: $Mode ($stamp UTC)"
   if ($LASTEXITCODE -ne 0) { Fail "deploy commit failed" }
-  git push production HEAD:github-pages
+git push production HEAD:github-pages
   if ($LASTEXITCODE -ne 0) { Fail "push to production failed" }
 } finally {
   Pop-Location
@@ -117,6 +123,14 @@ try {
 
 Write-Host ""
 if ($Mode -eq "live") {
+  $siteUrl = "https://oasislocal.github.io/O.A.S.I.S./"
+  try {
+    $probe = Invoke-WebRequest -UseBasicParsing -Uri $siteUrl -TimeoutSec 20
+    if ($probe.StatusCode -ne 200) { Write-Host "WARNING: Pages returned HTTP $($probe.StatusCode): $siteUrl" -ForegroundColor Yellow }
+    else { Write-Host "Pages check OK: HTTP 200" -ForegroundColor Green }
+  } catch {
+    Write-Host "WARNING: Pages endpoint is unavailable or not configured: $siteUrl" -ForegroundColor Yellow
+  }
   Write-Host "SYNC DONE: full site live in ~1-3 min at https://oasislocal.github.io/O.A.S.I.S./" -ForegroundColor Green
 } else {
   Write-Host "SYNC DONE: $Mode shell live in ~1-3 min. Full site NOT deployed (not even in view-source)." -ForegroundColor Green

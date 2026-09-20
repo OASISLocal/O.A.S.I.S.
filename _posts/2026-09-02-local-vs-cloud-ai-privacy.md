@@ -2,9 +2,10 @@
 title: "Local vs. Cloud AI Privacy: Where Do Your Words Go?"
 permalink: /blog/2026/09/02/local-vs-cloud-ai-privacy/
 tags: [privacidad, ia-local]
+es_url: /es/blog/2026/09/02/ia-local-frente-a-cloud.html
 ---
 
-**With <span class="term" data-term="cloud">cloud AI</span>, your words travel to someone else's computers. With <span class="term" data-term="local-ai">local AI</span>, they never leave yours.** That single difference decides nearly everything about privacy — and it's worth understanding precisely, because "private" gets thrown around a lot.
+**With <span class="term" data-term="cloud">cloud AI</span>, your words travel to someone else's computers. With <span class="term" data-term="local-ai">local AI</span>, supported local workflows can stay on your PC.** That architectural difference matters for privacy, and it is worth describing precisely because "private" gets thrown around a lot.
 
 ## The cloud path, step by step
 
