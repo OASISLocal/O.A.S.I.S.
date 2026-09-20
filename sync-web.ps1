@@ -45,11 +45,12 @@ try { [System.IO.File]::ReadAllText((Join-Path $PSScriptRoot "site-data.json")) 
 try { [System.IO.File]::ReadAllText((Join-Path $PSScriptRoot "launch.json")) | ConvertFrom-Json | Out-Null } catch { Fail "launch.json is not valid JSON" }
 
 $missingCanon = Get-ChildItem -Filter *.html | Where-Object {
-  (Get-Content -Raw $_.FullName) -notmatch 'rel="canonical"'
+  $html = Get-Content -Raw $_.FullName
+  $html -notmatch 'rel="canonical"' -and $html -notmatch 'layout:\s*(legal|es)'
 } | Select-Object -ExpandProperty Name
 if ($missingCanon) { Fail ("pages without canonical: " + ($missingCanon -join ", ")) }
 
-$requiredSpanish = @("es/index.html", "es/download.html", "es/pricing.html", "es/privacy.html", "es/security.html", "es/faq.html", "es/blog/index.html")
+$requiredSpanish = @("es/index.html", "es/download.html", "es/pricing.html", "es/privacy.html", "es/privacy-policy.html", "es/eula.html", "es/third-party-notices.html", "es/security.html", "es/faq.html", "es/blog/index.html")
 $missingSpanish = $requiredSpanish | Where-Object { -not (Test-Path -LiteralPath $_) }
 if ($missingSpanish) { Fail ("missing Spanish pages: " + ($missingSpanish -join ", ")) }
 
