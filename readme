@@ -2,11 +2,11 @@
 
 No build step, no Node, no local setup required. Just:
 
-1. Copy `_posts/2026-07-26-welcome-to-the-oasis-blog.md` as a template.
-2. Create a new file in `_posts/` named `YYYY-MM-DD-your-title-slug.md` (the date in the filename controls the publish date and sort order — it must come first).
+1. Copy \`_posts/2026-07-26-welcome-to-the-oasis-blog.md\` as a template.
+2. Create a new file in \`_posts/\` named \`YYYY-MM-DD-your-title-slug.md\` (the date in the filename controls the publish date and sort order — it must come first).
 3. Fill in the front matter and write the body in Markdown:
 
-   ```markdown
+   \`\`\`markdown
    ---
    title: "Your post title"
    tags: [release]
@@ -19,18 +19,44 @@ No build step, no Node, no local setup required. Just:
 
    Regular Markdown from here: **bold**, _italic_, lists, images, code
    blocks, links — all supported.
-   ```
-4. `git add`, `git commit`, `git push` to your default branch.
+   \`\`\`
+4. Run the project checks, then commit and push to the default branch.
 
-GitHub Pages rebuilds the whole site automatically (usually within a minute). The new post appears on `/blog/`, in the RSS feed, in the sitemap, and — once it's one of the 3 most recent — in the "From the blog" section on the homepage. Nothing else needs to be touched.
+GitHub Pages rebuilds the site automatically. The post appears on \`/blog/\`, in the RSS feed and sitemap, and in the homepage blog teaser once it is among the three newest posts.
 
 ### Optional front matter
-- `tags: [announcement]` — shown as the small label above the title. Use one main tag per post (`release`, `announcement`, `deep-dive`, `guide`...).
 
-### Previewing locally (optional)
-If you have Ruby installed:
-```
+- \`title\`: required post title.
+- \`tags\`: one primary tag, such as \`release\`, \`announcement\`, \`deep-dive\` or \`guide\`.
+
+### Preview locally
+
+Requires Ruby and Bundler:
+
+\`\`\`powershell
 bundle install
 bundle exec jekyll serve
-```
-Then open `http://localhost:4000/OASIS/blog/`. Not required — you can also just push and check the live site.
+\`\`\`
+
+Open \`http://localhost:4000/O.A.S.I.S./blog/\`.
+
+### Validate before publishing
+
+1. Confirm the filename starts with an ISO date: \`YYYY-MM-DD-\`.
+2. Check the front matter parses correctly.
+3. Check internal links and images.
+4. Review the rendered post at \`/blog/\`.
+5. Confirm the RSS feed and sitemap include the post.
+
+### Useful paths
+
+| Path | Purpose |
+| --- | --- |
+| \`_posts/\` | Blog source posts |
+| \`_layouts/post.html\` | Post template |
+| \`_layouts/default.html\` | Shared blog layout |
+| \`blog/\` | Feed, index and generated output |
+| \`Gemfile\` | Jekyll dependencies |
+| \`sync-web.ps1\` | Full repository publish flow |
+
+For product issues, use [GitHub Issues](https://github.com/OASISLocal/O.A.S.I.S./issues). For website publishing changes, keep commits focused and verify the live page after deployment.
