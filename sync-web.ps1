@@ -50,7 +50,7 @@ $missingCanon = Get-ChildItem -Filter *.html | Where-Object {
 } | Select-Object -ExpandProperty Name
 if ($missingCanon) { Fail ("pages without canonical: " + ($missingCanon -join ", ")) }
 
-$requiredSpanish = @("es/index.html", "es/download.html", "es/pricing.html", "es/privacy.html", "es/privacy-policy.html", "es/eula.html", "es/third-party-notices.html", "es/security.html", "es/faq.html", "es/blog/index.html")
+$requiredSpanish = @("es.html", "es/download.html", "es/pricing.html", "es/privacy.html", "es/privacy-policy.html", "es/eula.html", "es/third-party-notices.html", "es/security.html", "es/faq.html", "es/blog/index.html")
 $missingSpanish = $requiredSpanish | Where-Object { -not (Test-Path -LiteralPath $_) }
 if ($missingSpanish) { Fail ("missing Spanish pages: " + ($missingSpanish -join ", ")) }
 
