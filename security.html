@@ -14,6 +14,9 @@
 <meta property="og:title" content="Security — How OASIS Handles Permissions &amp; Risk">
 <meta property="og:description" content="Allow, deny, or ask — per tool. Risky actions always confirm. Code runs isolated. Telemetry off by default.">
 <meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./security.html">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -55,7 +58,7 @@
   <p>Each of the 100+ tools declares what it can touch. You set each one to <b>allow</b>, <b>deny</b>, or <b>ask every time</b>, in Settings → <span class="term" data-term="permission">Permissions</span>. Microphone, screen and files have their own master switches on top.</p>
   <div class="tbl">
   <table class="spec">
-    <thead><tr><th>Level</th><th>Example tools</th><th>Behavior</th></tr></thead>
+<thead><tr><th scope="col">Level</th><th scope="col">Example tools</th><th scope="col">Behavior</th></tr></thead>
     <tbody>
       <tr><td>Low</td><td><code>system_info</code>, <code>file_search</code>, <code>wifi_info</code></td><td>Runs automatically</td></tr>
       <tr><td>Medium</td><td><code>write_file</code>, <code>clipboard_control</code>, <code>open_url</code></td><td>Follows your per-tool setting</td></tr>

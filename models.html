@@ -14,6 +14,9 @@
 <meta property="og:title" content="Models — Compatible GGUF Models for O.A.S.I.S.">
 <meta property="og:description" content="Bundled model profiles with context, RAM/VRAM and tier — plus how GGUF compatibility actually works.">
 <meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./models.html">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -59,7 +62,7 @@
   <h2 id="inference">What ships tested in the app.</h2>
   <div class="tbl">
   <table class="spec">
-    <thead><tr><th><span class="term" data-term="model">Model</span></th><th><span class="term" data-term="context-window">Context</span></th><th><span class="term" data-term="ram">RAM</span></th><th><span class="term" data-term="vram">VRAM</span></th><th>Tier</th></tr></thead>
+<thead><tr><th scope="col"><span class="term" data-term="model">Model</span></th><th scope="col"><span class="term" data-term="context-window">Context</span></th><th scope="col"><span class="term" data-term="ram">RAM</span></th><th scope="col"><span class="term" data-term="vram">VRAM</span></th><th scope="col">Tier</th></tr></thead>
     <tbody>
       <tr><td>Gemma 4B IT <span class="mono">Q4_K_M</span></td><td>16,384</td><td>4&nbsp;GB</td><td>2&nbsp;GB</td><td>Mid / High</td></tr>
       <tr><td>Qwen 2.5 1.5B <span class="mono">Q4_K_M</span></td><td>32,768</td><td>2&nbsp;GB</td><td>1&nbsp;GB</td><td>Low / Mid</td></tr>
@@ -84,7 +87,7 @@
   <h2 id="sizes">Size versus speed.</h2>
   <div class="tbl">
   <table class="spec">
-    <thead><tr><th><span class="term" data-term="model-size">Size class</span></th><th>Download</th><th>Needs</th><th>Feels like</th></tr></thead>
+<thead><tr><th scope="col"><span class="term" data-term="model-size">Size class</span></th><th scope="col">Download</th><th scope="col">Needs</th><th scope="col">Feels like</th></tr></thead>
     <tbody>
       <tr><td>1–3B</td><td>~1–2&nbsp;GB</td><td>Any <span class="term" data-term="cpu">CPU</span></td><td>Snappy drafts, reminders, simple Q&amp;A.</td></tr>
       <tr><td>7–8B</td><td>~4–5&nbsp;GB</td><td>CPU ok · <span class="term" data-term="gpu">GPU</span> better</td><td>The daily-driver sweet spot.</td></tr>

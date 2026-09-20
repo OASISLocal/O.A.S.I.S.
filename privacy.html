@@ -14,6 +14,9 @@
 <meta property="og:title" content="Privacy — No Trackers, No Cloud, Your Disk">
 <meta property="og:description" content="Zero trackers here. Zero telemetry there. The full picture.">
 <meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./privacy.html">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -54,7 +57,7 @@
   <h2 id="network">Every feature, classified.</h2>
   <div class="tbl">
   <table class="spec">
-    <thead><tr><th>Function</th><th>Local</th><th><span class="term" data-term="network">Network</span></th></tr></thead>
+<thead><tr><th scope="col">Function</th><th scope="col">Local</th><th scope="col"><span class="term" data-term="network">Network</span></th></tr></thead>
     <tbody>
       <tr><td>Local chat</td><td class="y">Yes</td><td class="n">No</td></tr>
       <tr><td><span class="term" data-term="local-inference">Local model inference</span></td><td class="y">Yes</td><td class="n">No</td></tr>
@@ -80,9 +83,9 @@
   <ul class="plain">
     <li><b>No <span class="term" data-term="analytics">analytics</span>.</b> No Google Analytics, no Plausible, no pixels. We count nothing.</li>
     <li><b>No cookies.</b> The only thing stored in your browser is your light/dark preference, on your device only.</li>
-    <li><b>Two fetches, both optional:</b> the roadmap file and the blog index, from this same site. The GitHub star count calls GitHub's public <span class="term" data-term="api">API</span> — your browser talking to GitHub, not to us.</li>
-    <li><b>No third-party requests on page load.</b> Fonts are served from this same site, not a CDN. The only external call is the optional GitHub star count, and it degrades silently if blocked.</li>
-    <li><b>One exception: the waitlist.</b> If you join it, we store your email, your picks and the join date on Cloudflare KV — only to send one launch email. Nothing else, no sharing, and we'll delete you on request.</li>
+    <li><b>Optional same-site fetches:</b> glossary data and launch configuration are loaded from this site. The GitHub star count calls GitHub's public <span class="term" data-term="api">API</span> — your browser talks to GitHub, not to us.</li>
+    <li><b>No third-party requests on normal page load.</b> Fonts and site data are served from this site. The optional GitHub request degrades silently if blocked.</li>
+    <li id="waitlist"><b>Waitlist exception.</b> If you join it, Cloudflare KV stores your email, interests and join date only for the launch email. Request deletion at <a href="mailto:hello@oasislocal.dev?subject=Delete%20waitlist%20data">hello@oasislocal.dev</a>; deletion removes the stored entry.</li>
   </ul>
 
   <hr class="rule">

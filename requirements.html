@@ -14,6 +14,9 @@
 <meta property="og:title" content="Requirements — Hardware &amp; Models for Local AI">
 <meta property="og:description" content="Honest hardware tiers and model sizes for running AI on your own PC. No surprises.">
 <meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./requirements.html">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -51,7 +54,7 @@
 
   <div class="tbl" id="tiers">
   <table class="spec">
-    <thead><tr><th>Tier</th><th>Hardware</th><th>What you get</th></tr></thead>
+<thead><tr><th scope="col">Tier</th><th scope="col">Hardware</th><th scope="col">What you get</th></tr></thead>
     <tbody>
       <tr><td>Minimum</td><td>Modern quad-core CPU · 8&nbsp;GB <span class="term" data-term="ram">RAM</span> · 10&nbsp;GB free disk · Windows 10/11</td><td>Small models (1–4B params). Accurate answers at a slower pace. Voice works.</td></tr>
       <tr><td>Recommended</td><td>6+ core CPU · 16&nbsp;GB RAM · NVIDIA 4–8&nbsp;GB <span class="term" data-term="vram">VRAM</span></td><td>7–8B models in Q4 <span class="term" data-term="quantization">quantization</span>. Fluid chat, fast transcription, <span class="term" data-term="vision">vision</span> included.</td></tr>
@@ -70,7 +73,7 @@
       <div class="ctas" style="margin:2px 0 4px;"><button class="btn" id="chk-btn">Check my PC</button></div>
       <div class="tbl" id="vram">
       <table class="spec" id="chk-table" hidden>
-        <thead><tr><th>Check</th><th>This PC</th><th>Status</th></tr></thead>
+<thead><tr><th scope="col">Check</th><th scope="col">This PC</th><th scope="col">Status</th></tr></thead>
         <tbody>
           <tr><td>Operating system</td><td id="chk-os-v">…</td><td id="chk-os-s">…</td></tr>
           <tr><td>CPU cores</td><td id="chk-cpu-v">…</td><td id="chk-cpu-s">…</td></tr>
@@ -92,7 +95,7 @@
   <p>Models download once, then live on your disk. Approximate sizes for the popular quantized (Q4) builds:</p>
   <div class="tbl">
   <table class="spec">
-    <thead><tr><th><span class="term" data-term="model-size">Size class</span></th><th>Download</th><th>Needs</th><th>Feels like</th></tr></thead>
+<thead><tr><th scope="col"><span class="term" data-term="model-size">Size class</span></th><th scope="col">Download</th><th scope="col">Needs</th><th scope="col">Feels like</th></tr></thead>
     <tbody>
       <tr><td>1–3B</td><td>~1–2&nbsp;GB</td><td>Any <span class="term" data-term="cpu">CPU</span></td><td>Snappy drafts, reminders, simple Q&amp;A.</td></tr>
       <tr><td>7–8B</td><td>~4–5&nbsp;GB</td><td>CPU ok · <span class="term" data-term="gpu">GPU</span> better</td><td>The sweet spot: daily assistant work.</td></tr>

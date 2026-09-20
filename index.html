@@ -16,11 +16,14 @@
 <meta property="og:title" content="O.A.S.I.S. — The AI assistant that lives on your PC">
 <meta property="og:description" content="Talk or type in Spanish or English. OASIS tidies files, summarizes PDFs, remembers things, explains code and controls your PC — all offline. Free for Windows.">
 <meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
 "@type": "SoftwareApplication",
-"name": "OASIS",
+"name": "O.A.S.I.S.",
 "operatingSystem": "Windows 10, Windows 11",
 "applicationCategory": "UtilitiesApplication",
 "inLanguage": ["es", "en"],
@@ -289,6 +292,9 @@ h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; lin
 .wl-row input[type="email"]::placeholder { color: var(--ink-3); }
 .wl-row .btn { border: none; border-left: 1px solid var(--strong); white-space: nowrap; }
 .wl-checks { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 14px; font-size: 14px; }
+.wl-checks { border: 0; padding: 0; min-width: 0; }
+.wl-checks legend { font-size: 14px; color: var(--ink-3); margin-bottom: 6px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .wl-checks label { display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--ink-2); }
 .wl-checks input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--ink); cursor: pointer; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
@@ -496,7 +502,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
 <section class="hero">
   <a class="announce" href="changelog.html"><b>NEW</b> v0.2.0 — the Mono release · See what's new →</a>
   <h1>The AI assistant that lives on your PC.</h1>
-  <p class="lede">Type or talk. O.A.S.I.S. can work with your files, remember things, control your PC and complete tasks — <strong>on your own computer</strong>.</p>
+  <p class="lede">O.A.S.I.S. is a local Windows assistant for files, documents and everyday PC tasks — <strong>on your own computer</strong>.</p>
   <div class="ctas">
     <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.5V11H3zM11.5 4.3 21 3v8H11.5zM3 12h7.5v6.5L3 17.5zM11.5 12H21v8l-9.5-1.3z"/></svg>Download for Windows</a>
     <a class="btn ghost" href="how-it-works.html">How it works</a>
@@ -631,7 +637,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
   </div>
   <div class="tbl" style="margin-top:0;">
   <table class="vs">
-    <thead><tr><th>Action</th><th>What happens</th></tr></thead>
+    <thead><tr><th scope="col">Action</th><th scope="col">What happens</th></tr></thead>
     <tbody>
       <tr><td>Read a file</td><td>Automatic</td></tr>
       <tr><td>Write a file</td><td>Ask</td></tr>
@@ -733,23 +739,26 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
   <div class="sec-head">
     <p class="kicker">Early access</p>
     <h2>Max isn't on sale yet. Get in line.</h2>
-    <p>One email when Max, Linux or macOS is ready — whichever you tick. No newsletter, no spam, no account. We store your address plus the date you joined, nothing else.</p>
+  <p>One email when Max, Linux or macOS is ready — whichever you tick. No newsletter, no spam, no account. We store your address, choices and join date only.</p>
   </div>
   <div class="mock">
     <div class="mock-bar"><span>waitlist · one email when it's ready</span><span id="wl-state">idle</span></div>
     <div class="mock-body">
       <form id="wl-form" novalidate>
         <div class="wl-row">
-          <input id="wl-email" type="email" name="email" inputmode="email" enterkeyhint="done" placeholder="you@example.com" aria-label="Email address" autocomplete="email" required>
+          <label class="sr-only" for="wl-email">Email address</label>
+          <input id="wl-email" type="email" name="email" inputmode="email" enterkeyhint="done" placeholder="you@example.com" aria-describedby="wl-privacy" autocomplete="email" required>
           <button class="btn" type="submit" id="wl-btn">Notify me</button>
         </div>
-        <div class="wl-checks" role="group" aria-label="I'm interested in">
+        <fieldset class="wl-checks">
+          <legend>I'm interested in</legend>
           <label><input type="checkbox" name="interest" value="max" checked> Max early access</label>
           <label><input type="checkbox" name="interest" value="linux"> Linux build</label>
           <label><input type="checkbox" name="interest" value="macos"> macOS build</label>
-        </div>
+        </fieldset>
+        <p class="cap" id="wl-privacy">One email only. We store your address and choices in Cloudflare KV. <a href="privacy.html#waitlist">Privacy and deletion</a>.</p>
         <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <p class="cap" id="wl-status" role="status" hidden></p>
+        <p class="cap" id="wl-status" role="status" aria-live="polite" hidden></p>
         <noscript><p class="cap">No JavaScript? Email <a href="mailto:hello@oasislocal.dev?subject=Waitlist">hello@oasislocal.dev</a> with “waitlist” and what you're waiting for.</p></noscript>
       </form>
     </div>
@@ -876,7 +885,8 @@ function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ 
   function cached() { try { var c = JSON.parse(localStorage.getItem('oasis_stars')); if (c && Date.now() - c.t < 1800000) return c.v; } catch (_) {} return null; }
   var c = cached();
   if (c !== null) el.textContent = c >= 1000 ? (c / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(c);
-  fetch('https://api.github.com/repos/OASISLocal/O.A.S.I.S.', { signal: AbortSignal.timeout(8000) }).then(function (r) { return r.json(); }).then(function (j) {
+  var signal = typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(8000) : undefined;
+  fetch('https://api.github.com/repos/OASISLocal/O.A.S.I.S.', signal ? { signal: signal } : {}).then(function (r) { return r.json(); }).then(function (j) {
     if (typeof j.stargazers_count === 'number') {
       var v = j.stargazers_count;
       el.textContent = v >= 1000 ? (v / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(v);

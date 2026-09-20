@@ -11,27 +11,7 @@
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var noHover = window.matchMedia && window.matchMedia('(hover: none)').matches;
 
-  var MORE = {
-    'models.html': 'Learn about models',
-    'security.html': 'See security details',
-    'requirements.html': 'See hardware requirements',
-    'how-it-works.html': 'See how it works',
-    'tools.html': 'Explore tools',
-    'privacy.html': 'See privacy details',
-    'pricing.html': 'See pricing',
-    'comparison.html': 'See the comparison',
-    'download.html': 'Go to download',
-    'faq.html': 'Read the FAQ'
-  };
-
   var data = null, tip = null, active = null, timer = null, pinned = false;
-
-  function moreLabel(link) {
-    if (!link) return '';
-    if (link.indexOf('http') === 0) return 'Open the repository';
-    var page = link.split('#')[0];
-    return MORE[page] || 'Learn more';
-  }
 
   function ensureTip() {
     if (tip) return tip;
@@ -73,15 +53,9 @@
     p.className = 'tt-short';
     p.textContent = entry.short || '';
     t.appendChild(p);
-    if (entry.link) {
-      var a = document.createElement('a');
-      a.className = 'tt-more';
-      a.href = entry.link;
-      a.textContent = moreLabel(entry.link) + ' \u2192';
-      t.appendChild(a);
-    }
     active = el;
     el.setAttribute('aria-describedby', TIP_ID);
+    el.setAttribute('aria-expanded', 'true');
     t.classList.add('open');
     place(el);
   }
@@ -90,7 +64,10 @@
     if (timer) { clearTimeout(timer); timer = null; }
     if (!tip) return;
     tip.classList.remove('open');
-    if (active) active.removeAttribute('aria-describedby');
+    if (active) {
+      active.removeAttribute('aria-describedby');
+      active.setAttribute('aria-expanded', 'false');
+    }
     active = null;
     pinned = false;
   }
@@ -101,11 +78,19 @@
     if (el.getAttribute('data-tt-wired')) return;
     el.setAttribute('data-tt-wired', '1');
     el.setAttribute('tabindex', '0');
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-expanded', 'false');
 
     el.addEventListener('mouseenter', function () { if (!noHover && !pinned) schedule(el); });
     el.addEventListener('mouseleave', function () { if (!pinned) hide(); });
     el.addEventListener('focus', function () { show(el); });
     el.addEventListener('blur', function () { if (!pinned) hide(); });
+    el.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter' || ev.key === ' ') {
+        ev.preventDefault();
+        if (active === el) hide(); else show(el);
+      }
+    });
 
     el.addEventListener('click', function (ev) {
       if (ev.target.closest && ev.target.closest('.tt')) return;   // let the link work

@@ -50,13 +50,13 @@ code { font-family: var(--code); font-size: .85em; background: var(--panel); bor
 .wrap.wide { max-width: 1160px; }
 .crumb { font-family: var(--mono); font-size: 12px; color: var(--ink-3); padding: 30px 0 0; }
 .crumb a { color: var(--ink-2); }
-h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.03em; line-height: 1.04; color: var(--ink); font-size: clamp(36px, 5.4vw, 58px); margin: 12px 0 14px; }
+h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.03em; line-height: 1.04; color: var(--ink); font-size: clamp(36px, 5.4vw, 58px); margin: 12px 0 14px; text-wrap: balance; }
 .answer { font-size: 19px; color: var(--ink-2); border-left: 2px solid var(--strong); padding-left: 18px; margin: 18px 0 8px; }
 .answer strong { color: var(--ink); }
 p + p { margin-top: 1em; }
 .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
 .fine { font-size: 13.5px; color: var(--ink-3); margin-top: 16px; }
-h2 { font-family: var(--display); font-weight: 700; letter-spacing: -.02em; color: var(--ink); font-size: clamp(24px, 3.2vw, 32px); line-height: 1.1; margin: 0 0 10px; }
+h2 { font-family: var(--display); font-weight: 700; letter-spacing: -.02em; color: var(--ink); font-size: clamp(24px, 3.2vw, 32px); line-height: 1.1; margin: 0 0 10px; text-wrap: balance; }
 h3 { font-family: var(--display); font-size: 19px; font-weight: 700; color: var(--ink); margin: 0 0 8px; letter-spacing: -.01em; }
 hr.rule { border: none; border-top: 2px solid var(--strong); margin: 52px 0 0; }
 .kicker { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin: 14px 0 6px; }
@@ -67,7 +67,7 @@ ul.plain li { padding: 9px 0 9px 22px; position: relative; border-bottom: 1px so
 ul.plain li::before { content: '—'; position: absolute; left: 0; color: var(--ink-3); }
 ul.plain li b, p b, dd b, td b { color: var(--ink); font-weight: 600; }
 table.spec { width: 100%; border-collapse: collapse; border: 2px solid var(--strong); background: var(--surface); margin-top: 18px; }
-table.spec th, table.spec td { padding: 12px 16px; font-size: 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+table.spec th, table.spec td { padding: 12px 16px; font-size: 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; font-variant-numeric: tabular-nums; }
 table.spec thead th { font-family: var(--mono); font-size: 10.5px; font-weight: 400; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); border-bottom: 1px solid var(--strong); }
 table.spec tbody tr:last-child td { border-bottom: none; }
 table.spec td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
@@ -179,4 +179,6 @@ textarea, [contenteditable="true"] { cursor: var(--ibeam); }
 /* Interactive controls keep their own cursor */
 a, a *, button, button *, summary, label, select, option,
 input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; }
+.btn, button, a, summary { touch-action: manipulation; }
+button, a { -webkit-tap-highlight-color: transparent; }
 .pbtns i, .rail .ri, .winbtns i, .apptabs i, .tool { cursor: default; }

@@ -14,6 +14,9 @@
 <meta property="og:title" content="Tools — The O.A.S.I.S. Inventory, With Permissions">
 <meta property="og:description" content="100+ tools grouped by category, each with permission level, plan and local/network status.">
 <meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./tools.html">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-500.woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
@@ -52,7 +55,7 @@
 <main id="content" tabindex="-1" class="wrap wide" style="max-width:1000px;">
   <div class="wrap" style="padding:0;">
   <p class="crumb"><a href="./">Home</a> / Tools</p>
-  <h1>100+ <span class="term" data-term="tool">tools</span>, and exactly how each behaves.</h1>
+  <h1>Dozens of <span class="term" data-term="tool">tools</span>, with exactly how each behaves.</h1>
   <p class="answer"><strong>Every tool declares a risk level, a plan and whether it stays on your PC.</strong> Low-risk reads run automatically. <span class="term" data-term="high-impact">High-impact</span> tools always ask for confirmation, in every plan. <span class="mono">P</span> = <span class="term" data-term="personal">Personal</span> · <span class="mono">M</span> = <span class="term" data-term="max">Max</span> · <span class="mono">Net</span> = uses the <span class="term" data-term="network">network</span> when you invoke it.</p>
   </div>
 
@@ -60,7 +63,7 @@
 
   <div class="tbl" id="pc">
   <table class="spec">
-    <thead><tr><th>Control your PC</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <thead><tr><th scope="col">Control your PC</th><th scope="col">Does</th><th scope="col">Risk</th><th scope="col">Plan</th></tr></thead>
     <tbody>
       <tr><td>system_info</td><td><span class="term" data-term="cpu">CPU</span>, <span class="term" data-term="ram">RAM</span>, disk, <span class="term" data-term="network">network</span> stats</td><td>Low</td><td>P</td></tr>
       <tr><td>wifi_info</td><td>Wi-Fi SSID, signal, IP</td><td>Low</td><td>P</td></tr>
@@ -81,7 +84,7 @@
 
   <div class="tbl" id="files">
   <table class="spec">
-    <thead><tr><th>Work with files</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <thead><tr><th scope="col">Work with files</th><th scope="col">Does</th><th scope="col">Risk</th><th scope="col">Plan</th></tr></thead>
     <tbody>
       <tr><td>file_search</td><td>Find files by name</td><td>Low</td><td>P</td></tr>
       <tr><td>search_files</td><td>Search inside files</td><td>Low</td><td>P</td></tr>
@@ -103,7 +106,7 @@
 
   <div class="tbl" id="code">
   <table class="spec">
-    <thead><tr><th>Build &amp; code</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <thead><tr><th scope="col">Build &amp; code</th><th scope="col">Does</th><th scope="col">Risk</th><th scope="col">Plan</th></tr></thead>
     <tbody>
       <tr><td>code_generator</td><td>Generate code via the <span class="term" data-term="model">model</span></td><td>Low</td><td>P</td></tr>
       <tr><td>git_status</td><td>Repo state, log, diff</td><td>Low</td><td>P</td></tr>
@@ -120,7 +123,7 @@
 
   <div class="tbl" id="connect">
   <table class="spec">
-    <thead><tr><th>Connect <span class="mono">Net</span></th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <thead><tr><th scope="col">Connect <span class="mono">Net</span></th><th scope="col">Does</th><th scope="col">Risk</th><th scope="col">Plan</th></tr></thead>
     <tbody>
       <tr><td>internet_search</td><td>Web search + scrape</td><td>Low</td><td>P</td></tr>
       <tr><td>open_url</td><td>Open a page in the browser</td><td>Low</td><td>P</td></tr>
@@ -138,7 +141,7 @@
 
   <div class="tbl" id="remember">
   <table class="spec">
-    <thead><tr><th>Remember</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <thead><tr><th scope="col">Remember</th><th scope="col">Does</th><th scope="col">Risk</th><th scope="col">Plan</th></tr></thead>
     <tbody>
       <tr><td>manage_memory</td><td>Save / recall / list / delete memories</td><td>Medium</td><td>P</td></tr>
       <tr><td>search_memory</td><td><span class="term" data-term="semantic-search">Semantic search</span> over <span class="term" data-term="memory">memory</span></td><td>Low</td><td>P</td></tr>
@@ -150,7 +153,7 @@
 
   <div class="tbl" id="automate">
   <table class="spec">
-    <thead><tr><th>Automate</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <thead><tr><th scope="col">Automate</th><th scope="col">Does</th><th scope="col">Risk</th><th scope="col">Plan</th></tr></thead>
     <tbody>
       <tr><td>set_timer</td><td>Timers with spoken alerts</td><td>Low</td><td>P</td></tr>
       <tr><td>reminder</td><td>Reminders</td><td>Low</td><td>P</td></tr>
@@ -166,7 +169,7 @@
 
   <div class="tbl" id="see">
   <table class="spec">
-    <thead><tr><th>See &amp; speak</th><th>Does</th><th>Risk</th><th>Plan</th></tr></thead>
+    <thead><tr><th scope="col">See &amp; speak</th><th scope="col">Does</th><th scope="col">Risk</th><th scope="col">Plan</th></tr></thead>
     <tbody>
       <tr><td>vision_screen</td><td>Describe the screen</td><td>Medium</td><td>M</td></tr>
       <tr><td>screen_map</td><td>Detect interactive elements</td><td>Medium</td><td>M</td></tr>
@@ -179,7 +182,7 @@
   </div>
 
   <div class="wrap" style="padding:0;">
-  <p class="cap">*File writes are <span class="term" data-term="max">Max</span> where they are part of the code agent; basic saving is covered by your permission setting. The exact registry is the source of truth (<span class="mono">core/<span class="term" data-term="tool">tools</span>/registry.py</span>); this page mirrors it. Nothing here runs without your permission model: <a href="security.html">read how security works →</a></p>
+  <p class="cap">This page lists the public inventory; some rows group related operations. File writes are <span class="term" data-term="max">Max</span> where they are part of the code agent; basic saving is covered by your permission setting. The exact registry is the source of truth (<span class="mono">core/<span class="term" data-term="tool">tools</span>/registry.py</span>); this page mirrors it. Nothing here runs without your permission model: <a href="security.html">read how security works →</a></p>
   <div class="ctas">
     <a class="btn" href="download.html">Download O.A.S.I.S.</a>
     <a class="btn ghost" href="how-it-works.html">How it works</a>

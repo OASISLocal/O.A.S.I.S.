@@ -17,9 +17,11 @@
 <meta property="og:title" content="{{ page.title | default: site.title }}">
 <meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
 <meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:image" content="{{ '/assets/og-card.svg' | absolute_url }}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ page.title | default: site.title }}">
 <meta name="twitter:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+<meta name="twitter:image" content="{{ '/assets/og-card.svg' | absolute_url }}">
 <link rel="alternate" type="application/atom+xml" title="OASIS Blog" href="{{ '/blog/feed.xml' | relative_url }}">
 {% seo %}
 
@@ -151,7 +153,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
 <a href="{{ '/' | relative_url }}">Home</a> · <a href="{{ '/blog/' | relative_url }}">Blog</a> · <a href="{{ '/faq.html' | relative_url }}">FAQ</a> · <a href="{{ '/about.html' | relative_url }}">About</a> · <a href="{{ '/blog/feed.xml' | relative_url }}">RSS feed</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Community</a>
 </footer>
 <script>
-(function(){var r=document.documentElement,b=document.getElementById('theme-btn');function p(t){r.setAttribute('data-theme',t);if(b)b.textContent=(t==='light')?'Dark':'Light';try{localStorage.setItem('oasis-theme',t);}catch(_){}}var s=null;try{s=localStorage.getItem('oasis-theme');}catch(_){}p(s==='light'||s==='dark'?s:'dark');if(b)b.addEventListener('click',function(){p(r.getAttribute('data-theme')==='light'?'dark':'light');});}());
+(function(){var r=document.documentElement,b=document.getElementById('theme-btn'),m=document.querySelector('meta[name=\"theme-color\"]');function p(t){r.setAttribute('data-theme',t);if(b)b.textContent=(t==='light')?'Dark':'Light';if(m)m.content=(t==='light')?'#f7f7f5':'#111111';try{localStorage.setItem('oasis-theme',t);}catch(_){}}var s=null;try{s=localStorage.getItem('oasis-theme');}catch(_){}p(s==='light'||s==='dark'?s:'dark');if(b)b.addEventListener('click',function(){p(r.getAttribute('data-theme')==='light'?'dark':'light');});}());
 </script>
 <script src="{{ '/assets/tooltip.js' | relative_url }}"></script>
 </body>

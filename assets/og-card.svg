@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">O.A.S.I.S. — The AI assistant that lives on your PC</title>
+  <desc id="desc">A local-first AI assistant for Windows.</desc>
+  <rect width="1200" height="630" fill="#111111"/>
+  <rect x="72" y="72" width="486" height="486" fill="none" stroke="#ffffff" stroke-width="4"/>
+  <rect x="122" y="122" width="386" height="386" fill="none" stroke="#ffffff" stroke-width="2"/>
+  <text x="620" y="280" fill="#ffffff" font-family="Arial, sans-serif" font-size="72" font-weight="700">O.A.S.I.S.</text>
+  <text x="624" y="350" fill="#c9c9c9" font-family="Arial, sans-serif" font-size="32">AI that lives on your PC.</text>
+  <text x="624" y="414" fill="#8f8f8f" font-family="monospace" font-size="22">LOCAL · PRIVATE · WINDOWS</text>
+</svg>

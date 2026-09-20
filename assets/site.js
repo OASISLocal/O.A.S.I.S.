@@ -57,5 +57,11 @@
         burger.setAttribute('aria-label', 'Open menu');
       });
     });
+    document.addEventListener('click', function (e) {
+      if (!mnav.classList.contains('open') || mnav.contains(e.target) || burger.contains(e.target)) return;
+      mnav.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open menu');
+    });
   }
 }());

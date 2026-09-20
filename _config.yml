@@ -3,7 +3,7 @@
 # index.html at the root stays a plain static file, untouched by Jekyll.
 # ---------------------------------------------------------------
 
-title: OASIS Blogs
+title: O.A.S.I.S. Journal
 description: "Release notes, deep dives, and what we're learning building OASIS."
 
 # Canonical deployment: https://oasislocal.github.io/O.A.S.I.S./
