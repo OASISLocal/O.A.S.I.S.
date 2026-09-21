@@ -1,8 +1,116 @@
----
-layout: es
-title: Preguntas frecuentes
-description: Respuestas claras sobre modelos locales, privacidad, hardware, planes y funciones de O.A.S.I.S.
-en_url: /faq.html
-permalink: /es/faq.html
----
-<p class="crumb"><a href="{{ '/es/' | relative_url }}">Inicio</a> / FAQ</p><h1>Preguntas, respondidas sin humo.</h1><div class="faq"><details open><summary>¿Funciona sin internet?</summary><p>Las funciones locales compatibles pueden funcionar después de instalar un modelo. Búsqueda web, clima, páginas online e integraciones externas necesitan red.</p></details><details><summary>¿Necesito una cuenta?</summary><p>No para la experiencia Personal actual.</p></details><details><summary>¿Puedo usar mi propio modelo?</summary><p>Puedes probar modelos GGUF compatibles. La compatibilidad depende del modelo, cuantización, contexto y hardware.</p></details><details><summary>¿Qué incluye Personal?</summary><p>Chat local, voz, memoria básica, documentos, control cotidiano del PC y hasta tres proyectos.</p></details><details><summary>¿Qué añade Max?</summary><p>Visión, coding completo, Docker sandbox, workflows, programación, mensajería, compañeros móvil/navegador y servidores MCP, según disponibilidad.</p></details><details><summary>¿Es open source?</summary><p>No. O.A.S.I.S. es software propietario. El repositorio público contiene documentación, releases y transparencia.</p></details><details><summary>¿Dónde reporto errores?</summary><p>En <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>, incluyendo versión, Windows, hardware, modelo y pasos para reproducir.</p></details></div>
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Preguntas frecuentes — Un asistente de IA local, con respuestas</title>
+<meta name="description" content="Respuestas reales sobre OASIS: uso sin conexión, privacidad, hardware, Mac/Linux, Docker, precios y en qué se diferencia de Ollama o ChatGPT.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./es/faq.html">
+<link rel="alternate" hreflang="en" href="https://oasislocal.github.io/O.A.S.I.S./faq.html">
+<link rel="alternate" hreflang="es" href="https://oasislocal.github.io/O.A.S.I.S./es/faq.html">
+<link rel="alternate" hreflang="x-default" href="https://oasislocal.github.io/O.A.S.I.S./faq.html">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Preguntas frecuentes — Un asistente de IA local, con respuestas">
+<meta property="og:description" content="¿Sin conexión? ¿Privado? ¿Qué PC? ¿Mac? Las respuestas honestas, sin niebla de marketing.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./es/faq.html">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-500.woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/tooltip.css">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is a local AI assistant?","acceptedAnswer":{"@type":"Answer","text":"A local AI assistant runs compatible AI models on your hardware instead of requiring a cloud model. O.A.S.I.S. provides local chat, voice, memory, documents and supported PC tools on Windows."}},
+{"@type":"Question","name":"Does OASIS really work offline?","acceptedAnswer":{"@type":"Answer","text":"Supported local features can work without internet after a model is installed. Web search, weather and external integrations require network access when used or configured."}},
+{"@type":"Question","name":"¿Mis archivos salen de mi ordenador?","acceptedAnswer":{"@type":"Answer","text":"Local files, memory and local model work can remain on your PC. Network-enabled features may communicate externally when used or configured, and permissions apply to sensitive capabilities."}},
+{"@type":"Question","name":"What PC do I need to run local AI?","acceptedAnswer":{"@type":"Answer","text":"Any modern CPU runs small models; 16 GB RAM and an NVIDIA GPU with 4 GB+ VRAM is the comfortable setup for 7-8B models. Docker is only needed for the code sandbox."}},
+{"@type":"Question","name":"¿Hay versión para Mac o Linux?","acceptedAnswer":{"@type":"Answer","text":"Not yet — Windows 10/11 only. Linux and macOS are on the public roadmap."}},
+{"@type":"Question","name":"How is OASIS different from Ollama or LM Studio?","acceptedAnswer":{"@type":"Answer","text":"Ollama, LM Studio, GPT4All and Jan run local models. O.A.S.I.S. adds local voice, memory, documents, PC tools and permissioned actions; Max adds further workflows and integrations."}},
+{"@type":"Question","name":"¿OASIS Max es una suscripción?","acceptedAnswer":{"@type":"Answer","text":"No, and there is nothing to pay yet. Max will be a single payment (15 EUR early access, 25 EUR at 1.0), never a subscription. A waitlist collects one email per person for launch day."}},
+{"@type":"Question","name":"¿Cómo lo desinstalo?","acceptedAnswer":{"@type":"Answer","text":"Like any Windows program. You can also remove the local data folder to delete models, memory and settings. Network-enabled features are described on the privacy page."}},
+{"@type":"Question","name":"¿Qué pasa cuando una acción es peligrosa?","acceptedAnswer":{"@type":"Answer","text":"It stops and asks. Deleting files, shutting down or running code always requires explicit confirmation; high-impact tools can never run silently."}},
+{"@type":"Question","name":"¿Puede acceder a mi pantalla?","acceptedAnswer":{"@type":"Answer","text":"Only when you ask it to look, for example to describe a window. It never watches in the background."}},
+{"@type":"Question","name":"Is O.A.S.I.S. open source?","acceptedAnswer":{"@type":"Answer","text":"No. It is proprietary software with a public changelog and roadmap; the source code is not publicly available."}}
+]}
+</script>
+<link rel="stylesheet" href="../assets/lang.css">
+</head>
+<body>
+<a href="#content" class="skip">Saltar al contenido</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>O.A.S.I.S.</a>
+    <nav class="links" aria-label="Principal">
+      <a href="./">Producto</a>
+      <a href="how-it-works.html">Cómo funciona</a>
+      <a href="tools.html">Herramientas</a>
+      <a href="models.html">Modelos</a>
+      <a href="privacy.html">Privacidad</a>
+      <a href="../blog/">Journal</a>
+      <a class="lang-switch" href="../faq.html" lang="en" hreflang="en" data-lang-switch="en">EN</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn" aria-label="Cambiar entre modo claro y oscuro">Claro</button>
+      <a class="btn sm" href="download.html">Descargar</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Móvil"><noscript><a href="download.html">Descargar</a><a href="../blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
+</header>
+
+<main id="content" class="wrap">
+  <p class="crumb"><a href="./">Inicio</a> / Preguntas frecuentes</p>
+  <h1>Preguntas, respondidas sin rodeos.</h1>
+  <p class="answer"><strong>Estas son las preguntas que la gente hace de verdad antes de instalar un <span class="term" data-term="local-ai">asistente de IA local</span></strong>: recogidas de primeros probadores e incidencias de GitHub, no inventadas para marketing. Respuestas breves, sin niebla.</p>
+
+  <h2 class="fth">Preguntas frecuentes</h2>
+  <div class="faq">
+    <details open><summary>¿Qué es un <span class="term" data-term="local-ai">asistente de IA local</span>?</summary><p>Un programa que ejecuta <span class="term" data-term="model">modelos</span> de IA compatibles en tu hardware en lugar de depender de un modelo en la nube. O.A.S.I.S. ofrece chat local, voz, <span class="term" data-term="memory">memoria</span>, documentos y <span class="term" data-term="tool">herramientas</span> de PC compatibles en Windows.</p></details>
+    <details><summary>¿De verdad funciona <span class="term" data-term="offline">sin conexión</span>?</summary><p>El chat local, la voz, la memoria y otros <span class="term" data-term="workflow">flujos de trabajo</span> locales siguen funcionando sin conexión a internet una vez instalados los modelos. Funciones como la búsqueda web, el tiempo y las <span class="term" data-term="integration">integraciones</span> externas necesitan acceso a la <span class="term" data-term="network">red</span> cuando las usas. En resumen: <span class="term" data-term="offline-first">offline-first</span>, no ciegos a la red.</p></details>
+    <details><summary>¿Mis archivos salen de mi ordenador?</summary><p>Los archivos locales, la memoria y el trabajo del modelo local pueden quedarse en tu PC. Las funciones con red pueden comunicarse al exterior cuando las usas o configuras. La app ofrece controles de permiso para micrófono, pantalla, archivos y herramientas. Lee la <a href="privacy.html">página de privacidad</a> completa.</p></details>
+    <details><summary>¿Qué PC necesito?</summary><p>Cualquier <span class="term" data-term="cpu">CPU</span> moderna ejecuta bien modelos pequeños. La configuración cómoda es 16&nbsp;GB de <span class="term" data-term="ram">RAM</span> más una <span class="term" data-term="gpu">GPU</span> NVIDIA con 4&nbsp;GB o más para modelos de 7–8B. Detalles y advertencias honestas en la <a href="requirements.html">página de requisitos</a>.</p></details>
+    <details><summary>¿Hay versión para Mac o Linux?</summary><p>Todavía no: solo Windows 10/11. Linux y macOS están en la hoja de ruta pública; los modelos en sí son portables, el empaquetado no está hecho.</p></details>
+    <details><summary>¿En qué se diferencia de <span class="term" data-term="ollama">Ollama</span> o <span class="term" data-term="lm-studio">LM Studio</span>?</summary><p>Aquellos son excelentes <em>ejecutando</em> modelos locales. O.A.S.I.S. añade una capa de asistente con voz local, memoria, documentos, herramientas de PC y acciones con permisos. Max añade más workflows e integraciones. Tabla completa en la <a href="comparison.html">página de comparación</a>.</p></details>
+    <details><summary>¿Qué funciones necesitan <span class="term" data-term="max">Max</span>?</summary><p><span class="term" data-term="personal">Personal</span> cubre chat, voz, memoria, documentos y control del PC cotidiano. Max añade <span class="term" data-term="vision">visión</span>/análisis de pantalla, programación completa con el <span class="term" data-term="sandbox">sandbox</span> de <span class="term" data-term="docker">Docker</span>, workflows y programación, Discord/Telegram, la app Android, la <span class="term" data-term="browser-extension">extensión de navegador</span>, <span class="term" data-term="tool-server">servidores de herramientas</span> externos y <span class="term" data-term="voice-cloning">clonación de voz</span>. La <a href="./#pricing">matriz de precios</a> lista todas las funciones.</p></details>
+    <details><summary>¿OASIS Max es una suscripción?</summary><p>No, y todavía no hay nada que pagar. Max será un pago único (15 € en acceso anticipado, 25 € en la 1.0), nunca una suscripción. <a href="./#early-access">Apúntate a la lista</a> y te enviaremos un solo correo cuando abra.</p></details>
+    <details><summary>¿Qué pasa cuando una acción es peligrosa?</summary><p>Se detiene y pregunta. Borrar archivos, apagar o ejecutar código siempre requiere tu confirmación explícita. <a href="security.html">Cómo funciona la seguridad →</a></p></details>
+    <details><summary>¿Puede acceder a mi pantalla?</summary><p>Solo cuando le pides que mire, por ejemplo para describir una ventana o hacer clic por ti. Nunca mira en segundo plano.</p></details>
+    <details><summary>¿O.A.S.I.S. es <span class="term" data-term="open-source">código abierto</span>?</summary><p>No. Es software <span class="term" data-term="proprietary">propietario</span> con un registro de cambios y una hoja de ruta públicas; el código fuente no está disponible públicamente. Consulta el <span class="term" data-term="eula">EULA</span> que acompaña al instalador.</p></details>
+    <details><summary>¿Cómo lo desinstalo?</summary><p>Como cualquier programa de Windows. También puedes borrar la carpeta de datos local para eliminar modelos, memoria y ajustes. Las funciones con red se describen en la <a href="privacy.html">página de privacidad</a>.</p></details>
+  </div>
+  <p class="cap">¿Preguntas algo más? <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Pregunta en Debates</a>: las buenas preguntas se añaden aquí.</p>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ O.A.S.I.S.</span><p>El asistente de IA que vive en tu PC. Los flujos de trabajo locales se quedan en tu PC.</p></div>
+    <div><h3 class="fth">Producto</h3><ul>
+      <li><a href="download.html">Descargar</a></li><li><a href="how-it-works.html">Cómo funciona</a></li>
+      <li><a href="requirements.html">Requisitos</a></li><li><a href="comparison.html">Comparar</a></li>
+      <li><a href="./#pricing">Precios</a></li><li><a href="features.html">Ficha técnica</a></li></ul></div>
+    <div><h3 class="fth">Recursos</h3><ul>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentación</a></li>
+      <li><a href="../blog/">Journal</a></li><li><a href="changelog.html#roadmap">Hoja de ruta</a></li>
+      <li><a href="changelog.html">Novedades</a></li></ul></div>
+    <div><h3 class="fth">Confianza y comunidad</h3><ul>
+      <li><a href="privacy.html">Privacidad</a></li><li><a href="security.html">Seguridad</a></li><li><a href="privacy-policy.html">Política de privacidad</a></li><li><a href="eula.html">EULA</a></li><li><a href="third-party-notices.html">Avisos de terceros</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Debates</a></li></ul></div>
+  </div>
+  <div class="base"><span>© O.A.S.I.S. · v0.2.0 · beta</span><span>sin trackers en esta página</span></div>
+</footer>
+<div class="sticky-cta"><a class="btn sm" href="download.html">Descargar para Windows</a></div>
+<script src="../assets/site.js"></script>
+<script src="../assets/tooltip.js"></script>
+<script src="../assets/lang.js"></script>
+</body>
+</html>

@@ -1,8 +1,184 @@
----
-layout: es
-title: Página no encontrada
-description: La página solicitada no existe en O.A.S.I.S.
-en_url: /404.html
-permalink: /es/404.html
----
-<p class="kicker">404 · RUTA NO ENCONTRADA</p><h1>Esta página se perdió.</h1><p class="answer">Puedes volver al producto, consultar la documentación o descargar Personal.</p><div class="ctas"><a class="btn" href="{{ '/es/' | relative_url }}">Volver al inicio</a><a class="btn ghost" href="{{ '/es/download.html' | relative_url }}">Descargar</a></div>
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>404 — Esta página se fue del PC · O.A.S.I.S.</title>
+<meta name="description" content="Esa página no existe. Vuelve por donde viniste: inicio, descarga, preguntas frecuentes y el resto del sitio de OASIS.">
+<meta name="robots" content="noindex, follow">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./es/404.html">
+<meta name="theme-color" content="#111111">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-500.woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<style>
+:root, :root[data-theme="dark"] {
+  --bg: #111111; --surface: #161616; --panel: #1c1c1c; --hover: #242424;
+  --ink: #ffffff; --ink-2: #c9c9c9; --ink-3: #8f8f8f;
+  --line: rgba(255,255,255,0.16); --strong: #ffffff;
+  --display: 'Space Grotesk', 'Inter', sans-serif;
+  --body: 'Inter', -apple-system, sans-serif;
+  --mono: 'Space Mono', 'IBM Plex Mono', monospace;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #f7f7f5; --surface: #ffffff; --panel: #f2f2ef; --hover: #ebebe7;
+  --ink: #111111; --ink-2: #3f3f3c; --ink-3: #595959;
+  --line: rgba(17,17,17,0.18); --strong: #111111;
+  color-scheme: light;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: clip; }
+body { background: var(--bg); color: var(--ink-2); font-family: var(--body); font-size: 16.5px; line-height: 1.7; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; transition: background-color .25s, color .25s; min-height: 100vh; display: flex; flex-direction: column; }
+::selection { background: var(--ink); color: var(--bg); }
+.btn::selection { background: var(--bg); color: var(--ink); }
+a { color: var(--ink); }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.skip { position: absolute; top: -100px; left: 16px; z-index: 99; background: var(--ink); color: var(--bg); font-weight: 600; font-size: 14px; padding: 10px 18px; text-decoration: none; }
+.skip:focus { top: 8px; }
+.top { border-bottom: 2px solid var(--strong); background: var(--surface); }
+.top-in { max-width: 780px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.brand { font-family: var(--display); font-weight: 700; font-size: 21px; letter-spacing: -.03em; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 9px; }
+.brand i { width: 18px; height: 18px; border: 2px solid var(--strong); display: block; }
+#theme-btn { font-family: var(--mono); font-size: 11px; background: none; border: 1px solid var(--strong); color: var(--ink); padding: 8px 11px; cursor: pointer; min-height: 44px; }
+#theme-btn:hover { background: var(--ink); color: var(--bg); }
+main { max-width: 780px; margin: 0 auto; padding: 72px 24px 40px; width: 100%; flex: 1; }
+.kicker { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-bottom: 10px; }
+.kicker b { color: var(--ink); font-weight: 400; border: 1px solid var(--strong); padding: 3px 9px; margin-right: 10px; }
+h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; line-height: 1; color: var(--ink); font-size: clamp(72px, 18vw, 150px); margin: 6px 0 10px; }
+.lede { font-size: 18px; max-width: 52ch; }
+.lede strong { color: var(--ink); }
+.find { margin-top: 26px; border: 2px solid var(--strong); background: var(--surface); }
+.find input { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--strong); color: var(--ink); caret-color: var(--ink); font: 15px var(--body); padding: 13px 16px; }
+.find input::placeholder { color: var(--ink-3); }
+.find ul { list-style: none; }
+.find li { border-bottom: 1px solid var(--line); }
+.find li:last-child { border-bottom: none; }
+.find li.hidden { display: none; }
+.find a { display: flex; justify-content: space-between; gap: 12px; padding: 11px 16px; text-decoration: none; font-size: 14.5px; }
+.find a:hover { background: var(--hover); }
+.find a span { font-family: var(--mono); font-size: 11px; color: var(--ink-3); white-space: nowrap; }
+#no-hit { padding: 14px 16px; font-size: 14px; color: var(--ink-3); }
+#no-hit.hidden { display: none; }
+.ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+.btn { display: inline-flex; align-items: center; padding: 13px 24px; font-size: 14.5px; font-weight: 600; font-family: var(--body); text-decoration: none; border: 1px solid var(--strong); background: var(--ink); color: var(--bg); min-height: 44px; }
+.btn:hover { background: transparent; color: var(--ink); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--bg); }
+footer { border-top: 2px solid var(--strong); }
+.foot-in { max-width: 780px; margin: 0 auto; padding: 22px 24px 30px; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+@supports (padding: max(0px)) {
+  .top-in, main, .foot-in {
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+  }
+}
+@media (max-width: 480px) {
+  main { padding-top: 48px; }
+  .ctas .btn { flex: 1 1 100%; justify-content: center; }
+}
+/* iOS zooms when a focused field is under 16px */
+@media (pointer: coarse) {
+  .find input { font-size: 16px; }
+  .ctas .btn { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* Text cursor (I-beam) ------------------------------------------------------
+   Windows can draw the default I-beam in white (dark-mode cursor schemes),
+   which vanishes on a near-white page. CSS cannot recolour the OS cursor, so
+   text areas use a small inline SVG I-beam: ink stem + paper halo in light
+   mode, inverted in dark mode. Falls back to the native `text` cursor where
+   SVG cursors are unsupported. Remove this block to hand cursors back to the OS. */
+:root, :root[data-theme="dark"] { --ibeam: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%3E%3Cpath%20d='M8%202.5v11M6%202.5h4M6%2013.5h4'%20fill='none'%20stroke='%23111111'%20stroke-width='4'%20stroke-linecap='round'/%3E%3Cpath%20d='M8%202.5v11M6%202.5h4M6%2013.5h4'%20fill='none'%20stroke='%23ffffff'%20stroke-width='1.6'%20stroke-linecap='round'/%3E%3C/svg%3E") 8 8, text; }
+:root[data-theme="light"] { --ibeam: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%3E%3Cpath%20d='M8%202.5v11M6%202.5h4M6%2013.5h4'%20fill='none'%20stroke='%23f7f7f5'%20stroke-width='4'%20stroke-linecap='round'/%3E%3Cpath%20d='M8%202.5v11M6%202.5h4M6%2013.5h4'%20fill='none'%20stroke='%23111111'%20stroke-width='1.6'%20stroke-linecap='round'/%3E%3C/svg%3E") 8 8, text; }
+p, li, td, th, h1, h2, h3, h4, dt, dd, blockquote, figcaption, pre,
+.answer, .cap, .fine, .small, .else, .fact, .log, .dchat, .msg, .tcard,
+.kv, .prose, .statusbar, .modelpill, .mock-body, .groups li, .price li {
+  cursor: var(--ibeam);
+}
+input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]),
+textarea, [contenteditable="true"] { cursor: var(--ibeam); }
+/* Interactive controls keep their own cursor */
+a, a *, button, button *, summary, label, select, option,
+input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; }
+.pbtns i, .rail .ri, .winbtns i, .apptabs i, .tool { cursor: default; }
+
+</style>
+<link rel="stylesheet" href="../assets/tooltip.css">
+<link rel="stylesheet" href="../assets/lang.css">
+</head>
+<body>
+<a href="#content" class="skip">Saltar al contenido</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>O.A.S.I.S.</a>
+    <button id="theme-btn" aria-label="Cambiar entre modo claro y oscuro">Claro</button>
+  </div>
+</header>
+<main id="content" tabindex="-1">
+  <p class="kicker"><b>404</b> no encontrada</p>
+  <h1>404</h1>
+  <p class="lede">Esta página se fue del PC. <strong>Todo lo demás está a un clic.</strong> Escribe abajo para filtrar todo el sitio:</p>
+  <div class="find">
+    <input id="find" type="search" placeholder="¿Adónde? Prueba «voz», «precio», «modelos»…" aria-label="Filtrar páginas del sitio" autocomplete="off">
+    <ul id="pagelist">
+      <li data-k="home start"><a href="./">Inicio <span>empieza aquí</span></a></li>
+      <li data-k="tour features capabilities what can do"><a href="tools.html">Recorrido <span>capacidades</span></a></li>
+      <li data-k="how works local offline diagram"><a href="how-it-works.html">Cómo funciona <span>flujo de datos</span></a></li>
+      <li data-k="requirements hardware ram vram gpu models check pc"><a href="requirements.html">Requisitos <span>comprueba tu PC</span></a></li>
+      <li data-k="download install windows beta sha checksum"><a href="download.html">Descargar <span>beta gratis</span></a></li>
+      <li data-k="compare ollama lmstudio gpt4all jan cloud versus"><a href="comparison.html">Comparar <span>frente a alternativas</span></a></li>
+      <li data-k="pricing price cost max free personal subscription"><a href="./#pricing">Precios <span>gratis + Max</span></a></li>
+      <li data-k="faq questions help offline mac linux"><a href="faq.html">Preguntas <span>respuestas</span></a></li>
+      <li data-k="spec sheet technical tools list"><a href="features.html">Ficha técnica <span>sin adjetivos</span></a></li>
+      <li data-k="blog news releases changelog updates articles"><a href="../blog/">Blog <span>notas</span></a></li>
+      <li data-k="changelog versions new release notes"><a href="changelog.html">Novedades <span>versiones</span></a></li>
+      <li data-k="about team project contact"><a href="about.html">Acerca de <span>humanos</span></a></li>
+      <li data-k="privacy tracking telemetry data local"><a href="privacy.html">Privacidad <span>sin trackers</span></a></li>
+      <li data-k="legal policy eula terms notices"><a href="privacy-policy.html">Política de privacidad</a></li>
+      <li data-k="legal eula terms"><a href="eula.html">EULA</a></li>
+      <li data-k="legal third party licenses"><a href="third-party-notices.html">Avisos de terceros</a></li>
+      <li data-k="github code source repository"><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub <span>código</span></a></li>
+    </ul>
+    <p id="no-hit" class="hidden">Nada coincide: prueba «descargar», «precio» o «blog». O <a href="./">vuelve al inicio</a>.</p>
+  </div>
+  <div class="ctas">
+    <a class="btn" href="./">Volver al inicio</a>
+    <a class="btn ghost" href="download.html">Descargar Personal</a>
+    <a class="btn ghost" href="../404.html" hreflang="en" lang="en" data-lang-switch="en">English</a>
+  </div>
+</main>
+<footer>
+  <div class="foot-in"><span>OASIS · v0.2.0 · beta</span><span>hasta las páginas perdidas van sin trackers</span></div>
+</footer>
+<script>
+(function () {
+  var root = document.documentElement, btn = document.getElementById('theme-btn');
+  function paint(t) { root.setAttribute('data-theme', t); btn.textContent = (t === 'light') ? 'Dark' : 'Claro'; try { localStorage.setItem('oasis-theme', t); } catch (_) {} }
+  var saved = null;
+  try { saved = localStorage.getItem('oasis-theme'); } catch (_) {}
+  paint(saved === 'light' || saved === 'dark' ? saved : 'dark');
+  btn.addEventListener('click', function () { paint(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'); });
+  var input = document.getElementById('find'), items = document.querySelectorAll('#pagelist li'), nohit = document.getElementById('no-hit');
+  input.addEventListener('input', function () {
+    var q = input.value.trim().toLowerCase(), shown = 0;
+    items.forEach(function (li) {
+      var hit = !q || li.getAttribute('data-k').indexOf(q) !== -1 || li.textContent.toLowerCase().indexOf(q) !== -1;
+      li.classList.toggle('hidden', !hit);
+      if (hit) shown++;
+    });
+    nohit.classList.toggle('hidden', shown > 0);
+  });
+}());
+</script>
+<script src="../assets/tooltip.js"></script>
+<script src="../assets/lang.js"></script>
+</body>
+</html>

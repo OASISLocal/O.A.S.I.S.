@@ -1,10 +1,134 @@
----
-layout: es
-title: Privacidad y red
-description: Cómo separa O.A.S.I.S. las funciones locales, la red y los servicios externos.
-en_url: /privacy.html
-permalink: /es/privacy.html
----
-<p class="crumb"><a href="{{ '/es/' | relative_url }}">Inicio</a> / Privacidad</p><h1>Privacidad, explicada sin absolutos.</h1><p class="answer"><strong>Las funciones locales se ejecutan en tu PC.</strong> Las funciones con red se comunican externamente solo cuando las usas o configuras. O.A.S.I.S. es offline-first, no network-blind.</p>
-<table class="es-table"><thead><tr><th>Función</th><th>Comportamiento</th></tr></thead><tbody><tr><td>Chat, modelos, memoria y documentos locales</td><td>Puede permanecer en tu PC</td></tr><tr><td>Voz y visión</td><td>Procesamiento local cuando está soportado; requiere permisos</td></tr><tr><td>Búsqueda web, páginas y clima</td><td>Necesita red</td></tr><tr><td>Discord, Telegram, móvil y MCP externo</td><td>Necesita configuración y red</td></tr></tbody></table>
-<hr class="rule"><h2>Controles</h2><ul class="plain"><li>Permisos por herramienta para acciones sensibles.</li><li>Confirmación explícita para acciones de alto impacto.</li><li>Memoria local revisable y eliminable.</li><li>Este sitio no usa trackers, cookies publicitarias ni analítica de terceros.</li></ul><p class="cap">Consulta también <a href="{{ '/es/security.html' | relative_url }}">Seguridad y permisos</a>.</p>
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Privacidad — Local-first, explicado con precisión</title>
+<meta name="description" content="Qué se queda en tu PC y qué puede usar la red: una tabla Local/Red por función para la app OASIS, además de las propias prácticas de datos del sitio.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./es/privacy.html">
+<link rel="alternate" hreflang="en" href="https://oasislocal.github.io/O.A.S.I.S./privacy.html">
+<link rel="alternate" hreflang="es" href="https://oasislocal.github.io/O.A.S.I.S./es/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://oasislocal.github.io/O.A.S.I.S./privacy.html">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Privacidad — Sin trackers, sin nube, tu disco">
+<meta property="og:description" content="Cero trackers aquí. Cero telemetría allí. El cuadro completo.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./es/privacy.html">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-500.woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/tooltip.css">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<link rel="stylesheet" href="../assets/lang.css">
+</head>
+<body>
+<a href="#content" class="skip">Saltar al contenido</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>O.A.S.I.S.</a>
+    <nav class="links" aria-label="Principal">
+      <a href="./">Producto</a>
+      <a href="how-it-works.html">Cómo funciona</a>
+      <a href="tools.html">Herramientas</a>
+      <a href="models.html">Modelos</a>
+      <a href="privacy.html" aria-current="page">Privacidad</a>
+      <a href="../blog/">Journal</a>
+      <a class="lang-switch" href="../privacy.html" lang="en" hreflang="en" data-lang-switch="en">EN</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn" aria-label="Cambiar entre modo claro y oscuro">Claro</button>
+      <a class="btn sm" href="download.html">Descargar</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Móvil"><noscript><a href="download.html">Descargar</a><a href="../blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
+</header>
+
+<main id="content" class="wrap">
+  <p class="crumb"><a href="./">Inicio</a> / Privacidad</p>
+  <h1><span class="term" data-term="local-first">Local-first</span>. Con precisión.</h1>
+  <p class="answer"><strong>Las funciones locales se ejecutan en tu PC. Las funciones con <span class="term" data-term="network">red</span> se comunican al exterior solo cuando las usas o las configuras.</strong> O.A.S.I.S. es <span class="term" data-term="offline-first">offline-first</span>, no ciego a la red. Sin <span class="term" data-term="analytics">analítica</span>, sin cookies, sin cuentas, sin <span class="term" data-term="telemetry">telemetría</span>. Esta página separa lo que se queda en local de lo que puede usar la red.</p>
+
+  <hr class="rule">
+  <p class="kicker">Local o red</p>
+  <h2 id="network">Cada función, clasificada.</h2>
+  <div class="tbl">
+  <table class="spec">
+<thead><tr><th scope="col">Función</th><th scope="col">Local</th><th scope="col"><span class="term" data-term="network">Red</span></th></tr></thead>
+    <tbody>
+      <tr><td>Chat local</td><td class="y">Sí</td><td class="n">No</td></tr>
+      <tr><td><span class="term" data-term="local-inference">Inferencia de modelo local</span></td><td class="y">Sí</td><td class="n">No</td></tr>
+      <tr><td><span class="term" data-term="memory">Memoria</span> local</td><td class="y">Sí</td><td class="n">No</td></tr>
+      <tr><td>Documentos locales</td><td class="y">Sí</td><td class="n">No</td></tr>
+      <tr><td>Procesamiento de voz</td><td class="y">Sí</td><td class="n">No</td></tr>
+      <tr><td>Análisis de pantalla</td><td class="y">Sí</td><td class="n">No</td></tr>
+      <tr><td>Búsqueda web</td><td class="n">No</td><td class="y">Sí</td></tr>
+      <tr><td>Páginas online</td><td class="n">No</td><td class="y">Sí</td></tr>
+      <tr><td>El tiempo</td><td class="n">No</td><td class="y">Sí</td></tr>
+      <tr><td><span class="term" data-term="integration">Integraciones</span> externas</td><td class="n">Depende</td><td class="y">Si se activa</td></tr>
+      <tr><td><span class="term" data-term="tool-server">Servidores de herramientas</span> externos (<span class="term" data-term="mcp">MCP</span>)</td><td class="n">No</td><td class="y">Si se activa</td></tr>
+      <tr><td>Apps <span class="term" data-term="companion">companion</span> (Android, navegador)</td><td class="y">Red local</td><td class="y">Si se configura</td></tr>
+      <tr><td>Descargas de <span class="term" data-term="model">modelos</span></td><td class="n">No</td><td class="y">Una vez</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="cap">Las <span class="term" data-term="tool">herramientas</span> de red solo llegan a internet cuando las invocas. No hay sincronización silenciosa en segundo plano.</p>
+
+  <hr class="rule">
+  <p class="kicker">Este sitio web</p>
+  <h2>Lo que este sitio sabe de ti: nada.</h2>
+  <ul class="plain">
+    <li><b>Sin <span class="term" data-term="analytics">analítica</span>.</b> Ni Google Analytics, ni Plausible, ni píxeles. No contamos nada.</li>
+    <li><b>Sin cookies.</b> Lo único que se guarda en tu navegador es tu preferencia de claro/oscuro, solo en tu dispositivo.</li>
+    <li><b>Peticiones propias opcionales:</b> los datos del glosario y la configuración de lanzamiento se cargan desde este sitio. El recuento de estrellas de GitHub llama a la <span class="term" data-term="api">API</span> pública de GitHub; tu navegador habla con GitHub, no con nosotros.</li>
+    <li><b>Sin peticiones a terceros en la carga normal.</b> Las fuentes y los datos del sitio se sirven desde este mismo sitio. La petición opcional a GitHub falla en silencio si se bloquea.</li>
+    <li id="waitlist"><b>Excepción de la lista de espera.</b> Si te apuntas, Cloudflare KV guarda tu correo, tus intereses y la fecha de alta solo para el correo de lanzamiento. Pide la eliminación en <a href="mailto:hello@oasislocal.dev?subject=Delete%20waitlist%20data">hello@oasislocal.dev</a>; la eliminación borra el registro guardado.</li>
+  </ul>
+
+  <hr class="rule">
+  <p class="kicker">La app de escritorio</p>
+  <h2>Qué guarda la app, y dónde.</h2>
+  <ul class="plain">
+    <li><b>Sin <span class="term" data-term="telemetry">telemetría</span>, sin informes de fallos, sin cuentas.</b> No hay ningún <span class="term" data-term="endpoint">endpoint</span> que los reciba por defecto.</li>
+    <li><b>Solo <span class="term" data-term="localhost">localhost</span>.</b> El <span class="term" data-term="server">servidor</span> interno de la app se enlaza a tu máquina; nada escucha en tu red.</li>
+    <li><b><span class="term" data-term="permission">Permisos</span> por <span class="term" data-term="tool">herramienta</span>.</b> Micrófono, pantalla y archivos tienen cada uno su interruptor en Ajustes, revocable en cualquier momento.</li>
+    <li><b>Tus datos, tu carpeta.</b> Los <span class="term" data-term="model">modelos</span>, la <span class="term" data-term="memory">memoria</span> y los ajustes viven en <code>%LOCALAPPDATA%\O.A.S.I.S.\</code>. Bórrala y desaparecen.</li>
+    <li><b><span class="term" data-term="vault">Caja fuerte</span> <span class="term" data-term="encryption">cifrada</span>, bloqueo con PIN y <span class="term" data-term="audit-log">registro de acciones</span></b> para quien comparte máquina o simplemente duerme mejor.</li>
+    <li><b>Diagnósticos opcionales.</b> El único canal de salida que puede activarse es un <span class="term" data-term="webhook">webhook</span> de diagnósticos que configuras tú.</li>
+    <li><b>Privacidad de la app ≠ privacidad del sitio.</b> Esta página describe ambas, por separado y a propósito.</li>
+  </ul>
+  <p class="cap">Documentos del sitio: <a href="privacy-policy.html">Política de privacidad</a> · <a href="eula.html">EULA</a> · <a href="third-party-notices.html">Avisos de terceros</a>. Los documentos legales de la app se publicarán por separado.</p>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ O.A.S.I.S.</span><p>El asistente de IA que vive en tu PC. Los flujos de trabajo locales se quedan en tu PC.</p></div>
+    <div><h3 class="fth">Producto</h3><ul>
+      <li><a href="download.html">Descargar</a></li><li><a href="how-it-works.html">Cómo funciona</a></li>
+      <li><a href="requirements.html">Requisitos</a></li><li><a href="comparison.html">Comparar</a></li>
+      <li><a href="./#pricing">Precios</a></li><li><a href="features.html">Ficha técnica</a></li></ul></div>
+    <div><h3 class="fth">Recursos</h3><ul>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentación</a></li>
+      <li><a href="../blog/">Journal</a></li><li><a href="changelog.html#roadmap">Hoja de ruta</a></li>
+      <li><a href="changelog.html">Novedades</a></li></ul></div>
+    <div><h3 class="fth">Confianza y comunidad</h3><ul>
+      <li><a href="privacy.html">Privacidad</a></li><li><a href="security.html">Seguridad</a></li><li><a href="privacy-policy.html">Política de privacidad</a></li><li><a href="eula.html">EULA</a></li><li><a href="third-party-notices.html">Avisos de terceros</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Debates</a></li></ul></div>
+  </div>
+  <div class="base"><span>© O.A.S.I.S. · v0.2.0 · beta</span><span>sin trackers en esta página</span></div>
+</footer>
+<div class="sticky-cta"><a class="btn sm" href="download.html">Descargar para Windows</a></div>
+<script src="../assets/site.js"></script>
+<script src="../assets/tooltip.js"></script>
+<script src="../assets/lang.js"></script>
+</body>
+</html>

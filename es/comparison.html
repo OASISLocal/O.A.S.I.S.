@@ -1,9 +1,119 @@
----
-layout: es
-title: O.A.S.I.S. frente a asistentes cloud
-description: Comparación honesta entre O.A.S.I.S., ejecutores de modelos locales y asistentes cloud.
-en_url: /comparison.html
-permalink: /es/comparison.html
----
-<p class="crumb"><a href="{{ '/es/' | relative_url }}">Inicio</a> / Comparación</p><h1>Otra arquitectura, otra decisión.</h1><p class="answer">O.A.S.I.S. prioriza control local, modelos compatibles y herramientas del PC. Los asistentes cloud priorizan infraestructura remota y conveniencia.</p>
-<table class="es-table"><thead><tr><th>Capacidad</th><th>O.A.S.I.S.</th><th>Cloud-first</th></tr></thead><tbody><tr><td>Inferencia local</td><td>Sí, con modelos compatibles</td><td>Normalmente no</td></tr><tr><td>Funcionamiento local sin red</td><td>Funciones compatibles</td><td>Normalmente no</td></tr><tr><td>Herramientas del PC</td><td>Sí, con permisos</td><td>Depende del servicio</td></tr><tr><td>Servicios online</td><td>Opcionales/configurables</td><td>Habitualmente centrales</td></tr><tr><td>Responsabilidad de hardware</td><td>Tu PC</td><td>Proveedor</td></tr></tbody></table><p class="cap">También puedes comparar el enfoque con <a href="{{ '/es/faq.html' | relative_url }}">las preguntas frecuentes</a>.</p>
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>O.A.S.I.S. frente a Ollama, LM Studio y la nube (2026)</title>
+<meta name="description" content="¿Cómo se compara OASIS con Ollama, LM Studio, GPT4All y ChatGPT? Una tabla honesta: voz, memoria, control del PC, uso sin conexión y precio. Distintas herramientas, distintas fortalezas.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./es/comparison.html">
+<link rel="alternate" hreflang="en" href="https://oasislocal.github.io/O.A.S.I.S./comparison.html">
+<link rel="alternate" hreflang="es" href="https://oasislocal.github.io/O.A.S.I.S./es/comparison.html">
+<link rel="alternate" hreflang="x-default" href="https://oasislocal.github.io/O.A.S.I.S./comparison.html">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="O.A.S.I.S. frente a Ollama, LM Studio y la nube (2026)">
+<meta property="og:description" content="Herramientas de IA local comparadas con honestidad: en qué destaca cada una y dónde encaja OASIS.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./es/comparison.html">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-500.woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/tooltip.css">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<link rel="stylesheet" href="../assets/lang.css">
+</head>
+<body>
+<a href="#content" class="skip">Saltar al contenido</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>O.A.S.I.S.</a>
+    <nav class="links" aria-label="Principal">
+      <a href="./">Producto</a>
+      <a href="how-it-works.html">Cómo funciona</a>
+      <a href="tools.html">Herramientas</a>
+      <a href="models.html">Modelos</a>
+      <a href="privacy.html">Privacidad</a>
+      <a href="../blog/">Journal</a>
+      <a class="lang-switch" href="../comparison.html" lang="en" hreflang="en" data-lang-switch="en">EN</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn" aria-label="Cambiar entre modo claro y oscuro">Claro</button>
+      <a class="btn sm" href="download.html">Descargar</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Móvil"><noscript><a href="download.html">Descargar</a><a href="../blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
+</header>
+
+<main id="content" class="wrap wide" style="max-width:960px;">
+  <div class="wrap" style="padding:0;">
+  <p class="crumb"><a href="./">Inicio</a> / Comparar</p>
+  <h1>Distintas <span class="term" data-term="tool">herramientas</span>, distintas fortalezas.</h1>
+  <p class="answer"><strong><span class="term" data-term="ollama">Ollama</span>, <span class="term" data-term="lm-studio">LM Studio</span>, GPT4All y Jan son excelentes ejecutando <span class="term" data-term="model">modelos</span> locales; OASIS es el que los convierte en un asistente completo.</strong> Si quieres un <span class="term" data-term="server">servidor</span> de modelos o una ventana de chat, esas herramientas son geniales. Si quieres algo que habla, recuerda, controla tu PC y hace recados según un horario, ese es el hueco que cubre OASIS.</p>
+  </div>
+
+  <div class="tbl">
+  <table class="spec" style="margin-top:0;">
+<thead><tr><th scope="col">Capacidad</th><th scope="col">OASIS</th><th scope="col">Ollama</th><th scope="col">LM Studio</th><th scope="col">GPT4All / Jan</th><th scope="col">Asistentes en la <span class="term" data-term="cloud">nube</span></th></tr></thead>
+    <tbody>
+      <tr><td>Ejecuta modelos en local</td><td class="y">Sí</td><td class="y">Sí</td><td class="y">Sí</td><td class="y">Sí</td><td class="n">No</td></tr>
+      <tr><td>Voz de entrada y salida</td><td class="y">Sí, <span class="term" data-term="offline">sin conexión</span></td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="y">Solo online</td></tr>
+      <tr><td><span class="term" data-term="persistent-memory">Memoria persistente</span> y documentos</td><td class="y">Sí</td><td class="n">No</td><td class="n">Básico</td><td class="n">Básico</td><td class="y">Sí, en sus servidores</td></tr>
+      <tr><td>Controla tu PC (apps, sistema)</td><td class="y">100 herramientas</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td></tr>
+      <tr><td>Rutinas programadas</td><td class="y">Sí</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">Limitado</td></tr>
+      <tr><td>Instalador de Windows + GUI</td><td class="y">Sí</td><td class="n">Primero CLI</td><td class="y">Sí</td><td class="y">Sí</td><td class="n">Navegador/app</td></tr>
+      <tr><td>Funciona totalmente sin conexión</td><td class="y">Sí</td><td class="y">Sí</td><td class="y">Sí</td><td class="y">Sí</td><td class="n">No</td></tr>
+      <tr><td>Precio</td><td><b>Gratis / lista de espera</b></td><td>Gratis</td><td>Gratis</td><td>Gratis</td><td>Gratis / mensual</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="cap">Correcto a septiembre de 2026, según nuestro leal saber y entender: los competidores avanzan rápido, así que revisa sus webs. ¿Has visto un error? <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">Dínoslo</a> y lo corregimos.</p>
+
+  <div class="wrap" style="padding:0;">
+  <hr class="rule">
+  <p class="kicker">La versión corta</p>
+  <h2>Cuándo elegir qué.</h2>
+  <ul class="plain">
+    <li><b>Elige <span class="term" data-term="ollama">Ollama</span></b> si quieres un <span class="term" data-term="server">servidor</span> de <span class="term" data-term="model">modelos</span> local sobre el que construir: es la sala de máquinas, no el asistente.</li>
+    <li><b>Elige <span class="term" data-term="lm-studio">LM Studio</span>, GPT4All o Jan</b> si quieres una ventana limpia para chatear con modelos locales.</li>
+    <li><b>Elige un asistente en la <span class="term" data-term="cloud">nube</span></b> si necesitas razonamiento de frontera y no te importan cuentas, cuotas y subidas.</li>
+    <li><b>Elige OASIS</b> si quieres todo el trabajo hecho en tu PC: hablar, recordar, organizar, programar y automatizar, sin que nada salga de casa.</li>
+  </ul>
+  <div class="ctas">
+    <a class="btn" href="download.html">Prueba OASIS gratis</a>
+    <a class="btn ghost" href="how-it-works.html">Cómo funciona</a>
+  </div>
+  </div>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ O.A.S.I.S.</span><p>El asistente de IA que vive en tu PC. Los flujos de trabajo locales se quedan en tu PC.</p></div>
+    <div><h3 class="fth">Producto</h3><ul>
+      <li><a href="download.html">Descargar</a></li><li><a href="how-it-works.html">Cómo funciona</a></li>
+      <li><a href="requirements.html">Requisitos</a></li><li><a href="comparison.html">Comparar</a></li>
+      <li><a href="./#pricing">Precios</a></li><li><a href="features.html">Ficha técnica</a></li></ul></div>
+    <div><h3 class="fth">Recursos</h3><ul>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentación</a></li>
+      <li><a href="../blog/">Journal</a></li><li><a href="changelog.html#roadmap">Hoja de ruta</a></li>
+      <li><a href="changelog.html">Novedades</a></li></ul></div>
+    <div><h3 class="fth">Confianza y comunidad</h3><ul>
+      <li><a href="privacy.html">Privacidad</a></li><li><a href="security.html">Seguridad</a></li><li><a href="privacy-policy.html">Política de privacidad</a></li><li><a href="eula.html">EULA</a></li><li><a href="third-party-notices.html">Avisos de terceros</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Debates</a></li></ul></div>
+  </div>
+  <div class="base"><span>© O.A.S.I.S. · v0.2.0 · beta</span><span>sin trackers en esta página</span></div>
+</footer>
+<div class="sticky-cta"><a class="btn sm" href="download.html">Descargar para Windows</a></div>
+<script src="../assets/site.js"></script>
+<script src="../assets/tooltip.js"></script>
+<script src="../assets/lang.js"></script>
+</body>
+</html>

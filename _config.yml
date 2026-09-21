@@ -42,3 +42,7 @@ exclude:
   - sync-web.ps1
   - .lighthouserc.json
   - .lighthouserc.mobile.json
+  - build_es.py
+  - i18n/
+  - fix-es-metadata.ps1
+  - translate-es-pages.ps1

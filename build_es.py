@@ -1,0 +1,127 @@
+# -*- coding: utf-8 -*-
+"""Build es/ pages from the English originals.
+   Translations live in i18n/_shared.json (applied everywhere) and i18n/<page>.json
+   (each a list of [english_substring, spanish_substring]). Every English string
+   must be found, otherwise the build fails loudly."""
+import io, os, re, json, sys, shutil
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+I18N = os.path.join(ROOT, 'i18n')
+BASE = 'https://oasislocal.github.io/O.A.S.I.S./'
+PAGES = ['index.html', '404.html', 'about.html', 'changelog.html', 'comparison.html',
+         'download.html', 'eula.html', 'faq.html', 'features.html', 'how-it-works.html',
+         'models.html', 'pricing.html', 'privacy.html', 'privacy-policy.html',
+         'requirements.html', 'security.html', 'third-party-notices.html', 'tools.html']
+
+def load(name):
+    p = os.path.join(I18N, name)
+    if not os.path.exists(p):
+        return []
+    return json.load(io.open(p, encoding='utf-8'))
+
+MISSES = []
+
+def apply_pairs(html, pairs, where, strict=True):
+    for pair in sorted(pairs, key=lambda p: len(p[0]), reverse=True):
+        en, es = pair[0], pair[1]
+        if en not in html:
+            if strict:
+                MISSES.append('[%s] %r' % (where, en[:110]))
+            continue
+        html = html.replace(en, es)
+    return html
+
+def en_url(page):
+    return BASE if page == 'index.html' else BASE + page
+
+def es_url(page):
+    return BASE + 'es/' if page == 'index.html' else BASE + 'es/' + page
+
+def to_spanish(html, page):
+    # html lang
+    html = re.sub(r'(<html[^>]*\blang=")en(")', r'\1es\2', html, count=1)
+    # canonical + og:url  (EN -> ES)
+    html = html.replace('<link rel="canonical" href="%s">' % en_url(page),
+                        '<link rel="canonical" href="%s">' % es_url(page))
+    html = html.replace('<meta property="og:url" content="%s">' % en_url(page),
+                        '<meta property="og:url" content="%s">' % es_url(page))
+    html = html.replace('<meta property="og:locale" content="en_US">',
+                        '<meta property="og:locale" content="es_ES">')
+    # relative asset paths
+    html = html.replace('href="assets/', 'href="../assets/')
+    html = html.replace('src="assets/', 'src="../assets/')
+    html = html.replace('href="favicon.ico"', 'href="../favicon.ico"')
+    html = html.replace('href="blog/', 'href="../blog/')
+    # language switcher: ES link -> EN link back to the original
+    en_rel = '../' if page == 'index.html' else '../' + page
+    html = re.sub(r'<a href="es/[^"]*"[^>]*>ES</a>',
+                  '<a class="lang-switch" href="%s" lang="en" hreflang="en" data-lang-switch="en">EN</a>' % en_rel,
+                  html)
+    html = re.sub(r'<a class="btn ghost" href="es/"[^>]*>Español</a>',
+                  '<a class="btn ghost" href="%s" hreflang="en" lang="en" data-lang-switch="en">English</a>' % en_rel, html)
+    # language assets
+    if 'lang.css' not in html:
+        html = html.replace('</head>', '<link rel="stylesheet" href="../assets/lang.css">\n</head>', 1)
+    if 'lang.js' not in html:
+        html = html.replace('</body>', '<script src="../assets/lang.js"></script>\n</body>', 1)
+    return html
+
+def to_spanish_legal(html, page):
+    """Jekyll front-matter pages (legal): swap lang, move permalink under /es/,
+       and point same-site Liquid links at the Spanish copies."""
+    html = re.sub(r'^lang: en\r?$', 'lang: es', html, count=1, flags=re.M)
+    html = re.sub(r'^permalink: /([^\r\n]+)$', lambda m: 'permalink: /es/' + m.group(1), html, count=1, flags=re.M)
+    html = re.sub(r"\{\{ '(/[^']+\.html)' \| relative_url \}\}",
+                  lambda m: "{{ '/es%s' | relative_url }}" % m.group(1), html)
+    html = html.replace('href="assets/fonts/LICENSE.txt"',
+                        'href="{{ \'/assets/fonts/LICENSE.txt\' | relative_url }}"')
+    return html
+
+def patch_english(html):
+    # switcher remembers the choice
+    html = re.sub(r'(<a href="es/[^"]*"[^>]*?)>ES</a>',
+                  lambda m: (m.group(1) + ' data-lang-switch="es">ES</a>')
+                  if 'data-lang-switch' not in m.group(1) else m.group(0), html)
+    html = html.replace('<a class="btn ghost" href="es/">Español</a>',
+                        '<a class="btn ghost" href="es/" data-lang-switch="es">Español</a>')
+    if 'lang.css' not in html:
+        html = html.replace('</head>', '<link rel="stylesheet" href="assets/lang.css">\n</head>', 1)
+    if 'lang.js' not in html:
+        html = html.replace('</body>', '<script src="assets/lang.js"></script>\n</body>', 1)
+    return html
+
+shared = load('_shared.json')
+attrs = load('_attrs.json')
+
+# 1) patch the English pages (switcher attr + language assets)
+for page in PAGES:
+    src = os.path.join(ROOT, page)
+    html = io.open(src, encoding='utf-8', newline='').read()
+    out = patch_english(html)
+    if out != html:
+        io.open(src, 'w', encoding='utf-8', newline='').write(out)
+        print('EN patched  ', page)
+
+# 2) build the Spanish pages
+os.makedirs(os.path.join(ROOT, 'es'), exist_ok=True)
+for page in PAGES:
+    src = os.path.join(ROOT, page)
+    if not os.path.exists(src):
+        print('skip (missing)', page); continue
+    html = io.open(src, encoding='utf-8', newline='').read()
+    # English pages were just patched; undo the added attrs for a clean base? no: replacements ignore them
+    html = apply_pairs(html, load(page + '.json'), page)
+    html = apply_pairs(html, attrs, page, strict=False)
+    html = apply_pairs(html, shared, page, strict=False)
+    if html.lstrip().startswith('---'):
+        html = to_spanish_legal(html, page)
+    else:
+        html = to_spanish(html, page)
+    dst = os.path.join(ROOT, 'es', page)
+    io.open(dst, 'w', encoding='utf-8', newline='').write(html)
+    print('ES built     ', page)
+print('done')
+if MISSES:
+    print('--- MISSES (%d) ---' % len(MISSES))
+    for m in MISSES:
+        print(m)

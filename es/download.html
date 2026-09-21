@@ -1,12 +1,126 @@
----
-layout: es
-title: Descargar O.A.S.I.S. para Windows
-description: Descarga O.A.S.I.S. Personal para Windows 10/11, instala un modelo GGUF compatible y empieza con una tarea local.
-en_url: /download.html
-permalink: /es/download.html
----
-<p class="crumb"><a href="{{ '/es/' | relative_url }}">Inicio</a> / Descargar</p><h1>Descarga Personal.</h1>
-<p class="answer"><strong>Gratis, sin cuenta y para Windows 10/11 x64.</strong> La aplicación necesita red para descargar el instalador y el modelo; las funciones locales compatibles pueden funcionar después sin conexión.</p>
-<div class="ctas"><a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Descargar desde GitHub</a><a class="btn ghost" href="{{ '/es/requirements.html' | relative_url }}">Ver requisitos</a></div>
-<hr class="rule"><p class="kicker">INSTALACIÓN</p><h2>Tres pasos.</h2><div class="steps"><div class="step"><div class="n">1</div><h3>Instala</h3><p>Ejecuta el instalador de la release más reciente.</p></div><div class="step"><div class="n">2</div><h3>Descarga un modelo</h3><p>Abre Models y elige un perfil compatible, como Gemma, Qwen o Llama.</p></div><div class="step"><div class="n">3</div><h3>Prueba una tarea</h3><p>Busca un documento, resume una nota o consulta el estado del PC.</p></div></div>
-<hr class="rule"><h2>Verifica antes de ejecutar.</h2><p>Las releases publican sus hashes cuando están disponibles. En Windows puedes comprobar un archivo con <code>certutil -hashfile OASIS.exe SHA256</code>.</p><p>Consulta el <a href="https://github.com/OASISLocal/O.A.S.I.S./releases" target="_blank" rel="noopener noreferrer">historial de releases</a> y abre un <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">issue</a> si encuentras un problema reproducible.</p>
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Descargar O.A.S.I.S. para Windows (beta gratis)</title>
+<meta name="description" content="Descarga la beta gratis de OASIS para Windows 10/11. Verifica el hash SHA256, elige un modelo de IA y empieza en unos 10 minutos.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./es/download.html">
+<link rel="alternate" hreflang="en" href="https://oasislocal.github.io/O.A.S.I.S./download.html">
+<link rel="alternate" hreflang="es" href="https://oasislocal.github.io/O.A.S.I.S./es/download.html">
+<link rel="alternate" hreflang="x-default" href="https://oasislocal.github.io/O.A.S.I.S./download.html">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Descargar O.A.S.I.S. para Windows (beta gratis)">
+<meta property="og:description" content="Beta gratis para Windows 10/11. Versiones verificadas con SHA256. Empieza en unos 10 minutos.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./es/download.html">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-500.woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/tooltip.css">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"OASIS",
+"operatingSystem":"Windows 10, Windows 11","applicationCategory":"UtilitiesApplication",
+"inLanguage":["es","en"],"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},
+"url":"https://oasislocal.github.io/O.A.S.I.S./download.html"}
+</script>
+<link rel="stylesheet" href="../assets/lang.css">
+</head>
+<body>
+<a href="#content" class="skip">Saltar al contenido</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>O.A.S.I.S.</a>
+    <nav class="links" aria-label="Principal">
+      <a href="./">Producto</a>
+      <a href="how-it-works.html">Cómo funciona</a>
+      <a href="tools.html">Herramientas</a>
+      <a href="models.html">Modelos</a>
+      <a href="privacy.html">Privacidad</a>
+      <a href="../blog/">Journal</a>
+      <a class="lang-switch" href="../download.html" lang="en" hreflang="en" data-lang-switch="en">EN</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn" aria-label="Cambiar entre modo claro y oscuro">Claro</button>
+      <a class="btn sm" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Descargar</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Móvil"><noscript><a href="download.html">Descargar</a><a href="../blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
+</header>
+
+<main id="content" class="wrap">
+  <p class="crumb"><a href="./">Inicio</a> / Descargar</p>
+  <h1>Consigue la beta. Quédate con tus datos.</h1>
+  <p class="answer"><strong>OASIS es gratis para Windows 10 y 11, sin cuenta y sin límite de tiempo.</strong> Descarga el instalador desde GitHub Releases y verifica su checksum si quieres. Instálalo, descarga un <span class="term" data-term="model">modelo</span> de IA y listo.</p>
+  <div class="ctas">
+    <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Descargar para Windows</a>
+    <a class="btn ghost" href="requirements.html">Ver requisitos</a>
+  </div>
+
+  <hr class="rule">
+  <p class="kicker">Verifica primero</p>
+  <h2>Confía, pero verifica.</h2>
+  <p>Cada versión incluye un hash <span class="term" data-term="hash">SHA256</span>. En Windows, abre un terminal y ejecuta:</p>
+  <p><code>certutil -hashfile OASIS.exe SHA256</code></p>
+  <p class="cap">Compara la salida con el hash publicado en la página de la versión. Si no coincide, no lo instales, y avísanos en <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">Incidencias</a>.</p>
+
+  <hr class="rule">
+  <p class="kicker">Plataformas</p>
+  <h2>Windows hoy. El resto está planeado.</h2>
+  <div class="tbl">
+  <table class="spec">
+<thead><tr><th scope="col">Plataforma</th><th scope="col">Estado</th><th scope="col">Notas</th></tr></thead>
+    <tbody>
+      <tr><td>Windows 10 / 11</td><td><span class="y">Disponible — beta</span></td><td>Asistente completo: voz, <span class="term" data-term="memory">memoria</span>, <span class="term" data-term="tool">herramientas</span>, <span class="term" data-term="sandbox">sandbox</span>.</td></tr>
+      <tr><td>Linux</td><td><span class="n">En la hoja de ruta</span></td><td>El trabajo de empaquetado ha empezado; aún sin fecha.</td></tr>
+      <tr><td>macOS</td><td><span class="n">En la hoja de ruta</span></td><td>Después de Linux. Los <span class="term" data-term="model">modelos</span> en sí son portables.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <hr class="rule">
+  <p class="kicker">Después de instalar</p>
+  <h2>Tres pasos hasta <span class="term" data-term="offline">sin conexión</span>.</h2>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>Abre la app</h3><p>El primer arranque sugiere un modelo acorde a tu hardware. Acéptalo o elige otro.</p></div>
+    <div class="step"><div class="n">2</div><h3>Descarga el modelo</h3><p>Una descarga con pausa y reanudación. Es lo último que necesita internet.</p></div>
+    <div class="step"><div class="n">3</div><h3>Desconecta y habla</h3><p>En serio: pruébalo con el router apagado. Chatea, dicta, pídele que recuerde algo.</p></div>
+  </div>
+  <p class="cap">Antes de empezar, asegúrate de tener: Windows 10/11 · 8 GB de <span class="term" data-term="ram">RAM</span> o más · ~10 GB libres de disco para la app y los modelos · internet solo para las descargas iniciales · <span class="term" data-term="docker">Docker</span> Desktop solo si quieres ejecución de código. Primer modelo para probar: Gemma 4 (Q4, ~4 GB).</p>
+  <p class="cap">¿Atascado? Las <a href="faq.html">preguntas frecuentes</a> cubren lo habitual; <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">Incidencias</a> cubre el resto — incluye tu versión de Windows y tu modelo.</p>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ O.A.S.I.S.</span><p>El asistente de IA que vive en tu PC. Los flujos de trabajo locales se quedan en tu PC.</p></div>
+    <div><h3 class="fth">Producto</h3><ul>
+      <li><a href="download.html">Descargar</a></li><li><a href="how-it-works.html">Cómo funciona</a></li>
+      <li><a href="requirements.html">Requisitos</a></li><li><a href="comparison.html">Comparar</a></li>
+      <li><a href="./#pricing">Precios</a></li><li><a href="features.html">Ficha técnica</a></li></ul></div>
+    <div><h3 class="fth">Recursos</h3><ul>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentación</a></li>
+      <li><a href="../blog/">Journal</a></li><li><a href="changelog.html#roadmap">Hoja de ruta</a></li>
+      <li><a href="changelog.html">Novedades</a></li></ul></div>
+    <div><h3 class="fth">Confianza y comunidad</h3><ul>
+      <li><a href="privacy.html">Privacidad</a></li><li><a href="security.html">Seguridad</a></li><li><a href="privacy-policy.html">Política de privacidad</a></li><li><a href="eula.html">EULA</a></li><li><a href="third-party-notices.html">Avisos de terceros</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Debates</a></li></ul></div>
+  </div>
+  <div class="base"><span>© O.A.S.I.S. · v0.2.0 · beta</span><span>sin trackers en esta página</span></div>
+</footer>
+<div class="sticky-cta"><a class="btn sm" href="download.html">Descargar para Windows</a></div>
+<script src="../assets/site.js"></script>
+<script src="../assets/tooltip.js"></script>
+<script src="../assets/lang.js"></script>
+</body>
+</html>

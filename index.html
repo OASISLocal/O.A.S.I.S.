@@ -474,6 +474,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
 .pbtns i, .rail .ri, .winbtns i, .apptabs i, .tool { cursor: default; }
 
 </style>
+<link rel="stylesheet" href="assets/lang.css">
 </head>
 <body>
 <a href="#content" class="skip">Skip to content</a>
@@ -488,7 +489,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
       <a href="models.html">Models</a>
       <a href="privacy.html">Privacy</a>
       <a href="blog/">Journal</a>
-      <a href="es/" lang="es" hreflang="es">ES</a>
+      <a href="es/" lang="es" hreflang="es" data-lang-switch="es">ES</a>
       <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
     </nav>
     <div style="display:flex;gap:8px;align-items:center;">
@@ -977,5 +978,6 @@ function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ 
 <script src="assets/tooltip.js"></script>
 <script src="assets/launch.js"></script>
 <div class="sticky-cta"><a class="btn sm" href="download.html">Download for Windows</a></div>
+<script src="assets/lang.js"></script>
 </body>
 </html>

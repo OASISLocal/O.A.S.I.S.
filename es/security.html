@@ -1,10 +1,135 @@
----
-layout: es
-title: Seguridad y permisos
-description: Modelo de permisos de O.A.S.I.S. para herramientas locales, acciones sensibles y código.
-en_url: /security.html
-permalink: /es/security.html
----
-<p class="crumb"><a href="{{ '/es/' | relative_url }}">Inicio</a> / Seguridad</p><h1>La IA pide permiso antes de actuar.</h1><p class="answer">Cada herramienta declara su riesgo. Las acciones de mayor impacto requieren confirmación explícita y no deben ejecutarse silenciosamente.</p>
-<table class="es-table"><thead><tr><th>Nivel</th><th>Ejemplos</th><th>Control</th></tr></thead><tbody><tr><td>Bajo</td><td>Consultar CPU, RAM o buscar archivos</td><td>Automático</td></tr><tr><td>Medio</td><td>Escribir archivos o modificar portapapeles</td><td>Permitir, denegar o preguntar</td></tr><tr><td>Alto</td><td>Ejecutar código o workflows</td><td>Confirmación</td></tr><tr><td>Crítico</td><td>Control del sistema, matar procesos o limpiar datos</td><td>Confirmación explícita cada vez</td></tr></tbody></table>
-<p class="cap">La aplicación sigue siendo software beta: revisa resultados importantes y reporta comportamientos inesperados en <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a>.</p>
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Security — How O.A.S.I.S. Handles Permisos &amp; Risk</title>
+<meta name="description" content="Cómo mantiene OASIS el control en tus manos: permisos por herramienta, confirmación obligatoria para acciones arriesgadas, sandbox de código aislado, caja fuerte local cifrada y sin telemetría por defecto.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./es/security.html">
+<link rel="alternate" hreflang="en" href="https://oasislocal.github.io/O.A.S.I.S./security.html">
+<link rel="alternate" hreflang="es" href="https://oasislocal.github.io/O.A.S.I.S./es/security.html">
+<link rel="alternate" hreflang="x-default" href="https://oasislocal.github.io/O.A.S.I.S./security.html">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Security — How OASIS Handles Permisos &amp; Risk">
+<meta property="og:description" content="Permitir, denegar o preguntar, por herramienta. Las acciones arriesgadas siempre confirman. El código se ejecuta aislado. Telemetría desactivada por defecto.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./es/security.html">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-500.woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/tooltip.css">
+<script>try{var t=localAlmacenamiento.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<link rel="stylesheet" href="../assets/lang.css">
+</head>
+<body>
+<a href="#content" class="skip">Saltar al contenido</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>O.A.S.I.S.</a>
+    <nav class="links" aria-label="Principal">
+      <a href="./">Producto</a>
+      <a href="how-it-works.html">Cómo funciona</a>
+      <a href="tools.html">Herramientas</a>
+      <a href="models.html">Modelos</a>
+      <a href="privacy.html">Privacidad</a>
+      <a href="../blog/">Journal</a>
+      <a class="lang-switch" href="../security.html" lang="en" hreflang="en" data-lang-switch="en">EN</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn">Claro</button>
+      <a class="btn sm" href="download.html">Descargar</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Móvil"><noscript><a href="download.html">Descargar</a><a href="../blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
+</header>
+
+<main id="content" tabindex="-1" class="wrap">
+  <p class="crumb"><a href="./">Inicio</a> / Seguridad</p>
+  <h1>El control sigue contigo.</h1>
+  <p class="answer"><strong>Un asistente que puede tocar tu PC tiene que demostrar que se porta bien.</strong> OASIS pasa cada acción por tres puertas: un nivel de riesgo en cada <span class="term" data-term="tool">herramienta</span>, tu <span class="term" data-term="permission">permiso</span> por herramienta y confirmación obligatoria para cualquier cosa destructiva. La <span class="term" data-term="telemetry">telemetría</span> viene desactivada. La seguridad es un objetivo de diseño, no una garantía de que cada respuesta o acción generada sea correcta.</p>
+
+  <hr class="rule">
+  <p class="kicker">Permisos</p>
+  <h2 id="permissions">Permitir, denegar o preguntar, por <span class="term" data-term="tool">herramienta</span>.</h2>
+  <p>Cada una de las más de 100 herramientas declara qué puede tocar. Tú configuras cada una en <b>permitir</b>, <b>denegar</b> o <b>preguntar cada vez</b>, en Ajustes → <span class="term" data-term="permission">Permisos</span>. El micrófono, la pantalla y los archivos tienen además sus propios interruptores generales.</p>
+  <div class="tbl">
+  <table class="spec">
+<thead><tr><th scope="col">Nivel</th><th scope="col">Herramientas de ejemplo</th><th scope="col">Comportamiento</th></tr></thead>
+    <tbody>
+      <tr><td>Low</td><td><code>system_info</code>, <code>file_search</code>, <code>wifi_info</code></td><td>Se ejecuta automáticamente</td></tr>
+      <tr><td>Medium</td><td><code>write_file</code>, <code>clipboard_control</code>, <code>open_url</code></td><td>Sigue tu ajuste por herramienta</td></tr>
+      <tr><td>High</td><td><code>code_agent</code>, <code>python_sandbox</code>, <code>run_workflow</code></td><td>Requiere confirmación</td></tr>
+      <tr><td>Critical</td><td><code>system_control</code>, <code>kill_process</code>, <code>system_cleanup</code></td><td>Confirmación explícita, cada vez</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="cap">Diez herramientas de <span class="term" data-term="high-impact">alto impacto</span> (<span class="mono">custom_command, system_control, kill_process, system_cleanup, clipboard_control, code_agent, python_sandbox, file_manager, run_workflow, git_ops</span>) nunca pueden ejecutarse en silencio, aunque un permiso diga lo contrario.</p>
+
+  <hr class="rule">
+  <p class="kicker"><span class="term" data-term="sandbox">Sandbox</span></p>
+  <h2 id="sandbox">El código se ejecuta primero en una jaula.</h2>
+  <p>El código generado se ejecuta dentro de un <span class="term" data-term="sandbox">sandbox</span> de <span class="term" data-term="docker">Docker</span> <span class="term" data-term="isolation">aislado</span> con límites de <span class="term" data-term="memory">memoria</span> y <span class="term" data-term="cpu">CPU</span>, nunca directamente en tu sistema. Revisas el diff antes de que nada de lo que produce toque tus archivos. Si te saltas Docker, la ejecución de código simplemente queda desactivada; todo lo demás sigue funcionando.</p>
+
+  <hr class="rule">
+  <p class="kicker">Almacenamiento</p>
+  <h2 id="storage"><span class="term" data-term="vault">Caja fuerte</span> <span class="term" data-term="encryption">cifrada</span>, carpeta local.</h2>
+  <p>Los secretos viven en una caja fuerte local cifrada, no en archivos de configuración. Los <span class="term" data-term="model">modelos</span>, la <span class="term" data-term="memory">memoria</span> y los ajustes viven en <code>%LOCALAPPDATA%\O.A.S.I.S.\</code>, una carpeta que puedes abrir, copiar o borrar. Un bloqueo con PIN protege las máquinas compartidas y un <span class="term" data-term="audit-log">registro de acciones</span> anota lo que hizo el asistente.</p>
+
+  <hr class="rule">
+  <p class="kicker"><span class="term" data-term="telemetry">Telemetría</span></p>
+  <h2>Desactivada salvo que digas lo contrario.</h2>
+  <p>No hay seguimiento de uso, ni informes de fallos, ni sistema de cuentas. El único canal de salida que existe es un <span class="term" data-term="webhook">webhook</span> de diagnósticos <b>opcional</b> que configuras tú. El modo de máxima privacidad es el predeterminado, no un interruptor que tengas que buscar.</p>
+
+  <hr class="rule">
+  <p class="kicker">Limitaciones conocidas</p>
+  <h2>Lo que esto no es.</h2>
+  <ul class="plain">
+    <li><b>Los niveles de riesgo clasifican herramientas, no la salida del <span class="term" data-term="model">modelo</span>.</b> El modelo aún puede equivocarse; las confirmaciones protegen las acciones, no las respuestas.</li>
+    <li><b>El sandbox necesita <span class="term" data-term="docker">Docker</span>.</b> Sin Docker, la ejecución de código simplemente no está disponible; nada más cambia.</li>
+    <li><b>Los permisos son locales.</b> Cualquiera con acceso a tu cuenta de Windows y a la carpeta de datos de la app puede cambiarlos.</li>
+    <li><b>Las herramientas de <span class="term" data-term="network">red</span> son tan fiables como su proveedor</b>: por eso son opcionales y nunca silenciosas.</li>
+    <li><b>Software en beta.</b> Informa de cualquier cosa inesperada en lugar de dar por hecho que es intencionada.</li>
+  </ul>
+
+  <hr class="rule">
+  <p class="kicker">Divulgación</p>
+  <h2>¿Has encontrado un fallo? Cuéntanoslo.</h2>
+  <p>Informa de problemas de seguridad en <a href="https://github.com/OASISLocal/O.A.S.I.S./issues" target="_blank" rel="noopener noreferrer">Incidencias de GitHub</a> — incluye tu versión de Windows, la versión de la app y los pasos para reproducirlo. Por favor, no sondees las máquinas de otras personas con ello.</p>
+  <div class="ctas">
+    <a class="btn" href="download.html">Descargar la beta</a>
+    <a class="btn ghost" href="privacy.html">Leer la página de privacidad</a>
+  </div>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ O.A.S.I.S.</span><p>El asistente de IA que vive en tu PC. Los flujos de trabajo locales se quedan en tu PC.</p></div>
+    <div><h3 class="fth">Producto</h3><ul>
+      <li><a href="download.html">Descargar</a></li><li><a href="how-it-works.html">Cómo funciona</a></li>
+      <li><a href="requirements.html">Requisitos</a></li><li><a href="comparison.html">Comparar</a></li>
+      <li><a href="./#pricing">Precios</a></li><li><a href="features.html">Ficha técnica</a></li></ul></div>
+    <div><h3 class="fth">Recursos</h3><ul>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentación</a></li>
+      <li><a href="../blog/">Journal</a></li><li><a href="changelog.html#roadmap">Hoja de ruta</a></li>
+      <li><a href="changelog.html">Novedades</a></li></ul></div>
+    <div><h3 class="fth">Confianza y comunidad</h3><ul>
+      <li><a href="privacy.html">Privacidad</a></li><li><a href="security.html">Seguridad</a></li><li><a href="privacy-policy.html">Política de privacidad</a></li><li><a href="eula.html">EULA</a></li><li><a href="third-party-notices.html">Avisos de terceros</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Debates</a></li></ul></div>
+  </div>
+  <div class="base"><span>© O.A.S.I.S. · v0.2.0 · beta</span><span>sin trackers en esta página</span></div>
+</footer>
+<script src="../assets/site.js"></script>
+<script src="../assets/tooltip.js"></script>
+<script src="../assets/lang.js"></script>
+</body>
+</html>

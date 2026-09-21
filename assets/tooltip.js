@@ -117,7 +117,9 @@
     for (var i = 0; i < els.length; i++) wire(els[i]);
   }
 
-  fetch(BASE + 'tooltips.json')
+  var DICT = (document.documentElement.getAttribute('lang') || 'en').toLowerCase().indexOf('es') === 0
+    ? 'tooltips.es.json' : 'tooltips.json';
+  fetch(BASE + DICT)
     .then(function (r) { return r.json(); })
     .then(function (json) { data = json; scan(); })
     .catch(function () { /* no dictionary: terms stay plain text */ });

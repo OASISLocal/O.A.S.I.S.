@@ -3,6 +3,7 @@
    - Overlay is built by JS, so a no-JS visitor always sees the full site.
    - Countdown reads revealDate from launch.json (same source as sync-web.ps1);
      ?date=ISO overrides it. At zero it reveals the full site automatically.
+   - Bilingual: strings follow the page language (en / es).
    - This is a preview for testing, NOT a secret: the real HTML is still in
      view-source. For a real gate, deploy the teaser/countdown shells via sync-web.ps1. */
 (function () {
@@ -13,6 +14,20 @@
 
   var SCRIPT = document.currentScript;
   var BASE = SCRIPT && SCRIPT.src ? SCRIPT.src.replace(/assets\/launch\.js.*$/, '') : '';
+  var ES = (document.documentElement.getAttribute('lang') || 'en').toLowerCase().indexOf('es') === 0;
+  var T = ES ? {
+    view: 'Ver el sitio completo', teaserAria: 'Vista previa (teaser)', countAria: 'Vista previa de la cuenta atrás',
+    teaserH: 'Algo local está en camino.',
+    teaserP: 'Un asistente de IA que vive en tu PC — sin nube, sin cuenta. Atento a esta página, o síguenos:',
+    reveal: 'O.A.S.I.S. — el lanzamiento', tba: 'Fecha por anunciar — atento al Journal.',
+    days: 'días', hours: 'horas', min: 'min', sec: 'seg'
+  } : {
+    view: 'View full site', teaserAria: 'Teaser preview', countAria: 'Countdown preview',
+    teaserH: 'Something local is coming.',
+    teaserP: 'An AI assistant that lives on your PC — no cloud, no account. Watch this space, or follow along:',
+    reveal: 'O.A.S.I.S. — the reveal', tba: 'Date to be announced — watch the Journal.',
+    days: 'days', hours: 'hours', min: 'min', sec: 'sec'
+  };
   var overlay = null, ticker = null;
 
   function lock(lock) {
@@ -26,7 +41,7 @@
   function exitLink() {
     var a = document.createElement('a');
     a.href = location.pathname;                 // drop ?mode and ?date
-    a.textContent = 'View full site';
+    a.textContent = T.view;
     var p = document.createElement('p');
     p.className = 'launch-exit';
     p.appendChild(a);
@@ -53,25 +68,25 @@
     gh.href = 'https://github.com/OASISLocal/O.A.S.I.S.';
     gh.target = '_blank'; gh.rel = 'noopener noreferrer'; gh.textContent = 'GitHub';
     var jr = document.createElement('a');
-    jr.href = 'blog/'; jr.textContent = 'Journal';
+    jr.href = ES ? '../blog/' : 'blog/'; jr.textContent = 'Journal';
     n.appendChild(gh); n.appendChild(jr);
     box.appendChild(n);
     box.appendChild(exitLink());
   }
 
   if (mode === 'teaser') {
-    var tb = build('Teaser preview');
+    var tb = build(T.teaserAria);
     tb.innerHTML = '<div class="mark" aria-hidden="true"></div>' +
-      '<h2>Something local is coming.</h2>' +
-      '<p>An AI assistant that lives on your PC — no cloud, no account. Watch this space, or follow along:</p>';
+      '<h2>' + T.teaserH + '</h2>' +
+      '<p>' + T.teaserP + '</p>';
     nav(tb);
     return;
   }
 
   /* countdown */
-  var cb = build('Countdown preview');
+  var cb = build(T.countAria);
   cb.innerHTML = '<div class="mark" aria-hidden="true"></div>' +
-    '<h2>O.A.S.I.S. — the reveal</h2><div class="cd" aria-live="polite"></div><p class="cd-date"></p>';
+    '<h2>' + T.reveal + '</h2><div class="cd" aria-live="polite"></div><p class="cd-date"></p>';
   nav(cb);
   var cd = cb.querySelector('.cd'), dd = cb.querySelector('.cd-date');
 
@@ -80,7 +95,7 @@
   function run(iso) {
     var target = new Date(iso || '');
     if (isNaN(target.getTime())) {
-      cd.innerHTML = '<p>Date to be announced — watch the Journal.</p>';
+      cd.innerHTML = '<p>' + T.tba + '</p>';
       return;
     }
     dd.textContent = target.toUTCString() + '  ·  ' + target.toLocaleString();
@@ -95,9 +110,9 @@
       var s = Math.floor(ms / 1000);
       var d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600),
           m = Math.floor(s % 3600 / 60), ss = s % 60;
-      cd.innerHTML = '<div class="cd-grid" aria-hidden="true"><div><b>' + pad(d) + '</b><span>days</span></div>' +
-        '<div><b>' + pad(h) + '</b><span>hours</span></div><div><b>' + pad(m) + '</b><span>min</span></div>' +
-        '<div><b>' + pad(ss) + '</b><span>sec</span></div></div>';
+      cd.innerHTML = '<div class="cd-grid" aria-hidden="true"><div><b>' + pad(d) + '</b><span>' + T.days + '</span></div>' +
+        '<div><b>' + pad(h) + '</b><span>' + T.hours + '</span></div><div><b>' + pad(m) + '</b><span>' + T.min + '</span></div>' +
+        '<div><b>' + pad(ss) + '</b><span>' + T.sec + '</span></div></div>';
     }
     tick();
     ticker = setInterval(tick, 1000);

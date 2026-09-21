@@ -1,8 +1,127 @@
----
-layout: es
-title: Novedades y roadmap
-description: Historial público y roadmap de O.A.S.I.S., asistente de IA local-first para Windows.
-en_url: /changelog.html
-permalink: /es/changelog.html
----
-<p class="crumb"><a href="{{ '/es/' | relative_url }}">Inicio</a> / Novedades</p><h1>Qué hay ahora y qué viene después.</h1><p class="answer"><strong>v0.2.0 está en beta pública.</strong> El roadmap es direccional, no una promesa de disponibilidad.</p><h2>Ahora</h2><ul class="plain"><li>Chat local con modelos GGUF compatibles.</li><li>Voz en español e inglés.</li><li>Memoria y documentos básicos.</li><li>Control cotidiano del PC y permisos.</li><li>100+ herramientas registradas.</li></ul><h2>Después</h2><ul class="plain"><li>Acceso anticipado de Max.</li><li>Builds para Linux y macOS.</li><li>Fundamentos de plugins y marketplace.</li><li>Más runtimes locales y workflows multiagente.</li></ul><p class="cap">Consulta el <a href="https://github.com/OASISLocal/O.A.S.I.S./blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">CHANGELOG completo</a>.</p>
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Changelog — Qué's New in O.A.S.I.S.</title>
+<meta name="description" content="Cada versión de OASIS, de la más reciente a la más antigua: qué se publicó, qué cambió y qué está en beta. El historial técnico completo vive en el CHANGELOG del repositorio.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./es/changelog.html">
+<link rel="alternate" hreflang="en" href="https://oasislocal.github.io/O.A.S.I.S./changelog.html">
+<link rel="alternate" hreflang="es" href="https://oasislocal.github.io/O.A.S.I.S./es/changelog.html">
+<link rel="alternate" hreflang="x-default" href="https://oasislocal.github.io/O.A.S.I.S./changelog.html">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Changelog — Qué's New in O.A.S.I.S.">
+<meta property="og:description" content="Historial de versiones, de la más reciente a la más antigua. Beta significa notas honestas, no marketing.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./es/changelog.html">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-500.woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/tooltip.css">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<link rel="stylesheet" href="../assets/lang.css">
+</head>
+<body>
+<a href="#content" class="skip">Saltar al contenido</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>O.A.S.I.S.</a>
+    <nav class="links" aria-label="Principal">
+      <a href="./">Producto</a>
+      <a href="how-it-works.html">Cómo funciona</a>
+      <a href="tools.html">Herramientas</a>
+      <a href="models.html">Modelos</a>
+      <a href="privacy.html">Privacidad</a>
+      <a href="../blog/">Journal</a>
+      <a class="lang-switch" href="../changelog.html" lang="en" hreflang="en" data-lang-switch="en">EN</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn" aria-label="Cambiar entre modo claro y oscuro">Claro</button>
+      <a class="btn sm" href="download.html">Descargar</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Móvil"><noscript><a href="download.html">Descargar</a><a href="../blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
+</header>
+
+<main id="content" class="wrap">
+  <p class="crumb"><a href="./">Inicio</a> / Novedades</p>
+  <h1>Lo nuevo, por orden cronológico inverso.</h1>
+  <p class="answer"><strong>OASIS está en beta pública (v0.2.0, septiembre de 2026).</strong> Esta página resume las versiones visibles para el usuario; el historial técnico exhaustivo vive en el CHANGELOG del repositorio.</p>
+
+  <hr class="rule">
+  <p class="kicker">Septiembre de 2026 · actual</p>
+  <h2>v0.2.0 — la versión Mono.</h2>
+  <ul class="plain">
+    <li><b>Mono por defecto:</b> toda la app viste ya el esquema suizo monocromo, claro y oscuro, con contraste verificado.</li>
+    <li><b>Voz que aguanta:</b> arranque del reconocimiento más rápido, filtrado de ruido adaptativo y barge-in que no se come tus palabras.</li>
+    <li><b>Bots de Discord y Telegram</b> con llamadas de voz, ajustes por <span class="term" data-term="server">servidor</span> y reconocimiento de hablante (<span class="term" data-term="max">Max</span>).</li>
+    <li><b>App Android + <span class="term" data-term="browser-extension">extensión de navegador</span></b> hablando con tu PC por la <span class="term" data-term="network">red</span> local (Max).</li>
+    <li><b><span class="term" data-term="workflow">Workflows</span> programados</b> con palabras llanas, avisos proactivos y <span class="term" data-term="sandbox">sandbox</span> de código con reintentos.</li>
+    <li><b>Repaso de accesibilidad:</b> uso solo con teclado, etiquetas para lectores de pantalla y estados de carga y error honestos en todas partes.</li>
+  </ul>
+
+  <hr class="rule">
+  <p class="kicker">Anterior</p>
+  <h2>v0.1.x — primera beta pública.</h2>
+  <ul class="plain">
+    <li><b>Chat local</b> con streaming, gestor de <span class="term" data-term="model">modelos</span> y descargas de <span class="term" data-term="hugging-face">Hugging Face</span>.</li>
+    <li><b>Voz en español</b> de entrada y salida, con <span class="term" data-term="wake-word">palabra de activación</span>.</li>
+    <li><b><span class="term" data-term="memory">Memoria</span> + documentos:</b> <span class="term" data-term="semantic-search">búsqueda semántica</span> en conversaciones, notas, PDF, Word y Excel.</li>
+    <li><b>Más de 100 <span class="term" data-term="tool">herramientas</span> del sistema</b> con <span class="term" data-term="permission">permisos</span> por herramienta y aprobación para acciones arriesgadas.</li>
+  </ul>
+  <p class="cap">Historial completo con cada arreglo: <a href="https://github.com/OASISLocal/O.A.S.I.S./blob/main/CHANGELOG.md" target="_blank" rel="noopener noreferrer">CHANGELOG.md en el repositorio →</a></p>
+  <div class="ctas">
+    <a class="btn" href="download.html">Descargar la última versión</a>
+    <a class="btn ghost" href="../blog/">Leer el blog</a>
+  </div>
+  <hr class="rule">
+  <p class="kicker">Hoja de ruta</p>
+  <h2 id="roadmap">Dónde está el proyecto.</h2>
+  <p>No toda idea es un compromiso. Esto es lo que existe, lo que viene después y lo que aún se está explorando.</p>
+  <div class="tbl">
+  <table class="spec">
+<thead><tr><th scope="col">Etapa</th><th scope="col">Qué</th></tr></thead>
+    <tbody>
+      <tr><td>Ahora</td><td>Chat local, <span class="term" data-term="model">modelos</span> <span class="term" data-term="gguf">GGUF</span>, voz en español e inglés, <span class="term" data-term="memory">memoria</span> y documentos, control del PC cotidiano, más de 100 <span class="term" data-term="tool">herramientas</span>.</td></tr>
+      <tr><td>Después</td><td>Se abre el acceso anticipado a <span class="term" data-term="max">Max</span>, versión para Linux, versión para macOS.</td></tr>
+      <tr><td>Más adelante</td><td>Bases de plugins/mercado, <span class="term" data-term="workflow">workflows</span> multi-<span class="term" data-term="agent">agente</span> y más runtimes locales.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="cap">Actualizado el 19/09/2026.</p>
+
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ O.A.S.I.S.</span><p>El asistente de IA que vive en tu PC. Los flujos de trabajo locales se quedan en tu PC.</p></div>
+    <div><h3 class="fth">Producto</h3><ul>
+      <li><a href="download.html">Descargar</a></li><li><a href="how-it-works.html">Cómo funciona</a></li>
+      <li><a href="requirements.html">Requisitos</a></li><li><a href="comparison.html">Comparar</a></li>
+      <li><a href="./#pricing">Precios</a></li><li><a href="features.html">Ficha técnica</a></li></ul></div>
+    <div><h3 class="fth">Recursos</h3><ul>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentación</a></li>
+      <li><a href="../blog/">Journal</a></li><li><a href="changelog.html#roadmap">Hoja de ruta</a></li>
+      <li><a href="changelog.html">Novedades</a></li></ul></div>
+    <div><h3 class="fth">Confianza y comunidad</h3><ul>
+      <li><a href="privacy.html">Privacidad</a></li><li><a href="security.html">Seguridad</a></li><li><a href="privacy-policy.html">Política de privacidad</a></li><li><a href="eula.html">EULA</a></li><li><a href="third-party-notices.html">Avisos de terceros</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Debates</a></li></ul></div>
+  </div>
+  <div class="base"><span>© O.A.S.I.S. · v0.2.0 · beta</span><span>sin trackers en esta página</span></div>
+</footer>
+<div class="sticky-cta"><a class="btn sm" href="download.html">Descargar para Windows</a></div>
+<script src="../assets/site.js"></script>
+<script src="../assets/tooltip.js"></script>
+<script src="../assets/lang.js"></script>
+</body>
+</html>

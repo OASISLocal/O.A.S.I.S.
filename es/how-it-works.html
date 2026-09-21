@@ -1,10 +1,155 @@
----
-layout: es
-title: Cómo funciona O.A.S.I.S.
-description: Arquitectura local-first de O.A.S.I.S.: modelo, contexto, herramientas, permisos y resultados.
-en_url: /how-it-works.html
-permalink: /es/how-it-works.html
----
-<p class="crumb"><a href="{{ '/es/' | relative_url }}">Inicio</a> / Cómo funciona</p><h1>Modelo local, contexto y herramientas.</h1><p class="answer">O.A.S.I.S. convierte una petición en una secuencia revisable: entiende, selecciona una herramienta, comprueba permisos, actúa y devuelve el resultado.</p>
-<div class="es-grid"><article class="es-card"><h3>1 · Contexto</h3><p>Usa tu petición y el contexto local que autorices: conversación, memoria o documentos.</p></article><article class="es-card"><h3>2 · Herramienta</h3><p>El modelo propone una operación concreta, no acceso ilimitado al sistema.</p></article><article class="es-card"><h3>3 · Permiso</h3><p>La capa de permisos determina si la operación puede ejecutarse automáticamente o necesita confirmación.</p></article></div>
-<hr class="rule"><h2>Local y externo</h2><p>Chat, memoria, documentos, voz y control local pueden funcionar en tu PC sin internet tras descargar el modelo. Búsqueda web, páginas online e integraciones externas requieren red.</p><div class="ctas"><a class="btn" href="{{ '/es/download.html' | relative_url }}">Descargar Personal</a><a class="btn ghost" href="{{ '/es/security.html' | relative_url }}">Ver permisos</a></div>
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Cómo funciona O.A.S.I.S. — IA local en tu PC</title>
+<meta name="description" content="Descubre cómo O.A.S.I.S. combina modelos locales compatibles, contexto, herramientas y permisos. Las funciones locales se ejecutan en tu PC; las de red son opcionales y explícitas.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html">
+<link rel="alternate" hreflang="en" href="https://oasislocal.github.io/O.A.S.I.S./how-it-works.html">
+<link rel="alternate" hreflang="es" href="https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html">
+<link rel="alternate" hreflang="x-default" href="https://oasislocal.github.io/O.A.S.I.S./how-it-works.html">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cómo funciona O.A.S.I.S. — IA local-first en tu PC">
+<meta property="og:description" content="Tu voz, un modelo de IA local y 100 herramientas de PC, todo dentro de una caja con tu ordenador escrito encima. Local por defecto.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-500.woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/tooltip.css">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<link rel="stylesheet" href="../assets/lang.css">
+</head>
+<body>
+<a href="#content" class="skip">Saltar al contenido</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>O.A.S.I.S.</a>
+    <nav class="links" aria-label="Principal">
+      <a href="./">Producto</a>
+      <a href="how-it-works.html" aria-current="page">Cómo funciona</a>
+      <a href="tools.html">Herramientas</a>
+      <a href="models.html">Modelos</a>
+      <a href="privacy.html">Privacidad</a>
+      <a href="../blog/">Journal</a>
+      <a class="lang-switch" href="../how-it-works.html" lang="en" hreflang="en" data-lang-switch="en">EN</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn" aria-label="Cambiar entre modo claro y oscuro">Claro</button>
+      <a class="btn sm" href="download.html">Descargar</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Móvil"><noscript><a href="download.html">Descargar</a><a href="../blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
+</header>
+
+<main id="content" class="wrap">
+  <p class="crumb"><a href="./">Inicio</a> / Cómo funciona</p>
+  <h1>Todo ocurre dentro de esta caja.</h1>
+  <p class="answer"><strong>Un <span class="term" data-term="local-ai">asistente de IA local</span> es un programa que ejecuta su <span class="term" data-term="model">modelo</span> de IA en tu propio hardware en lugar de llamar a un <span class="term" data-term="server">servidor</span>.</strong> Con OASIS, tus palabras se transcriben en tu PC, las entiende un modelo guardado en tu disco y las responde unas <span class="term" data-term="tool">herramientas</span> que viven en tu máquina. Internet solo hace falta para descargar la app y un modelo; después, es opcional.</p>
+
+  <div class="mock" role="img" aria-label="Diagrama: tu petición pasa por reconocimiento de voz en el dispositivo, un modelo de IA local, memoria y herramientas de PC, todo dentro de tu ordenador">
+    <div class="mock-bar"><span>flujo local · 0 llamadas externas</span><span>red: sin usar</span></div>
+    <div class="mock-body">
+    <svg class="diagram" viewBox="0 0 720 360" role="presentation">
+      <rect x="8" y="8" width="704" height="344" fill="none" style="stroke:var(--strong)" stroke-width="2" stroke-dasharray="8 6"/>
+      <text x="24" y="36" font-size="11" letter-spacing="2" style="fill:var(--ink-3)">YOUR PC — LOCAL BY DEFAULT</text>
+      <g font-size="12">
+        <rect x="16" y="120" width="110" height="64" fill="none" style="stroke:var(--strong)" stroke-width="1.5"/>
+        <text x="30" y="146" style="fill:var(--ink)">You</text>
+        <text x="30" y="164" font-size="10" style="fill:var(--ink-3)">voice / text</text>
+        <rect x="142" y="120" width="110" height="64" fill="none" style="stroke:var(--strong)" stroke-width="1.5"/>
+        <text x="156" y="146" style="fill:var(--ink)">Ears</text>
+        <text x="156" y="164" font-size="10" style="fill:var(--ink-3)">on-device</text>
+        <rect x="268" y="120" width="120" height="64" fill="none" style="stroke:var(--strong)" stroke-width="1.5"/>
+        <text x="282" y="146" style="fill:var(--ink)">Router</text>
+        <text x="282" y="164" font-size="10" style="fill:var(--ink-3)">picks tools</text>
+        <rect x="404" y="120" width="120" height="64" fill="none" style="stroke:var(--strong)" stroke-width="2"/>
+        <text x="418" y="146" style="fill:var(--ink)">Model</text>
+        <text x="418" y="164" font-size="10" style="fill:var(--ink-3)">on your disk</text>
+        <rect x="540" y="120" width="164" height="64" fill="none" style="stroke:var(--strong)" stroke-width="1.5"/>
+        <text x="554" y="146" style="fill:var(--ink)">Files + PC tools</text>
+        <text x="554" y="164" font-size="10" style="fill:var(--ink-3)">100 tools, local</text>
+        <rect x="404" y="232" width="120" height="60" fill="none" style="stroke:var(--ink-3)" stroke-width="1"/>
+        <text x="418" y="256" style="fill:var(--ink)">Memory</text>
+        <text x="418" y="274" font-size="10" style="fill:var(--ink-3)">notes · docs</text>
+        <rect x="540" y="232" width="164" height="60" fill="none" style="stroke:var(--ink-3)" stroke-width="1" stroke-dasharray="5 4"/>
+        <text x="554" y="256" style="fill:var(--ink)">Web tools</text>
+        <text x="554" y="274" font-size="10" style="fill:var(--ink-3)">only if you ask</text>
+      </g>
+      <g style="stroke:var(--ink-3)" stroke-width="1.5">
+        <line x1="126" y1="152" x2="142" y2="152"/>
+        <line x1="252" y1="152" x2="268" y2="152"/>
+        <line x1="388" y1="152" x2="404" y2="152"/>
+        <line x1="524" y1="152" x2="540" y2="152"/>
+        <line x1="464" y1="184" x2="464" y2="232"/>
+        <line x1="622" y1="184" x2="622" y2="232"/>
+      </g>
+      <text x="24" y="336" font-size="11" style="fill:var(--ink-3)">internet: app + model downloads first. afterwards, only the tools you choose.</text>
+    </svg>
+    </div>
+  </div>
+  <p class="cap">Simplificado, pero honesto: no hay ningún paso de sincronización oculto. El componente servidor escucha solo en <span class="term" data-term="localhost">localhost</span>.</p>
+
+  <hr class="rule">
+  <p class="kicker">Paso a paso</p>
+  <h2 id="voice">Qué pasa cuando hablas.</h2>
+  <div class="block">
+    <h3>1. Tu PC escucha en local.</h3>
+    <p>Pulsa para hablar o di la <span class="term" data-term="wake-word">palabra de activación</span>. El flujo del micrófono va a un reconocedor <span class="term" data-term="on-device">en el dispositivo</span>, nunca a una <span class="term" data-term="api">API</span> de transcripción. El ruido de fondo se filtra; puedes interrumpir la respuesta a mitad de frase y se detiene, como haría una persona.</p>
+    <h3 id="agent">2. Un <span class="term" data-term="model">modelo</span> en tu disco piensa.</h3>
+    <p>El texto llega a un modelo de IA abierto (Llama, Gemma, Qwen y compañía) que se ejecuta en local. Lee la conversación, consulta su <span class="term" data-term="memory">memoria</span> sobre ti y decide: responder directamente o usar una <span class="term" data-term="tool">herramienta</span>. Los modelos pequeños responden rápido en <span class="term" data-term="cpu">CPU</span>; los grandes van mejor con una <span class="term" data-term="gpu">GPU</span>.</p>
+    <h3>3. Manos, no solo palabras.</h3>
+    <p>Cuando hace falta actuar, el modelo llama a una de las más de 100 herramientas declaradas: poner un temporizador, bajar el volumen, leer un PDF, ejecutar código en un <span class="term" data-term="sandbox">sandbox</span> <span class="term" data-term="isolation">aislado</span>. Las herramientas arriesgadas (borrar, apagar, ejecutar) se detienen antes para pedir tu aprobación explícita.</p>
+    <h3 id="memory">4. Recuerda, en tu disco.</h3>
+    <p>Los intercambios, las notas y los documentos caen en una <span class="term" data-term="database">base de datos</span> local con <span class="term" data-term="semantic-search">búsqueda semántica</span>, de modo que «ese total de la luz de la primavera pasada» se recupera meses después. Borra por elemento, por tipo o por archivo cuando quieras.</p>
+  </div>
+
+  <hr class="rule">
+  <p class="kicker">Confianza, en lo técnico</p>
+  <h2>Cómo puedes verificar todo esto.</h2>
+  <ul class="plain">
+    <li><b>Desenchufa para comprobarlo.</b> Con un modelo descargado, todo lo anterior sigue funcionando <span class="term" data-term="offline">sin conexión</span>. Esa es toda la prueba.</li>
+    <li><b>Vigila la <span class="term" data-term="network">red</span>.</b> El <span class="term" data-term="server">servidor</span> de la app se enlaza a <span class="term" data-term="localhost">localhost</span>; no hay sistema de cuentas al que llamar a casa.</li>
+    <li><b>Abre la carpeta.</b> Los modelos, la <span class="term" data-term="memory">memoria</span> y los ajustes viven en <code>%LOCALAPPDATA%\O.A.S.I.S.\</code>, archivos normales que puedes inspeccionar.</li>
+    <li><b>Lee las rutas del código.</b> Los <span class="term" data-term="permission">permisos</span> por herramienta, un <span class="term" data-term="audit-log">registro de acciones</span> y una <span class="term" data-term="vault">caja fuerte</span> local <span class="term" data-term="encryption">cifrada</span> están en la app hoy, no en una diapositiva de hoja de ruta.</li>
+  </ul>
+  <div class="ctas">
+    <a class="btn" href="download.html">Descargar la beta</a>
+    <a class="btn ghost" href="requirements.html">Ver requisitos</a>
+  </div>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ O.A.S.I.S.</span><p>El asistente de IA que vive en tu PC. Los flujos de trabajo locales se quedan en tu PC.</p></div>
+    <div><h3 class="fth">Producto</h3><ul>
+      <li><a href="download.html">Descargar</a></li><li><a href="how-it-works.html">Cómo funciona</a></li>
+      <li><a href="requirements.html">Requisitos</a></li><li><a href="comparison.html">Comparar</a></li>
+      <li><a href="./#pricing">Precios</a></li><li><a href="features.html">Ficha técnica</a></li></ul></div>
+    <div><h3 class="fth">Recursos</h3><ul>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentación</a></li>
+      <li><a href="../blog/">Journal</a></li><li><a href="changelog.html#roadmap">Hoja de ruta</a></li>
+      <li><a href="changelog.html">Novedades</a></li></ul></div>
+    <div><h3 class="fth">Confianza y comunidad</h3><ul>
+      <li><a href="privacy.html">Privacidad</a></li><li><a href="security.html">Seguridad</a></li><li><a href="privacy-policy.html">Política de privacidad</a></li><li><a href="eula.html">EULA</a></li><li><a href="third-party-notices.html">Avisos de terceros</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Debates</a></li></ul></div>
+  </div>
+  <div class="base"><span>© O.A.S.I.S. · v0.2.0 · beta</span><span>sin trackers en esta página</span></div>
+</footer>
+<div class="sticky-cta"><a class="btn sm" href="download.html">Descargar para Windows</a></div>
+<script src="../assets/site.js"></script>
+<script src="../assets/tooltip.js"></script>
+<script src="../assets/lang.js"></script>
+</body>
+</html>

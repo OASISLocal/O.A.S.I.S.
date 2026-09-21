@@ -1,0 +1,23 @@
+[
+ "Light",
+ "<b>404</b> not found",
+ "This page left the PC. <strong>Everything else is one click away.</strong> Type below to filter the whole site:",
+ "<a href=\"./\">Home <span>start here</span></a>",
+ "<a href=\"tools.html\">Tour <span>capabilities</span></a>",
+ "<a href=\"how-it-works.html\">How it works <span>data flow</span></a>",
+ "<a href=\"requirements.html\">Requirements <span>check your PC</span></a>",
+ "<a href=\"download.html\">Download <span>free beta</span></a>",
+ "<a href=\"comparison.html\">Compare <span>vs alternatives</span></a>",
+ "<a href=\"./#pricing\">Pricing <span>free + Max</span></a>",
+ "<a href=\"faq.html\">FAQ <span>answers</span></a>",
+ "<a href=\"features.html\">Spec sheet <span>no adjectives</span></a>",
+ "<a href=\"blog/\">Blog <span>notes</span></a>",
+ "<a href=\"changelog.html\">Changelog <span>versions</span></a>",
+ "<a href=\"about.html\">About <span>humans</span></a>",
+ "<a href=\"privacy.html\">Privacy <span>no trackers</span></a>",
+ "<a href=\"privacy-policy.html\">Privacy Policy</a>",
+ "<a href=\"eula.html\">EULA</a>",
+ "<a href=\"third-party-notices.html\">Third-party notices</a>",
+ "<a href=\"https://github.com/OASISLocal/O.A.S.I.S.\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub <span>code</span></a>",
+ "Nothing matches — try “download”, “price” or “blog”. Or <a href=\"./\">go home</a>."
+]

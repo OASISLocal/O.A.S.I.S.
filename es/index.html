@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>O.A.S.I.S. — El asistente de IA que vive en tu PC</title>
+<meta name="description" content="O.A.S.I.S. es un asistente de IA local-first y gratuito para Windows. Usa modelos locales compatibles con archivos, documentos, voz, memoria y herramientas de PC cotidianas. Las funciones de red son opcionales.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./es/">
+<link rel="alternate" hreflang="en" href="https://oasislocal.github.io/O.A.S.I.S./">
+<link rel="alternate" hreflang="es" href="https://oasislocal.github.io/O.A.S.I.S./es/">
+<link rel="alternate" hreflang="x-default" href="https://oasislocal.github.io/O.A.S.I.S./">
+<meta name="theme-color" content="#111111">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="O.A.S.I.S. — El asistente de IA que vive en tu PC">
+<meta property="og:description" content="Habla or type in Spanish or English. O.A.S.I.S. works with compatible local models, files, documents, memory and everyday PC tools. Network features are optional.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./es/">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "SoftwareApplication",
+"name": "O.A.S.I.S.",
+"operatingSystem": "Windows 10, Windows 11",
+"applicationCategory": "UtilitiesApplication",
+"inLanguage": ["es", "en"],
+"offers": { "@type": "Offer", "name": "OASIS Personal", "price": "0", "priceCurrency": "EUR" },
+"url": "https://oasislocal.github.io/O.A.S.I.S./",
+"description": "A free local-first AI assistant for Windows with compatible local models, chat, voice, memory, documents and everyday PC tools."
+}
+</script>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-500.woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/tooltip.css">
+<link rel="stylesheet" href="../assets/launch.css">
+<style>
+:root, :root[data-theme="dark"] {
+  --bg: #111111; --surface: #161616; --panel: #1c1c1c; --hover: #242424;
+  --ink: #ffffff; --ink-2: #c9c9c9; --ink-3: #8f8f8f;
+  --line: rgba(255,255,255,0.16); --strong: #ffffff;
+  --display: 'Space Grotesk', 'Inter', sans-serif;
+  --body: 'Inter', -apple-system, sans-serif;
+  --mono: 'Space Mono', 'IBM Plex Mono', monospace;
+  --code: 'IBM Plex Mono', monospace;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #f7f7f5; --surface: #ffffff; --panel: #f2f2ef; --hover: #ebebe7;
+  --ink: #111111; --ink-2: #3f3f3c; --ink-3: #595959;
+  --line: rgba(17,17,17,0.18); --strong: #111111;
+  color-scheme: light;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink-2); font-family: var(--body); font-size: 16.5px; line-height: 1.7; -webkit-font-smoothing: antialiased; transition: background-color .25s, color .25s; }
+::selection { background: var(--ink); color: var(--bg); }
+/* Inverted elements (dark bubble/button on light page and vice versa):
+   the default selection would be invisible, so flip it here. */
+.msg.user::selection, .btn::selection, .cbox button::selection, .announce b::selection { background: var(--bg); color: var(--ink); }
+a { color: var(--ink); }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.skip { position: absolute; top: -100px; left: 16px; z-index: 99; background: var(--ink); color: var(--bg); font-weight: 600; font-size: 14px; padding: 10px 18px; text-decoration: none; }
+.skip:focus { top: 8px; }
+code { font-family: var(--code); font-size: .85em; background: var(--panel); border: 1px solid var(--line); padding: 1px 6px; color: var(--ink-2); }
+
+/* ---------- Bar ---------- */
+.top { border-bottom: 2px solid var(--strong); background: var(--surface); position: sticky; top: 0; z-index: 50; }
+.top-in { max-width: 1160px; margin: 0 auto; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.brand { font-family: var(--display); font-weight: 700; font-size: 21px; letter-spacing: -.03em; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 9px; }
+.brand i { width: 18px; height: 18px; border: 2px solid var(--strong); display: block; }
+.brand small { font-family: var(--mono); font-weight: 400; font-size: 10px; color: var(--ink-3); border: 1px solid var(--line); padding: 2px 7px; }
+.top nav { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; }
+.top nav a { font-size: 13.5px; color: var(--ink-2); text-decoration: none; padding: 7px 11px; border: 1px solid transparent; }
+.top nav a:hover { color: var(--ink); border-color: var(--line); }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; font-size: 14.5px; font-weight: 600; font-family: var(--body); text-decoration: none; border: 1px solid var(--strong); cursor: pointer; background: var(--ink); color: var(--bg); }
+.btn:hover { background: transparent; color: var(--ink); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--bg); }
+.btn.sm { padding: 8px 15px; font-size: 13px; }
+#theme-btn { font-family: var(--mono); font-size: 11px; background: none; border: 1px solid var(--strong); color: var(--ink); padding: 8px 11px; cursor: pointer; }
+#theme-btn:hover { background: var(--ink); color: var(--bg); }
+#burger { display: none; background: none; border: 1px solid var(--strong); width: 38px; height: 38px; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 5px; }
+#burger span { display: block; width: 16px; height: 2px; background: var(--ink); }
+.top nav.mnav { display: none; border-top: 1px solid var(--strong); background: var(--surface); padding: 6px 24px 16px; }
+.top nav.mnav.open { display: block; }
+.mnav a { display: block; color: var(--ink-2); text-decoration: none; font-size: 15px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+
+/* ---------- Hero ---------- */
+.hero { max-width: 1160px; margin: 0 auto; padding: 76px 24px 0; }
+.kicker { font-family: var(--mono); font-size: 12px; color: var(--ink-3); margin-bottom: 14px; }
+.kicker b { color: var(--ink); font-weight: 400; border: 1px solid var(--strong); padding: 3px 9px; margin-right: 10px; }
+h1 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; line-height: 1.0; color: var(--ink); font-size: clamp(44px, 6.4vw, 84px); max-width: 15ch; }
+.lede { font-size: 19px; max-width: 62ch; margin-top: 20px; }
+.lede strong { color: var(--ink); font-weight: 600; }
+.ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.fine { font-size: 13.5px; color: var(--ink-3); margin-top: 16px; }
+.proof { display: flex; gap: 0; margin-top: 26px; border: 1px solid var(--strong); width: fit-content; max-width: 100%; flex-wrap: wrap; }
+.proof span { font-family: var(--mono); font-size: 11px; color: var(--ink-2); padding: 9px 15px; border-right: 1px solid var(--line); }
+.proof span:last-child { border-right: none; }
+.proof a { text-decoration: none; }
+.proof a:hover { text-decoration: underline; }
+
+/* ---------- App window ---------- */
+.appwin { border: 2px solid var(--strong); background: var(--surface); margin-top: 44px; }
+.appwin-bar { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; border-bottom: 2px solid var(--strong); font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+.sq { display: flex; gap: 6px; }
+.sq i { width: 10px; height: 10px; border: 1px solid var(--ink-3); display: block; }
+.sq i:first-child { background: var(--ink); border-color: var(--ink); }
+.appwin-cols { display: grid; grid-template-columns: 190px 1fr; min-height: 420px; }
+.rail { border-right: 1px solid var(--strong); padding: 14px 10px; display: flex; flex-direction: column; gap: 2px; }
+.rail .rl { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); padding: 0 8px 8px; }
+.rail .ri { font-size: 13px; color: var(--ink-2); padding: 8px; border-left: 2px solid transparent; display: block; cursor: default; }
+.rail .ri.on { color: var(--ink); background: var(--hover); border-left-color: var(--strong); }
+.rail .ver { margin-top: auto; font-family: var(--mono); font-size: 10px; color: var(--ink-3); padding: 8px; }
+.stage { display: flex; flex-direction: column; min-width: 0; }
+.toolbar { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.modelpill { font-family: var(--code); font-size: 12px; color: var(--ink); border: 1px solid var(--strong); padding: 5px 11px; }
+.tool { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); border: 1px solid var(--line); padding: 5px 10px; }
+.tool.live { color: var(--ink); border-color: var(--strong); }
+.chat { padding: 20px 22px; display: flex; flex-direction: column; gap: 16px; }
+.msg { max-width: 82%; font-size: 14.5px; line-height: 1.6; }
+.msg small { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); display: block; margin-bottom: 5px; }
+.msg.user { align-self: flex-end; background: var(--ink); color: var(--bg); padding: 11px 14px; }
+.msg.user small { color: inherit; opacity: .6; }
+.msg.ai { align-self: flex-start; background: var(--panel); border: 1px solid var(--line); border-left: 2px solid var(--strong); padding: 11px 14px; color: var(--ink-2); }
+.msg.ai b { color: var(--ink); }
+.cbox { margin: 0 22px 6px; border: 1px solid var(--strong); display: flex; }
+.cbox input { flex: 1; background: transparent; border: none; color: var(--ink-2); caret-color: var(--ink); font: 14px var(--body); padding: 13px 14px; min-width: 0; }
+.cbox button { background: var(--ink); color: var(--bg); border: none; font: 600 13px var(--body); padding: 0 20px; cursor: pointer; }
+.statusbar { margin-top: auto; border-top: 1px solid var(--line); padding: 8px 16px; display: flex; gap: 18px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); flex-wrap: wrap; }
+.statusbar b { color: var(--ink); font-weight: 400; }
+.cap { font-size: 13.5px; color: var(--ink-3); margin-top: 12px; }
+
+/* ---------- Sections ---------- */
+.sec { max-width: 1160px; margin: 0 auto; padding: 88px 24px 0; }
+.sec-head { border-top: 2px solid var(--strong); padding-top: 16px; margin-bottom: 36px; max-width: 780px; }
+.sec-head h2 { font-family: var(--display); font-weight: 700; letter-spacing: -.025em; color: var(--ink); font-size: clamp(28px, 3.6vw, 42px); line-height: 1.05; margin: 8px 0 10px; }
+.sec-head p { font-size: 16.5px; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.split.flip > div:first-child { order: 2; }
+.split h3 { font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -.02em; color: var(--ink); margin-bottom: 10px; }
+.tagmax { font-family: var(--mono); font-size: 10px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--strong); padding: 2px 7px; vertical-align: 3px; color: var(--ink); }
+.pdem { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.pdem .mock { margin-top: 0; }
+@media (max-width: 760px) { .pdem { grid-template-columns: 1fr; } }
+.split p { font-size: 15.5px; margin-bottom: 12px; }
+.check { list-style: none; margin-top: 14px; }
+.check li { font-size: 14.5px; padding: 9px 0 9px 24px; position: relative; border-bottom: 1px solid var(--line); }
+.check li:last-child { border-bottom: none; }
+.check li::before { content: '+'; position: absolute; left: 2px; color: var(--ink); font-family: var(--mono); }
+.check li b { color: var(--ink); font-weight: 600; }
+@media (max-width: 900px) { .split { grid-template-columns: 1fr; gap: 28px; } .split.flip > div:first-child { order: 0; } }
+
+/* Small mocks */
+.mock { border: 2px solid var(--strong); background: var(--surface); }
+.mock-bar { display: flex; justify-content: space-between; padding: 8px 13px; border-bottom: 1px solid var(--strong); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); }
+.mock-body { padding: 16px; font-size: 13.5px; }
+.mrow { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+.mrow:last-child { border-bottom: none; }
+.mrow .nm { font-family: var(--code); font-size: 12.5px; color: var(--ink); }
+.mrow .tag { font-family: var(--mono); font-size: 10px; color: var(--ink-3); text-transform: uppercase; }
+.prog { height: 8px; border: 1px solid var(--strong); margin-top: 7px; position: relative; }
+.prog i { position: absolute; inset: 1px auto 1px 1px; background: var(--ink); display: block; }
+.wave { display: flex; align-items: flex-end; gap: 4px; height: 56px; margin: 6px 0 10px; }
+.wave i { flex: 1; background: var(--ink-3); display: block; min-height: 4px; }
+.wave i.hot { background: var(--ink); }
+.fact { border: 1px solid var(--line); border-left: 2px solid var(--strong); padding: 9px 12px; margin-bottom: 8px; font-size: 13px; }
+.fact span { font-family: var(--mono); font-size: 10px; color: var(--ink-3); display: block; text-transform: uppercase; }
+.diff { font-family: var(--code); font-size: 12.5px; }
+.diff div { padding: 5px 10px; border-bottom: 1px solid var(--line); }
+.diff .add { background: var(--hover); color: var(--ink); }
+.diff .del { color: var(--ink-3); text-decoration: line-through; }
+.diff .h { color: var(--ink-3); }
+.flow { display: flex; align-items: stretch; gap: 0; font-size: 12.5px; }
+.flow div { border: 1px solid var(--strong); padding: 10px 12px; flex: 1; }
+.flow div + div { border-left: none; }
+.flow span { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; color: var(--ink-3); display: block; }
+.flow b { color: var(--ink); }
+.shot { border: 1px solid var(--line); background: var(--panel); height: 120px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; margin-bottom: 10px; }
+.shot i { background: var(--hover); display: block; }
+.shot i:nth-child(2) { background: var(--surface); }
+.log { font-family: var(--code); font-size: 12px; color: var(--ink-2); }
+.log div { padding: 4px 0; border-bottom: 1px dotted var(--line); }
+.log div:last-child { border-bottom: none; }
+.dchat { background: var(--panel); border: 1px solid var(--line); padding: 10px 12px; font-size: 13px; margin-bottom: 8px; }
+.dchat b { color: var(--ink); }
+.dchat span { font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
+
+/* What-else long list (long-tail) */
+.else { border: 2px solid var(--strong); background: var(--surface); padding: 30px 32px; font-size: 17px; line-height: 1.9; max-width: 880px; }
+.else b { color: var(--ink); }
+
+/* Tool groups */
+.groups { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--strong); }
+.groups > div { padding: 22px; border-right: 1px solid var(--strong); }
+.groups > div:nth-child(3n) { border-right: none; }
+.groups > div:nth-child(-n+3) { border-bottom: 1px solid var(--strong); }
+.groups > div:nth-last-child(-n+3) { border-bottom: none; }
+.groups h3 { font-family: var(--mono); font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 12px; }
+.groups ul { list-style: none; }
+.groups li { font-size: 14px; padding: 6px 0; border-bottom: 1px solid var(--line); color: var(--ink-2); }
+.groups li code { font-size: 12px; }
+.groups li:last-child { border-bottom: none; }
+@media (max-width: 800px) { .groups { grid-template-columns: 1fr; } .groups > div { border-right: none; border-bottom: 1px solid var(--strong); } .groups > div:last-child { border-bottom: none; } }
+
+/* Models strip */
+.fams { display: flex; flex-wrap: wrap; gap: 0; border: 2px solid var(--strong); margin-top: 20px; }
+.fams div { padding: 16px 20px; border-right: 1px solid var(--line); flex: 1 1 150px; }
+.fams div:last-child { border-right: none; }
+.fams b { display: block; color: var(--ink); font-size: 16px; }
+.fams span { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+
+/* Steps */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--strong); }
+.step { padding: 26px 24px; border-right: 1px solid var(--strong); }
+.step:last-child { border-right: none; }
+.step .n { font-family: var(--display); font-size: 34px; font-weight: 700; color: var(--ink); line-height: 1; }
+.step h3 { font-size: 16px; color: var(--ink); margin: 10px 0 6px; }
+.step p { font-size: 14px; }
+@media (max-width: 800px) { .steps { grid-template-columns: 1fr; } .step { border-right: none; border-bottom: 1px solid var(--strong); } .step:last-child { border-bottom: none; } }
+
+/* Comparison */
+.vs { width: 100%; border-collapse: collapse; border: 2px solid var(--strong); background: var(--surface); max-width: 780px; }
+.vs th, .vs td { padding: 12px 18px; font-size: 14px; border-bottom: 1px solid var(--line); text-align: center; }
+.vs th:first-child, .vs td:first-child { text-align: left; color: var(--ink-2); font-weight: 500; }
+.vs thead th { font-family: var(--mono); font-size: 10px; font-weight: 400; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); border-bottom: 1px solid var(--strong); }
+.vs thead th.us { color: var(--ink); background: var(--hover); }
+.vs tbody tr:last-child td { border-bottom: none; }
+.y { color: var(--ink); font-weight: 700; }
+.n { color: var(--ink-3); }
+
+/* Prices */
+.prices { display: grid; grid-template-columns: 1fr 1fr; border: 2px solid var(--strong); }
+.price { padding: 30px 28px; }
+.price:first-child { border-right: 1px solid var(--strong); }
+.price.hot { background: var(--surface); }
+.price .pn { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); }
+.price.hot .pn { color: var(--ink); }
+.price .pt { font-family: var(--display); font-size: 34px; font-weight: 700; letter-spacing: -.03em; color: var(--ink); margin: 8px 0 2px; }
+.price .pt small { font-size: 14px; font-family: var(--body); font-weight: 400; color: var(--ink-3); letter-spacing: 0; }
+.price ul { list-style: none; margin: 18px 0 22px; }
+.price li { font-size: 14px; padding: 8px 0 8px 22px; position: relative; border-bottom: 1px solid var(--line); }
+.price li:last-child { border-bottom: none; }
+.price li::before { content: '+'; position: absolute; left: 2px; font-family: var(--mono); color: var(--ink); }
+@media (max-width: 800px) { .prices { grid-template-columns: 1fr; } .price:first-child { border-right: none; border-bottom: 1px solid var(--strong); } }
+
+/* FAQ */
+.faq { max-width: 780px; border-top: 2px solid var(--strong); }
+.faq details { border-bottom: 1px solid var(--strong); }
+.faq summary { cursor: pointer; padding: 18px 30px 18px 4px; font-weight: 600; font-size: 16px; color: var(--ink); list-style: none; display: block; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; font-family: var(--mono); color: var(--ink-3); position: absolute; right: 4px; top: 50%; transform: translateY(-50%); }
+.faq details[open] summary::after { content: '–'; color: var(--ink); }
+.faq details p { padding: 0 4px 20px; font-size: 15px; }
+
+/* Status + blog */
+.rm { display: grid; grid-template-columns: 1fr 1fr; border: 2px solid var(--strong); max-width: 780px; }
+.rm.rm3 { grid-template-columns: repeat(3, 1fr); max-width: 100%; }
+.rm.rm3 > div:first-child { border-right: 1px solid var(--strong); }
+.rm.rm3 > div { border-right: 1px solid var(--strong); }
+.rm.rm3 > div:last-child { border-right: none; }
+@media (max-width: 760px) { .rm.rm3 { grid-template-columns: 1fr; } .rm.rm3 > div { border-right: none; border-bottom: 1px solid var(--strong); } .rm.rm3 > div:last-child { border-bottom: none; } }
+.rm > div { padding: 24px; }
+.rm > div:first-child { border-right: 1px solid var(--strong); }
+.rm h3 { font-family: var(--mono); font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 10px; }
+.rm ul { list-style: none; }
+.rm li { font-size: 14.5px; padding: 7px 0 7px 22px; position: relative; }
+.rm li::before { content: '—'; position: absolute; left: 0; color: var(--ink-3); }
+@media (max-width: 640px) { .rm { grid-template-columns: 1fr; } .rm > div:first-child { border-right: none; border-bottom: 1px solid var(--strong); } }
+.blogindex { list-style: none; margin-top: 22px; border-top: 2px solid var(--strong); max-width: 780px; }
+.blogindex li { border-bottom: 1px solid var(--line); }
+.blogindex a { display: flex; justify-content: space-between; gap: 16px; padding: 15px 0; text-decoration: none; }
+.blogindex a:hover .t { text-decoration: underline; }
+.blogindex .t { color: var(--ink); font-weight: 600; font-size: 16.5px; }
+.blogindex .d { font-family: var(--mono); font-size: 12px; color: var(--ink-3); white-space: nowrap; }
+#blog-empty { font-size: 14px; color: var(--ink-3); padding: 14px 0; border-bottom: 1px solid var(--line); }
+
+/* Closer + footer */
+.closer { border: 2px solid var(--strong); background: var(--surface); margin-top: 88px; padding: 56px 32px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 36px; align-items: center; }
+.closer h2 { font-family: var(--display); font-size: clamp(30px, 4vw, 48px); font-weight: 700; letter-spacing: -.03em; line-height: 1.02; color: var(--ink); margin-bottom: 14px; }
+.kv { border: 1px solid var(--strong); background: var(--bg); }
+.kv div { display: flex; justify-content: space-between; padding: 11px 16px; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); }
+.kv div:last-child { border-bottom: none; }
+.kv b { color: var(--ink); font-weight: 400; }
+/* Waitlist form */
+.wl-row { display: flex; gap: 0; border: 1px solid var(--strong); }
+.wl-row input[type="email"] { flex: 1; min-width: 0; background: transparent; border: none; color: var(--ink); caret-color: var(--ink); font: 15px var(--body); padding: 13px 14px; }
+.wl-row input[type="email"]::placeholder { color: var(--ink-3); }
+.wl-row .btn { border: none; border-left: 1px solid var(--strong); white-space: nowrap; }
+.wl-checks { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 14px; font-size: 14px; }
+.wl-checks { border: 0; padding: 0; min-width: 0; }
+.wl-checks legend { font-size: 14px; color: var(--ink-3); margin-bottom: 6px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.wl-checks label { display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--ink-2); }
+.wl-checks input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--ink); cursor: pointer; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+#wl-status { margin-top: 12px; }
+@media (max-width: 480px) { .wl-row { flex-wrap: wrap; } .wl-row .btn { flex: 1 1 100%; justify-content: center; border-left: none; border-top: 1px solid var(--strong); } }
+@media (max-width: 800px) { .closer { grid-template-columns: 1fr; } }
+footer { border-top: 2px solid var(--strong); margin-top: 72px; }
+.foot { max-width: 1160px; margin: 0 auto; padding: 48px 24px 30px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; }
+.foot h3.fth { font-family: var(--mono); font-size: 11px; font-weight: 400; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); margin-bottom: 14px; }
+.foot ul { list-style: none; }
+.foot li { margin-bottom: 9px; }
+.foot a { color: var(--ink-2); text-decoration: none; font-size: 14px; }
+.foot a:hover { color: var(--ink); text-decoration: underline; }
+.foot .fb { font-family: var(--display); font-size: 23px; font-weight: 700; color: var(--ink); letter-spacing: -.03em; display: block; margin-bottom: 8px; }
+.foot p { font-size: 13.5px; }
+.base { max-width: 1160px; margin: 0 auto; padding: 16px 24px 26px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-3); border-top: 1px solid var(--line); }
+@media (max-width: 800px) { .foot { grid-template-columns: 1fr; } }
+/* ---------- Hero pro ---------- */
+.announce { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12px; color: var(--ink-2); text-decoration: none; border: 1px solid var(--strong); padding: 7px 14px; margin-bottom: 22px; background: var(--surface); }
+.announce:hover { background: var(--hover); color: var(--ink); }
+.announce b { font-weight: 400; background: var(--ink); color: var(--bg); padding: 1px 8px; white-space: nowrap; flex-shrink: 0; }
+.btn svg { flex-shrink: 0; }
+.winbtns { display: flex; gap: 0; }
+.winbtns i { width: 34px; height: 26px; display: flex; align-items: center; justify-content: center; font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--ink-3); border-left: 1px solid var(--line); }
+.winbtns i:last-child:hover { background: var(--ink); color: var(--bg); }
+.rail .ri { display: flex; align-items: center; gap: 9px; }
+.rail .ri svg { flex-shrink: 0; }
+.tcard { border: 1px solid var(--line); margin-top: 9px; font-size: 12.5px; }
+.tcard header { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); padding: 6px 10px; border-bottom: 1px solid var(--line); }
+.tcard div { padding: 6px 10px; border-bottom: 1px dotted var(--line); font-family: var(--code); font-size: 12px; }
+.tcard div:last-child { border-bottom: none; }
+.tcard .ok { color: var(--ink); float: right; }
+.cite { font-family: var(--mono); font-size: 10px; border: 1px solid var(--strong); color: var(--ink); padding: 0 5px; margin: 0 1px; white-space: nowrap; }
+/* Agent cycle: six steps, one loop */
+.cycle { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--strong); }
+.cycle > div { padding: 20px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.cycle > div:nth-child(3n) { border-right: none; }
+.cycle > div:nth-last-child(-n+3) { border-bottom: none; }
+.cycle span { font-family: var(--display); font-size: 26px; font-weight: 700; color: var(--ink); display: block; line-height: 1; margin-bottom: 8px; }
+.cycle b { color: var(--ink); font-size: 15.5px; }
+.cycle p { font-size: 13.5px; color: var(--ink-3); margin-top: 4px; }
+@media (max-width: 700px) { .cycle { grid-template-columns: 1fr 1fr; } .cycle > div:nth-child(3n) { border-right: 1px solid var(--line); } .cycle > div:nth-child(2n) { border-right: none; } .cycle > div:nth-last-child(-n+3) { border-bottom: 1px solid var(--line); } .cycle > div:nth-last-child(-n+2) { border-bottom: none; } }
+@media (max-width: 480px) { .cycle { grid-template-columns: 1fr; } .cycle > div { border-right: none !important; } .cycle > div:last-child { border-bottom: none !important; } }
+.cursor { display: inline-block; width: 8px; height: 15px; background: var(--ink); vertical-align: -2px; margin-left: 2px; animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+/* Staged agent demo: hidden only when JS stages it; plays on scroll into view */
+.demo { display: flex; flex-direction: column; gap: 8px; align-self: flex-start; max-width: 82%; }
+.dstep { background: var(--panel); border: 1px solid var(--line); border-left: 2px solid var(--strong); padding: 9px 13px; font-size: 13px; color: var(--ink-2); }
+.dstep span { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); display: block; }
+.dstep b { color: var(--ink); font-weight: 600; }
+.dstep.perm { border-color: var(--strong); }
+.pbtns { display: flex; gap: 8px; margin-top: 8px; }
+.pbtns i { font-style: normal; font-family: var(--mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; border: 1px solid var(--strong); padding: 5px 12px; color: var(--ink); }
+.pbtns i:first-child { background: var(--ink); color: var(--bg); }
+.demo.staged .dstep { opacity: 0; transform: translateY(8px); }
+.demo.staged.play .dstep { opacity: 1; transform: none; transition: opacity .45s ease var(--d, 0s), transform .45s ease var(--d, 0s); }
+.cbox button.mic { background: transparent; color: var(--ink-2); border-left: 1px solid var(--line); padding: 0 13px; display: flex; align-items: center; }
+.cbox button.mic:hover { color: var(--ink); }
+kbd { font-family: var(--mono); font-size: 10.5px; border: 1px solid var(--line); border-bottom-width: 2px; padding: 1px 6px; color: var(--ink-2); background: var(--panel); white-space: nowrap; }
+/* App window reads as a window: tab strip left, title center, controls right */
+.apptabs { display: flex; gap: 0; }
+.apptabs i { font-style: normal; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); padding: 6px 13px; border: 1px solid var(--line); border-left: none; }
+.apptabs i:first-child { border-left: 1px solid var(--line); }
+.apptabs i.on { color: var(--ink); border-color: var(--strong); background: var(--panel); }
+.appwin-title { color: var(--ink-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 640px) { .appwin-title { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .cursor { animation: none; opacity: 1; }
+  .demo.staged .dstep { opacity: 1; transform: none; }
+}
+@media (max-width: 1100px) { .top nav.links { display: none; } #burger { display: flex; } .appwin-cols { grid-template-columns: 1fr; } .rail { display: none; } }
+
+/* ============ Responsive: phones, tablets, odd ratios ============ */
+html, body { overflow-x: clip; }
+body { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+img, svg, video, canvas, table.spec, table.vs, pre { max-width: 100%; }
+pre { overflow-x: auto; }
+code, a { overflow-wrap: anywhere; }
+:target, [id] { scroll-margin-top: 76px; }
+@supports (padding: max(0px)) {
+  .top-in, .hero, .sec, .foot, .base {
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
+  }
+}
+.tbl { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 26px; }
+.tbl table.vs { margin-top: 0; min-width: 520px; }
+.sticky-cta { display: none; }
+@media (max-width: 700px) {
+  .sticky-cta { display: block; position: fixed; bottom: 0; left: 0; right: 0; z-index: 60; background: var(--surface); border-top: 2px solid var(--strong); padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); }
+  .sticky-cta .btn { width: 100%; justify-content: center; }
+  body { padding-bottom: 84px; }
+  .hero { padding-top: 56px; }
+  .sec { padding-top: 64px; }
+  .chat { padding: 16px 14px; }
+  .msg { max-width: 94%; }
+  .cbox { margin: 0 14px 6px; }
+  .cbox button { padding: 0 14px; }
+  .flow { flex-wrap: wrap; }
+  .flow div { min-width: 150px; }
+  .proof { width: 100%; }
+  .proof span { flex: 1 1 40%; border-bottom: 1px solid var(--line); }
+}
+@media (max-width: 480px) {
+  h1 { font-size: clamp(34px, 11vw, 46px); }
+  .top-in { flex-wrap: wrap; row-gap: 8px; padding-top: 10px; padding-bottom: 10px; }
+  .lede { font-size: 17px; }
+  .ctas .btn { flex: 1 1 100%; justify-content: center; }
+  .price .pt { font-size: 32px; }
+  .step .n { font-size: 34px; }
+  .appwin { margin-top: 30px; }
+  .appwin-bar { padding: 8px 10px; }
+  .toolbar { padding: 8px 10px; gap: 6px; }
+  .statusbar { gap: 8px 12px; padding: 8px 12px; }
+  .chat { padding: 14px 12px; gap: 12px; }
+  .msg { max-width: 100%; font-size: 14px; }
+  .cbox { margin: 0 12px 6px; }
+  .cbox input { padding: 12px 12px; }
+  .cbox button { padding: 0 12px; }
+}
+/* iOS zooms when a focused field is under 16px */
+@media (pointer: coarse) {
+  .cbox input, .wl-row input[type="email"], #wl-email { font-size: 16px; }
+}
+@media (pointer: coarse) {
+  .mnav a { min-height: 44px; display: flex; align-items: center; }
+  .btn.sm, #theme-btn, #burger { min-height: 44px; }
+  .faq summary { padding-top: 20px; padding-bottom: 20px; }
+  .top nav a { padding-top: 10px; padding-bottom: 10px; }
+}
+@media (max-height: 540px) and (min-width: 700px) {
+  .hero { padding-top: 40px; }
+}
+
+/* Home: cards, badges, offline strip */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); border: 2px solid var(--strong); }
+.cards > div { padding: 24px 22px; border-right: 1px solid var(--strong); }
+.cards > div:nth-child(3n) { border-right: none; }
+.cards > div:nth-child(-n+3) { border-bottom: 1px solid var(--strong); }
+.cards > div:nth-last-child(-n+3) { border-bottom: none; }
+.cards h3 { font-family: var(--display); font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 8px; letter-spacing: -.01em; }
+.cards p { font-size: 14.5px; color: var(--ink-3); margin-bottom: 12px; }
+.cards .more { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--strong); padding-bottom: 2px; }
+.cards .more:hover { background: var(--ink); color: var(--bg); }
+@media (max-width: 800px) { .cards { grid-template-columns: 1fr; } .cards > div { border-right: none; border-bottom: 1px solid var(--strong); } .cards > div:last-child { border-bottom: none; } }
+.badge-max { font-family: var(--mono); font-size: 9px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--strong); padding: 2px 6px; vertical-align: 3px; color: var(--ink); }
+.badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.badges span { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; border: 1px solid var(--line); padding: 5px 11px; color: var(--ink-3); }
+.badges span.on { border-color: var(--strong); color: var(--ink); }
+.offline { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); border: 2px solid var(--strong); margin-top: 20px; }
+.offline div { padding: 14px 16px; border-right: 1px solid var(--line); font-size: 14.5px; color: var(--ink); display: flex; justify-content: space-between; gap: 10px; }
+.offline div:last-child { border-right: none; }
+.offline div i { font-style: normal; color: var(--ink); }
+.offline div.off { color: var(--ink-3); }
+.offline div.off i { color: var(--ink-3); }
+/* Text cursor (I-beam) ------------------------------------------------------
+   Windows can draw the default I-beam in white (dark-mode cursor schemes),
+   which vanishes on a near-white page. CSS cannot recolour the OS cursor, so
+   text areas use a small inline SVG I-beam: ink stem + paper halo in light
+   mode, inverted in dark mode. Falls back to the native `text` cursor where
+   SVG cursors are unsupported. Remove this block to hand cursors back to the OS. */
+:root, :root[data-theme="dark"] { --ibeam: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%3E%3Cpath%20d='M8%202.5v11M6%202.5h4M6%2013.5h4'%20fill='none'%20stroke='%23111111'%20stroke-width='4'%20stroke-linecap='round'/%3E%3Cpath%20d='M8%202.5v11M6%202.5h4M6%2013.5h4'%20fill='none'%20stroke='%23ffffff'%20stroke-width='1.6'%20stroke-linecap='round'/%3E%3C/svg%3E") 8 8, text; }
+:root[data-theme="light"] { --ibeam: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%3E%3Cpath%20d='M8%202.5v11M6%202.5h4M6%2013.5h4'%20fill='none'%20stroke='%23f7f7f5'%20stroke-width='4'%20stroke-linecap='round'/%3E%3Cpath%20d='M8%202.5v11M6%202.5h4M6%2013.5h4'%20fill='none'%20stroke='%23111111'%20stroke-width='1.6'%20stroke-linecap='round'/%3E%3C/svg%3E") 8 8, text; }
+p, li, td, th, h1, h2, h3, h4, dt, dd, blockquote, figcaption, pre,
+.answer, .cap, .fine, .small, .else, .fact, .log, .dchat, .msg, .tcard,
+.kv, .prose, .statusbar, .modelpill, .mock-body, .groups li, .price li {
+  cursor: var(--ibeam);
+}
+input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]),
+textarea, [contenteditable="true"] { cursor: var(--ibeam); }
+/* Interactive controls keep their own cursor */
+a, a *, button, button *, summary, label, select, option,
+input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; }
+.pbtns i, .rail .ri, .winbtns i, .apptabs i, .tool { cursor: default; }
+
+</style>
+<link rel="stylesheet" href="../assets/lang.css">
+</head>
+<body>
+<a href="#content" class="skip">Saltar al contenido</a>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>O.A.S.I.S.</a>
+    <nav class="links" aria-label="Principal">
+      <a href="./" aria-current="page">Producto</a>
+      <a href="how-it-works.html">Cómo funciona</a>
+      <a href="tools.html">Herramientas</a>
+      <a href="models.html">Modelos</a>
+      <a href="privacy.html">Privacidad</a>
+      <a href="../blog/">Journal</a>
+      <a class="lang-switch" href="../" lang="en" hreflang="en" data-lang-switch="en">EN</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn" aria-label="Cambiar entre modo claro y oscuro">Claro</button>
+      <a class="btn sm" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Descargar</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Móvil"><noscript><a href="download.html">Descargar</a><a href="../blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
+</header>
+
+<main id="content" tabindex="-1">
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <a class="announce" href="changelog.html"><b>NUEVO</b> v0.2.0 — la versión Mono · Ver las novedades →</a>
+  <h1>El asistente de IA que vive en tu PC.</h1>
+  <p class="lede">O.A.S.I.S. es un asistente local-first para Windows para archivos, documentos, voz, memoria y tareas cotidianas del PC: <strong>se ejecuta en tu propio ordenador cuando es compatible</strong>.</p>
+  <div class="ctas">
+    <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.5 4.5V11H3zM11.5 4.3 21 3v8H11.5zM3 12h7.5v6.5L3 17.5zM11.5 12H21v8l-9.5-1.3z"/></svg>Descargar Personal</a>
+    <a class="btn ghost" href="privacy.html">Ver privacidad y permisos</a>
+  </div>
+    <p class="fine">Beta gratis · Windows 10/11 · Sin cuenta · <a href="download.html">Verifica el hash SHA256</a></p>
+  <div class="proof">
+    <span><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">★<b id="star-count"></b> en GitHub</a></span>
+    <span><a href="privacy.html">Local-first</a></span>
+    <span><a href="security.html">Permisos visible</a></span>
+    <span><a href="changelog.html">Hoja de ruta pública</a></span>
+  </div>
+
+
+
+<!-- ============ DEMO ============ -->
+<section class="sec" id="demo">
+  <div class="sec-head">
+    <p class="kicker">Una petición, hecha</p>
+    <h2>Actúaúa, no solo responde.</h2>
+    <p>«Busca mis facturas de la luz, calcula mi total del T2 y guarda un resumen.»</p>
+  </div>
+  <div class="appwin" role="img" aria-label="La app OASIS: navegación lateral, selector de modelo, chat con llamadas a herramientas y fuentes citadas, entrada de comandos y barra de estado local">
+    <div class="appwin-bar"><span class="apptabs" aria-hidden="true"><i class="on">Chat</i><i>Modelos</i></span><span class="appwin-title" aria-hidden="true">OASIS · motor local</span><span class="winbtns" aria-hidden="true"><i>—</i><i>▢</i><i>✕</i></span></div>
+    <div class="appwin-cols">
+      <div class="rail" aria-hidden="true">
+        <span class="rl">Espacio</span>
+        <span class="ri on"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H9l-5 4z"/></svg>Chat</span>
+        <span class="ri"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12L4 7.5M12 12v9"/></svg>Modelos</span>
+        <span class="ri"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>Memoria</span>
+        <span class="ri"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.5 8 10.5 16M16.5 8 13.5 16M8.5 6h7"/></svg>Workflows</span>
+        <span class="ri"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>Ajustes</span>
+        <div class="ver">v0.2.0 · sin conexión</div>
+      </div>
+      <div class="stage">
+        <div class="toolbar" aria-hidden="true">
+          <span class="modelpill">Modelo local</span>
+          <span class="tool live">texto</span><span class="tool">voz</span><span class="tool">visión</span>
+          
+        </div>
+        <div class="chat">
+          <div class="msg user"><small>tú</small>Busca mis facturas de la luz, calcula mi total del T2 y guarda un resumen.</div>
+          <div class="demo" id="hero-demo">
+            <div class="dstep" style="--d:.1s"><span>Buscando archivos…</span><b>17 documentos encontrados</b></div>
+            <div class="dstep" style="--d:.7s"><span>Leyendo facturas del T2…</span><b>3 documentos</b></div>
+            <div class="dstep" style="--d:1.3s"><span>Calculando…</span><b>184,20 €</b></div>
+            <div class="dstep perm" style="--d:1.9s"><span>Permiso necesario</span><b>¿Crear resumen.pdf?</b><span class="pbtns"><i>Permitir</i><i>Cancelar</i></span></div>
+            <div class="dstep done" style="--d:2.5s"><span>Hecho.</span><b>Guardado en local.</b></div>
+          </div>
+        </div>
+        <div class="cbox" aria-hidden="true"><input value="baja el volumen, me meto en una llamada" readonly tabindex="-1"><button class="mic" tabindex="-1"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button><button tabindex="-1">Enviar</button></div>
+        <div class="statusbar" aria-hidden="true"><span>motor <b>local</b></span><span>red <b>sin usar</b></span><span>memoria <b>activa</b></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="badges">
+    <span class="on">Local</span><span>Red sin usar</span><span>Memoria activa</span><span><span class="term" data-term="permission">Permiso</span> necesario</span>
+  </div>
+  <p class="cap">Las cifras son ejemplos ilustrativos, no benchmarks. <a href="how-it-works.html">Ver cómo funciona →</a></p>
+</section>
+
+<!-- ============ AGENT CYCLE ============ -->
+<section class="sec">
+  <div class="sec-head">
+    <p class="kicker">Cómo piensa</p>
+    <h2>No es un chatbot. Es un bucle de <span class="term" data-term="agent">agente</span>.</h2>
+    <p>Cada petición recorre los mismos seis pasos. El paso 3 marca la diferencia: OASIS pregunta antes de actuar.</p>
+  </div>
+  <div class="cycle">
+    <div><span>1</span><b>Entiende</b><p>Interpreta lo que pediste, con tus palabras.</p></div>
+    <div><span>2</span><b>Elige</b><p>Elige la <span class="term" data-term="tool">herramienta</span> que necesita la tarea.</p></div>
+    <div><span>3</span><b>Preguntar</b><p>Pide <span class="term" data-term="permission">permiso</span> cuando importa.</p></div>
+    <div><span>4</span><b>Actúa</b><p>Ejecuta la acción en tu PC.</p></div>
+    <div><span>5</span><b>Verifica</b><p>Comprueba que el resultado tenga sentido.</p></div>
+    <div><span>6</span><b>Responde</b><p>Respondee con fuentes.</p></div>
+  </div>
+  <p class="cap"><a href="how-it-works.html">Lee el resumen técnico →</a></p>
+</section>
+
+<!-- ============ WHAT CAN IT DO ============ -->
+<section class="sec" id="does">
+  <div class="sec-head">
+    <p class="kicker">¿Qué puede hacer?</p>
+    <h2>Seis tareas cotidianas, resueltas en local.</h2>
+  </div>
+  <div class="cards">
+    <div><h3>Voz</h3><p>Habla con naturalidad y recibe respuestas habladas.</p><a class="more" href="how-it-works.html#voice">Más →</a></div>
+    <div><h3>Archivos y documentos</h3><p>Encuentra, lee y organiza archivos en tu PC.</p><a class="more" href="tools.html#files">Más →</a></div>
+    <div><h3><span class="term" data-term="memory">Memoria</span></h3><p>Recuerda cosas útiles entre conversaciones.</p><a class="more" href="how-it-works.html#memory">Más →</a></div>
+    <div><h3>Control del PC</h3><p>Controla las partes compatibles de tu ordenador cuando lo pidas.</p><a class="more" href="tools.html#pc">Más →</a></div>
+    <div><h3>Programación <span class="badge-max"><span class="term" data-term="max">Max</span></span></h3><p>Obtén explicaciones de código en Personal; los flujos completos de programación son Max.</p><a class="more" href="tools.html#code">Más →</a></div>
+    <div><h3>Automatización <span class="badge-max"><span class="term" data-term="max">Max</span></span></h3><p>Deja que O.A.S.I.S. se encargue de las tareas recurrentes.</p><a class="more" href="tools.html#automate">Más →</a></div>
+  </div>
+</section>
+
+<!-- ============ CONTROL ============ -->
+<section class="sec" id="control">
+  <div class="sec-head">
+    <p class="kicker">Diseñado en torno a tu control</p>
+    <h2>Local. Atento. Con permisos.</h2>
+  </div>
+  <div class="cards">
+    <div><h3>Local-first</h3><p>Las funciones locales se ejecutan en tu PC. Las funciones con red se comunican al exterior solo cuando las usas o las configuras.</p><a class="more" href="privacy.html">Ver el modelo de privacidad →</a></div>
+    <div><h3>Memoria</h3><p>La información útil sigue disponible entre conversaciones, encontrada por <span class="term" data-term="semantic-search">búsqueda semántica</span> en lugar de por palabras exactas.</p><a class="more" href="how-it-works.html#memory">Cómo funciona la memoria →</a></div>
+    <div><h3>Permisos</h3><p>Pregunta antes de las acciones que necesitan tu aprobación. Cada <span class="term" data-term="permission">permiso</span> es tuyo y puedes cambiarlo.</p><a class="more" href="security.html">Ver el modelo de seguridad →</a></div>
+  </div>
+</section>
+
+<!-- ============ TOOLS ============ -->
+<section class="sec" id="tools">
+  <div class="sec-head">
+    <p class="kicker"><span class="term" data-term="tool">Herramientas</span></p>
+    <h2>Una caja de herramientas, no solo un chatbot.</h2>
+    <p>Más de 100 herramientas repartidas en seis áreas de tu PC. Cada una declara qué puede tocar y pregunta antes de actuar.</p>
+  </div>
+  <div class="cards">
+    <div><h3>PC</h3><p>Apps, ventanas, volumen, sistema.</p><a class="more" href="tools.html#pc">Explorar →</a></div>
+    <div><h3>Archivos</h3><p>Buscar, leer, organizar, documentos.</p><a class="more" href="tools.html#files">Explorar →</a></div>
+    <div><h3>Código</h3><p>Explica código en Personal; Max añade programación y <span class="term" data-term="workflow">workflows</span> con <span class="term" data-term="sandbox">sandbox</span>.</p><a class="more" href="tools.html#code">Explorar →</a></div>
+    <div><h3>Web</h3><p>Busca y abre páginas cuando lo pidas.</p><a class="more" href="tools.html#connect">Explorar →</a></div>
+    <div><h3>Memoria</h3><p>Notas, datos y documentos.</p><a class="more" href="tools.html#remember">Explorar →</a></div>
+    <div><h3>Automatización</h3><p>Temporizadores, recordatorios, rutinas.</p><a class="more" href="tools.html#automate">Explorar →</a></div>
+  </div>
+  <p class="cap">Incluye <span class="term" data-term="tool-server">servidores de herramientas</span> externos vía <span class="term" data-term="mcp">MCP</span>, el protocolo usado para conectar sistemas de IA con herramientas externas.</p>
+</section>
+
+<!-- ============ SECURITY ============ -->
+<section class="sec" id="permissions">
+  <div class="sec-head">
+    <p class="kicker">Seguridad</p>
+    <h2>Tu IA debería preguntar antes de actuar.</h2>
+    <p>Distintas acciones tienen distintos niveles de permiso. Las acciones de <span class="term" data-term="high-impact">alto impacto</span> requieren confirmación.</p>
+  </div>
+  <div class="tbl" style="margin-top:0;">
+  <table class="vs">
+    <thead><tr><th scope="col">Acción</th><th scope="col">Qué pasa</th></tr></thead>
+    <tbody>
+      <tr><td>Leer un archivo</td><td>Automático</td></tr>
+      <tr><td>Escribir un archivo</td><td>Preguntar</td></tr>
+      <tr><td>Ejecutar código</td><td>Confirmar — dentro de un <span class="term" data-term="sandbox">sandbox</span></td></tr>
+      <tr><td>Borrar archivos</td><td>Confirmar cada vez</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="cap"><a href="security.html">Ver el modelo de seguridad →</a></p>
+</section>
+
+<!-- ============ MODELS ============ -->
+<section class="sec" id="models">
+  <div class="sec-head">
+    <p class="kicker"><span class="term" data-term="model">Modelos</span> y hardware</p>
+    <h2>Elige el modelo que encaje con tu PC.</h2>
+    <p>O.A.S.I.S. admite modelos <span class="term" data-term="gguf">GGUF</span> compatibles de varias familias. Elige uno al configurar y cámbialo cuando quieras.</p>
+  </div>
+  <div class="fams">
+    <div><b>Llama</b><span>todo terreno</span></div>
+    <div><b>Gemma</b><span>inicio recomendado</span></div>
+    <div><b>Qwen</b><span>el más ligero</span></div>
+    <div><b>DeepSeek</b><span>razonamiento</span></div>
+    <div><b>Phi</b><span>PCs modestos</span></div>
+    <div><b>Mistral</b><span>+ más</span></div>
+  </div>
+  <p class="cap"><a href="models.html">Ver modelos compatibles →</a></p>
+
+  <h2 style="margin-top:56px; font-size:clamp(24px,3.2vw,32px); font-family:var(--display); letter-spacing:-.02em; color:var(--ink);">Empieza con el hardware que tienes.</h2>
+  <div class="offline" style="margin-top:18px;">
+    <div><span><span class="term" data-term="cpu">CPU</span></span><i>Funciona</i></div>
+    <div><span>NVIDIA <span class="term" data-term="gpu">GPU</span></span><i>Más rápido</i></div>
+    <div><span>Más memoria &amp; <span class="term" data-term="vram">VRAM</span></span><i>Modelos mayores</i></div>
+  </div>
+  <p class="cap"><a href="requirements.html">Ver requisitos de hardware →</a></p>
+</section>
+
+<!-- ============ DOWNLOAD ============ -->
+<section class="sec" id="download">
+  <div class="sec-head">
+    <p class="kicker">Descargar</p>
+    <h2>Empieza en unos 10 minutos.</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>Instala la app</h3><p>Desde GitHub Releases, para Windows 10/11. Verifica el <span class="term" data-term="hash">SHA256</span> si eres meticuloso: <code>certutil -hashfile OASIS.exe SHA256</code>.</p></div>
+    <div class="step"><div class="n">2</div><h3>Descarga un modelo</h3><p>En la pestaña Modelos, elige un perfil compatible como Gemma o Qwen. La descarga necesita acceso a la red.</p></div>
+    <div class="step"><div class="n">3</div><h3>Habla</h3><p>Escribe o pulsa para hablar. Pídele que ordene Descargas, explique un error o ponga un recordatorio.</p></div>
+  </div>
+  <p class="cap">Requisitos: Windows 10/11 · cualquier <span class="term" data-term="cpu">CPU</span> moderna (<span class="term" data-term="gpu">GPU</span> NVIDIA recomendada, no obligatoria) · <span class="term" data-term="docker">Docker</span> solo si quieres que ejecute código. <a href="download.html">Guía de instalación →</a></p>
+  <div class="ctas" style="margin-top:26px;">
+    <a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Descargar the beta</a>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="sec" id="pricing">
+  <div class="sec-head">
+    <p class="kicker">Precios</p>
+    <h2>Gratis. Y un pago si quieres más.</h2>
+    <p>Sin suscripciones, sin límites por mensaje, sin peajes por modelo.</p>
+  </div>
+  <div class="prices">
+    <div class="price">
+      <div class="pn">OASIS <span class="term" data-term="personal">Personal</span></div>
+      <div class="pt">Gratis</div>
+      <p class="fine">Para siempre. Sin cuenta.</p>
+      <ul>
+        <li>Chat y voz, sin límites de mensajes</li>
+        <li>Tú eliges los modelos de IA</li>
+        <li>Memoria y documentos</li>
+        <li>Control del PC cotidiano</li>
+        <li>Proyectos (hasta 3)</li>
+      </ul>
+      <a class="btn ghost" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Descargar free</a>
+    </div>
+    <div class="price hot">
+      <div class="pn">O.A.S.I.S. Max · acceso anticipado</div>
+      <div class="pt">€15 <small>pago único → 25 € en la 1.0</small></div>
+      <p class="fine">Un pago, acceso de por vida.</p>
+      <ul>
+        <li>Todo lo de Personal, y además:</li>
+        <li><span class="term" data-term="vision">Visión</span> y análisis de pantalla</li>
+        <li>Programación completa y <span class="term" data-term="sandbox">sandbox</span> <span class="term" data-term="isolation">aislado</span></li>
+        <li><span class="term" data-term="workflow">Workflows</span> y automatizaciones programadas</li>
+        <li><span class="term" data-term="tool-server">Servidores de herramientas</span> externos (<span class="term" data-term="mcp">MCP</span>)</li>
+        <li>Discord y Telegram con voz</li>
+        <li>App Android y <span class="term" data-term="browser-extension">extensión de navegador</span></li>
+        <li><span class="term" data-term="voice-cloning">Clonación de voz</span> y voz avanzada</li>
+        <li>Memoria avanzada (sin límites) y mapa semántico de archivos</li>
+      </ul>
+      <a class="btn" href="#early-access">Apuntarse a la lista</a>
+    </div>
+  </div>
+    <p class="cap"><a href="pricing.html">Comparar los planes completos →</a></p>
+</section>
+
+<!-- ============ EARLY ACCESS ============ -->
+<section class="sec" id="early-access">
+  <div class="sec-head">
+    <p class="kicker">Acceso anticipado</p>
+    <h2>Max aún no está a la venta. Ponte en la cola.</h2>
+  <p>Un correo cuando Max, Linux o macOS estén listos, el que marques. Sin boletín, sin spam, sin cuenta. Solo guardamos tu dirección, tus elecciones y la fecha de alta.</p>
+  </div>
+  <div class="mock">
+    <div class="mock-bar"><span>lista · un correo cuando esté listo</span><span id="wl-state">idle</span></div>
+    <div class="mock-body">
+      <form id="wl-form" novalidate>
+        <div class="wl-row">
+          <label class="sr-only" for="wl-email">Correo electrónico</label>
+          <input id="wl-email" type="email" name="email" inputmode="email" enterkeyhint="done" placeholder="you@example.com" aria-describedby="wl-privacy" autocomplete="email" required>
+          <button class="btn" type="submit" id="wl-btn">Avísame</button>
+        </div>
+        <fieldset class="wl-checks">
+          <legend>Me interesa</legend>
+          <label><input type="checkbox" name="interest" value="max" checked> Acceso anticipado a Max</label>
+          <label><input type="checkbox" name="interest" value="linux"> Versión para Linux</label>
+          <label><input type="checkbox" name="interest" value="macos"> Versión para macOS</label>
+        </fieldset>
+        <p class="cap" id="wl-privacy">Solo un correo. Guardamos tu dirección y tus elecciones en Cloudflare KV. <a href="privacy.html#waitlist">Privacidad y eliminación</a>.</p>
+        <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="cap" id="wl-status" role="status" aria-live="polite" hidden></p>
+        <noscript><p class="cap">¿Sin JavaScript? Escribe a <a href="mailto:hello@oasislocal.dev?subject=Waitlist">hello@oasislocal.dev</a> con «waitlist» y qué estás esperando.</p></noscript>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec" id="faq">
+  <div class="sec-head">
+    <p class="kicker">Preguntas</p>
+    <h2>Lo que pregunta la gente antes de instalar.</h2>
+  </div>
+  <div class="faq">
+    <details><summary>¿De verdad funciona <span class="term" data-term="offline">sin conexión</span>?</summary><p>El chat local, la voz, la memoria y otros <span class="term" data-term="workflow">flujos de trabajo</span> locales siguen funcionando sin conexión a internet una vez instalados los modelos. Funciones como la búsqueda web, el tiempo y las <span class="term" data-term="integration">integraciones</span> externas necesitan acceso a la <span class="term" data-term="network">red</span> cuando las usas: <span class="term" data-term="offline-first">offline-first</span>, no ciegos a la red.</p></details>
+    <details><summary>¿Mis archivos salen de mi ordenador?</summary><p>No. Sin <span class="term" data-term="telemetry">telemetría</span>, sin cuentas, sin <span class="term" data-term="analytics">analítica</span>. Tus cosas viven en una carpeta local, el <span class="term" data-term="server">servidor</span> escucha solo en <span class="term" data-term="localhost">localhost</span> y cada herramienta tiene su propio interruptor de permiso en Ajustes.</p></details>
+    <details><summary>¿Qué PC necesito?</summary><p>Cualquier CPU moderna ejecuta modelos pequeños. Una GPU NVIDIA de 4&nbsp;GB o más lo hace mucho más ágil. <span class="term" data-term="docker">Docker</span> Desktop solo hace falta si quieres que ejecute código en un sandbox.</p></details>
+    <details><summary>¿Y Mac o Linux?</summary><p>Todavía no: solo Windows 10/11. Linux y macOS están en la hoja de ruta, y el instalador ya prepara compilaciones por plataforma.</p></details>
+    <details><summary>¿Max es una suscripción?</summary><p>No, y todavía no hay nada que pagar. Max será un pago único (15 € en acceso anticipado, 25 € en la 1.0), nunca una suscripción. <a href="#early-access">Apúntate a la lista</a> y te enviaremos un correo cuando abra.</p></details>
+    <details><summary>¿Qué pasa cuando una acción es peligrosa?</summary><p>Se detiene y pregunta. Borrar archivos, apagar o ejecutar código siempre requiere tu confirmación explícita; las herramientas de <span class="term" data-term="high-impact">alto impacto</span> nunca pueden ejecutarse en silencio. <a href="#permissions">Cómo funcionan los permisos →</a></p></details>
+  </div>
+</section>
+
+  <div class="closer">
+    <div>
+      <h2>Tu IA puede vivir en tu PC.</h2>
+      <p class="fine">Beta gratis. Windows 10/11. Sin cuenta. <span class="term" data-term="local-first">Local-first</span>: las funciones de red son opcionales.</p>
+      <div class="ctas"><a class="btn" href="https://github.com/OASISLocal/O.A.S.I.S./releases/latest" target="_blank" rel="noopener noreferrer">Descargar O.A.S.I.S.</a><a class="btn ghost" href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">Ver GitHub</a></div>
+    </div>
+    <div class="kv">
+      <div><span>Plan</span><b><span class="term" data-term="personal">Personal</span>, free</b></div>
+      <div><span>Max, acceso anticipado</span><b>15 € una vez</b></div>
+      <div><span>Suscripción</span><b>no existe</b></div>
+      <div><span>Obligatoria <span class="term" data-term="cloud">cloud</span></span><b>tampoco</b></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot">
+    <div>
+      <span class="fb">■ O.A.S.I.S.</span>
+      <p>El asistente de IA que vive en tu PC. Local workflows stay on your PC.</p>
+    </div>
+    <div>
+      <h3 class="fth">Producto</h3>
+      <ul>
+        <li><a href="download.html">Descargar</a></li>
+        <li><a href="how-it-works.html">Cómo funciona</a></li>
+        <li><a href="requirements.html">Requisitos</a></li>
+        <li><a href="comparison.html">Comparar</a></li>
+        <li><a href="./#pricing">Precios</a></li>
+        <li><a href="features.html">Ficha técnica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="fth">Recursos</h3>
+      <ul>
+        <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentación</a></li>
+        <li><a href="../blog/">Journal</a></li>
+        <li><a href="changelog.html#roadmap">Hoja de ruta</a></li>
+        <li><a href="changelog.html">Novedades</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="fth">Confianza y comunidad</h3>
+      <ul>
+        <li><a href="privacy.html">Privacidad</a></li>
+        <li><a href="privacy-policy.html">Política de privacidad</a></li>
+        <li><a href="eula.html">EULA</a></li>
+        <li><a href="third-party-notices.html">Avisos de terceros</a></li>
+        <li><a href="security.html">Seguridad</a></li>
+        <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Debates</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="base"><span>© O.A.S.I.S. · v0.2.0 · beta</span><span>sin trackers on this page</span></div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement, btn = document.getElementById('theme-btn');
+  function paint(t) { root.setAttribute('data-theme', t); if (!btn) return; btn.textContent = (t === 'light') ? 'Dark' : 'Light'; btn.setAttribute('aria-label', t === 'light' ? 'Switch to dark mode' : 'Switch to light mode'); var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.content = (t === 'light') ? '#f7f7f5' : '#111111'; try { localStorage.setItem('oasis-theme', t); } catch (_) {} }
+  var saved = null;
+  try { saved = localStorage.getItem('oasis-theme'); } catch (_) {}
+  paint(saved === 'light' || saved === 'dark' ? saved : 'dark');
+  btn.addEventListener('click', function () { paint(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light'); });
+  var burger = document.getElementById('burger'), mnav = document.getElementById('mnav');
+  /* Mobile menu rebuilt from the desktop nav: one source of truth. */
+  var srcnav = document.querySelector('.top nav.links');
+  mnav.innerHTML = '';
+  if (srcnav) {
+    Array.prototype.forEach.call(srcnav.querySelectorAll('a'), function (a) {
+      var c = a.cloneNode(true);
+      c.removeAttribute('aria-current');
+      mnav.appendChild(c);
+    });
+  }
+  var mdl = document.createElement('a');
+  mdl.href = 'download.html'; mdl.textContent = 'Descargar';
+  mnav.appendChild(mdl);
+  burger.addEventListener('click', function () {
+    var open = mnav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (open) {
+      var first = mnav.querySelector('a');
+      if (first) first.focus();
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mnav.classList.contains('open')) {
+      mnav.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Open menu');
+      burger.focus();
+    }
+  });
+  mnav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mnav.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); burger.setAttribute('aria-label', 'Open menu'); }); });
+}());
+function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+(function () {
+  var el = document.getElementById('star-count');
+  if (!el) return;
+  function cached() { try { var c = JSON.parse(localStorage.getItem('oasis_stars')); if (c && Date.now() - c.t < 1800000) return c.v; } catch (_) {} return null; }
+  var c = cached();
+  if (c !== null) el.textContent = c >= 1000 ? (c / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(c);
+  var signal = typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(8000) : undefined;
+  fetch('https://api.github.com/repos/OASISLocal/O.A.S.I.S.', signal ? { signal: signal } : {}).then(function (r) { return r.json(); }).then(function (j) {
+    if (typeof j.stargazers_count === 'number') {
+      var v = j.stargazers_count;
+      el.textContent = v >= 1000 ? (v / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(v);
+      try { localStorage.setItem('oasis_stars', JSON.stringify({ t: Date.now(), v: v })); } catch (_) {}
+    } else if (c === null) { el.parentNode.parentNode.style.display = 'none'; }
+  }).catch(function () { if (c === null) el.parentNode.parentNode.style.display = 'none'; });
+}());
+// Hero agent demo: stage steps, play when scrolled into view.
+(function () {
+  var demo = document.getElementById('hero-demo');
+  if (!demo) return;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced || !('IntersectionObserver' in window)) { demo.classList.add('play'); return; }
+  demo.classList.add('staged');
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { demo.classList.add('play'); io.disconnect(); } });
+  }, { threshold: 0.3 });
+  io.observe(demo);
+}());
+
+// Waitlist form — POSTs to the Cloudflare worker, nothing else.
+(function () {
+  var form = document.getElementById('wl-form');
+  if (!form) return;
+  var email = document.getElementById('wl-email');
+  var btn = document.getElementById('wl-btn');
+  var status = document.getElementById('wl-status');
+  var state = document.getElementById('wl-state');
+  function say(msg) {
+    status.hidden = false;
+    status.textContent = msg;
+  }
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var hp = form.querySelector('.hp');
+    if (hp && hp.value) { say("You're on the list. Check your inbox when we ship."); return; } // bots get a smile
+    var addr = (email.value || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)) {
+      say('That email doesn\u2019t look right — mind checking it?');
+      email.focus();
+      return;
+    }
+    var interests = Array.prototype.map.call(
+      form.querySelectorAll('input[name="interest"]:checked'),
+      function (c) { return c.value; }
+    );
+    btn.disabled = true;
+    btn.textContent = 'Joining…';
+    if (state) state.textContent = 'sending';
+    var ctrl = new AbortController();
+    var timer = setTimeout(function () { ctrl.abort(); }, 12000);
+    fetch('https://oasis-waitlist.sanitariorteba.workers.dev/collect', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: addr, interests: interests }),
+      signal: ctrl.signal
+    }).then(function (r) { return r.json().catch(function () { return {}; }); }).then(function (j) {
+      clearTimeout(timer);
+      if (j && j.ok) {
+        say(j.already
+          ? 'You were already on the list — we\u2019ll keep your new picks too.'
+          : 'You\u2019re on the list. One email when it\u2019s ready, nothing else.');
+        if (state) state.textContent = 'done';
+        btn.textContent = 'Joined ✓';
+      } else if (j && j.error === 'too_many_requests') {
+        say('Too many tries from here — give it an hour and try again.');
+        btn.disabled = false; btn.textContent = 'Avísame';
+        if (state) state.textContent = 'idle';
+      } else {
+        say('Hmm, that didn\u2019t go through. Check the address or try again in a bit.');
+        btn.disabled = false; btn.textContent = 'Avísame';
+        if (state) state.textContent = 'idle';
+      }
+    }).catch(function () {
+      clearTimeout(timer);
+      say('No connection to the list server. Check you\u2019re online and retry — or email us instead.');
+      btn.disabled = false; btn.textContent = 'Avísame';
+      if (state) state.textContent = 'idle';
+    });
+  });
+}());
+</script>
+<script src="../assets/tooltip.js"></script>
+<script src="../assets/launch.js"></script>
+<div class="sticky-cta"><a class="btn sm" href="download.html">Descargar for Windows</a></div>
+<script src="../assets/lang.js"></script>
+</body>
+</html>

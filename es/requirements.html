@@ -1,9 +1,259 @@
----
-layout: es
-title: Requisitos de hardware
-description: Requisitos de O.A.S.I.S. para Windows 10/11, memoria, CPU, GPU, almacenamiento y Docker.
-en_url: /requirements.html
-permalink: /es/requirements.html
----
-<p class="crumb"><a href="{{ '/es/' | relative_url }}">Inicio</a> / Requisitos</p><h1>Empieza con el hardware que ya tienes.</h1><p class="answer">O.A.S.I.S. apunta a Windows 10/11 x64. Un CPU moderno puede ejecutar modelos pequeños; una GPU NVIDIA acelera la inferencia, pero no es obligatoria.</p>
-<table class="es-table"><thead><tr><th>Componente</th><th>Orientación</th></tr></thead><tbody><tr><td>Sistema</td><td>Windows 10 u 11, 64 bits</td></tr><tr><td>CPU</td><td>Moderno; los modelos pequeños son más prácticos</td></tr><tr><td>RAM</td><td>Depende del modelo y contexto</td></tr><tr><td>GPU</td><td>NVIDIA recomendada, opcional</td></tr><tr><td>Almacenamiento</td><td>Aplicación más modelos descargados</td></tr><tr><td>Docker</td><td>Solo para workflows de sandbox compatibles</td></tr></tbody></table>
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Requisitos — Hardware y modelos para IA local</title>
+<meta name="description" content="¿Qué PC ejecuta bien OASIS? Niveles de hardware honestos, tamaños de descarga de modelos y necesidades de VRAM. Cualquier CPU moderna sirve; una GPU solo lo hace más rápido.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oasislocal.github.io/O.A.S.I.S./es/requirements.html">
+<link rel="alternate" hreflang="en" href="https://oasislocal.github.io/O.A.S.I.S./requirements.html">
+<link rel="alternate" hreflang="es" href="https://oasislocal.github.io/O.A.S.I.S./es/requirements.html">
+<link rel="alternate" hreflang="x-default" href="https://oasislocal.github.io/O.A.S.I.S./requirements.html">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23111111'/%3E%3Crect x='6' y='6' width='12' height='12' fill='none' stroke='%23ffffff' stroke-width='2'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Requisitos — Hardware y modelos para IA local">
+<meta property="og:description" content="Niveles de hardware y tamaños de modelo honestos para ejecutar IA en tu propio PC. Sin sorpresas.">
+<meta property="og:url" content="https://oasislocal.github.io/O.A.S.I.S./es/requirements.html">
+<meta property="og:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://oasislocal.github.io/O.A.S.I.S./assets/og-card.svg">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-500.woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/tooltip.css">
+<script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
+<link rel="stylesheet" href="../assets/lang.css">
+</head>
+<body>
+<a href="#content" class="skip">Saltar al contenido</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><i></i>O.A.S.I.S.</a>
+    <nav class="links" aria-label="Principal">
+      <a href="./">Producto</a>
+      <a href="how-it-works.html">Cómo funciona</a>
+      <a href="tools.html">Herramientas</a>
+      <a href="models.html">Modelos</a>
+      <a href="privacy.html">Privacidad</a>
+      <a href="../blog/">Journal</a>
+      <a class="lang-switch" href="../requirements.html" lang="en" hreflang="en" data-lang-switch="en">EN</a>
+      <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <button id="theme-btn" aria-label="Cambiar entre modo claro y oscuro">Claro</button>
+      <a class="btn sm" href="download.html">Descarga</a>
+      <button id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Móvil"><noscript><a href="download.html">Descarga</a><a href="../blog/">Blog</a><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></noscript></nav>
+</header>
+
+<main id="content" class="wrap">
+  <p class="crumb"><a href="./">Inicio</a> / Requisitos</p>
+  <h1>¿Funcionará en tu PC? Probablemente sí.</h1>
+  <p class="answer"><strong>Cualquier <span class="term" data-term="cpu">CPU</span> moderna ejecuta <span class="term" data-term="model">modelos</span> de IA pequeños; una <span class="term" data-term="gpu">GPU</span> solo los hace más rápidos.</strong> No hay GPU mínima, ni barrera de suscripción, ni respaldo en la <span class="term" data-term="cloud">nube</span>. Elige el nivel que encaje con tu máquina: la app recomienda un modelo para tu hardware en el primer arranque.</p>
+
+  <div class="tbl" id="tiers">
+  <table class="spec">
+<thead><tr><th scope="col">Nivel</th><th scope="col">Hardware</th><th scope="col">Qué obtienes</th></tr></thead>
+    <tbody>
+      <tr><td>Mínimo</td><td>CPU moderna de cuatro núcleos · 8&nbsp;GB de <span class="term" data-term="ram">RAM</span> · 10&nbsp;GB libres de disco · Windows 10/11</td><td>Modelos pequeños (1–4B parámetros). Respuestas precisas a un ritmo más lento. La voz funciona.</td></tr>
+      <tr><td>Recomendado</td><td>CPU de 6+ núcleos · 16&nbsp;GB de RAM · NVIDIA 4–8&nbsp;GB de <span class="term" data-term="vram">VRAM</span></td><td>Modelos de 7–8B en <span class="term" data-term="quantization">cuantización</span> Q4. Chat fluido, transcripción rápida y <span class="term" data-term="vision">visión</span> incluida.</td></tr>
+      <tr><td>Óptimo</td><td>CPU reciente · 32&nbsp;GB de RAM · NVIDIA 12&nbsp;GB+ de VRAM</td><td>Modelos mayores, todo a la vez: voz, visión, indexado de <span class="term" data-term="memory">memoria</span> y <span class="term" data-term="sandbox">sandbox</span> de código.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <hr class="rule">
+  <p class="kicker">Comprueba este PC</p>
+  <h2>¿Tu máquina da la talla?</h2>
+  <p>Tu navegador puede leer especificaciones básicas: núcleos, <span class="term" data-term="memory">memoria</span>, sistema operativo y gráficos. <b>Esta comprobación solo se ejecuta después de pulsar el botón, y se queda en tu navegador:</b> sin peticiones, sin almacenamiento, sin <span class="term" data-term="analytics">analítica</span>. Unas cuantas cosas (la <span class="term" data-term="vram">VRAM</span> exacta, el espacio libre en disco, <span class="term" data-term="docker">Docker</span>) los navegadores simplemente no pueden verlas; esas quedan como comprobaciones manuales.</p>
+  <div class="mock">
+    <div class="mock-bar"><span>este PC · leído en local</span><span id="chk-state" role="status">idle</span></div>
+    <div class="mock-body">
+      <div class="ctas" style="margin:2px 0 4px;"><button class="btn" id="chk-btn">Comprobar mi PC</button></div>
+      <div class="tbl" id="vram">
+      <table class="spec" id="chk-table" hidden>
+<thead><tr><th scope="col">Comprobar</th><th scope="col">Este PC</th><th scope="col">Estado</th></tr></thead>
+        <tbody>
+          <tr><td>Sistema operativo</td><td id="chk-os-v">…</td><td id="chk-os-s">…</td></tr>
+          <tr><td>Núcleos de CPU</td><td id="chk-cpu-v">…</td><td id="chk-cpu-s">…</td></tr>
+          <tr><td>Memoria (RAM)</td><td id="chk-ram-v">…</td><td id="chk-ram-s">…</td></tr>
+          <tr><td>Gráficos</td><td id="chk-gpu-v">…</td><td id="chk-gpu-s">…</td></tr>
+          <tr><td>Memoria de vídeo</td><td>Los navegadores no pueden leerlo — Administrador de tareas → Rendimiento → GPU</td><td>manual</td></tr>
+          <tr><td>Disco libre (10 GB+)</td><td>Los navegadores no pueden leerlo — revisa el Explorador de archivos</td><td>manual</td></tr>
+          <tr><td>Docker (solo sandbox de código)</td><td>Los navegadores no pueden leerlo — opcional, omítelo si no estás seguro</td><td>manual</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="cap" id="chk-verdict" role="status" hidden></p>
+    </div>
+  </div>
+
+  <hr class="rule">
+  <p class="kicker"><span class="term" data-term="model">Modelos</span> y tamaños</p>
+  <h2>¿Qué tamaño tiene un cerebro, exactamente?</h2>
+  <p>Los modelos se descargan una vez y luego viven en tu disco. Tamaños aproximados de las compilaciones cuantizadas (Q4) más populares:</p>
+  <div class="tbl">
+  <table class="spec">
+<thead><tr><th scope="col"><span class="term" data-term="model-size">Tamaño</span></th><th scope="col">Descarga</th><th scope="col">Necesita</th><th scope="col">Se siente como</th></tr></thead>
+    <tbody>
+      <tr><td>1–3B</td><td>~1–2&nbsp;GB</td><td>Cualquier <span class="term" data-term="cpu">CPU</span></td><td>Borradores ágiles, recordatorios, preguntas sencillas.</td></tr>
+      <tr><td>7–8B</td><td>~4–5&nbsp;GB</td><td>CPU basta · <span class="term" data-term="gpu">GPU</span> mejor</td><td>El punto dulce: el trabajo diario con el asistente.</td></tr>
+      <tr><td>13–14B</td><td>~8–10&nbsp;GB</td><td>16&nbsp;GB de <span class="term" data-term="ram">RAM</span> u 8&nbsp;GB de VRAM</td><td>Razonamiento más profundo, más lento sin GPU.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="cap">Familias disponibles: Llama, Gemma, Qwen, DeepSeek, Phi, Mistral, más cualquier archivo <span class="term" data-term="gguf">GGUF</span> de <span class="term" data-term="hugging-face">Hugging Face</span>. Los tamaños varían según la <span class="term" data-term="quantization">cuantización</span>; la app muestra los números exactos antes de descargar.</p>
+
+  <hr class="rule">
+  <p class="kicker">Notas honestas</p>
+  <h2>Lo que preferimos decirte ya.</h2>
+  <ul class="plain">
+    <li><b>Solo con CPU es realmente usable</b> para chat, voz y memoria; eso sí, no esperes 50 <span class="term" data-term="token">tokens/seg</span> de un modelo de 8B.</li>
+    <li><b>Los portátiles se calientan.</b> La <span class="term" data-term="inference">inferencia</span> sostenida es un esfuerzo; enchufa y los ajustes de capas CPU/GPU de la app ayudan.</li>
+    <li><b><span class="term" data-term="docker">Docker</span> es solo para ejecución de código.</b> Omítelo y todo lo demás sigue funcionando.</li>
+    <li><b>Internet hace falta dos veces:</b> para descargar la app y el modelo. Después es opcional; pruébalo con el router apagado.</li>
+    <li><b>Solo Windows 10/11 por ahora.</b> Las versiones para Linux y macOS están en la <a href="changelog.html#roadmap">hoja de ruta</a>, no en la carpeta de descargas.</li>
+  </ul>
+  <div class="ctas">
+    <a class="btn" href="download.html">Descarga the beta</a>
+    <a class="btn ghost" href="faq.html">Más preguntas</a>
+  </div>
+</main>
+
+<footer>
+  <div class="foot">
+    <div><span class="fb">■ O.A.S.I.S.</span><p>El asistente de IA que vive en tu PC. Los flujos de trabajo locales se quedan en tu PC.</p></div>
+    <div><h3 class="fth">Producto</h3><ul>
+      <li><a href="download.html">Descarga</a></li><li><a href="how-it-works.html">Cómo funciona</a></li>
+      <li><a href="requirements.html">Requisitos</a></li><li><a href="comparison.html">Comparar</a></li>
+      <li><a href="./#pricing">Precios</a></li><li><a href="features.html">Ficha técnica</a></li></ul></div>
+    <div><h3 class="fth">Recursos</h3><ul>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentación</a></li>
+      <li><a href="../blog/">Journal</a></li><li><a href="changelog.html#roadmap">Hoja de ruta</a></li>
+      <li><a href="changelog.html">Novedades</a></li></ul></div>
+    <div><h3 class="fth">Confianza y comunidad</h3><ul>
+      <li><a href="privacy.html">Privacidad</a></li><li><a href="security.html">Seguridad</a></li><li><a href="privacy-policy.html">Política de privacidad</a></li><li><a href="eula.html">EULA</a></li><li><a href="third-party-notices.html">Avisos de terceros</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Debates</a></li></ul></div>
+  </div>
+  <div class="base"><span>© O.A.S.I.S. · v0.2.0 · beta</span><span>sin trackers en esta página</span></div>
+</footer>
+<div class="sticky-cta"><a class="btn sm" href="download.html">Descarga for Windows</a></div>
+<script src="../assets/site.js"></script>
+<script src="../assets/tooltip.js"></script>
+<script>
+/* Requirement self-check. Runs ONLY after an explicit click.
+   Everything is read with in-browser APIs; nothing is sent anywhere. */
+(function () {
+  var btn = document.getElementById('chk-btn');
+  if (!btn) return;
+  function set(id, val, ok) {
+    var v = document.getElementById('chk-' + id + '-v');
+    var s = document.getElementById('chk-' + id + '-s');
+    if (v) v.textContent = val;
+    if (s) {
+      if (ok === true) { s.textContent = 'Pass'; s.className = 'y'; }
+      else if (ok === false) { s.textContent = 'Fail'; s.className = 'n'; }
+      else { s.textContent = 'Unknown'; s.className = ''; }
+    }
+  }
+  btn.addEventListener('click', async function () {
+    btn.disabled = true;
+    btn.textContent = 'Reading…';
+    document.getElementById('chk-state').textContent = 'reading locally';
+    document.getElementById('chk-table').hidden = false;
+    var verdict = document.getElementById('chk-verdict');
+    verdict.hidden = false;
+
+    /* OS */
+    var isWin = false, osName = 'Not detected';
+    try {
+      if (navigator.userAgentData && navigator.userAgentData.platform) {
+        var plat = String(navigator.userAgentData.platform);
+        if (/windows/i.test(plat)) {
+          isWin = true;
+          try {
+            var hi = await navigator.userAgentData.getHighEntropyValues(['platformVersion']);
+            var pv = parseInt(hi.platformVersion || '0', 10);
+            osName = 'Windows ' + (pv >= 13 ? '11' : '10') + ' (as reported to the browser)';
+          } catch (_) { osName = 'Windows (exact version hidden by the browser)'; }
+        } else { osName = plat + ' — OASIS needs Windows 10/11'; }
+      } else {
+        var m = /Windows NT (\d+\.\d+)/.exec(navigator.userAgent || '');
+        if (m) { isWin = true; osName = 'Windows NT ' + m[1] + ' (legacy browser report)'; }
+        else { osName = 'Not Windows (as reported to the browser)'; }
+      }
+    } catch (_) { osName = 'Could not be read'; }
+    set('os', osName, isWin ? true : false);
+
+    /* CPU */
+    var cores = navigator.hardwareConcurrency || 0;
+    set('cpu', cores ? cores + ' logical cores' : 'Not visible to the browser', cores ? (cores >= 4) : null);
+
+    /* RAM (Chrome/Edge only; Firefox/Safari hide it) */
+    var ram = (typeof navigator.deviceMemory === 'number') ? navigator.deviceMemory : 0;
+    set('ram', ram ? ('~' + ram + ' GB (as reported to the browser)') : 'Hidden by this browser — check Settings → System → About', ram ? (ram >= 8) : null);
+
+    /* GPU via WebGL (name only, never VRAM) — raw ANGLE strings are
+       unreadable, so they get cleaned: vendor + model + backend stay,
+       PCI ids and shader tags go. Full string kept in the title attr. */
+    function cleanGpu(raw) {
+      var s = String(raw || '');
+      var backend = '';
+      var m = /^ANGLE\s*\((.*)\)\s*$/.exec(s);
+      if (m) {
+        var parts = m[1].split(',').map(function (p) { return p.trim(); }).filter(Boolean);
+        var last = parts[parts.length - 1] || '';
+        if (parts.length > 1 && /(direct3d|d3d\d*|opengl|vulkan|metal)/i.test(last)) {
+          backend = parts.pop().replace(/^Direct3D(\d+)$/i, 'Direct3D $1').replace(/^D3D(\d+)$/i, 'Direct3D $1');
+        }
+        s = parts.join(', ');
+      }
+      s = s.replace(/\(0x[0-9a-fA-F]+\)/g, ' ')
+        .replace(/\b(direct3d\s*\d*|d3d\s*\d*|opengl(\s+es)?|vulkan|metal)\b/gi, ' ')
+        .replace(/\b(vs|ps|gs|cs|hs|ds)_[0-9_]+/gi, ' ')
+        .replace(/\s{2,}/g, ' ').replace(/,\s*,/g, ',').replace(/^,|,$/g, '').trim();
+      s = s.replace(/^([^,\s]+),\s*\1(?=[\s(,]|$)/i, '$1').trim();
+      return { name: s || 'Unknown graphics', backend: backend };
+    }
+    var gpuRaw = '', gpuName = 'Not visible', dedicated = null;
+    try {
+      var cv = document.createElement('canvas');
+      var gl = cv.getContext('webgl') || cv.getContext('experimental-webgl');
+      if (gl) {
+        var ext = gl.getExtension('WEBGL_debug_renderer_info');
+        gpuRaw = String(ext ? gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER) || '');
+        var cg = cleanGpu(gpuRaw);
+        gpuName = cg.name + (cg.backend ? ' · ' + cg.backend : '');
+        if (/nvidia|geforce|rtx|quadro/i.test(gpuRaw)) dedicated = true;
+        else if (/radeon|rx |amd/i.test(gpuRaw) && !/vega\s*[37]|renoir|cezanne|rembrandt|phoenix|hawk|strix|integrated/i.test(gpuRaw)) dedicated = true;
+        else if (/intel|apple|mali|adreno|uhd|iris xe/i.test(gpuRaw)) dedicated = false;
+      }
+    } catch (_) { gpuName = 'Could not be read'; }
+    set('gpu', gpuName, dedicated === true ? true : null);
+    var gv = document.getElementById('chk-gpu-v');
+    if (gv && gpuRaw) gv.title = gpuRaw;
+
+    /* Verdict */
+    var tier;
+    if (!isWin) tier = 'This device is not on Windows, so OASIS will not install here yet — Linux and macOS are on the roadmap.';
+    else if (ram >= 16 && cores >= 6 && dedicated) tier = 'Verdict: Recomendado tier. Expect 7–8B models to feel fluid, including voice and vision.';
+    else if ((ram >= 8 || !ram) && cores >= 4) tier = 'Verdict: Mínimo tier (or unknown RAM — check it manually). Start with a small 1–4B model; it will be correct, at a patient pace.';
+    else if (cores && cores < 4) tier = 'Verdict: below the Mínimo tier on Núcleos de CPU. A tiny ~1B model may still work, slowly — or consider a newer machine.';
+    else tier = 'Verdict: the browser hid too much to judge (common in Firefox/Safari). Compare manually against the tiers above — when in doubt, start small.';
+    verdict.textContent = tier;
+    document.getElementById('chk-state').textContent = 'done · nothing sent';
+    btn.textContent = 'Comprobar again';
+    btn.disabled = false;
+  });
+}());
+</script>
+<script src="../assets/lang.js"></script>
+</body>
+</html>
