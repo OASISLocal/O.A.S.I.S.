@@ -29,11 +29,18 @@
 
   // 1) English page: auto-redirect to Spanish when the browser prefers it.
   if (!isES && lang === 'en' && !pref()) {
-    var skip = /(^|\/)404\.html$/.test(path) || /\/blog\//.test(path) || /\/launch\//.test(path);
+    var skip = /(^|\/)404\.html$/.test(path) || /\/launch\//.test(path);
+    var underBlog = /\/blog(\/|$)/.test(path);
+    var altEs = document.querySelector('link[rel="alternate"][hreflang="es"]');
     var primary = String((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase();
     if (!skip && primary.indexOf('es') === 0) {
-      location.replace(twin(path, true) + '?lang=es');
-      return;
+      var target = null;
+      if (altEs) { target = altEs.getAttribute('href'); }          // explicit Spanish twin (blog posts, legal…)
+      else if (!underBlog) { target = twin(path, true); }          // mechanical /es/ twin
+      if (target) {
+        location.replace(target + (target.indexOf('?') >= 0 ? '&' : '?') + 'lang=es');
+        return;
+      }
     }
   }
 
@@ -52,7 +59,8 @@
     actions.className = 'ln-actions';
     var en = document.createElement('a');
     en.className = 'ln-en';
-    en.href = twin(path, false);
+    var altEn = document.querySelector('link[rel="alternate"][hreflang="en"]');
+    en.href = altEn ? altEn.getAttribute('href') : twin(path, false);
     en.lang = 'en';
     en.hreflang = 'en';
     en.textContent = msg ? 'Ver la original en inglés' : 'View the English original';

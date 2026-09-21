@@ -1,7 +1,8 @@
 ---
 layout: default
-title: Blog
+title: Journal
 permalink: /blog/
+lang: en
 es_url: /es/blog/
 ---
 <h1 class="blog-h1">O.A.S.I.S. Journal</h1>
@@ -9,8 +10,9 @@ es_url: /es/blog/
 
 <p class="blog-meta">Browse by topic: Local AI — <a href="{{ '/blog/2026/09/10/what-is-a-local-ai-assistant/' | relative_url }}">what it is</a> · Privacy — <a href="{{ '/blog/2026/09/02/local-vs-cloud-ai-privacy/' | relative_url }}">local vs cloud</a> · Announcements — <a href="{{ '/blog/2026/07/26/welcome-to-the-oasis-blog/' | relative_url }}">welcome post</a>. More series (models, hardware, agents) as they ship.</p>
 
+{% assign en_posts = site.posts | where: "lang", "en" %}
 <ul class="post-list">
-{% for post in site.posts %}
+{% for post in en_posts %}
 <li>
 <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
 <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>

@@ -2,8 +2,9 @@
 layout: null
 permalink: /blog/posts.json
 ---
+{% assign en_posts = site.posts | where: "lang", "en" %}
 [
-{% for post in site.posts limit:3 %}
+{% for post in en_posts limit:3 %}
 {
 "title": {{ post.title | jsonify }},
 "url": {{ post.url | relative_url | jsonify }},

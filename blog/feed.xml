@@ -5,14 +5,15 @@ permalink: /blog/feed.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="feed.xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>OASIS Blog</title>
+  <title>OASIS Journal</title>
 <subtitle>Release notes, deep dives, and what we're learning building a local-first AI assistant.</subtitle>
   <link href="{{ '/blog/feed.xml' | absolute_url }}" rel="self"/>
   <link href="{{ '/blog/' | absolute_url }}"/>
-  <updated>{{ site.posts.first.date | date_to_xmlschema }}</updated>
+{% assign en_posts = site.posts | where: "lang", "en" %}
+  <updated>{{ en_posts.first.date | date_to_xmlschema }}</updated>
   <id>{{ '/blog/' | absolute_url }}</id>
   <author><name>OASIS</name></author>
-  {% for post in site.posts limit:10 %}
+  {% for post in en_posts limit:10 %}
   <entry>
     <title>{{ post.title | xml_escape }}</title>
     <link href="{{ post.url | absolute_url }}"/>

@@ -25,6 +25,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      lang: "en"
 
 # Only these are processed by Jekyll; index.html and its existing
 # assets/ folder are left completely alone.

@@ -1,0 +1,29 @@
+---
+layout: default
+title: Journal
+permalink: /es/blog/
+lang: es
+en_url: /blog/
+es_url: /es/blog/
+---
+<h1 class="blog-h1">Journal de O.A.S.I.S.</h1>
+<p class="blog-meta">Notas de versión, análisis técnicos y lo que aprendemos construyendo un asistente de IA local-first.</p>
+
+{% assign en_posts = site.posts | where: "lang", "en" %}
+<ul class="post-list">
+{% for post in en_posts %}
+  {% assign es_post = site.posts | where: "lang", "es" | where: "ref", post.ref | first %}
+  {% assign meta = site.data.blog_es[post.ref] %}
+  {% assign item_date = es_post.date | default: post.date %}
+  {% assign mi = item_date | date: "%m" | minus: 1 %}
+<li>
+<span class="post-date">{{ item_date | date: "%-d" }} de {{ site.data.i18n.es_months[mi] }} de {{ item_date | date: "%Y" }}</span>
+<a class="post-title" href="{% if es_post %}{{ es_post.url | relative_url }}{% else %}{{ post.url | relative_url }}{% endif %}">{% if es_post %}{{ es_post.title }}{% elsif meta.title %}{{ meta.title }}{% else %}{{ post.title }}{% endif %}</a>{% unless es_post %} <span class="post-lang" title="Este artículo solo está disponible en inglés">EN</span>{% endunless %}
+<p class="post-excerpt">{% if es_post %}{{ es_post.excerpt }}{% elsif meta.excerpt %}{{ meta.excerpt }}{% else %}{{ post.excerpt }}{% endif %}</p>
+</li>
+{% else %}
+<li><p class="post-excerpt">Todavía no hay artículos — vuelve pronto.</p></li>
+{% endfor %}
+</ul>
+
+<p class="blog-meta">Los artículos se publican primero en inglés. Cuando existe una versión en español, este índice enlaza directamente a ella.</p>

@@ -1,0 +1,13 @@
+# Spanish listings for the Journal. Keyed by each post's `ref`.
+# Used by es/blog/ so the Spanish index reads in Spanish even when a full
+# Spanish article has not been published yet (then the entry links to the
+# English article and is marked "EN").
+welcome-to-the-oasis-blog:
+  title: "Bienvenido al blog de OASIS"
+  excerpt: "Aquí publicaremos notas de versión, análisis técnicos y novedades honestas sobre hacia dónde va OASIS, con el razonamiento detrás."
+local-vs-cloud-ai-privacy:
+  title: "Privacidad: IA local frente a la nube. ¿Adónde van tus palabras?"
+  excerpt: "Con la IA en la nube, tus palabras viajan a los ordenadores de otro. Con la IA local, nunca salen del tuyo."
+what-is-a-local-ai-assistant:
+  title: "¿Qué es un asistente de IA local? La guía en palabras llanas"
+  excerpt: "Un asistente de IA local es un programa que ejecuta su modelo en tu propio ordenador en lugar de enviar tus palabras a un servidor."

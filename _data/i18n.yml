@@ -1,0 +1,14 @@
+# Shared UI strings for the Journal. Referenced as site.data.i18n.<key>
+es_months:
+  - enero
+  - febrero
+  - marzo
+  - abril
+  - mayo
+  - junio
+  - julio
+  - agosto
+  - septiembre
+  - octubre
+  - noviembre
+  - diciembre

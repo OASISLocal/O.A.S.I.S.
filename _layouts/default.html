@@ -1,16 +1,31 @@
+{%- assign es = page.lang == 'es' -%}
+{%- assign en_post = nil -%}{%- assign es_post = nil -%}
+{%- if page.ref -%}
+  {%- assign paired = site.posts | where: "ref", page.ref -%}
+  {%- assign en_post = paired | where: "lang", "en" | first -%}
+  {%- assign es_post = paired | where: "lang", "es" | first -%}
+{%- endif -%}
+{%- assign en_url = page.en_url | default: en_post.url | default: '/blog/' -%}
+{%- assign es_url = page.es_url | default: es_post.url | default: '/es/blog/' -%}
+{%- assign x_url = page.en_url | default: en_post.url | default: page.url -%}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ page.lang | default: 'en' }}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>{% if page.title %}{{ page.title }} | {% endif %}OASIS Blog</title>
+<title>{% if page.title %}{{ page.title }} | {% endif %}{% if es %}Journal de O.A.S.I.S.{% else %}O.A.S.I.S. Journal{% endif %}</title>
 
 <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
-<link rel="alternate" hreflang="en" href="{{ page.url | absolute_url }}">
-<link rel="alternate" hreflang="es" href="{{ page.es_url | default: '/es/blog/' | absolute_url }}">
-<link rel="alternate" hreflang="x-default" href="{{ page.url | absolute_url }}">
+<link rel="alternate" hreflang="{{ page.lang | default: 'en' }}" href="{{ page.url | absolute_url }}">
+{%- if es %}
+{%- if en_post %}<link rel="alternate" hreflang="en" href="{{ en_post.url | absolute_url }}">{% endif %}
+{%- else %}
+{%- if es_post %}<link rel="alternate" hreflang="es" href="{{ es_post.url | absolute_url }}">{% endif %}
+{%- endif %}
+<link rel="alternate" hreflang="x-default" href="{{ x_url | absolute_url }}">
+<meta property="og:locale" content="{% if es %}es_ES{% else %}en_US{% endif %}">
 <meta name="theme-color" content="#111111">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="any">
@@ -25,7 +40,7 @@
 <meta name="twitter:title" content="{{ page.title | default: site.title }}">
 <meta name="twitter:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
 <meta name="twitter:image" content="{{ '/assets/og-card.svg' | absolute_url }}">
-<link rel="alternate" type="application/atom+xml" title="OASIS Blog" href="{{ '/blog/feed.xml' | relative_url }}">
+<link rel="alternate" type="application/atom+xml" title="OASIS Journal" href="{{ '/blog/feed.xml' | relative_url }}">
 {% seo %}
 
 
@@ -33,6 +48,7 @@
 <link rel="preload" as="font" type="font/woff2" href="{{ '/assets/fonts/space-grotesk-500.woff2' | relative_url }}" crossorigin>
 <link rel="stylesheet" href="{{ '/assets/fonts/fonts.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/tooltip.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/lang.css' | relative_url }}">
 <style>
 /* Blog — esquema Mono (igual que la app por defecto) */
 :root {
@@ -73,6 +89,7 @@ main.blog-main { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
 .post-list a.post-title:hover { text-decoration: underline; }
 .post-list .post-date { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 8px; }
 .post-list .post-excerpt { font-size: 15px; color: var(--text-3); margin-top: 8px; line-height: 1.6; }
+.post-lang { font-family: 'Space Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-3); border: 1px solid var(--border); padding: 2px 6px; margin-left: 8px; vertical-align: 2px; }
 
 /* Article prose (used by post.html) */
 .prose { font-size: 17px; line-height: 1.75; color: var(--text-2); }
@@ -137,14 +154,18 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
 </style>
 </head>
 <body>
-<a class="skip-link" href="#main-content">Skip to content</a>
+<a class="skip-link" href="#main-content">{% if es %}Saltar al contenido{% else %}Skip to content{% endif %}</a>
 
 <nav class="site-nav">
-<a class="logo" href="{{ '/' | relative_url }}">■ O.A.S.I.S. Journal</a>
+<a class="logo" href="{{ '/' | relative_url }}">■ O.A.S.I.S. {% if es %}Journal{% else %}Journal{% endif %}</a>
 <div>
-<a class="nav-link" href="{{ '/' | relative_url }}">← Back to site</a>
-<a class="nav-link" href="{{ page.es_url | default: '/es/blog/' | relative_url }}" lang="es" hreflang="es">ES</a>
-<button id="theme-btn" aria-label="Switch between light and dark">Light</button>
+<a class="nav-link" href="{{ '/' | relative_url }}">{% if es %}← Volver al sitio{% else %}← Back to site{% endif %}</a>
+{% if es %}
+<a class="nav-link lang-switch" href="{{ en_url | relative_url }}" lang="en" hreflang="en" data-lang-switch="en">EN</a>
+{% else %}
+<a class="nav-link lang-switch" href="{{ es_url | relative_url }}" lang="es" hreflang="es" data-lang-switch="es">ES</a>
+{% endif %}
+<button id="theme-btn" aria-label="{% if es %}Cambiar entre modo claro y oscuro{% else %}Switch between light and dark{% endif %}">{% if es %}Claro{% else %}Light{% endif %}</button>
 </div>
 </nav>
 
@@ -153,11 +174,12 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
 </main>
 
 <footer class="blog-footer">
-<a href="{{ '/' | relative_url }}">Home</a> · <a href="{{ '/blog/' | relative_url }}">Blog</a> · <a href="{{ '/faq.html' | relative_url }}">FAQ</a> · <a href="{{ '/about.html' | relative_url }}">About</a> · <a href="{{ '/blog/feed.xml' | relative_url }}">RSS feed</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Community</a>
+<a href="{{ '/' | relative_url }}">{% if es %}Inicio{% else %}Home{% endif %}</a> · <a href="{{ '/blog/' | relative_url }}">Blog</a> · <a href="{{ '/faq.html' | relative_url }}">FAQ</a> · <a href="{{ '/about.html' | relative_url }}">{% if es %}Acerca de{% else %}About{% endif %}</a> · <a href="{{ '/blog/feed.xml' | relative_url }}">{% if es %}Canal RSS{% else %}RSS feed{% endif %}</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">{% if es %}Comunidad{% else %}Community{% endif %}</a>
 </footer>
 <script>
-(function(){var r=document.documentElement,b=document.getElementById('theme-btn'),m=document.querySelector('meta[name=\"theme-color\"]');function p(t){r.setAttribute('data-theme',t);if(b)b.textContent=(t==='light')?'Dark':'Light';if(m)m.content=(t==='light')?'#f7f7f5':'#111111';try{localStorage.setItem('oasis-theme',t);}catch(_){}}var s=null;try{s=localStorage.getItem('oasis-theme');}catch(_){}p(s==='light'||s==='dark'?s:'dark');if(b)b.addEventListener('click',function(){p(r.getAttribute('data-theme')==='light'?'dark':'light');});}());
+(function(){var r=document.documentElement,b=document.getElementById('theme-btn'),m=document.querySelector('meta[name=\"theme-color\"]');function p(t){r.setAttribute('data-theme',t);if(b)b.textContent=(t==='light')?'{% if es %}Oscuro{% else %}Dark{% endif %}':'{% if es %}Claro{% else %}Light{% endif %}';if(m)m.content=(t==='light')?'#f7f7f5':'#111111';try{localStorage.setItem('oasis-theme',t);}catch(_){}}var s=null;try{s=localStorage.getItem('oasis-theme');}catch(_){}p(s==='light'||s==='dark'?s:'dark');if(b)b.addEventListener('click',function(){p(r.getAttribute('data-theme')==='light'?'dark':'light');});}());
 </script>
 <script src="{{ '/assets/tooltip.js' | relative_url }}"></script>
+<script src="{{ '/assets/lang.js' | relative_url }}"></script>
 </body>
 </html>
