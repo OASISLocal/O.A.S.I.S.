@@ -14,9 +14,30 @@
   function pref() { try { return localStorage.getItem(STORE); } catch (_) { return null; } }
   function setPref(v) { try { localStorage.setItem(STORE, v); } catch (_) {} }
 
-  // Explicit override in the URL: ?lang=en or ?lang=es (also used by tooling).
-  var forced = (location.search.match(/[?&]lang=(en|es)(?:&|$)/) || [])[1];
-  if (forced) setPref(forced);
+  // Explicit override in the URL: ?lang=en | ?lang=es (force) or ?lang=auto (re-detect).
+  var forced = (location.search.match(/[?&]lang=(en|es|auto)(?:&|$)/) || [])[1];
+  if (forced === 'en' || forced === 'es') { setPref(forced); }
+  else if (forced === 'auto') { try { localStorage.removeItem(STORE); } catch (_) {} }
+
+  /* Does the visitor want Spanish? Signals, in order:
+     browser preference (primary, then the next two) and, when the primary is
+     not English, the time zone of a Spanish-speaking region. All client-side:
+     no IP lookup, no request. */
+  var ES_TZ = /(Europe\/Madrid|Atlantic\/Canary|Africa\/Ceuta|Africa\/Malabo|America\/(Mexico_City|Monterrey|Hermosillo|Chihuahua|Mazatlan|Bahia_Banderas|Merida|Matamoros|Ojinaga|Tijuana|Bogota|Lima|Santiago|Argentina|Caracas|Guayaquil|Montevideo|Panama|Guatemala|Tegucigalpa|El_Salvador|Managua|Costa_Rica|Havana|Santo_Domingo|Puerto_Rico|Asuncion|La_Paz|Curacao|Aruba))/i;
+  function wantsSpanish() {
+    var list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+    var primary = String(list[0] || '').toLowerCase();
+    if (primary.indexOf('es') === 0) return true;
+    if (primary.indexOf('en') === 0) return false;          // English-first visitors stay in English
+    for (var i = 1; i < Math.min(list.length, 3); i++) {
+      if (String(list[i]).toLowerCase().indexOf('es') === 0) return true;
+    }
+    try {
+      var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '');
+      if (ES_TZ.test(tz)) return true;                      // region signal
+    } catch (_) {}
+    return false;
+  }
 
   function twin(url, toES) {
     var m = url.match(/^(.*\/)([^\/]*)$/);
@@ -32,8 +53,7 @@
     var skip = /(^|\/)404\.html$/.test(path) || /\/launch\//.test(path);
     var underBlog = /\/blog(\/|$)/.test(path);
     var altEs = document.querySelector('link[rel="alternate"][hreflang="es"]');
-    var primary = String((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase();
-    if (!skip && primary.indexOf('es') === 0) {
+    if (!skip && wantsSpanish()) {
       var target = null;
       if (altEs) { target = altEs.getAttribute('href'); }          // explicit Spanish twin (blog posts, legal…)
       else if (!underBlog) { target = twin(path, true); }          // mechanical /es/ twin

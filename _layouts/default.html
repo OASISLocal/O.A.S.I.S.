@@ -21,9 +21,9 @@
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 <link rel="alternate" hreflang="{{ page.lang | default: 'en' }}" href="{{ page.url | absolute_url }}">
 {%- if es %}
-{%- if en_post %}<link rel="alternate" hreflang="en" href="{{ en_post.url | absolute_url }}">{% endif %}
+{%- if en_post or page.en_url %}<link rel="alternate" hreflang="en" href="{{ en_url | absolute_url }}">{% endif %}
 {%- else %}
-{%- if es_post %}<link rel="alternate" hreflang="es" href="{{ es_post.url | absolute_url }}">{% endif %}
+{%- if es_post or page.es_url %}<link rel="alternate" hreflang="es" href="{{ es_url | absolute_url }}">{% endif %}
 {%- endif %}
 <link rel="alternate" hreflang="x-default" href="{{ x_url | absolute_url }}">
 <meta property="og:locale" content="{% if es %}es_ES{% else %}en_US{% endif %}">
