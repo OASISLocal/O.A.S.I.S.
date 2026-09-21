@@ -1,4 +1,5 @@
-{%- assign es = page.lang == 'es' -%}
+{%- assign es = false -%}
+{%- if page.lang == 'es' -%}{%- assign es = true -%}{%- endif -%}
 {%- assign en_post = nil -%}{%- assign es_post = nil -%}
 {%- if page.ref -%}
   {%- assign paired = site.posts | where: "ref", page.ref -%}

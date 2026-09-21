@@ -1,6 +1,10 @@
 ---
 layout: default
 ---
+{%- assign es = false -%}
+{%- if page.lang == 'es' -%}{%- assign es = true -%}{%- endif -%}
+{%- assign mi = page.date | date: "%m" | minus: 1 -%}
+{%- assign mes = site.data.i18n.es_months[mi] -%}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BlogPosting",
 "headline":{{ page.title | jsonify }},
@@ -12,7 +16,7 @@ layout: default
 <article>
 <div class="blog-eyebrow">{% if page.tags.size > 0 %}{{ page.tags | first | upcase }}{% else %}UPDATE{% endif %}</div>
 <h1 class="blog-h1">{{ page.title }}</h1>
-<div class="blog-meta">{% if page.lang == 'es' %}{{ page.date | date: "%-d" }} de {{ site.data.i18n.es_months[page.date | date: "%m" | minus: 1] }} de {{ page.date | date: "%Y" }}{% else %}{{ page.date | date: "%B %-d, %Y" }}{% endif %}{% if page.tags.size > 0 %} — {{ page.tags | join: ", " }}{% endif %}</div>
+<div class="blog-meta">{% if es %}{{ page.date | date: "%-d" }} de {{ mes }} de {{ page.date | date: "%Y" }}{% else %}{{ page.date | date: "%B %-d, %Y" }}{% endif %}{% if page.tags.size > 0 %} — {{ page.tags | join: ", " }}{% endif %}</div>
 <div class="prose">
 {{ content }}
 </div>
