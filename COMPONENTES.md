@@ -210,6 +210,35 @@ desaparece en vez de rellenarse con contenido débil.
 componentes. Está marcada `noindex: true` y `sitemap: false`, y `check_site.py`
 falla si un post así aparece en el sitemap, en un índice o en un feed.
 
+Verificarla bien necesita un navegador, no sólo el HTML:
+
+```
+# build real (imprescindible: kramdown y Liquid fallan aquí)
+bundle exec jekyll build
+
+# y después, con el build servido en el subpath correcto
+python <script que sirva _site y lance headless Chrome>
+```
+
+El subpath importa: los assets del blog apuntan a `/O.A.S.I.S./assets/...`, así
+que servir `_site` en la raíz hace que el CSS no cargue y parezca un fallo de
+estilos que no existe.
+
+## Verificar un componente que "no hace nada"
+
+Tres fallos que ya ocurrieron aquí, para no repetirlos:
+
+1. **Un `<template>` no expone su contenido por `textContent`.** El contenido
+   vive en un `DocumentFragment` inerte; hay que leer `innerHTML`.
+2. **`data-sort` puede escribirse sin valor** (`data-sort=""`). Hay que
+   seleccionar por presencia del atributo, no por su valor.
+3. **La clase del `<table>` va en el marcado, no la pone el script.** Las reglas
+   de disposición tienen que estar activas antes de que corra JavaScript.
+
+`check_seo.py` comprueba ahora que cada include emite el marcador que el
+script busca, y viceversa, así que un componente que se renderiza pero nunca se
+inicializa falla antes de desplegar.
+
 ## Añadir un componente
 
 1. `_includes/components/nombre.html`.
