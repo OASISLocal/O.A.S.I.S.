@@ -72,36 +72,20 @@ try { [xml](Get-Content -Raw sitemap.xml) | Out-Null } catch { Fail "sitemap.xml
 # Social preview image must be a real PNG (social platforms reject SVG).
 if (-not (Test-Path -LiteralPath "assets/og-card.png")) { Fail "missing assets/og-card.png (social preview image)" }
 
-# SEO gate for the static pages: every indexable page needs the core head tags,
-# a single title/canonical, and a PNG social image. Jekyll pages (front matter)
-# and noindex pages are skipped: their tags come from _layouts at build time.
-$seoProblems = @()
-$staticPages = Get-ChildItem -Filter *.html | Where-Object {
-  $raw = Get-Content -Raw $_.FullName
-  -not ($raw.TrimStart().StartsWith("---")) -and $raw -notmatch 'name="robots" content="noindex'
+# The SEO / links / claims gate lives in Python so there is a single source of
+# truth: check_site.py covers canonical, og/twitter, hreflang, JSON-LD, internal
+# links, sitemap<->files and post pairing; check_claims.py covers the forbidden
+# phrasings and unmeasured performance figures.
+if (Get-Command python -ErrorAction SilentlyContinue) {
+  Write-Host "-- python check_site.py" -ForegroundColor DarkGray
+  python check_site.py
+  if ($LASTEXITCODE -ne 0) { Fail "check_site.py failed (broken links, sitemap out of date, or a post without its ES twin)" }
+  Write-Host "-- python check_claims.py" -ForegroundColor DarkGray
+  python check_claims.py
+  if ($LASTEXITCODE -ne 0) { Fail "check_claims.py failed (forbidden phrasing or an unmeasured performance figure)" }
+} else {
+  Write-Host "WARNING: python not found, skipping check_site.py / check_claims.py" -ForegroundColor Yellow
 }
-foreach ($f in $staticPages) {
-  $html = Get-Content -Raw $f.FullName
-  $need = @{
-    'rel="canonical"'        = 'canonical'
-    'property="og:title"'    = 'og:title'
-    'property="og:url"'      = 'og:url'
-    'property="og:image"'    = 'og:image'
-    'property="og:locale"'   = 'og:locale'
-    'name="twitter:card"'    = 'twitter:card'
-    'hreflang='              = 'hreflang'
-  }
-  foreach ($k in $need.Keys) {
-    if ($html -notmatch [regex]::Escape($k)) { $seoProblems += ("$($f.Name): missing $($need[$k])") }
-  }
-  $titles = ([regex]::Matches($html, '<title>')).Count
-  if ($titles -ne 1) { $seoProblems += ("$($f.Name): $titles <title> tags (expected 1)") }
-  $canon = ([regex]::Matches($html, 'rel="canonical"')).Count
-  if ($canon -ne 1) { $seoProblems += ("$($f.Name): $canon canonical tags (expected 1)") }
-  if ($html -match 'og-card\.svg') { $seoProblems += ("$($f.Name): og:image still points at the SVG") }
-  if ($html -notmatch 'og-card\.png') { $seoProblems += ("$($f.Name): og:image is not the PNG card") }
-}
-if ($seoProblems) { $seoProblems | ForEach-Object { Write-Host ("  " + $_) }; Fail "SEO head problems above" }
 
 if ($Mode -ne "live") {
   foreach ($f in @("launch/teaser.html", "launch/countdown.html")) {
@@ -113,6 +97,16 @@ Write-Host "checks OK" -ForegroundColor Green
 
 # ---------- 2. Commit sources ----------
 Write-Host "== commit ==" -ForegroundColor Cyan
+
+# Regenerate sitemap.xml from the files before staging it, so a new post can
+# never be published without its sitemap entries. check_site.py above already
+# verified the current file matches; this brings it up to date.
+if (Get-Command python -ErrorAction SilentlyContinue) {
+  Write-Host "-- regenerating sitemap.xml" -ForegroundColor DarkGray
+  python build_sitemap.py
+  if ($LASTEXITCODE -ne 0) { Fail "build_sitemap.py failed" }
+}
+
 git add -A
 $pending = git status --porcelain
 if (-not $pending) { Write-Host "nothing to commit, continuing" }

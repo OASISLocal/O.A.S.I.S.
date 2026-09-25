@@ -1,0 +1,119 @@
+{
+  "_note": "Glossary + claim rules for the O.A.S.I.S. Journal. Read by check_claims.py and available to the blog templates as site.data.journal_terms. The Spanish renderings are the ones already used on the published es/ pages: consistency with the existing site beats literal translation.",
+  "version": 1,
+  "keep_in_english": [
+    "token",
+    "embedding",
+    "workflow",
+    "sandbox",
+    "local-first",
+    "offline-first",
+    "on-device",
+    "RAM",
+    "VRAM",
+    "GGUF",
+    "Docker",
+    "MCP",
+    "Ollama",
+    "LM Studio",
+    "max-privacy",
+    "Beta",
+    "Windows",
+    "Android"
+  ],
+  "terms": {
+    "artificial intelligence": "inteligencia artificial",
+    "AI assistant": "asistente de IA",
+    "language model": "modelo de lenguaje",
+    "large language model": "modelo de lenguaje grande",
+    "chatbot": "chatbot",
+    "context window": "ventana de contexto",
+    "token": "token",
+    "tokenization": "tokenización",
+    "tokenizer": "tokenizador",
+    "inference": "inferencia",
+    "embedding": "embedding",
+    "embeddings": "embeddings",
+    "training": "entrenamiento",
+    "fine-tuning": "ajuste fino",
+    "hallucination": "alucinación",
+    "temperature": "temperatura",
+    "top-p": "top-p",
+    "retrieval-augmented generation": "generación aumentada por recuperación",
+    "RAG": "RAG",
+    "vector store": "almacén de vectores",
+    "prompt": "instrucción",
+    "prompt injection": "inyección de instrucciones",
+    "system prompt": "instrucción de sistema",
+    "quantization": "cuantización",
+    "model file": "archivo de modelo",
+    "model size": "tamaño del modelo",
+    "parameters": "parámetros",
+    "benchmark": "prueba de rendimiento",
+    "tokens per second": "tokens por segundo",
+    "first token latency": "latencia del primer token",
+    "cold start": "arranque en frío",
+    "offloading": "descarga",
+    "screen analysis": "análisis de pantalla",
+    "speech to text": "de voz a texto",
+    "text to speech": "de texto a voz",
+    "wake word": "palabra de activación",
+    "voice cloning": "clonación de voz",
+    "persistent memory": "memoria persistente",
+    "high-impact tool": "herramienta de alto impacto",
+    "confirmation": "confirmación",
+    "destructive action": "acción destructora",
+    "rollback": "deshacer",
+    "self-funded": "autofinanciado",
+    "open source": "código abierto",
+    "proprietary": "proprietario",
+    "telemetry": "telemetría"
+  },
+  "forbidden": [
+    {
+      "id": "never-leaves-pc",
+      "lang": ["en", "es"],
+      "pattern": "nada sale de (tu|su) (pc|ordenador|equipo)|nunca sale de|no sale nada de tu pc|nothing ever leaves|sends nothing anywhere",
+      "why": "PRODUCT_TRUTH.md: banned phrasing. The model is local, the app is not network-blind."
+    },
+    {
+      "id": "product-wide-offline",
+      "lang": ["en", "es"],
+      "pattern": "completamente offline|totalmente offline|funciona totalmente sin conexi[oó]n|fully offline|100% offline",
+      "why": "PRODUCT_TRUTH.md: only true per feature (chat, voice, memory, documents), never product-wide."
+    },
+    {
+      "id": "zero-network",
+      "lang": ["en", "es"],
+      "pattern": "cero actividad de red|zero network activity|sin actividad de red alguna",
+      "why": "PRODUCT_TRUTH.md: web search, weather and integrations do use the network when invoked."
+    },
+    {
+      "id": "any-gguf",
+      "lang": ["en", "es"],
+      "pattern": "cualquier (archivo|modelo) gguf (funciona|sirve)|any gguf (file|model) (works|runs)",
+      "why": "PRODUCT_TRUTH.md: say 'compatible GGUF models', never 'any GGUF runs'."
+    },
+    {
+      "id": "conscious-ai",
+      "lang": ["en", "es"],
+      "pattern": "la ia (entiende|comprende|piente|siente)|la m[aá]quina (entiende|piente)|the ai (understands|knows|is aware)|it (thinks|knows) (like|that) (you|we)",
+      "why": "It predicts text. Keep the mechanism visible instead of anthropomorphising."
+    },
+    {
+      "id": "max-on-sale",
+      "lang": ["en", "es"],
+      "pattern": "max est[aá] a la venta|max is (now )?available|compra max ahora|buy max now",
+      "why": "PRODUCT_TRUTH.md: Max is not on sale yet."
+    }
+  ],
+  "approved": {
+    "en": "Local features run on your PC. Network-enabled features communicate externally only when you use or configure them. O.A.S.I.S. is offline-first, not network-blind.",
+    "es": "Las funciones locales se ejecutan en tu PC. Las funciones que usan red se comunican externamente solo cuando tú las usas o configuras. O.A.S.I.S. es offline-first, no ciego a la red."
+  },
+  "measurement": {
+    "_note": "A performance number in a Journal article is only publishable together with a recorded measurement. The article must carry a visible 'How this was measured' block; check_claims.py looks for it.",
+    "required_fields": ["model", "quantization", "hardware", "ram", "vram", "context_length", "date"],
+    "anchor": "How this was measured"
+  }
+}

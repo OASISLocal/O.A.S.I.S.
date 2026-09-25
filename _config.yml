@@ -43,11 +43,18 @@ exclude:
   - QA_CHECKLIST.md
   - LAUNCH_RUNBOOK.md
   - METRICS.md
+  - JOURNAL_GLOSSARY.md
+  - JOURNAL_CHECKLIST.md
+  - GOOGLE_NEWS.md
   - launch/
   - sync-web.ps1
   - .lighthouserc.json
   - .lighthouserc.mobile.json
   - build_es.py
+  - build_sitemap.py
+  - build_news_sitemap.py
+  - check_site.py
+  - check_claims.py
   - i18n/
   - fix-es-metadata.ps1
   - translate-es-pages.ps1
