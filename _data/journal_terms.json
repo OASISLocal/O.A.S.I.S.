@@ -69,6 +69,17 @@
     "proprietary": "proprietario",
     "telemetry": "telemetría"
   },
+  "tags": {
+    "basics": "básicos",
+    "internals": "por dentro",
+    "privacy": "privacidad",
+    "models": "modelos",
+    "hardware": "hardware",
+    "safety": "seguridad",
+    "ecosystem": "ecosistema",
+    "company": "la casa",
+    "engineering": "ingeniería"
+  },
   "forbidden": [
     {
       "id": "never-leaves-pc",
