@@ -16,9 +16,7 @@
         "http://localhost/comparison.html",
         "http://localhost/download.html",
         "http://localhost/changelog.html",
-        "http://localhost/about.html",
-        "http://localhost/blog/",
-        "http://localhost/es/blog/"
+        "http://localhost/about.html"
       ],
       "numberOfRuns": 1,
       "settings": {
