@@ -20,7 +20,7 @@ excerpt: "Notas, análisis técnicos y aprendizajes de O.A.S.I., el asistente de
   {% assign mi = item_date | date: "%m" | minus: 1 %}
 <li>
 <span class="post-date">{{ item_date | date: "%-d" }} de {{ site.data.i18n.es_months[mi] }} de {{ item_date | date: "%Y" }}</span>
-<a class="post-title" href="{% if es_post %}{{ es_post.url | relative_url }}{% else %}{{ post.url | relative_url }}{% endif %}">{% if es_post %}{{ es_post.title }}{% elsif meta.title %}{{ meta.title }}{% else %}{{ post.title }}{% endif %}</a>{% unless es_post %}{% if meta.title or meta.excerpt %} <span class="post-lang" title="Artículo completo solo en inglés">EN</span>{% endunless %}{% endunless %}
+<a class="post-title" href="{% if es_post %}{{ es_post.url | relative_url }}{% else %}{{ post.url | relative_url }}{% endif %}">{% if es_post %}{{ es_post.title }}{% elsif meta.title %}{{ meta.title }}{% else %}{{ post.title }}{% endif %}</a>{% unless es_post %}{% if meta.title or meta.excerpt %} <span class="post-lang" title="Artículo completo solo en inglés">EN</span>{% endif %}{% endunless %}
 <p class="post-excerpt">{% if es_post %}{{ es_post.excerpt | strip_html | strip_newlines | truncate: 180 }}{% elsif meta.excerpt %}{{ meta.excerpt }}{% else %}{{ post.excerpt | strip_html | strip_newlines | truncate: 180 }}{% endif %}</p>
 </li>
 {% else %}
