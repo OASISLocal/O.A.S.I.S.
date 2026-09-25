@@ -336,7 +336,7 @@ if os.path.isdir(COMPONENT_DIR):
         # load a stylesheet of their own
         for internal in ("table-config", "chart-toggle", "gallery-open",
                          "table-status", "video-play", "gallery-item",
-                         "chart-data"):
+                         "chart-data", "timeline-horizontal"):
             markers.discard(internal)
         for name in markers:
             if name not in layout_post:
@@ -355,7 +355,7 @@ if os.path.isdir(COMPONENT_DIR):
             if bad in src:
                 fail("%s loads a third-party asset (%s), which breaks the "
                      "no-third-party promise" % (f, bad))
-    # a video poster must be a local file, not a remote thumbnail
+    # A video poster must be a local file, not a remote thumbnail
     for f in sorted(glob.glob("_posts/*.md")):
         for poster in re.findall(r'poster="([^"]+)"', read(f)):
             if poster.startswith(("http://", "https://", "//")):
@@ -364,6 +364,32 @@ if os.path.isdir(COMPONENT_DIR):
             local = "." + poster
             if not os.path.isfile(local):
                 fail("%s: video poster not found: %s" % (os.path.basename(f), poster))
+
+    # Liquid's include tag cannot hold a double quote inside a double-quoted
+    # parameter. That is an "Invalid syntax for include tag" build failure, and
+    # it is invisible until the Jekyll build runs, so it is checked here.
+    INCLUDE = re.compile(r"\{%-?\s*include\s+([a-z0-9_/]+\.html)((?:\s+[a-zA-Z_][\w-]*=(?:\"[^\"]*\"|'[^']*'))*)\s*-?%\}",
+                         re.S)
+    for f in sorted(glob.glob("_posts/*.md") + glob.glob("*.html") +
+                    glob.glob("es/*.html") + glob.glob("blog/*.html") +
+                    glob.glob("es/blog/*.html")):
+        src = read(f)
+        for m in INCLUDE.finditer(src):
+            name, args = m.group(1), m.group(2)
+            if not os.path.isfile(os.path.join("_includes", name)):
+                fail("%s: include %s does not exist" % (os.path.basename(f), name))
+            # count the double quotes: an odd number means one is unmatched
+            if args.count('"') % 2 != 0:
+                line = src[:m.start()].count("\n") + 1
+                fail("%s:%d include %s has an unbalanced double quote in its "
+                     "parameters, which breaks the Jekyll build"
+                     % (os.path.basename(f), line, name))
+    # a markdown table cannot be markdownified inside a <table>
+    for f in sorted(glob.glob("_posts/*.md")):
+        src = read(f)
+        if re.search(r"include\s+components/table\.html[^%]*markdownify", src, re.S):
+            fail("%s: table.html does not accept markdownified markdown" % os.path.basename(f))
+
     if "COMPONENTES.md" not in cfg:
         fail("COMPONENTES.md is not in _config.yml exclude (Jekyll would publish it)")
 

@@ -12,6 +12,8 @@ Add a class inside the item to mark state:
 - **Planned** — dashed dot, dimmed, but still visible
 {%- endcomment -%}
 
-<ol class="cmp cmp-timeline{% if include.horizontal == 'true' %} cmp-timeline--horizontal{% endif %}" data-cmp-timeline>
-{{ include.body | markdownify }}
-</ol>
+<div class="cmp cmp-timeline cmp-timeline-wrap{% if include.horizontal == 'true' %} cmp-timeline--horizontal{% endif %}"
+     {% if include.horizontal == 'true' %}data-cmp-timeline-horizontal="true"{% endif %}
+     data-cmp-timeline>
+  {{ include.body | markdownify }}
+</div>

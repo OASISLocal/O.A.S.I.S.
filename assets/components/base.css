@@ -117,8 +117,12 @@
 }
 
 /* Horizontal scroller shared by tables and wide code blocks. A table that
- * cannot shrink must scroll; a table that breaks the layout is worse. */
+ * cannot shrink must scroll; a table that breaks the layout is worse.
+ * `max-width: 100%` is the important part: without it a wide child forces the
+ * scroller itself to grow past the viewport, and the page scrolls sideways
+ * instead of the table doing it. */
 .cmp-scroll {
+  max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;

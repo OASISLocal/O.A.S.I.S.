@@ -1,19 +1,42 @@
 {%- comment -%}
-Accordion / FAQ, built on <details>, so it works with JavaScript disabled.
+Accordion / FAQ, built on <details> so it works with JavaScript disabled.
+
+The body is a markdown LIST. Each item becomes one <details>: the bold part is
+the summary, everything after it is the answer. A list item without bold text is
+used as a group heading, so a long FAQ can be split into sections without leaving
+the list.
 
   {% raw %}{% capture faq_body %}
 - **Question one?**
-  Answer one.
+  The answer.
 - **Question two?**
-  Answer two.
+  Another answer.
 {% endcapture %}
-{% include components/details.html title="FAQ" faq="true" body=faq_body %}{% endraw %}
+{% include components/details.html title="Questions" faq="true" body=faq_body %}{% endraw %}
 
-faq="true"  side-by-side question/answer layout on wide screens
--open-label / -close-label  translate the two buttons
+Implementation note: kramdown has already run by the time an include sees the
+body, so the list arrives as <li> markup. Splitting on </li> is reliable and
+needs no plugin.
+
+faq="true"          question and answer side by side on wide screens
+-open-label / -close-label  translate the expand/collapse buttons
 {%- endcomment -%}
 
 {%- assign faq = include.faq | default: "false" -%}
+{%- comment -%}
+  The captured body is raw markdown: kramdown has NOT run on it yet, because
+  markdownify happens later, on the whole post. So convert it here first, and
+  only then split on the <li> elements kramdown produced.
+{%- endcomment -%}
+{%- assign rendered = include.body | markdownify -%}
+{%- comment -%}
+  Split on <li>, and drop the first fragment: it is the text before the first
+  <li>, which is the opening <ul>. The last fragment carries the closing </li>
+  and </ul>, so it is trimmed too.
+{%- endcomment -%}
+{%- assign all_items = rendered | split: "<li>" -%}
+{%- assign items = all_items | shift -%}
+
 <div class="cmp cmp-details{% if faq == 'true' %} cmp-faq{% endif %}"
      data-cmp-details
      data-open-label="{{ include.open-label | default: 'Expand all' }}"
@@ -21,5 +44,23 @@ faq="true"  side-by-side question/answer layout on wide screens
 {%- if include.title -%}
   <p class="cmp__eyebrow" style="padding:0.875rem 1rem 0">{{ include.title }}</p>
 {%- endif -%}
-{{ include.body | markdownify }}
+{%- for item in items -%}
+  {%- assign cleaned = item | replace: "</li>", "" | replace: "</ul>", "" | replace: "</p>", "" | replace: "<p>", "" | strip -%}
+  {%- if cleaned == "" -%}{%- continue -%}{%- endif -%}
+  {%- assign strong = cleaned | split: "<strong>" | last | split: "</strong>" | first -%}
+  {%- if strong and strong != "" -%}
+    {%- comment -%}
+      The answer is the item minus its own leading bold question, so the
+      question is not repeated under the summary.
+    {%- endcomment -%}
+    {%- assign answer_html = cleaned | remove_first: "<strong>" | remove_first: strong | remove_first: "</strong>" | strip -%}
+    {%- assign answer = answer_html | strip -%}
+<details class="cmp-details__item" open>
+  <summary class="cmp-details__summary">{{ strong | strip }}</summary>
+  <div class="cmp-details__body">{{ answer }}</div>
+</details>
+  {%- else -%}
+    <p class="cmp-details__heading">{{ cleaned | strip_html | strip }}</p>
+  {%- endif -%}
+{%- endfor -%}
 </div>

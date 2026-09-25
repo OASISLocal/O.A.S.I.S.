@@ -21,16 +21,20 @@
    * the column looks like a number, and as text otherwise.
    */
   function initTables() {
-    // The include emits the class and the sort config in a <template>, because a
-    // markdown table cannot carry attributes. Apply them here, on the real table.
+    // The class is normally already in the markup, so the layout rules work
+    // before this script runs. The template only carries the sort options, and
+    // anything the author omitted is filled in here.
     var wraps = doc.querySelectorAll("[data-cmp-table-config]");
     Array.prototype.forEach.call(wraps, function (tpl) {
       var parts = (tpl.textContent || "").split("|");
       var table = tpl.parentNode.querySelector("table");
       if (!table) return;
-      if (parts[0]) table.className = parts[0];
+      var want = (parts[0] || "").trim();
+      if (want && !table.className) {
+        table.className = want;
+      }
       if (parts[1] === "true") table.setAttribute("data-sortable", "true");
-      var presort = parts[2];
+      var presort = (parts[2] || "").trim();
       if (presort) {
         var heads = table.querySelectorAll("thead th");
         for (var i = 0; i < heads.length; i++) {

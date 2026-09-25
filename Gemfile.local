@@ -1,0 +1,11 @@
+source "https://rubygems.org"
+
+# Matches the GitHub Pages build (which uses the github-pages gem, a Jekyll 3
+# fork) closely enough to reproduce a build failure locally before pushing.
+#
+# Note: eventmachine is deliberately absent. It is only needed by
+# `jekyll serve`, needs a compiler toolchain on Windows, and this file exists
+# to run `bundle exec jekyll build`, not a preview server.
+gem "jekyll", "3.9.3"
+gem "kramdown-parser-gfm"
+gem "webrick"

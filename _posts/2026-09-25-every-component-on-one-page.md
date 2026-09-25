@@ -61,7 +61,7 @@ word. Never rely on colour alone.
 ## Tables
 
 {% capture table_rows %}
-<table>
+<table class="cmp-table">
   <thead>
     <tr>
       <th scope="col">Tier</th>
@@ -110,16 +110,16 @@ word. Never rely on colour alone.
 
 ## Tabs
 
-{% include components/tabs.html id="shell" labels="PowerShell|Bash" panels="Run it from the repository root, then push:
+{% include components/tabs.html id="shell" labels="PowerShell|Bash" open-label="PowerShell" panels="Run it from the repository root, then push:
 
 ```powershell
-.\sync-web.ps1 -Message "your message"
+/sync-web.ps1 -Message 'your message'
 ```
 
 And from Bash:
 
 ```bash
-./sync-web.ps1 -Message "your message"
+./sync-web.ps1 -Message 'your message'
 ```" %}
 
 ## Gallery

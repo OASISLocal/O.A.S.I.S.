@@ -5,6 +5,7 @@
 
 .cmp-table {
   width: 100%;
+  min-width: 26rem;          /* below this the scroller takes over */
   border-collapse: collapse;
   font-size: 0.875rem;
   line-height: 1.5;

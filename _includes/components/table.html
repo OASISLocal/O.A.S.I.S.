@@ -39,6 +39,13 @@ Params: -caption  above the table · -sortable="true"  click-to-sort headers
   {%- if caption -%}<p class="cmp__caption cmp__caption--above">{{ caption }}</p>{%- endif -%}
   <div class="cmp-scroll"{% unless scroll == 'false' %} tabindex="0" role="region" aria-label="{{ caption | default: 'Data table' }}"{% endunless %}>
     <template data-cmp-table-config>{{ klass }}|{{ sortable }}|{{ sortcol }}</template>
+    {%- comment -%}
+      The class is applied to the table in the markup, not by the script, so the
+      layout rules are in force before any JavaScript runs. Liquid cannot
+      interpolate a variable inside a quoted string, so this is a literal
+      marker: the author writes <table class="cmp-table"> and nothing else is
+      needed. The template only carries the extra options.
+    {%- endcomment -%}
     {{ include.body }}
   </div>
   {%- if include.note -%}<p class="cmp-table__note">{{ include.note }}</p>{%- endif -%}

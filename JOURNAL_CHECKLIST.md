@@ -51,6 +51,27 @@ is the part that needs judgement and a human eye.
 - [ ] Next-in-series link at the end (or an explicit note that it is the first
       article).
 
+## 2b. Components
+
+When an article uses a component, `COMPONENTES.md` has the syntax. Three rules
+that are not obvious and that break the build if forgotten:
+
+- [ ] **A `{% raw %}{% capture %}{% endraw %}` parameter cannot contain a double
+      quote.** `-Message "your message"` inside a double-quoted include argument
+      produces *"Invalid syntax for include tag"* and only shows up at build
+      time. `check_seo.py` now catches the unbalanced quote, but the fix is to use
+      single quotes in the example.
+- [ ] **Tables and chart bodies are HTML, not markdown.** kramdown wraps block
+      content in `<p>`, and a `<p>` inside a `<table>` is invalid markup that
+      fails the Jekyll build.
+- [ ] **The `<table class="cmp-table">` class is written by the author**, not
+      added by the script: the layout rules must be in force before JavaScript
+      runs, and they are what keeps a wide table inside its scroll box on a
+      phone.
+- [ ] After adding or editing a component, open
+      `/blog/2026/09/25/every-component-on-one-page/` and look at it. That page
+      is `noindex` and exists exactly for this.
+
 ## 4. Spanish version (assisted translation)
 
 - [ ] Full translation, not a summary and not a machine dump.

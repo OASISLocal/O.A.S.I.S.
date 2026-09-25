@@ -62,6 +62,18 @@
 .cmp-timeline__body > *:first-child { margin-top: 0; }
 .cmp-timeline__body > *:last-child { margin-bottom: 0; }
 
+/* The body arrives as a markdown list: a list inside a list would otherwise
+ * get the browser's default disc bullets and padding. */
+.cmp-timeline-wrap > ul,
+.cmp-timeline-wrap > ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cmp-timeline__item { position: relative; padding-bottom: 1.25rem; }
+.cmp-timeline__item:last-child { padding-bottom: 0; }
+
 .cmp-timeline__tag {
   display: inline-block;
   font-family: var(--cmp-mono);

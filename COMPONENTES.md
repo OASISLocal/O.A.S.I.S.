@@ -90,35 +90,59 @@ Sobre `<details>` nativo, así que funciona sin JavaScript.
 
 ## table
 
+La tabla se escribe como **HTML**, no como markdown, y **con la clase puesta**:
+
 ```liquid
 {% raw %}{% capture rows %}
-| Nivel | RAM | VRAM |
-|---|---|---|
-| Mínimo | 8 GB | — |
+<table class="cmp-table">
+  <thead>
+    <tr><th scope="col">Tier</th><th scope="col" data-sort data-key="ram">RAM</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Minimum</th><td>8 GB</td></tr>
+  </tbody>
+</table>
 {% endcapture %}
 {% include components/table.html body=rows caption="Requisitos" sortable="true"
    note="Estas son cifras declaradas, no benchmarks medidos." %}{% endraw %}
 ```
 
-La tabla vive en un contenedor con scroll horizontal, así que en un móvil de
-360 px se desliza en lugar de romper la página. `sortable="true"` añade
-ordenación; la columna se detecta como numérica si el 80 % de sus celdas lo son.
+**Por qué HTML y no markdown:** kramdown envuelve el contenido de bloque en
+`<p>`, y un `<p>` dentro de un `<table>` es HTML inválido: rompe el build de
+Jekyll. Por eso el cuerpo se pasa tal cual.
+
+**Por qué la clase va en el `<table>` y no la pone el script:** las reglas de
+disposición (celdas sin salto de línea, cabecera pegajosa) tienen que estar
+activas *antes* de que corra JavaScript, y son las que mantienen una tabla
+ancha dentro de su contenedor con scroll en un móvil. El script sólo rellena lo
+que el autor olvidó.
+
+La tabla vive en un contenedor con scroll horizontal, así que en un móvil se
+desliza en lugar de romper la página. `sortable="true"` añade ordenación (marca
+`data-sort` en las cabeceras); la columna se detecta como numérica si el 80 % de
+sus celdas lo son. `-sort="ram"` ordena por la columna con ese `data-key`.
 
 ## chart
 
 El gráfico **se dibuja desde una tabla que está en el marcado**, no desde datos
 en JavaScript. Por eso el dibujo y las cifras no pueden discrepar, y un motor de
-respuestas lee la tabla.
+respuestas lee la tabla. El cuerpo es HTML por la misma razón que en `table`.
 
 ```liquid
 {% raw %}{% capture data %}
-| Gemma 4B (Q4) | 4.1 |
-| Llama 3.2 3B (Q4) | 2.0 |
+<tbody>
+  <tr><th scope="row">Gemma 4B (Q4)</th><td data-value="4.1">4.1</td></tr>
+  <tr><th scope="row">Llama 3.2 3B (Q4)</th><td data-value="2.0">2.0</td></tr>
+</tbody>
 {% endcapture %}
 {% include components/chart.html body=data chart="bar" unit=" GB"
    title="Tamaño de descarga" sub="Cuantizado a Q4"
    note="Tamaños declarados. No es una prueba de velocidad." %}{% endraw %}
 ```
+
+Se pasa sólo el `<tbody>`: el `<table>` y sus cabeceras los pone el include.
+`data-value` es el número que usa el dibujo; la celda muestra el mismo valor en
+texto legible.
 
 `chart="bar|line"`. El botón "Show the numbers" revela la tabla, que siempre está
 en el DOM. **Pon siempre la nota**: un gráfico sin contexto es cómo se cita una
