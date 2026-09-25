@@ -1,0 +1,31 @@
+{%- comment -%}
+Click-to-load video. No third-party request happens while the reader reads: the
+iframe is only created when the poster is clicked.
+
+  {% raw %}{% include components/video.html id="dQw4w9WgXcQ" provider="youtube"
+     title="..." poster="/assets/posters/demo.png" note="1:42" %}{% endraw %}
+
+provider: youtube (default) | vimeo
+poster:   required, and it must be a local file. A remote thumbnail would be a
+          third-party request, which this site does not make.
+{%- endcomment -%}
+
+{%- assign provider = include.provider | default: "youtube" -%}
+
+<figure class="cmp cmp-video">
+  <div class="cmp-video__frame"
+       data-cmp-video
+       data-video-id="{{ include.id }}"
+       data-video-provider="{{ provider }}"
+       data-video-title="{{ include.title | default: 'Video' }}">
+    <button type="button" class="cmp-video__poster" data-cmp-video-play
+            aria-label="{{ include.aria-label | default: 'Play video' }}{% if include.title %}: {{ include.title }}{% endif %}">
+      <img src="{{ include.poster }}" alt="" loading="lazy" decoding="async" width="1280" height="720">
+      <span class="cmp-video__play" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      </span>
+    </button>
+  </div>
+  {%- if include.caption -%}<figcaption>{{ include.caption }}</figcaption>{%- endif -%}
+  {%- if include.note -%}<p class="cmp-video__note">{{ include.note }}</p>{%- endif -%}
+</figure>

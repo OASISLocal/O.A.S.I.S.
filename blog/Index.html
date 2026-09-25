@@ -10,7 +10,7 @@ excerpt: "Notes, deep dives and build logs from O.A.S.I., the local-first AI ass
 <h1 class="blog-h1">O.A.S.I.S. Journal</h1>
 <p class="blog-meta">Notes, deep dives and what we learn building a local-first AI assistant.</p>
 
-{% assign en_posts = site.posts | where: "lang", "en" %}
+{% assign en_posts = site.posts | where: "lang", "en" | where_exp: "p", "p.sitemap != false" %}
 <ul class="post-list">
 {% for post in en_posts %}
   {% assign meta = site.data.blog_es[post.ref] %}

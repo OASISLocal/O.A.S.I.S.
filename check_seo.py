@@ -191,22 +191,29 @@ for f in STATIC:
 
 
 def post_url(f):
-    """A post's published URL: its own permalink when declared, else the default."""
+    """A post's published URL: its own permalink when declared, else the default.
+    Returns (url, opted_out) so callers can skip noindex test pages."""
     src = read(f)
     m = re.search(r"^---\s*\n(.*?)\n---", src, re.S)
+    opted_out = False
     if m:
-        pm = re.search(r"^permalink:\s*(\S+)\s*$", m.group(1), re.M)
+        head = m.group(1)
+        if re.search(r"^sitemap:\s*false\s*$", head, re.M):
+            opted_out = True
+        if re.search(r"^noindex:\s*true\s*$", head, re.M):
+            opted_out = True
+        pm = re.search(r"^permalink:\s*(\S+)\s*$", head, re.M)
         if pm:
-            return "https://oasislocal.github.io/O.A.S.I.S." + pm.group(1)
+            return "https://oasislocal.github.io/O.A.S.I.S." + pm.group(1), opted_out
     m = re.match(r"^(\d{4})-(\d{2})-(\d{2})-(.+)$", os.path.basename(f)[:-3])
     if not m:
-        return None
-    return "https://oasislocal.github.io/O.A.S.I.S./blog/%s/%s/%s/%s/" % m.groups()
+        return None, opted_out
+    return "https://oasislocal.github.io/O.A.S.I.S./blog/%s/%s/%s/%s/" % m.groups(), opted_out
 
 
 for f in sorted(glob.glob("_posts/*.md")):
-    url = post_url(f)
-    if url and url not in in_sitemap:
+    url, opted_out = post_url(f)
+    if url and not opted_out and url not in in_sitemap:
         fail("post not in the sitemap: %s" % os.path.basename(f))
 
 # --------------------------------------------------------------- 7/8. robots
@@ -300,6 +307,61 @@ for f in STATIC:
                 org_defs.append((f, node["@id"]))
 if org_defs and len(set(i for _, i in org_defs)) > 1:
     fail("more than one Organization @id declared: %s" % sorted(set(i for _, i in org_defs)))
+
+# ------------------------------------------- 14. the component system is coherent
+COMPONENT_DIR = "_includes/components"
+COMPONENT_CSS = "assets/components"
+if os.path.isdir(COMPONENT_DIR):
+    includes = sorted(glob.glob(COMPONENT_DIR + "/*.html"))
+    if not includes:
+        fail("%s exists but has no components" % COMPONENT_DIR)
+    for inc in includes:
+        body = read(inc)
+        # every include must declare a marker, otherwise the layout cannot detect it
+        if "data-cmp-" not in body:
+            fail("%s: no data-cmp-* marker, so the layout cannot detect the usage"
+                 % inc)
+        # every include referenced must exist (ignore the usage examples in the
+        # comment header, which are written as documentation)
+        body_no_comments = re.sub(r"\{%-?\s*comment\s*-?%\}.*?\{%-?\s*endcomment\s*-?%\}",
+                                  "", body, flags=re.S)
+        for dep in re.findall(r"include\s+([a-z0-9_/]+\.html)", body_no_comments):
+            if not os.path.isfile(os.path.join(COMPONENT_DIR, dep)):
+                fail("%s references a missing include: %s" % (inc, dep))
+    # the layout must know how to detect each component
+    layout_post = read("_layouts/post.html")
+    for inc in includes:
+        marker = re.search(r'data-cmp-([a-z-]+)', read(inc))
+        if not marker:
+            continue
+        name = marker.group(1)
+        if name not in layout_post:
+            fail("_layouts/post.html: no conditional loading for component %r" % name)
+    # every stylesheet the layout can request must exist
+    for css in set(re.findall(r"/assets/components/([a-z-]+\.css)", layout_post)):
+        if not os.path.isfile(os.path.join(COMPONENT_CSS, css)):
+            fail("missing component stylesheet: assets/components/%s" % css)
+    if not os.path.isfile(os.path.join(COMPONENT_CSS, "components.js")):
+        fail("missing assets/components/components.js")
+    # The site promises no third-party requests. A component must not undo that.
+    for f in includes + [os.path.join(COMPONENT_CSS, "components.js")]:
+        src = read(f)
+        for bad in ("cdn.jsdelivr.net", "unpkg.com", "cdnjs.cloudflare.com",
+                    "googleapis.com", "bootstrapcdn"):
+            if bad in src:
+                fail("%s loads a third-party asset (%s), which breaks the "
+                     "no-third-party promise" % (f, bad))
+    # a video poster must be a local file, not a remote thumbnail
+    for f in sorted(glob.glob("_posts/*.md")):
+        for poster in re.findall(r'poster="([^"]+)"', read(f)):
+            if poster.startswith(("http://", "https://", "//")):
+                fail("%s: remote video poster %r would be a third-party request"
+                     % (os.path.basename(f), poster))
+            local = "." + poster
+            if not os.path.isfile(local):
+                fail("%s: video poster not found: %s" % (os.path.basename(f), poster))
+    if "COMPONENTES.md" not in cfg:
+        fail("COMPONENTES.md is not in _config.yml exclude (Jekyll would publish it)")
 
 # ---------------------------------------------------------------------- report
 for n in notes:

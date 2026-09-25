@@ -1,0 +1,29 @@
+{%- comment -%}
+Tabs, following the WAI-ARIA tabs pattern (one tab stop, arrows to move).
+
+  {% raw %}{% include components/tabs.html
+     labels="PowerShell|Bash"
+     panels="```powershell\n...\n```|```bash\n...\n```" %}{% endraw %}
+
+labels: pipe-separated tab labels
+panels: pipe-separated bodies (markdown inside each)
+{%- endcomment -%}
+
+{%- assign labels = include.labels | split: "|" -%}
+{%- assign panels = include.panels | split: "|" -%}
+
+<div class="cmp cmp-tabs" data-cmp-tabs>
+  <div class="cmp-tabs__list" role="tablist"{% if include.aria-label %} aria-label="{{ include.aria-label }}"{% endif %}>
+    {%- for label in labels -%}
+    <button type="button" class="cmp-tabs__tab" role="tab" id="tab-{{ include.id }}-{{ forloop.index0 }}"
+            aria-controls="panel-{{ include.id }}-{{ forloop.index0 }}"
+            aria-selected="{{ forloop.first }}">{{ label | strip }}</button>
+    {%- endfor -%}
+  </div>
+  {%- for panel in panels -%}
+  <div class="cmp-tabs__panel" role="tabpanel" id="panel-{{ include.id }}-{{ forloop.index0 }}"
+       aria-labelledby="tab-{{ include.id }}-{{ forloop.index0 }}"{% unless forloop.first %} hidden{% endunless %}>
+    {{ panel | markdownify }}
+  </div>
+  {%- endfor -%}
+</div>

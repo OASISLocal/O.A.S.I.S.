@@ -1,0 +1,103 @@
+/* components/timeline.css — a vertical or horizontal sequence, no JS.
+ * Used for release histories and for "how this gets from here to there".
+ */
+
+.cmp-timeline {
+  position: relative;
+  margin: var(--cmp-gap) 0;
+  padding-left: 1.5rem;
+  list-style: none;
+}
+
+.cmp-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.375rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background: var(--cmp-border);
+}
+
+.cmp-timeline__item { position: relative; padding-bottom: 1.25rem; }
+.cmp-timeline__item:last-child { padding-bottom: 0; }
+
+.cmp-timeline__item::before {
+  content: "";
+  position: absolute;
+  left: -1.5rem;
+  top: 0.375rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 1px solid var(--cmp-border-strong);
+  background: var(--bg-app);
+  border-radius: 50%;
+}
+
+.cmp-timeline__item--now::before { background: var(--cmp-text); }
+
+/* Items that did not ship yet are dimmed and dashed: visible, not hidden. */
+.cmp-timeline__item--planned::before { border-style: dashed; opacity: 0.6; }
+.cmp-timeline__item--planned .cmp-timeline__title { color: var(--cmp-text-2); }
+
+.cmp-timeline__date {
+  font-family: var(--cmp-mono);
+  font-size: 0.6875rem;
+  color: var(--cmp-text-faint);
+  letter-spacing: 0.04em;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.cmp-timeline__title {
+  font-family: var(--cmp-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cmp-text);
+  margin: 0 0 0.25rem;
+  line-height: 1.35;
+}
+
+.cmp-timeline__body { color: var(--cmp-text-dim); font-size: 0.9375rem; line-height: 1.7; }
+.cmp-timeline__body > *:first-child { margin-top: 0; }
+.cmp-timeline__body > *:last-child { margin-bottom: 0; }
+
+.cmp-timeline__tag {
+  display: inline-block;
+  font-family: var(--cmp-mono);
+  font-size: 0.625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--cmp-border);
+  padding: 0.125rem 0.375rem;
+  margin-left: 0.5rem;
+  vertical-align: 0.125rem;
+  color: var(--cmp-text-3);
+}
+
+/* Horizontal variant for short sequences on wide screens. */
+@media (min-width: 860px) {
+  .cmp-timeline--horizontal {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    padding-left: 0;
+    padding-top: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .cmp-timeline--horizontal::before {
+    left: 0.5rem;
+    right: 0.5rem;
+    top: 0.625rem;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+
+  .cmp-timeline--horizontal .cmp-timeline__item { padding-bottom: 0; }
+  .cmp-timeline--horizontal .cmp-timeline__item::before {
+    left: 0.125rem;
+    top: -1.125rem;
+  }
+}

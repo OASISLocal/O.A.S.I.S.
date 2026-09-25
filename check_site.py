@@ -242,11 +242,17 @@ for f in sorted(glob.glob("_posts/*.md")):
         notes.append("%s: no tags" % name)
 
     body = src.split("---", 2)[-1] if src.startswith("---") else src
-    # internal links, in markdown ([text](/path)) or in html (href="/path")
+    # internal links, in markdown ([text](/path)), in html (href="/path") and in
+    # the body= parameter of an include (which becomes markdown)
     internal = re.findall(r"\]\((/[^)\s]+)\)", body)
-    internal += [h for h in re.findall(r'href="(/[^"]*)"', body) if "{" not in h]
+    internal += re.findall(r'href="(/[^"]*)"', body)
+    # a path with a trailing slash is a directory, not a page
+    internal = [h.rstrip("/") if not h.endswith("/blog") else h for h in internal]
     good = sum(1 for h in internal if exists(h))
-    if good < 3:
+    # A noindex test page is not an article and is not held to the article rules.
+    is_test_page = (str(fm.get("noindex", "false")).lower() == "true"
+                    or str(fm.get("sitemap", "true")).lower() == "false")
+    if good < 3 and not is_test_page:
         fail("%s: only %d internal links resolve (need >= 3)" % (name, good))
 
     if body.lstrip().startswith("# "):
@@ -261,6 +267,29 @@ for ref, pair in posts.items():
                          "(the ES index will show it with the EN badge)" % ref)
     if "es" in pair and "en" not in pair:
         fail("%s: Spanish post without an English master" % ref)
+
+# A post that opts out of indexing (noindex / sitemap: false) must not appear in
+# the sitemap, in either blog index, or in either feed. The component test page
+# uses this to be reachable without competing with real articles.
+for f in sorted(glob.glob("_posts/*.md")):
+    fm, _ = front_matter(f)
+    name = os.path.basename(f)
+    opted_out = (str(fm.get("sitemap", "true")).lower() == "false"
+                 or str(fm.get("noindex", "false")).lower() == "true")
+    if not opted_out:
+        continue
+    m = re.match(r"^\d{4}-\d{2}-\d{2}-(.+)$", name[:-3])
+    slug = m.group(1) if m else name[:-3]
+    for url in ("/blog/%s/" % slug, "/es/blog/%s/" % slug):
+        if url in sitemap:
+            fail("%s is marked noindex but appears in the sitemap: %s" % (name, url))
+    for feeder in ("blog/Index.html", "es/blog/index.html", "blog/feed.xml", "blog/rss.xml"):
+        body = read(feeder)
+        if slug in body and "where_exp" not in body:
+            fail("%s: the noindex post %s is not filtered out of %s"
+                 % (name, slug, feeder))
+    if "where_exp" not in read("_layouts/post.html"):
+        fail("_layouts/post.html does not filter noindex posts out of the related list")
 
 # ------------------------------------------------------------ 6/7. packaging
 for excluded in ("build_sitemap.py", "check_site.py", "check_claims.py",

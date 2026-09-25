@@ -13,11 +13,113 @@ layout: default
 {%- assign tag = page.tags | first -%}
 {%- assign tag_label = tag -%}
 {%- if es -%}{%- assign tag_label = site.data.journal_terms.tags[tag] | default: tag -%}{%- endif -%}
+
+{%- comment -%}
+  Conditional loading. The component CSS/JS is only requested by the pages that
+  use a component, so a plain text article ships nothing extra. Detection is
+  automatic: each include leaves a data-cmp-* marker in the rendered content.
+  Force it from front matter with components: "chart gallery".
+{%- endcomment -%}
+{%- assign wanted = page.components | default: "" | split: " " -%}
+{%- assign body = content -%}
+{%- assign use_callout = false -%}
+{%- assign use_table = false -%}
+{%- assign use_details = false -%}
+{%- assign use_video = false -%}
+{%- assign use_gallery = false -%}
+{%- assign use_chart = false -%}
+{%- assign use_timeline = false -%}
+{%- if body contains "data-cmp-callout" or wanted contains "callout" %}{% assign use_callout = true %}{% endif %}
+{%- if body contains "data-cmp-table" or body contains "cmp-table" or wanted contains "table" %}{% assign use_table = true %}{% endif %}
+{%- if body contains "data-cmp-details" or wanted contains "details" %}{% assign use_details = true %}{% endif %}
+{%- if body contains "data-cmp-video" or wanted contains "video" %}{% assign use_video = true %}{% endif %}
+{%- if body contains "data-cmp-gallery-item" or wanted contains "gallery" %}{% assign use_gallery = true %}{% endif %}
+{%- if body contains "data-cmp-chart" or wanted contains "chart" %}{% assign use_chart = true %}{% endif %}
+{%- if body contains "cmp-timeline" or wanted contains "timeline" %}{% assign use_timeline = true %}{% endif %}
+{%- assign use_related = true -%}
+{%- assign any_component = false -%}
+{%- if use_callout or use_table or use_details or use_video or use_gallery or use_chart or use_timeline %}{% assign any_component = true %}{% endif %}
+{%- if body contains "cmp-tabs" or wanted contains "tabs" %}{% assign use_tabs = true %}{% endif %}
+{%- if use_tabs %}{% assign any_component = true %}{% endif %}
+
+{%- if any_component -%}
+<link rel="stylesheet" href="{{ '/assets/components/base.css' | relative_url }}">
+{%- if use_callout %}<link rel="stylesheet" href="{{ '/assets/components/callout.css' | relative_url }}">
+{%- endif -%}
+{%- if use_table %}<link rel="stylesheet" href="{{ '/assets/components/table.css' | relative_url }}">
+{%- endif -%}
+{%- if use_details %}<link rel="stylesheet" href="{{ '/assets/components/details.css' | relative_url }}">
+{%- endif -%}
+{%- if use_video %}<link rel="stylesheet" href="{{ '/assets/components/video.css' | relative_url }}">
+{%- endif -%}
+{%- if use_gallery %}<link rel="stylesheet" href="{{ '/assets/components/gallery.css' | relative_url }}">
+{%- endif -%}
+{%- if use_chart %}<link rel="stylesheet" href="{{ '/assets/components/chart.css' | relative_url }}">
+{%- endif -%}
+{%- if use_timeline %}<link rel="stylesheet" href="{{ '/assets/components/timeline.css' | relative_url }}">
+{%- endif -%}
+{%- if use_tabs %}<link rel="stylesheet" href="{{ '/assets/components/tabs.css' | relative_url }}">
+{%- endif -%}
+{%- if use_related %}<link rel="stylesheet" href="{{ '/assets/components/related.css' | relative_url }}">
+{%- endif -%}
+{%- endif -%}
+
+{%- comment -%}
+  A post can opt out of indexing from its front matter (noindex: true). This is
+  used by the component test page: it must be reachable to be checked, but it
+  must never compete with a real article.
+{%- endcomment -%}
+{%- if page.noindex -%}
+<meta name="robots" content="noindex, follow">
+{%- endif -%}
+
 <article>
 <div class="blog-eyebrow">{% if tag_label %}{{ tag_label | upcase }}{% else %}{% if es %}NOVEDAD{% else %}UPDATE{% endif %}{% endif %}</div>
 <h1 class="blog-h1">{{ page.title }}</h1>
-<div class="blog-meta">{% if es %}{{ page.date | date: "%-d" }} de {{ mes }} de {{ page.date | date: "%Y" }}{% else %}{{ page.date | date: "%B %-d, %Y" }}{% endif %}{% if tag_label %} — {{ tag_label }}{% endif %}</div>
+<div class="blog-meta">{% if es %}{{ page.date | date: "%-d" }} de {{ mes }} de {{ page.date | date: "%Y" }}{% else %}{{ page.date | date: "%B %-d, %Y" }}{% endif %}{% if tag_label %} — {{ tag_label }}{% endif %}{% if page.reading_minutes %} · {{ page.reading_minutes }} min{% endif %}</div>
 <div class="prose">
 {{ content }}
+
+{%- if use_related -%}
+{%- comment -%}
+  Related posts: same series tag first, then anything else, never the post
+  itself and never its own translation (same ref).
+{%- endcomment -%}
+{%- assign pool = site.posts | where_exp: "p", "p.lang == 'en'" -%}
+{%- assign related = "" | split: "" -%}
+{%- for p in pool -%}
+  {%- if p.url != page.url and p.ref != page.ref and p.tags contains tag -%}
+    {%- assign related = related | push: p -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if related.size < 3 -%}
+  {%- for p in pool -%}
+    {%- if p.url != page.url and p.ref != page.ref -%}
+      {%- unless related contains p -%}
+        {%- if related.size < 3 -%}{%- assign related = related | push: p -%}{%- endif -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+<nav class="cmp cmp-related" aria-labelledby="related-title">
+  <h2 class="cmp-related__title" id="related-title">{% if es %}Más del Journal{% else %}More from the Journal{% endif %}</h2>
+  {%- if related.size > 0 -%}
+  <ul class="cmp-related__list">
+    {%- for p in related limit: 3 -%}
+    <li class="cmp-related__item">
+      <a class="cmp-related__link" href="{{ p.url | relative_url }}">{{ p.title }}</a>
+      <span class="cmp-related__meta">{{ p.date | date: "%Y-%m-%d" }}{% if p.tags.first %} · {{ p.tags.first | upcase }}{% endif %}</span>
+    </li>
+    {%- endfor -%}
+  </ul>
+  {%- else -%}
+  <p class="cmp-related__empty">{% if es %}Todavía no hay más artículos. Este es el primero.{% else %}No more articles yet. This is the first one.{% endif %}</p>
+  {%- endif -%}
+</nav>
+{%- endif -%}
 </div>
 </article>
+
+{%- if any_component -%}
+<script src="{{ '/assets/components/components.js' | relative_url }}" defer></script>
+{%- endif -%}

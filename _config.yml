@@ -52,6 +52,7 @@ exclude:
   - REVIEW_HIPERDETALLADA.md
   - JOURNAL_GLOSSARY.md
   - JOURNAL_CHECKLIST.md
+  - COMPONENTES.md
   - GOOGLE_NEWS.md
   - docs/
   - launch/

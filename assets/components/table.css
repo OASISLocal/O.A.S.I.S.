@@ -1,0 +1,123 @@
+/* components/table.css — data tables that survive a 360 px screen.
+ * A table that overflows the page is a bug; a table that scrolls sideways is a
+ * feature. Both are handled: the wrapper scrolls, the table keeps its columns.
+ */
+
+.cmp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.cmp-table caption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--cmp-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cmp-text-faint);
+  padding-bottom: 0.5rem;
+}
+
+.cmp-table th,
+.cmp-table td {
+  text-align: left;
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--cmp-border);
+  vertical-align: top;
+}
+
+.cmp-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--cmp-bg);
+  color: var(--cmp-text);
+  font-family: var(--cmp-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--cmp-border-strong);
+  z-index: 1;
+}
+
+.cmp-table tbody tr:last-child td { border-bottom: 0; }
+.cmp-table tbody tr:hover { background: var(--cmp-bg); }
+
+.cmp-table td.num,
+.cmp-table th.num {
+  font-family: var(--cmp-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* First column is the label of the row: keep it readable when the rest scrolls. */
+.cmp-table th[scope="row"] {
+  font-weight: 500;
+  color: var(--cmp-text);
+  white-space: nowrap;
+}
+
+/* Sortable headers. The button is the control; the th stays a th. */
+.cmp-table th[aria-sort] { padding: 0; }
+.cmp-table th[aria-sort] > button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: none;
+  border: 0;
+  padding: 0.625rem 0.75rem;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cmp-table th[aria-sort] > button:hover { color: var(--cmp-text); }
+.cmp-table th[aria-sort] > button::after {
+  content: "↕";
+  opacity: 0.35;
+  font-size: 0.9em;
+}
+.cmp-table th[aria-sort="ascending"] > button::after { content: "↑"; opacity: 1; }
+.cmp-table th[aria-sort="descending"] > button::after { content: "↓"; opacity: 1; }
+
+.cmp-table__status {
+  font-family: var(--cmp-mono);
+  font-size: 0.6875rem;
+  color: var(--cmp-text-faint);
+  margin-top: 0.5rem;
+}
+
+/* Yes/no cells, without colour as the only signal. */
+.cmp-table .yes { color: var(--cmp-text); }
+.cmp-table .yes::before { content: "✓ "; }
+.cmp-table .no { color: var(--cmp-text-faint); }
+.cmp-table .no::before { content: "— "; }
+.cmp-table .partial { color: var(--cmp-text-dim); }
+.cmp-table .partial::before { content: "~ "; }
+
+/* Footnote under a table: source, date, "figures are not benchmarks". */
+.cmp-table__note {
+  font-family: var(--cmp-mono);
+  font-size: 0.6875rem;
+  line-height: 1.6;
+  color: var(--cmp-text-faint);
+  margin-top: 0.5rem;
+}
+
+.cmp-table--compact th,
+.cmp-table--compact td { padding: 0.4375rem 0.625rem; font-size: 0.8125rem; }
+
+@media (max-width: 640px) {
+  .cmp-table { font-size: 0.8125rem; }
+  .cmp-table th, .cmp-table td { padding: 0.5rem 0.625rem; }
+  /* the first column stops forcing a wide minimum on phones */
+  .cmp-table th[scope="row"] { white-space: normal; }
+}

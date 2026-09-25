@@ -1,0 +1,25 @@
+{%- comment -%}
+Accordion / FAQ, built on <details>, so it works with JavaScript disabled.
+
+  {% raw %}{% capture faq_body %}
+- **Question one?**
+  Answer one.
+- **Question two?**
+  Answer two.
+{% endcapture %}
+{% include components/details.html title="FAQ" faq="true" body=faq_body %}{% endraw %}
+
+faq="true"  side-by-side question/answer layout on wide screens
+-open-label / -close-label  translate the two buttons
+{%- endcomment -%}
+
+{%- assign faq = include.faq | default: "false" -%}
+<div class="cmp cmp-details{% if faq == 'true' %} cmp-faq{% endif %}"
+     data-cmp-details
+     data-open-label="{{ include.open-label | default: 'Expand all' }}"
+     data-close-label="{{ include.close-label | default: 'Collapse all' }}">
+{%- if include.title -%}
+  <p class="cmp__eyebrow" style="padding:0.875rem 1rem 0">{{ include.title }}</p>
+{%- endif -%}
+{{ include.body | markdownify }}
+</div>

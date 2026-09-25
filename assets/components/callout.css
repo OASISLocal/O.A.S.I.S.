@@ -1,0 +1,80 @@
+/* components/callout.css — notes, warnings, tips and the "measured" variant.
+ * The variant list is fixed on purpose: a callout system with 15 kinds is a
+ * callout nobody reads. Four kinds, and each one has a text label, so meaning
+ * never depends on colour alone.
+ */
+
+.callout {
+  --callout-edge: var(--cmp-text);
+  border: 1px solid var(--cmp-border);
+  border-left: 3px solid var(--callout-edge);
+  background: var(--cmp-bg);
+  padding: var(--cmp-pad) 1.125rem;
+  border-radius: var(--cmp-radius);
+}
+
+.callout__title {
+  font-family: var(--cmp-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--callout-edge);
+  margin: 0 0 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.callout__title::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--callout-edge);
+  flex: none;
+}
+
+.callout__body > *:first-child { margin-top: 0; }
+.callout__body > *:last-child { margin-bottom: 0; }
+.callout__body p { line-height: 1.7; color: var(--cmp-text-dim); }
+
+/* note: neutral, the default */
+.callout--note { --callout-edge: var(--cmp-text-2); }
+
+/* tip: affirmative, uses the same monochrome ramp as everything else */
+.callout--tip { --callout-edge: var(--cmp-text); }
+
+/* warning: the only component allowed a hue, and only as a left border + label */
+.callout--warning {
+  --callout-edge: #e0a13a;
+}
+
+.callout--warning .callout__title { color: #e0a13a; }
+
+/* measured: for performance numbers. Its whole point is that it looks
+ * different from a tip, so nobody quotes a number without its conditions. */
+.callout--measured {
+  --callout-edge: var(--cmp-text);
+  background: transparent;
+  border-style: dashed;
+  border-left-style: solid;
+}
+
+.callout--measured .callout__body {
+  font-family: var(--cmp-mono);
+  font-size: 0.75rem;
+  line-height: 1.65;
+  color: var(--cmp-text-faint);
+}
+
+.callout--measured dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.125rem 1rem;
+}
+
+.callout--measured dt { color: var(--cmp-text-3); }
+.callout--measured dd { margin: 0; color: var(--cmp-text-dim); }
+
+:root[data-theme="light"] .callout--warning { --callout-edge: #9a6410; }
+:root[data-theme="light"] .callout--warning .callout__title { color: #9a6410; }

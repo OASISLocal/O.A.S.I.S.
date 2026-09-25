@@ -1,0 +1,29 @@
+{%- comment -%}
+Callout / admonition.
+
+Jekyll includes do not take a block body, so the body is captured first:
+
+  {% raw %}{% capture callout_text %}
+  Text in **markdown**, with a [link](/how-it-works.html/).
+  {% endcapture %}
+  {% include components/callout.html type="warning" title="Heads up" body=callout_text %}{% endraw %}
+
+types: note (default) · tip · warning · measured
+"measured" exists for performance numbers: it looks different on purpose, so a
+figure is never quoted without the conditions next to it.
+{%- endcomment -%}
+
+{%- assign kind = include.type | default: "note" | strip -%}
+{%- assign title = include.title -%}
+{%- if title == nil or title == "" -%}
+  {%- if kind == "note" -%}{%- assign title = "Note" -%}
+  {%- elsif kind == "tip" -%}{%- assign title = "Tip" -%}
+  {%- elsif kind == "warning" -%}{%- assign title = "Warning" -%}
+  {%- elsif kind == "measured" -%}{%- assign title = "How this was measured" -%}
+  {%- else -%}{%- assign title = kind | capitalize -%}{%- endif -%}
+{%- endif -%}
+
+<aside class="cmp callout callout--{{ kind }}" data-cmp-callout role="note">
+  <p class="callout__title">{{ title }}</p>
+  <div class="callout__body">{{ include.body | markdownify }}</div>
+</aside>

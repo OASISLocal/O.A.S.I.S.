@@ -1,0 +1,38 @@
+{%- comment -%}
+Image gallery with a lightbox, no library.
+
+  {% raw %}{% include components/gallery.html
+     images="/assets/gallery/one.png|One|Alt text for one|/assets/gallery/one-large.png,
+             /assets/gallery/two.png|Two|Alt text for two|/assets/gallery/two-large.png" %}{% endraw %}
+
+images: pipe-separated  src|caption|alt|full-size-src
+        (full-size-src is optional and falls back to src)
+        |title|Cap  adds a caption under the grid.
+
+Alt text is mandatory: a missing one is left as an empty string on purpose, so
+a screen reader says nothing rather than reading a filename.
+{%- endcomment -%}
+
+{%- assign entries = include.images | strip_newlines | split: "," -%}
+<figure class="cmp">
+  {%- if include.title -%}<p class="cmp__caption cmp__caption--above">{{ include.title }}</p>{%- endif -%}
+  <div class="cmp-gallery">
+  {%- for entry in entries -%}
+    {%- assign parts = entry | strip | split: "|" -%}
+    {%- if parts[0] == "" -%}{%- continue -%}{%- endif -%}
+    {%- assign src = parts[0] | strip -%}
+    {%- assign cap = parts[1] | default: "" | strip -%}
+    {%- assign alt = parts[2] | default: "" | strip -%}
+    {%- assign full = parts[3] | default: src | strip -%}
+    <figure class="cmp-gallery__item" data-cmp-gallery-item data-caption="{{ cap | escape }}">
+      <button type="button" class="cmp-gallery__button" data-cmp-gallery-open
+              data-index="{{ forloop.index0 }}"
+              aria-label="{{ include.aria-label | default: 'View larger' }}{% if cap %}: {{ cap }}{% endif %}">
+        <img src="{{ src }}" alt="{{ alt }}" loading="lazy" decoding="async" data-full="{{ full }}">
+      </button>
+      {%- if cap -%}<figcaption class="cmp-gallery__caption">{{ forloop.index }}. {{ cap }}</figcaption>{%- endif -%}
+      {%- if entries.size > 1 -%}<span class="cmp-gallery__count" aria-hidden="true">{{ forloop.index }}/{{ entries.size }}</span>{%- endif -%}
+    </figure>
+  {%- endfor -%}
+  </div>
+</figure>

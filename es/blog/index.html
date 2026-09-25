@@ -11,7 +11,7 @@ excerpt: "Notas, análisis técnicos y aprendizajes de O.A.S.I., el asistente de
 <h1 class="blog-h1">Journal de O.A.S.I.S.</h1>
 <p class="blog-meta">Notas, análisis técnicos y lo que aprendemos construyendo un asistente de IA local-first.</p>
 
-{% assign en_posts = site.posts | where: "lang", "en" %}
+{% assign en_posts = site.posts | where: "lang", "en" | where_exp: "p", "p.sitemap != false" %}
 <ul class="post-list">
 {% for post in en_posts %}
   {% assign es_post = site.posts | where: "lang", "es" | where: "ref", post.ref | first %}

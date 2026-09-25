@@ -12,9 +12,9 @@ permalink: /blog/rss.xml
     <language>en</language>
     <copyright>O.A.S.I.S. — independent local-first project</copyright>
     <atom:link href="{{ '/blog/rss.xml' | absolute_url }}" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>{% assign en = site.posts | where: "lang", "en" %}{% if en.first %}{{ en.first.date | date_to_rfc822 }}{% else %}{{ site.time | date_to_rfc822 }}{% endif %}</lastBuildDate>
+    <lastBuildDate>{% assign en = site.posts | where: "lang", "en" | where_exp: "p", "p.sitemap != false" %}{% if en.first %}{{ en.first.date | date_to_rfc822 }}{% else %}{{ site.time | date_to_rfc822 }}{% endif %}</lastBuildDate>
     <generator>Jekyll</generator>
-{% assign en = site.posts | where: "lang", "en" %}
+{% assign en = site.posts | where: "lang", "en" | where_exp: "p", "p.sitemap != false" %}
 {% for post in en limit:20 %}
     <item>
       <title>{{ post.title | xml_escape }}</title>

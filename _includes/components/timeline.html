@@ -1,0 +1,17 @@
+{%- comment -%}
+Timeline / release history.
+
+  {% raw %}{% capture tl_body %}
+- **2026-09-20 · v0.2.0** — the Mono release.
+- **Planned** — Linux build.
+{% endcapture %}
+{% include components/timeline.html body=tl_body horizontal="true" %}{% endraw %}
+
+Add a class inside the item to mark state:
+- **Now** — filled dot
+- **Planned** — dashed dot, dimmed, but still visible
+{%- endcomment -%}
+
+<ol class="cmp cmp-timeline{% if include.horizontal == 'true' %} cmp-timeline--horizontal{% endif %}" data-cmp-timeline>
+{{ include.body | markdownify }}
+</ol>

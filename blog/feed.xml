@@ -9,7 +9,7 @@ permalink: /blog/feed.xml
 <subtitle>Release notes, deep dives, and what we're learning building a local-first AI assistant.</subtitle>
   <link href="{{ '/blog/feed.xml' | absolute_url }}" rel="self"/>
   <link href="{{ '/blog/' | absolute_url }}"/>
-{% assign en_posts = site.posts | where: "lang", "en" %}
+{% assign en_posts = site.posts | where: "lang", "en" | where_exp: "p", "p.sitemap != false" %}
   <updated>{% if en_posts.first %}{{ en_posts.first.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}</updated>
   <id>{{ '/blog/' | absolute_url }}</id>
   <author><name>OASIS</name></author>

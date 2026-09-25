@@ -1,0 +1,47 @@
+/* components/tabs.css — labelled panels, e.g. the same snippet in two languages. */
+
+.cmp-tabs {
+  border: 1px solid var(--cmp-border);
+  border-radius: var(--cmp-radius);
+  background: var(--cmp-bg-soft);
+  overflow: hidden;
+}
+
+.cmp-tabs__list {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--cmp-border);
+  background: var(--cmp-bg);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.cmp-tabs__tab {
+  appearance: none;
+  background: none;
+  border: 0;
+  border-right: 1px solid var(--cmp-border);
+  color: var(--cmp-text-3);
+  font-family: var(--cmp-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.625rem 0.875rem;
+  cursor: pointer;
+  white-space: nowrap;
+  min-height: 2.25rem;
+}
+
+.cmp-tabs__tab:hover { color: var(--cmp-text); }
+
+.cmp-tabs__tab[aria-selected="true"] {
+  color: var(--cmp-text);
+  box-shadow: inset 0 -2px 0 var(--cmp-text);
+}
+
+.cmp-tabs__tab:focus-visible { outline: 2px solid var(--cmp-text); outline-offset: -2px; }
+
+.cmp-tabs__panel { padding: 1rem; }
+.cmp-tabs__panel[hidden] { display: none; }
+.cmp-tabs__panel > *:first-child { margin-top: 0; }
+.cmp-tabs__panel > *:last-child { margin-bottom: 0; }

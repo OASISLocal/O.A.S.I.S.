@@ -1,0 +1,31 @@
+{%- comment -%}
+Data table with an optional client-side sort.
+
+  {% raw %}{% capture table_md %}
+| Tier | RAM | VRAM | Good for |
+|---|---|---|---|
+| Mínimo | 8 GB | — | Modelos pequeños |
+{% endcapture %}
+{% include components/table.html body=table_md caption="Requisitos" sortable="true" %}{% endraw %}
+
+Params: -caption  above the table, -sortable="true"  click-to-sort headers,
+-note  a mono footnote under it (source, date, "not benchmarks"),
+-compact="true" tighter rows, -scroll="false" to opt out of the scroller.
+{%- endcomment -%}
+
+{%- assign caption = include.caption -%}
+{%- assign sortable = include.sortable | default: "false" -%}
+{%- assign scroll = include.scroll | default: "true" -%}
+{%- assign compact = include.compact | default: "false" -%}
+
+<div class="cmp">
+  {%- if caption -%}<p class="cmp__caption cmp__caption--above">{{ caption }}</p>{%- endif -%}
+  <div class="cmp-scroll"{% unless scroll == 'false' %} tabindex="0" role="region" aria-label="{{ caption | default: 'Data table' }}"{% endunless %}>
+    <table class="cmp-table{% if compact == 'true' %} cmp-table--compact{% endif %}"
+           data-cmp-table data-sortable="{{ sortable }}">
+      {{ include.body | markdownify }}
+    </table>
+  </div>
+  {%- if include.note -%}<p class="cmp-table__note">{{ include.note }}</p>{%- endif -%}
+  {%- if sortable == 'true' -%}<p class="cmp-table__status" data-cmp-table-status role="status"></p>{%- endif -%}
+</div>

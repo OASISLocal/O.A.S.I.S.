@@ -1,0 +1,44 @@
+{%- comment -%}
+Chart drawn as inline SVG from a table that lives in the markup.
+
+  {% raw %}{% capture chart_rows %}
+| Model | Size |
+|---|---|
+| Gemma 4B (Q4) | 4.1 |
+{% endcapture %}
+{% include components/chart.html body=chart_rows chart="bar" unit=" GB" title="..." sub="..." note="..." %}{% endraw %}
+
+The numbers are read from the table, not from JavaScript. That is deliberate:
+the visible chart and the readable numbers can never disagree, and an answer
+engine reads the table. The "Show the numbers" control reveals it visually.
+
+Params: -chart="bar|line"  -unit=" GB"  -title  -sub  -note  -label-show/-label-hide
+{%- endcomment -%}
+
+{%- assign kind = include.chart | default: "bar" -%}
+{%- assign unit = include.unit | default: "" -%}
+
+<div class="cmp cmp-chart" data-cmp-chart data-chart="{{ kind }}" data-unit="{{ unit }}">
+  {%- if include.title or include.sub -%}
+  <div class="cmp-chart__head">
+    {%- if include.title %}<h3 class="cmp-chart__title">{{ include.title }}</h3>{%- endif -%}
+    {%- if include.sub %}<p class="cmp-chart__sub">{{ include.sub }}</p>{%- endif -%}
+  </div>
+  {%- endif -%}
+
+  <div class="cmp-chart__plot"></div>
+
+  <div class="cmp-chart__data" hidden>
+    <table>
+      <caption class="sr-only">{{ include.title | default: "Chart data" }}</caption>
+      <thead><tr><th scope="col">{{ include.label-category | default: "Category" }}</th><th scope="col">{{ include.label-value | default: "Value" }}{{ unit }}</th></tr></thead>
+      <tbody>{{ include.body | markdownify }}</tbody>
+    </table>
+  </div>
+
+  <p><button type="button" class="cmp-chart__toggle" data-cmp-chart-toggle
+     data-label-show="{{ include.label-show | default: 'Show the numbers' }}"
+     data-label-hide="{{ include.label-hide | default: 'Hide the numbers' }}">{{ include.label-show | default: 'Show the numbers' }}</button></p>
+
+  {%- if include.note -%}<p class="cmp-chart__note">{{ include.note }}</p>{%- endif -%}
+</div>

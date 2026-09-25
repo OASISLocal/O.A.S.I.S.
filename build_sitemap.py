@@ -137,6 +137,9 @@ def load_posts():
         if not m:
             print("WARN: cannot parse date from %s" % f)
             continue
+        # A post can opt out of the sitemap (used by the component test page).
+        if str(fm.get("sitemap", "true")).lower() == "false":
+            continue
         date = "%s-%s-%s" % m.groups()[:3]
         url = fm.get("permalink") or "/blog/%s/%s/%s/%s/" % m.groups()
         ref = fm.get("ref") or m.group(4)

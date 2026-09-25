@@ -1,0 +1,103 @@
+/* components/details.css — accordions built on <details>, so they work with
+ * zero JavaScript, are keyboard accessible and can be opened by the browser's
+ * own find-in-page. The JS only adds the "expand all / collapse all" control.
+ */
+
+.cmp-details {
+  border: 1px solid var(--cmp-border);
+  border-radius: var(--cmp-radius);
+  background: var(--cmp-bg-soft);
+  overflow: hidden;
+}
+
+.cmp-details__group + .cmp-details__group {
+  border-top: 1px solid var(--cmp-border);
+}
+
+.cmp-details__summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.875rem 1rem;
+  cursor: pointer;
+  list-style: none;
+  color: var(--cmp-text);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.cmp-details__summary::-webkit-details-marker { display: none; }
+.cmp-details__summary::marker { content: ""; }
+
+.cmp-details__summary:hover { background: var(--cmp-bg); }
+
+/* The marker is decorative: the state is announced by the open/closed state. */
+.cmp-details__summary::after {
+  content: "+";
+  font-family: var(--cmp-mono);
+  font-size: 1.125rem;
+  line-height: 1;
+  color: var(--cmp-text-faint);
+  flex: none;
+  margin-top: 0.0625rem;
+}
+
+.cmp-details[open] > .cmp-details__summary::after { content: "−"; }
+.cmp-details[open] > .cmp-details__summary { border-bottom: 1px solid var(--cmp-border); }
+
+.cmp-details__body {
+  padding: 0.875rem 1rem 1.125rem;
+  color: var(--cmp-text-dim);
+  line-height: 1.7;
+  font-size: 0.9375rem;
+}
+
+.cmp-details__body > *:first-child { margin-top: 0; }
+.cmp-details__body > *:last-child { margin-bottom: 0; }
+
+.cmp-details__toggle {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+  font-family: var(--cmp-mono);
+  font-size: 0.6875rem;
+}
+
+.cmp-details__toggle button {
+  background: none;
+  border: 1px solid var(--cmp-border);
+  color: var(--cmp-text-3);
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.cmp-details__toggle button:hover { border-color: var(--cmp-border-strong); color: var(--cmp-text); }
+
+/* An FAQ item: the question reads as a heading, the answer as prose. */
+.cmp-faq .cmp-details__summary { font-family: var(--cmp-display); font-size: 1.0625rem; }
+
+@media (min-width: 720px) {
+  /* Side-by-side question/answer, which is how people actually read an FAQ. */
+  .cmp-faq .cmp-details__summary {
+    display: block;
+    padding: 1rem 1.125rem;
+  }
+  .cmp-faq .cmp-details__summary::after { display: none; }
+  .cmp-faq .cmp-details__body {
+    border-top: 1px solid var(--cmp-border);
+    padding: 1rem 1.125rem 1.25rem;
+  }
+  .cmp-faq[open] .cmp-details__body::before {
+    content: "A";
+    display: block;
+    font-family: var(--cmp-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+    color: var(--cmp-text-faint);
+    margin-bottom: 0.5rem;
+  }
+}

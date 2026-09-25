@@ -2,7 +2,7 @@
 layout: null
 permalink: /blog/posts.json
 ---
-{% assign en_posts = site.posts | where: "lang", "en" %}
+{% assign en_posts = site.posts | where: "lang", "en" | where_exp: "p", "p.sitemap != false" %}
 [
 {% for post in en_posts limit:3 %}
 {
