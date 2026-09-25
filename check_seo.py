@@ -90,6 +90,16 @@ for f in STATIC:
         fail("%s: root-absolute internal link %r breaks under the %s subpath"
              % (f, href, "/O.A.S.I.S."))
 
+    # A link in the wrong language is a translation bug that no other gate sees.
+    es_page = f.replace("\\", "/").startswith("es/")
+    for name, ok_es, ok_en in (("glossary.html", "Glosario", "Glossary"),
+                               ("llms.txt", "para IA", "for AI")):
+        for label in re.findall(r'href="(?:\.\./)?%s"[^>]*>([^<]*)<' % re.escape(name), src):
+            want = ok_es if es_page else ok_en
+            if want not in label:
+                fail("%s: the %s link says %r, expected %r (wrong language)"
+                     % (f, name, label, want))
+
     if not is_noindex:
         t = re.search(r"<title[^>]*>(.*?)</title>", head, re.S)
         d = re.search(r'name="description" content="([^"]*)"', head)
