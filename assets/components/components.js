@@ -24,15 +24,17 @@
     // The class is normally already in the markup, so the layout rules work
     // before this script runs. The template only carries the sort options, and
     // anything the author omitted is filled in here.
+    //
+    // A <template>'s content lives in a DocumentFragment that is inert, so
+    // textContent is empty. innerHTML exposes it.
     var wraps = doc.querySelectorAll("[data-cmp-table-config]");
     Array.prototype.forEach.call(wraps, function (tpl) {
-      var parts = (tpl.textContent || "").split("|");
+      var raw = tpl.innerHTML || tpl.textContent || "";
+      var parts = raw.split("|");
       var table = tpl.parentNode.querySelector("table");
       if (!table) return;
       var want = (parts[0] || "").trim();
-      if (want && !table.className) {
-        table.className = want;
-      }
+      if (want && !table.className) table.className = want;
       if (parts[1] === "true") table.setAttribute("data-sortable", "true");
       var presort = (parts[2] || "").trim();
       if (presort) {
@@ -50,9 +52,12 @@
 
   /* Turn the <th data-sort> headers into buttons. */
   function initSortableTables() {
-    var tables = doc.querySelectorAll("[data-cmp-table]");
+    var tables = doc.querySelectorAll("table");
     Array.prototype.forEach.call(tables, function (table) {
+      // the attribute may be written bare (data-sort) or with an empty value,
+      // so match on presence, not on a value
       var heads = table.querySelectorAll("thead th[data-sort]");
+      if (!heads.length) return;
       Array.prototype.forEach.call(heads, function (th) {
         if (th.querySelector("button")) return;
         var btn = doc.createElement("button");

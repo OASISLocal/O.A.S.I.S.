@@ -393,6 +393,36 @@ if os.path.isdir(COMPONENT_DIR):
     if "COMPONENTES.md" not in cfg:
         fail("COMPONENTES.md is not in _config.yml exclude (Jekyll would publish it)")
 
+    # A component that renders but never initialises is a silent failure, and
+    # it only shows in a browser. These are the selectors the script must find,
+    # cross-checked against what the includes actually emit.
+    js = read(os.path.join(COMPONENT_CSS, "components.js"))
+    # name -> (marker the include must emit, marker the script must query, or
+    # None when the component is CSS-only and needs no JavaScript at all)
+    REQUIRED_HOOKS = {
+        "chart": ("data-cmp-chart", "data-cmp-chart"),
+        "table": ("data-cmp-table-config", "data-cmp-table-config"),
+        "details": ("data-cmp-details", "data-cmp-details"),
+        "video": ("data-cmp-video", "data-cmp-video"),
+        "gallery": ("data-cmp-gallery-item", "data-cmp-gallery-item"),
+        "tabs": ("data-cmp-tabs", "data-cmp-tabs"),
+        # CSS-only: they work with no script at all, which is the point
+        "callout": ("data-cmp-callout", None),
+        "timeline": ("data-cmp-timeline", None),
+    }
+    for name, (emitted, queried) in REQUIRED_HOOKS.items():
+        inc = os.path.join(COMPONENT_DIR, name + ".html")
+        if not os.path.isfile(inc):
+            continue
+        if emitted not in read(inc):
+            fail("%s does not emit %s, so nothing can find it" % (name, emitted))
+        if queried and queried not in js:
+            fail("components.js never queries %s (the %s component would never "
+                 "initialise)" % (queried, name))
+    # the chart reads its numbers from the table: the selector must match
+    if "cmp-chart__data table" not in js:
+        fail("components.js: the chart does not read its numbers from the table")
+
 # ---------------------------------------------------------------------- report
 for n in notes:
     print("note:", n)
