@@ -2,7 +2,9 @@
 layout: default
 ---
 {%- assign es = false -%}
-{%- if page.lang == 'es' -%}{%- assign es = true -%}{%- endif -%}
+{%- if page.lang == 'es' -%}
+  {%- assign es = true -%}
+{%- endif -%}
 {%- assign mi = page.date | date: "%m" | minus: 1 -%}
 {%- assign mes = site.data.i18n.es_months[mi] -%}
 {%- comment -%}
@@ -12,7 +14,12 @@ layout: default
 {%- endcomment -%}
 {%- assign tag = page.tags | first -%}
 {%- assign tag_label = tag -%}
-{%- if es -%}{%- assign tag_label = site.data.journal_terms.tags[tag] | default: tag -%}{%- endif -%}
+{%- if es -%}
+  {%- assign translated = site.data.journal_terms.tags[tag] -%}
+  {%- if translated -%}
+    {%- assign tag_label = translated -%}
+  {%- endif -%}
+{%- endif -%}
 
 {%- comment -%}
   Conditional loading. The component CSS/JS is only requested by the pages that
@@ -21,7 +28,6 @@ layout: default
   Force it from front matter with components: "chart gallery".
 {%- endcomment -%}
 {%- assign wanted = page.components | default: "" | split: " " -%}
-{%- assign body = content -%}
 {%- assign use_callout = false -%}
 {%- assign use_table = false -%}
 {%- assign use_details = false -%}
@@ -29,18 +35,34 @@ layout: default
 {%- assign use_gallery = false -%}
 {%- assign use_chart = false -%}
 {%- assign use_timeline = false -%}
-{%- if body contains "data-cmp-callout" or wanted contains "callout" %}{% assign use_callout = true %}{% endif %}
-{%- if body contains "data-cmp-table" or body contains "cmp-table" or wanted contains "table" %}{% assign use_table = true %}{% endif %}
-{%- if body contains "data-cmp-details" or wanted contains "details" %}{% assign use_details = true %}{% endif %}
-{%- if body contains "data-cmp-video" or wanted contains "video" %}{% assign use_video = true %}{% endif %}
-{%- if body contains "data-cmp-gallery-item" or wanted contains "gallery" %}{% assign use_gallery = true %}{% endif %}
-{%- if body contains "data-cmp-chart" or wanted contains "chart" %}{% assign use_chart = true %}{% endif %}
-{%- if body contains "cmp-timeline" or wanted contains "timeline" %}{% assign use_timeline = true %}{% endif %}
-{%- assign use_related = true -%}
+{%- assign use_tabs = false -%}
+{%- if wanted contains "callout" %}{% assign use_callout = true %}{% endif -%}
+{%- if wanted contains "table" %}{% assign use_table = true %}{% endif -%}
+{%- if wanted contains "details" %}{% assign use_details = true %}{% endif -%}
+{%- if wanted contains "video" %}{% assign use_video = true %}{% endif -%}
+{%- if wanted contains "gallery" %}{% assign use_gallery = true %}{% endif -%}
+{%- if wanted contains "chart" %}{% assign use_chart = true %}{% endif -%}
+{%- if wanted contains "timeline" %}{% assign use_timeline = true %}{% endif -%}
+{%- if wanted contains "tabs" %}{% assign use_tabs = true %}{% endif -%}
+{%- assign body = content -%}
+{%- if body contains "data-cmp-callout" %}{% assign use_callout = true %}{% endif -%}
+{%- if body contains "cmp-table" %}{% assign use_table = true %}{% endif -%}
+{%- if body contains "data-cmp-details" %}{% assign use_details = true %}{% endif -%}
+{%- if body contains "data-cmp-video" %}{% assign use_video = true %}{% endif -%}
+{%- if body contains "data-cmp-gallery-item" %}{% assign use_gallery = true %}{% endif -%}
+{%- if body contains "data-cmp-chart" %}{% assign use_chart = true %}{% endif -%}
+{%- if body contains "data-cmp-timeline" %}{% assign use_timeline = true %}{% endif -%}
+{%- if body contains "cmp-tabs" %}{% assign use_tabs = true %}{% endif -%}
 {%- assign any_component = false -%}
-{%- if use_callout or use_table or use_details or use_video or use_gallery or use_chart or use_timeline %}{% assign any_component = true %}{% endif %}
-{%- if body contains "cmp-tabs" or wanted contains "tabs" %}{% assign use_tabs = true %}{% endif %}
-{%- if use_tabs %}{% assign any_component = true %}{% endif %}
+{%- if use_callout %}{% assign any_component = true %}{% endif -%}
+{%- if use_table %}{% assign any_component = true %}{% endif -%}
+{%- if use_details %}{% assign any_component = true %}{% endif -%}
+{%- if use_video %}{% assign any_component = true %}{% endif -%}
+{%- if use_gallery %}{% assign any_component = true %}{% endif -%}
+{%- if use_chart %}{% assign any_component = true %}{% endif -%}
+{%- if use_timeline %}{% assign any_component = true %}{% endif -%}
+{%- if use_tabs %}{% assign any_component = true %}{% endif -%}
+{%- assign use_related = true -%}
 
 {%- if any_component -%}
 <link rel="stylesheet" href="{{ '/assets/components/base.css' | relative_url }}">
@@ -82,30 +104,38 @@ layout: default
 
 {%- if use_related -%}
 {%- comment -%}
-  Related posts: same series tag first, then anything else, never the post
-  itself and never its own translation (same ref).
+  Related posts: same series tag first, then anything else. Never the post
+  itself and never its own translation (same ref). Built with a plain counter
+  and array append, because `push` is not part of standard Liquid.
 {%- endcomment -%}
-{%- assign pool = site.posts | where_exp: "p", "p.lang == 'en'" -%}
+{%- assign pool = site.posts | where: "lang", "en" | where_exp: "p", "p.sitemap != false" -%}
 {%- assign related = "" | split: "" -%}
+{%- assign slot = 0 -%}
 {%- for p in pool -%}
-  {%- if p.url != page.url and p.ref != page.ref and p.tags contains tag -%}
-    {%- assign related = related | push: p -%}
+  {%- if slot < 3 and p.url != page.url and p.ref != page.ref -%}
+    {%- if p.tags contains tag -%}
+      {%- assign related = related | push: p -%}
+      {%- assign slot = slot | plus: 1 -%}
+    {%- endif -%}
   {%- endif -%}
 {%- endfor -%}
-{%- if related.size < 3 -%}
-  {%- for p in pool -%}
-    {%- if p.url != page.url and p.ref != page.ref -%}
-      {%- unless related contains p -%}
-        {%- if related.size < 3 -%}{%- assign related = related | push: p -%}{%- endif -%}
-      {%- endunless -%}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endif -%}
+{%- for p in pool -%}
+  {%- if slot < 3 and p.url != page.url and p.ref != page.ref -%}
+    {%- assign already = false -%}
+    {%- for r in related -%}
+      {%- if r.url == p.url %}{% assign already = true %}{% endif -%}
+    {%- endfor -%}
+    {%- unless already -%}
+      {%- assign related = related | push: p -%}
+      {%- assign slot = slot | plus: 1 -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
 <nav class="cmp cmp-related" aria-labelledby="related-title">
   <h2 class="cmp-related__title" id="related-title">{% if es %}Más del Journal{% else %}More from the Journal{% endif %}</h2>
   {%- if related.size > 0 -%}
   <ul class="cmp-related__list">
-    {%- for p in related limit: 3 -%}
+    {%- for p in related -%}
     <li class="cmp-related__item">
       <a class="cmp-related__link" href="{{ p.url | relative_url }}">{{ p.title }}</a>
       <span class="cmp-related__meta">{{ p.date | date: "%Y-%m-%d" }}{% if p.tags.first %} · {{ p.tags.first | upcase }}{% endif %}</span>

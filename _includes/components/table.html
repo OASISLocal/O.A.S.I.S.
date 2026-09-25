@@ -1,30 +1,45 @@
 {%- comment -%}
 Data table with an optional client-side sort.
 
-  {% raw %}{% capture table_md %}
-| Tier | RAM | VRAM | Good for |
-|---|---|---|---|
-| Mínimo | 8 GB | — | Modelos pequeños |
-{% endcapture %}
-{% include components/table.html body=table_md caption="Requisitos" sortable="true" %}{% endraw %}
+A markdown table cannot be converted by markdownify and then nested inside
+another <table>: kramdown wraps block content in <p>, which is invalid there and
+breaks the Jekyll build. So this include does NOT convert markdown. The body it
+receives is expected to be HTML already, and the include only adds the class,
+the data attributes and the scroll wrapper. The script reads those attributes
+from a <template> so the markup stays valid and there is no inline JavaScript.
 
-Params: -caption  above the table, -sortable="true"  click-to-sort headers,
--note  a mono footnote under it (source, date, "not benchmarks"),
--compact="true" tighter rows, -scroll="false" to opt out of the scroller.
+  {% raw %}{% capture rows %}
+<table>
+  <thead>
+    <tr><th scope="col">Tier</th><th scope="col">RAM</th><th scope="col" data-sort>VRAM</th></tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Minimum</th><td>8 GB</td><td>—</td></tr>
+    <tr><th scope="row">Recommended</th><td>16 GB</td><td>4–8 GB</td></tr>
+  </tbody>
+</table>
+{% endcapture %}
+{% include components/table.html body=rows caption="Hardware tiers" sortable="true"
+   note="Declared requirements, not measured benchmarks." %}{% endraw %}
+
+Params: -caption  above the table · -sortable="true"  click-to-sort headers
+-sort="vr"  which column to sort first · -note  mono footnote under it
+-compact="true"  tighter rows · -scroll="false"  opt out of the scroller
 {%- endcomment -%}
 
 {%- assign caption = include.caption -%}
 {%- assign sortable = include.sortable | default: "false" -%}
 {%- assign scroll = include.scroll | default: "true" -%}
 {%- assign compact = include.compact | default: "false" -%}
+{%- assign sortcol = include.sort | default: "" -%}
+{%- assign klass = "cmp-table" -%}
+{%- if compact == 'true' -%}{%- assign klass = klass | append: " cmp-table--compact" -%}{%- endif -%}
 
 <div class="cmp">
   {%- if caption -%}<p class="cmp__caption cmp__caption--above">{{ caption }}</p>{%- endif -%}
   <div class="cmp-scroll"{% unless scroll == 'false' %} tabindex="0" role="region" aria-label="{{ caption | default: 'Data table' }}"{% endunless %}>
-    <table class="cmp-table{% if compact == 'true' %} cmp-table--compact{% endif %}"
-           data-cmp-table data-sortable="{{ sortable }}">
-      {{ include.body | markdownify }}
-    </table>
+    <template data-cmp-table-config>{{ klass }}|{{ sortable }}|{{ sortcol }}</template>
+    {{ include.body }}
   </div>
   {%- if include.note -%}<p class="cmp-table__note">{{ include.note }}</p>{%- endif -%}
   {%- if sortable == 'true' -%}<p class="cmp-table__status" data-cmp-table-status role="status"></p>{%- endif -%}

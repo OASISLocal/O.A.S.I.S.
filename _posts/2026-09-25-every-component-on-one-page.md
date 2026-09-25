@@ -61,29 +61,43 @@ word. Never rely on colour alone.
 ## Tables
 
 {% capture table_rows %}
-| Tier | RAM | VRAM | What it runs |
-|---|---|---|---|
-| Minimum | 8 GB | none | Models up to ~3B, chat and voice |
-| Recommended | 16 GB | 4–8 GB | Models up to ~8B, vision included |
-| Comfortable | 32 GB | 12 GB+ | Large models, everything at once |
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Tier</th>
+      <th scope="col" data-sort data-key="ram">RAM</th>
+      <th scope="col" data-sort data-key="vram">VRAM</th>
+      <th scope="col">What it runs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">Minimum</th><td>8 GB</td><td>none</td><td>Models up to ~3B, chat and voice</td></tr>
+    <tr><th scope="row">Recommended</th><td>16 GB</td><td>4–8 GB</td><td>Models up to ~8B, vision included</td></tr>
+    <tr><th scope="row">Comfortable</th><td>32 GB</td><td>12 GB+</td><td>Large models, everything at once</td></tr>
+  </tbody>
+</table>
 {% endcapture %}
 {% include components/table.html body=table_rows caption="Hardware tiers, as published on the requirements page" sortable="true" note="These are the app's declared requirements, not measured benchmarks. Click a header to sort." %}
 
 ## Chart
 
 {% capture chart_rows %}
-| Gemma 4B (Q4) | 4.1 |
-| Llama 3.2 3B (Q4) | 2.0 |
-| Qwen 2.5 1.5B (Q4) | 1.0 |
+<tbody>
+  <tr><th scope="row">Gemma 4B (Q4)</th><td data-value="4.1">4.1</td></tr>
+  <tr><th scope="row">Llama 3.2 3B (Q4)</th><td data-value="2.0">2.0</td></tr>
+  <tr><th scope="row">Qwen 2.5 1.5B (Q4)</th><td data-value="1.0">1.0</td></tr>
+</tbody>
 {% endcapture %}
 {% include components/chart.html body=chart_rows chart="bar" unit=" GB" title="Download size of the bundled profiles" sub="Quantized to Q4, as declared by the app" note="Declared download sizes. Not a speed benchmark and not measured on any particular machine." %}
 
 {% capture line_rows %}
-| 3B | 24 |
-| 4B | 14 |
-| 8B | 6 |
+<tbody>
+  <tr><th scope="row">3B</th><td data-value="2.4">2.4</td></tr>
+  <tr><th scope="row">4B</th><td data-value="4.1">4.1</td></tr>
+  <tr><th scope="row">8B</th><td data-value="7.6">7.6</td></tr>
+</tbody>
 {% endcapture %}
-{% include components/chart.html body=chart_rows chart="line" unit=" GB" title="Same numbers, drawn as a line" sub="To prove the line renderer works" note="Same data as the bar chart above." %}
+{% include components/chart.html body=line_rows chart="line" unit=" GB" title="The same numbers, drawn as a line" sub="To prove the line renderer works" note="Same data as the bar chart above." %}
 
 ## Timeline
 

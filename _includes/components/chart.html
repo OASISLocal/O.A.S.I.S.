@@ -1,18 +1,22 @@
 {%- comment -%}
 Chart drawn as inline SVG from a table that lives in the markup.
 
-  {% raw %}{% capture chart_rows %}
-| Model | Size |
-|---|---|
-| Gemma 4B (Q4) | 4.1 |
+The body is HTML, not markdown, for the same reason as the table component:
+markdownify cannot be nested inside a <table>. The numbers are read from that
+table by the script, so the visible chart and the readable numbers can never
+disagree, and an answer engine reads the table itself.
+
+  {% raw %}{% capture data %}
+<tbody>
+  <tr><th scope="row">Gemma 4B (Q4)</th><td data-value="4.1">4.1</td></tr>
+  <tr><th scope="row">Llama 3.2 3B (Q4)</th><td data-value="2.0">2.0</td></tr>
 {% endcapture %}
-{% include components/chart.html body=chart_rows chart="bar" unit=" GB" title="..." sub="..." note="..." %}{% endraw %}
+{% include components/chart.html body=data chart="bar" unit=" GB"
+   title="Download size of the bundled profiles" sub="Quantized to Q4"
+   note="Declared download sizes. Not a speed benchmark." %}{% endraw %}
 
-The numbers are read from the table, not from JavaScript. That is deliberate:
-the visible chart and the readable numbers can never disagree, and an answer
-engine reads the table. The "Show the numbers" control reveals it visually.
-
-Params: -chart="bar|line"  -unit=" GB"  -title  -sub  -note  -label-show/-label-hide
+Params: -chart="bar|line"  -unit=" GB"  -title  -sub  -note
+-label-category / -label-value / -label-show / -label-hide
 {%- endcomment -%}
 
 {%- assign kind = include.chart | default: "bar" -%}
@@ -31,8 +35,13 @@ Params: -chart="bar|line"  -unit=" GB"  -title  -sub  -note  -label-show/-label-
   <div class="cmp-chart__data" hidden>
     <table>
       <caption class="sr-only">{{ include.title | default: "Chart data" }}</caption>
-      <thead><tr><th scope="col">{{ include.label-category | default: "Category" }}</th><th scope="col">{{ include.label-value | default: "Value" }}{{ unit }}</th></tr></thead>
-      <tbody>{{ include.body | markdownify }}</tbody>
+      <thead>
+        <tr>
+          <th scope="col">{{ include.label-category | default: "Category" }}</th>
+          <th scope="col">{{ include.label-value | default: "Value" }}{{ unit }}</th>
+        </tr>
+      </thead>
+      {{ include.body }}
     </table>
   </div>
 

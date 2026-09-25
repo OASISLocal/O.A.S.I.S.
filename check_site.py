@@ -288,7 +288,7 @@ for f in sorted(glob.glob("_posts/*.md")):
         if slug in body and "where_exp" not in body:
             fail("%s: the noindex post %s is not filtered out of %s"
                  % (name, slug, feeder))
-    if "where_exp" not in read("_layouts/post.html"):
+    if "sitemap != false" not in read("_layouts/post.html"):
         fail("_layouts/post.html does not filter noindex posts out of the related list")
 
 # ------------------------------------------------------------ 6/7. packaging

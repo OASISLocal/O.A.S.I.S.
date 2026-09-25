@@ -20,8 +20,33 @@
    * Sortable headers. The values are compared numerically when every cell in
    * the column looks like a number, and as text otherwise.
    */
+  function initTables() {
+    // The include emits the class and the sort config in a <template>, because a
+    // markdown table cannot carry attributes. Apply them here, on the real table.
+    var wraps = doc.querySelectorAll("[data-cmp-table-config]");
+    Array.prototype.forEach.call(wraps, function (tpl) {
+      var parts = (tpl.textContent || "").split("|");
+      var table = tpl.parentNode.querySelector("table");
+      if (!table) return;
+      if (parts[0]) table.className = parts[0];
+      if (parts[1] === "true") table.setAttribute("data-sortable", "true");
+      var presort = parts[2];
+      if (presort) {
+        var heads = table.querySelectorAll("thead th");
+        for (var i = 0; i < heads.length; i++) {
+          if ((heads[i].getAttribute("data-key") || "").toLowerCase() === presort.toLowerCase()) {
+            setTimeout(function (h) { sortBy(table, h); }(heads[i]), 0);
+            break;
+          }
+        }
+      }
+    });
+    initSortableTables();
+  }
+
+  /* Turn the <th data-sort> headers into buttons. */
   function initSortableTables() {
-    var tables = doc.querySelectorAll('[data-cmp-table][data-sortable="true"]');
+    var tables = doc.querySelectorAll("[data-cmp-table]");
     Array.prototype.forEach.call(tables, function (table) {
       var heads = table.querySelectorAll("thead th[data-sort]");
       Array.prototype.forEach.call(heads, function (th) {
@@ -293,14 +318,17 @@
   }
 
   function readData(chart) {
-    var table = chart.querySelector("table");
+    var table = chart.querySelector(".cmp-chart__data table");
     if (!table) return null;
-    var rows = Array.prototype.slice.call(table.tBodies[0].rows);
+    var body = table.querySelector("tbody") || table.tBodies[0];
+    if (!body) return null;
+    var rows = Array.prototype.slice.call(body.rows);
     var labels = [], values = [];
     rows.forEach(function (row) {
-      labels.push(row.cells[0].textContent.trim());
-      values.push(parseFloat(row.cells[1].getAttribute("data-value") ||
-                              row.cells[1].textContent));
+      var c0 = row.cells[0], c1 = row.cells[1];
+      if (!c0 || !c1) return;
+      labels.push(c0.textContent.trim());
+      values.push(parseFloat(c1.getAttribute("data-value") || c1.textContent));
     });
     return {
       labels: labels,
@@ -421,7 +449,7 @@
 
   /* ------------------------------------------------------------------ init */
   function init() {
-    initSortableTables();
+    initTables();
     initDetails();
     initVideo();
     initGallery();

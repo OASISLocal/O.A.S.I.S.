@@ -331,12 +331,16 @@ if os.path.isdir(COMPONENT_DIR):
     # the layout must know how to detect each component
     layout_post = read("_layouts/post.html")
     for inc in includes:
-        marker = re.search(r'data-cmp-([a-z-]+)', read(inc))
-        if not marker:
-            continue
-        name = marker.group(1)
-        if name not in layout_post:
-            fail("_layouts/post.html: no conditional loading for component %r" % name)
+        markers = set(re.findall(r'data-cmp-([a-z-]+)', read(inc)))
+        # these are config carriers or per-element hooks, not components that
+        # load a stylesheet of their own
+        for internal in ("table-config", "chart-toggle", "gallery-open",
+                         "table-status", "video-play", "gallery-item",
+                         "chart-data"):
+            markers.discard(internal)
+        for name in markers:
+            if name not in layout_post:
+                fail("_layouts/post.html: no conditional loading for component %r" % name)
     # every stylesheet the layout can request must exist
     for css in set(re.findall(r"/assets/components/([a-z-]+\.css)", layout_post)):
         if not os.path.isfile(os.path.join(COMPONENT_CSS, css)):
