@@ -114,13 +114,26 @@
     }
 {%- endif %}
 {%- if page.permalink == '/glossary/' or page.permalink == '/es/glossary/' %}
+{%- assign gts = site.data.glossary_terms -%}
+{%- if page.permalink == '/es/glossary/' %}{%- assign gts = site.data.glossary_terms_es -%}{%- endif -%}
     ,{
       "@type": "DefinedTermSet",
       "@id": "{{ page.url | absolute_url }}#glossary",
-      "name": {% if page.lang == 'es' %}"Glosario de O.A.S.I.S."{% else %}"O.A.S.I.S. glossary"{% endif %},
+      "name": {% if es %}"Glosario de O.A.S.I.S."{% else %}"O.A.S.I.S. glossary"{% endif %},
       "description": {{ desc | jsonify }},
       "url": "{{ page.url | absolute_url }}",
-      "inLanguage": "{% if es %}es{% else %}en{% endif %}"
+      "inLanguage": "{% if es %}es{% else %}en{% endif %}",
+      "hasDefinedTerm": [
+      {%- for t in gts.hasDefinedTerm -%}
+        {
+          "@type": "DefinedTerm",
+          "@id": "{{ page.url | absolute_url }}#g-{{ t.name | slugify }}",
+          "name": {{ t.name | jsonify }},
+          "description": {{ t.description | jsonify }}
+          {%- if t.url %}, "url": {{ t.url | jsonify }}{% endif -%}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+      ]
     }
 {%- endif %}
   ]
