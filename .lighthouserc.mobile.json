@@ -12,7 +12,9 @@
         "http://localhost/requirements.html",
         "http://localhost/security.html",
         "http://localhost/privacy.html",
-        "http://localhost/how-it-works.html"
+        "http://localhost/how-it-works.html",
+        "http://localhost/blog/",
+        "http://localhost/es/blog/"
       ],
       "numberOfRuns": 1,
       "settings": {

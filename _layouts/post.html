@@ -5,14 +5,6 @@ layout: default
 {%- if page.lang == 'es' -%}{%- assign es = true -%}{%- endif -%}
 {%- assign mi = page.date | date: "%m" | minus: 1 -%}
 {%- assign mes = site.data.i18n.es_months[mi] -%}
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting",
-"headline":{{ page.title | jsonify }},
-"inLanguage":"{{ page.lang | default: 'en' }}",
-"datePublished":"{{ page.date | date_to_xmlschema }}",
-"author":{"@type":"Organization","name":"OASIS","url":"https://oasislocal.github.io/O.A.S.I.S./"},
-"mainEntityOfPage":{"@type":"WebPage","@id":{{ page.url | absolute_url | jsonify }}}}
-</script>
 <article>
 <div class="blog-eyebrow">{% if page.tags.size > 0 %}{{ page.tags | first | upcase }}{% else %}UPDATE{% endif %}</div>
 <h1 class="blog-h1">{{ page.title }}</h1>

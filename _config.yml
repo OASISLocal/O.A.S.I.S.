@@ -14,10 +14,14 @@ baseurl: "/O.A.S.I.S."
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/
 
-# jekyll-seo-tag is on the Pages whitelist. The Atom feed is hand-written
-# (blog/feed.xml + blog/feed.xsl) so it ships with a readable browser style.
-plugins:
-  - jekyll-seo-tag
+# No plugins: the head is written by hand in _layouts/default.html so that
+# static pages and Jekyll pages emit exactly the same tags. jekyll-seo-tag was
+# removed because it duplicated <title>, canonical, description and og:locale.
+plugins: []
+
+image: /assets/og-card.png
+twitter:
+  card: summary_large_image
 
 defaults:
   - scope:

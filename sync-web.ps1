@@ -37,7 +37,13 @@ Write-Host "== phase: $Mode ==" -ForegroundColor Cyan
 # ---------- 1. Pre-push checks (full tree, always) ----------
 Write-Host "== checks ==" -ForegroundColor Cyan
 
-$badOld = Select-String -Path *.html, *.xml, *.txt, launch/*.html, _layouts/*.html, _posts/*.md, blog/*.html, blog/*.json -Pattern "OASISLocal/oasis[^.]|github\.io/OASIS[^.]" -ErrorAction SilentlyContinue |
+# Build the search path list, skipping folders that no longer exist (the
+# Journal starts empty, so _posts/ can be absent).
+$searchPaths = @()
+foreach ($p in @("*.html", "*.xml", "*.txt", "launch/*.html", "_layouts/*.html", "_posts/*.md", "blog/*.html", "blog/*.json")) {
+  if (Get-ChildItem -Path $p -ErrorAction SilentlyContinue) { $searchPaths += $p }
+}
+$badOld = Select-String -Path $searchPaths -Pattern "OASISLocal/oasis[^.]|github\.io/OASIS[^.]" -ErrorAction SilentlyContinue |
   Where-Object { $_.Line -notmatch "O\.A\.S\.I\.S\." }
 if ($badOld) { $badOld | ForEach-Object { Write-Host ("  " + $_.Filename + ":" + $_.LineNumber) }; Fail "old repo/paths URLs found above" }
 
@@ -62,6 +68,40 @@ $missingSpanish = $requiredSpanish | Where-Object { -not (Test-Path -LiteralPath
 if ($missingSpanish) { Fail ("missing Spanish pages: " + ($missingSpanish -join ", ")) }
 
 try { [xml](Get-Content -Raw sitemap.xml) | Out-Null } catch { Fail "sitemap.xml is not valid XML" }
+
+# Social preview image must be a real PNG (social platforms reject SVG).
+if (-not (Test-Path -LiteralPath "assets/og-card.png")) { Fail "missing assets/og-card.png (social preview image)" }
+
+# SEO gate for the static pages: every indexable page needs the core head tags,
+# a single title/canonical, and a PNG social image. Jekyll pages (front matter)
+# and noindex pages are skipped: their tags come from _layouts at build time.
+$seoProblems = @()
+$staticPages = Get-ChildItem -Filter *.html | Where-Object {
+  $raw = Get-Content -Raw $_.FullName
+  -not ($raw.TrimStart().StartsWith("---")) -and $raw -notmatch 'name="robots" content="noindex'
+}
+foreach ($f in $staticPages) {
+  $html = Get-Content -Raw $f.FullName
+  $need = @{
+    'rel="canonical"'        = 'canonical'
+    'property="og:title"'    = 'og:title'
+    'property="og:url"'      = 'og:url'
+    'property="og:image"'    = 'og:image'
+    'property="og:locale"'   = 'og:locale'
+    'name="twitter:card"'    = 'twitter:card'
+    'hreflang='              = 'hreflang'
+  }
+  foreach ($k in $need.Keys) {
+    if ($html -notmatch [regex]::Escape($k)) { $seoProblems += ("$($f.Name): missing $($need[$k])") }
+  }
+  $titles = ([regex]::Matches($html, '<title>')).Count
+  if ($titles -ne 1) { $seoProblems += ("$($f.Name): $titles <title> tags (expected 1)") }
+  $canon = ([regex]::Matches($html, 'rel="canonical"')).Count
+  if ($canon -ne 1) { $seoProblems += ("$($f.Name): $canon canonical tags (expected 1)") }
+  if ($html -match 'og-card\.svg') { $seoProblems += ("$($f.Name): og:image still points at the SVG") }
+  if ($html -notmatch 'og-card\.png') { $seoProblems += ("$($f.Name): og:image is not the PNG card") }
+}
+if ($seoProblems) { $seoProblems | ForEach-Object { Write-Host ("  " + $_) }; Fail "SEO head problems above" }
 
 if ($Mode -ne "live") {
   foreach ($f in @("launch/teaser.html", "launch/countdown.html")) {

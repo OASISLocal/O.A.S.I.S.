@@ -1,13 +1,17 @@
-# Spanish listings for the Journal. Keyed by each post's `ref`.
-# Used by es/blog/ so the Spanish index reads in Spanish even when a full
-# Spanish article has not been published yet (then the entry links to the
-# English article and is marked "EN").
-welcome-to-the-oasis-blog:
-  title: "Bienvenido al blog de OASIS"
-  excerpt: "Aquí publicaremos notas de versión, análisis técnicos y novedades honestas sobre hacia dónde va OASIS, con el razonamiento detrás."
-local-vs-cloud-ai-privacy:
-  title: "Privacidad: IA local frente a la nube. ¿Adónde van tus palabras?"
-  excerpt: "Con la IA en la nube, tus palabras viajan a los ordenadores de otro. Con la IA local, nunca salen del tuyo."
-what-is-a-local-ai-assistant:
-  title: "¿Qué es un asistente de IA local? La guía en palabras llanas"
-  excerpt: "Un asistente de IA local es un programa que ejecuta su modelo en tu propio ordenador en lugar de enviar tus palabras a un servidor."
+# Spanish listings for the Journal, keyed by each post's `ref`.
+#
+# Purpose: /es/blog/ must read in Spanish even when a full Spanish article has
+# not been published yet. If an entry exists and there is no `lang: es` post
+# with the same `ref`, the index shows the Spanish title/excerpt, links the
+# English article and marks it "EN".
+#
+# To add an article later:
+#   1. create _posts/<date>-<slug>.md  with front matter: title, ref, lang: en
+#      (and optionally an ES twin: same ref, lang: es,
+#       permalink: /es/blog/YYYY/MM/DD/<slug-es>/)
+#   2. add its `ref` here if you want a Spanish title/excerpt before the
+#      Spanish article exists
+#   3. add both URLs to sitemap.xml
+#
+# Currently empty: the Journal is being rebuilt from scratch.
+{}

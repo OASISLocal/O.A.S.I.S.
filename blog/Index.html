@@ -4,21 +4,35 @@ title: Journal
 permalink: /blog/
 lang: en
 es_url: /es/blog/
+excerpt: "Notes, deep dives and build logs from O.A.S.I., the local-first AI assistant for Windows. No articles published yet — the Journal is being rebuilt from scratch."
 ---
+<p class="blog-eyebrow">Journal</p>
 <h1 class="blog-h1">O.A.S.I.S. Journal</h1>
-<p class="blog-meta">Release notes, deep dives, and what we're learning building a local-first AI assistant.</p>
-
-<p class="blog-meta">Browse by topic: Local AI — <a href="{{ '/blog/2026/09/10/what-is-a-local-ai-assistant/' | relative_url }}">what it is</a> · Privacy — <a href="{{ '/blog/2026/09/02/local-vs-cloud-ai-privacy/' | relative_url }}">local vs cloud</a> · Announcements — <a href="{{ '/blog/2026/07/26/welcome-to-the-oasis-blog/' | relative_url }}">welcome post</a>. More series (models, hardware, agents) as they ship.</p>
+<p class="blog-meta">Notes, deep dives and what we learn building a local-first AI assistant.</p>
 
 {% assign en_posts = site.posts | where: "lang", "en" %}
 <ul class="post-list">
 {% for post in en_posts %}
+  {% assign meta = site.data.blog_es[post.ref] %}
 <li>
 <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
 <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-<p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+<p class="post-excerpt">{{ post.excerpt | strip_html | strip_newlines | truncate: 180 }}</p>
 </li>
 {% else %}
-<li><p class="post-excerpt">No posts yet — check back soon.</p></li>
+<li>
+<p class="post-excerpt">No articles published yet. The Journal is being rebuilt from scratch, so this index is empty on purpose — the moment the first article lands it shows up here automatically, in the Atom feed too.</p>
+</li>
 {% endfor %}
 </ul>
+
+<h2 class="prose" style="font-size:22px;margin:48px 0 12px">What the Journal will cover</h2>
+<ul class="prose">
+<li><a href="{{ '/blog/' | relative_url }}">Local AI, explained</a> — what a local assistant is, how models run on your own hardware, and what changes when nothing leaves the PC.</li>
+<li><a href="{{ '/privacy.html' | relative_url }}">Privacy and permissions</a> — the per-feature Local/Network table, what confirmation asks for, and how the permission system is designed.</li>
+<li><a href="{{ '/models.html' | relative_url }}">Models and hardware</a> — GGUF profiles, context length, VRAM tiers, and honest numbers for each class of PC.</li>
+<li><a href="{{ '/tools.html' | relative_url }}">Tools and agents</a> — the 100+ tool inventory, its permission levels, and what the high-impact ones can actually do.</li>
+<li><a href="{{ '/changelog.html' | relative_url }}">Release notes</a> — every version that ships, in the changelog.</li>
+</ul>
+
+<p class="blog-meta">Meanwhile: <a href="{{ '/changelog.html' | relative_url }}">Changelog</a> · <a href="{{ '/download.html' | relative_url }}">Download</a> · <a href="{{ '/faq.html' | relative_url }}">FAQ</a> · <a href="{{ '/' | relative_url }}">Home</a> · <a href="{{ '/blog/feed.xml' | relative_url }}">Atom feed</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">Discussions</a></p>
