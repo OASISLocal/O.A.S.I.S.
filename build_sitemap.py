@@ -49,10 +49,11 @@ PAGES = [
     ("/eula.html", "eula.html"),
     ("/third-party-notices.html", "third-party-notices.html"),
     ("/blog/", "blog/Index.html"),
+    ("/glossary/", "glossary.html"),
 ]
 
 # Paths whose Spanish twin is not "<page>.html" under /es/.
-ES_TWINS = {"/": "/es/", "/blog/": "/es/blog/"}
+ES_TWINS = {"/": "/es/", "/blog/": "/es/blog/", "/glossary/": "/es/glossary/"}
 
 _git_cache = {}
 

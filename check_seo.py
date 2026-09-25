@@ -251,6 +251,46 @@ for layout in glob.glob("_layouts/*.html"):
     if os.path.isfile(layout) and "llms.txt" not in read(layout):
         notes.append("%s: no llms.txt link in the footer" % layout)
 
+# ------------------------------------------------- 12. the glossary has real data
+for f, data_file in (("glossary.html", "_data/glossary_terms.json"),
+                     ("es/glossary.html", "_data/glossary_terms_es.json")):
+    if not os.path.isfile(f):
+        fail("missing glossary page: %s" % f)
+        continue
+    src = read(f)
+    rows = len(re.findall(r'<tr id="g-', src))
+    if rows < 20:
+        fail("%s: only %d glossary rows" % (f, rows))
+    if not os.path.isfile(data_file):
+        fail("missing %s (generated from tooltips.json)" % data_file)
+        continue
+    d = json.loads(read(data_file))
+    set_node = [n for n in d["@graph"] if n["@type"] == "DefinedTermSet"]
+    if not set_node:
+        fail("%s: no DefinedTermSet node" % data_file)
+        continue
+    terms = set_node[0].get("hasDefinedTerm", [])
+    if len(terms) != rows:
+        fail("%s: %d DefinedTerm but %d rows in the page" % (data_file, len(terms), rows))
+    if not all(t.get("name") and t.get("description") for t in terms):
+        fail("%s: a DefinedTerm has no name or description" % data_file)
+    # The page itself carries no ld+json: the layout emits the DefinedTermSet for
+    # this permalink. Verify the layout still knows how.
+    if not re.search(r"if page\.permalink == '/(es/)?glossary/'", read("_layouts/default.html")):
+        fail("_layouts/default.html: no DefinedTermSet branch for the glossary permalink")
+
+# ------------------------------- 13. one Organization, and no dangling @id refs
+org_defs = []
+for f in STATIC:
+    head = read(f).split("</head>")[0]
+    for blk in re.findall(r'<script type="application/ld\+json">(.*?)</script>', head, re.S):
+        data = json.loads(blk)
+        for node in data.get("@graph", [data]):
+            if node.get("@type") == "Organization" and node.get("@id"):
+                org_defs.append((f, node["@id"]))
+if org_defs and len(set(i for _, i in org_defs)) > 1:
+    fail("more than one Organization @id declared: %s" % sorted(set(i for _, i in org_defs)))
+
 # ---------------------------------------------------------------------- report
 for n in notes:
     print("note:", n)

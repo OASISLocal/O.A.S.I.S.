@@ -92,6 +92,10 @@ def exists(path):
         return "index.html"
     if p.endswith("/"):
         rel = p.strip("/").replace("/", os.sep)
+        # A permalink served from a page file: /glossary/ <- glossary.html
+        flat = rel + ".html"
+        if os.path.isfile(flat):
+            return flat
         for cand in (os.path.join(".", rel, "index.html"),
                      os.path.join(".", rel, "Index.html")):
             if os.path.isfile(cand):
@@ -158,6 +162,10 @@ for f in glob.glob("*.html"):
     p = "/" + f
     if p == "/index.html":
         p = "/"
+    elif f == "glossary.html":
+        # Published at the bare permalink /glossary/ (front matter permalink),
+        # not at /glossary.html.
+        p = "/glossary/"
     if p not in IN_SITEMAP and p not in EXPECTED_MISSING:
         notes.append("page not listed in sitemap: %s" % p)
 

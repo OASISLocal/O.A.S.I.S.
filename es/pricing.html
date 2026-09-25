@@ -37,9 +37,128 @@
 <link rel="stylesheet" href="../assets/tooltip.css">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-{"@type":"ListItem","position":1,"name":"Inicio","item":"https://oasislocal.github.io/O.A.S.I.S./"},
-{"@type":"ListItem","position":2,"name":"Precios","item":"https://oasislocal.github.io/O.A.S.I.S./pricing.html"}]}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "@id": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html#product",
+      "name": "Precios — Personal frente a Max, matriz completa",
+      "description": "Precios de O.A.S.I.S.: un plan Personal gratis y una edición Max de pago único. La matriz completa de Personal frente a Max, con lo que incluye cada plan.",
+      "url": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html",
+      "inLanguage": "es",
+      "brand": {
+        "@type": "Brand",
+        "name": "O.A.S.I.S."
+      },
+      "category": "AI assistant software",
+      "isRelatedTo": {
+        "@id": "https://oasislocal.github.io/O.A.S.I.S./#app"
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "OASIS Personal",
+          "description": "Edición gratuita, disponible ahora.",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/download.html",
+          "itemOffered": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html#product"
+          },
+          "seller": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./#org"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "OASIS Max",
+          "description": "Pago único. Precio de acceso anticipado; aún no está a la venta general.",
+          "price": "15",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/PreOrder",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html",
+          "itemOffered": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html#product"
+          },
+          "seller": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./#org"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "OfferCatalog",
+      "@id": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html#plans",
+      "name": "OASIS plans",
+      "inLanguage": "es",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "position": 1,
+          "name": "OASIS Personal",
+          "description": "Gratis para siempre, sin cuenta. Chat local con modelos GGUF compatibles, voz local, memoria, documentos, control cotidiano del PC y más de 100 herramientas con permisos por herramienta. Hasta 3 proyectos.",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/download.html",
+          "itemOffered": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./#app"
+          }
+        },
+        {
+          "@type": "Offer",
+          "position": 2,
+          "name": "OASIS Max",
+          "description": "Pago único. Añade visión y análisis de pantalla, el agente de código completo, RAG avanzado, workflows y workflows programados, el sandbox de Docker, Discord/Telegram, la app móvil, la extensión de navegador, servidores de herramientas MCP externos, clonación de voz, mapa semántico de archivos, sincronización cifrada y sesiones paralelas.",
+          "price": "15",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/PreOrder",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html",
+          "itemOffered": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./#app"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html#webpage",
+      "url": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html",
+      "name": "Precios — Personal frente a Max, matriz completa",
+      "description": "Precios de O.A.S.I.S.: un plan Personal gratis y una edición Max de pago único. La matriz completa de Personal frente a Max, con lo que incluye cada plan.",
+      "inLanguage": "es",
+      "isPartOf": {
+        "@id": "https://oasislocal.github.io/O.A.S.I.S./#website"
+      },
+      "about": {
+        "@id": "https://oasislocal.github.io/O.A.S.I.S./#app"
+      },
+      "breadcrumb": {
+        "@id": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://oasislocal.github.io/O.A.S.I.S./es/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Precios",
+          "item": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html"
+        }
+      ]
+    }
+  ]
+}
 </script>
 <link rel="stylesheet" href="../assets/lang.css">
 </head>
@@ -153,7 +272,7 @@
     <div><h3 class="fth">Recursos</h3><ul>
       <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentación</a></li>
       <li><a href="../blog/">Journal</a></li><li><a href="changelog.html#roadmap">Hoja de ruta</a></li>
-      <li><a href="changelog.html">Novedades</a></li><li><a href="../llms.txt">llms.txt (para IA)</a></li></ul></div>
+      <li><a href="changelog.html">Novedades</a></li><li><a href="glossary.html">Glossary</a></li><li><a href="../llms.txt">llms.txt (para IA)</a></li></ul></div>
     <div><h3 class="fth">Confianza y comunidad</h3><ul>
       <li><a href="privacy.html">Privacidad</a></li><li><a href="security.html">Seguridad</a></li><li><a href="privacy-policy.html">Política de privacidad</a></li><li><a href="eula.html">EULA</a></li><li><a href="third-party-notices.html">Avisos de terceros</a></li>
       <li><a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a></li>

@@ -113,6 +113,16 @@
       ]
     }
 {%- endif %}
+{%- if page.permalink == '/glossary/' or page.permalink == '/es/glossary/' %}
+    ,{
+      "@type": "DefinedTermSet",
+      "@id": "{{ page.url | absolute_url }}#glossary",
+      "name": {% if page.lang == 'es' %}"Glosario de O.A.S.I.S."{% else %}"O.A.S.I.S. glossary"{% endif %},
+      "description": {{ desc | jsonify }},
+      "url": "{{ page.url | absolute_url }}",
+      "inLanguage": "{% if es %}es{% else %}en{% endif %}"
+    }
+{%- endif %}
   ]
 }
 </script>
@@ -248,7 +258,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
 </main>
 
 <footer class="blog-footer">
-<a href="{{ '/' | relative_url }}">{% if es %}Inicio{% else %}Home{% endif %}</a> · <a href="{{ '/blog/' | relative_url }}">Blog</a> · <a href="{{ '/faq.html' | relative_url }}">FAQ</a> · <a href="{{ '/about.html' | relative_url }}">{% if es %}Acerca de{% else %}About{% endif %}</a> · <a href="{{ '/blog/feed.xml' | relative_url }}">{% if es %}Canal RSS{% else %}RSS feed{% endif %}</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">{% if es %}Comunidad{% else %}Community{% endif %}</a> · <a href="{{ '/llms.txt' | relative_url }}">llms.txt</a>
+<a href="{{ '/' | relative_url }}">{% if es %}Inicio{% else %}Home{% endif %}</a> · <a href="{{ '/blog/' | relative_url }}">Blog</a> · <a href="{{ '/glossary/' | relative_url }}">{% if es %}Glosario{% else %}Glossary{% endif %}</a> · <a href="{{ '/faq.html' | relative_url }}">FAQ</a> · <a href="{{ '/about.html' | relative_url }}">{% if es %}Acerca de{% else %}About{% endif %}</a> · <a href="{{ '/blog/feed.xml' | relative_url }}">{% if es %}Canal RSS{% else %}RSS feed{% endif %}</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S." target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/OASISLocal/O.A.S.I.S./discussions" target="_blank" rel="noopener noreferrer">{% if es %}Comunidad{% else %}Community{% endif %}</a> · <a href="{{ '/llms.txt' | relative_url }}">llms.txt</a>
 </footer>
 <script>
 (function(){var r=document.documentElement,b=document.getElementById('theme-btn'),m=document.querySelector('meta[name=\"theme-color\"]');function p(t){r.setAttribute('data-theme',t);if(b)b.textContent=(t==='light')?'{% if es %}Oscuro{% else %}Dark{% endif %}':'{% if es %}Claro{% else %}Light{% endif %}';if(m)m.content=(t==='light')?'#f7f7f5':'#111111';try{localStorage.setItem('oasis-theme',t);}catch(_){}}var s=null;try{s=localStorage.getItem('oasis-theme');}catch(_){}p(s==='light'||s==='dark'?s:'dark');if(b)b.addEventListener('click',function(){p(r.getAttribute('data-theme')==='light'?'dark':'light');});}());

@@ -50,9 +50,12 @@ if ($badOld) { $badOld | ForEach-Object { Write-Host ("  " + $_.Filename + ":" +
 try { [System.IO.File]::ReadAllText((Join-Path $PSScriptRoot "site-data.json")) | ConvertFrom-Json | Out-Null } catch { Fail "site-data.json is not valid JSON" }
 try { [System.IO.File]::ReadAllText((Join-Path $PSScriptRoot "launch.json")) | ConvertFrom-Json | Out-Null } catch { Fail "launch.json is not valid JSON" }
 
+# Canonical is mandatory on plain static pages. Files with Jekyll front matter get
+# their head from _layouts at build time, so they are checked by check_seo.py
+# against the layout instead of here.
 $missingCanon = Get-ChildItem -Filter *.html | Where-Object {
   $html = Get-Content -Raw $_.FullName
-  $html -notmatch 'rel="canonical"' -and $html -notmatch 'layout:\s*(legal|es)'
+  -not $html.TrimStart().StartsWith("---") -and $html -notmatch 'rel="canonical"'
 } | Select-Object -ExpandProperty Name
 if ($missingCanon) { Fail ("pages without canonical: " + ($missingCanon -join ", ")) }
 

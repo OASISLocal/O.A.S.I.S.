@@ -33,15 +33,210 @@
 <meta name="twitter:image:alt" content="O.A.S.I.S. — The AI assistant that lives on your PC">
 <script type="application/ld+json">
 {
-"@context": "https://schema.org",
-"@type": "SoftwareApplication",
-"name": "O.A.S.I.S.",
-"operatingSystem": "Windows 10, Windows 11",
-"applicationCategory": "UtilitiesApplication",
-"inLanguage": ["es", "en"],
-"offers": { "@type": "Offer", "name": "OASIS Personal", "price": "0", "priceCurrency": "EUR" },
-"url": "https://oasislocal.github.io/O.A.S.I.S./",
-"description": "A free local-first AI assistant for Windows with compatible local models, chat, voice, memory, documents and everyday PC tools."
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://oasislocal.github.io/O.A.S.I.S./#org",
+      "name": "O.A.S.I.S.",
+      "alternateName": "OASIS",
+      "url": "https://oasislocal.github.io/O.A.S.I.S./",
+      "description": "Independent local-first project from Galicia, Spain, building a local AI assistant for Windows.",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Galicia, Spain"
+      },
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://oasislocal.github.io/O.A.S.I.S./assets/og-card.png",
+        "width": 1200,
+        "height": 630
+      },
+      "sameAs": [
+        "https://github.com/OASISLocal/O.A.S.I.S.",
+        "https://github.com/OASISLocal/O.A.S.I.S./releases",
+        "https://github.com/OASISLocal/O.A.S.I.S./issues",
+        "https://github.com/OASISLocal/O.A.S.I.S./discussions",
+        "https://oasislocal.github.io/O.A.S.I.S./llms.txt",
+        "https://oasislocal.github.io/O.A.S.I.S./changelog.html"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://oasislocal.github.io/O.A.S.I.S./#website",
+      "url": "https://oasislocal.github.io/O.A.S.I.S./",
+      "name": "O.A.S.I.S.",
+      "alternateName": "OASIS",
+      "description": "A free local-first AI assistant for Windows 10/11 that runs compatible GGUF models on your own PC.",
+      "inLanguage": [
+        "en",
+        "es"
+      ],
+      "publisher": {
+        "@id": "https://oasislocal.github.io/O.A.S.I.S./#org"
+      },
+      "navigation": {
+        "@id": "https://oasislocal.github.io/O.A.S.I.S./es/#navigation"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://oasislocal.github.io/O.A.S.I.S./#app",
+      "name": "O.A.S.I.S.",
+      "alternateName": "OASIS",
+      "url": "https://oasislocal.github.io/O.A.S.I.S./",
+      "description": "A free local-first AI assistant for Windows with compatible local models, chat, voice, memory, documents and everyday PC tools.",
+      "inLanguage": [
+        "en",
+        "es"
+      ],
+      "softwareVersion": "0.2.0",
+      "applicationCategory": "UtilitiesApplication",
+      "applicationSubCategory": "AI assistant",
+      "operatingSystem": "Windows 10, Windows 11",
+      "isAccessibleForFree": true,
+      "downloadUrl": "https://oasislocal.github.io/O.A.S.I.S./download.html",
+      "installUrl": "https://oasislocal.github.io/O.A.S.I.S./download.html",
+      "releaseNotes": "https://oasislocal.github.io/O.A.S.I.S./changelog.html",
+      "softwareHelp": "https://oasislocal.github.io/O.A.S.I.S./faq.html",
+      "featureList": [
+        "Local chat with compatible GGUF models",
+        "Local voice input and output (speech to text and text to speech)",
+        "Local memory and basic retrieval",
+        "Document reading (PDF, DOCX, XLSX)",
+        "Everyday PC control through 100+ tools with per-tool permissions",
+        "Mandatory confirmation for high-impact actions",
+        "Code execution in an isolated Docker sandbox (Max)"
+      ],
+      "softwareRequirements": "Windows 10 or 11 (x64). 8 GB RAM or more; a dedicated GPU with 4 GB or more of VRAM makes it noticeably faster. About 10 GB of free disk for the app plus one model.",
+      "screenshot": "https://oasislocal.github.io/O.A.S.I.S./assets/og-card.png",
+      "license": "https://oasislocal.github.io/O.A.S.I.S./eula.html",
+      "author": {
+        "@id": "https://oasislocal.github.io/O.A.S.I.S./#org"
+      },
+      "publisher": {
+        "@id": "https://oasislocal.github.io/O.A.S.I.S./#org"
+      },
+      "image": "https://oasislocal.github.io/O.A.S.I.S./assets/og-card.png",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "OASIS Personal",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock",
+          "itemOffered": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./#app"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./download.html"
+        },
+        {
+          "@type": "Offer",
+          "name": "OASIS Max",
+          "price": "15",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/PreOrder",
+          "description": "One-time payment. Early access, not on general sale yet.",
+          "itemOffered": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./#app"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./pricing.html"
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://oasislocal.github.io/O.A.S.I.S./#webpage",
+      "url": "https://oasislocal.github.io/O.A.S.I.S./",
+      "name": "O.A.S.I.S. — The AI assistant that lives on your PC",
+      "description": "O.A.S.I.S. is a free local-first AI assistant for Windows. Runs compatible local models with files, documents, memory and 100+ tools, on your own PC.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://oasislocal.github.io/O.A.S.I.S./#website"
+      },
+      "about": {
+        "@id": "https://oasislocal.github.io/O.A.S.I.S./#app"
+      },
+      "primaryImageOfPage": "https://oasislocal.github.io/O.A.S.I.S./assets/og-card.png"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://oasislocal.github.io/O.A.S.I.S./es/#navigation",
+      "name": "Navegación principal",
+      "inLanguage": "es",
+      "isPartOf": {
+        "@id": "https://oasislocal.github.io/O.A.S.I.S./#website"
+      },
+      "siteNavigationElement": [
+        {
+          "@type": "SiteNavigationElement",
+          "position": 1,
+          "name": "Cómo funciona",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 2,
+          "name": "Descargar",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/download.html"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 3,
+          "name": "Modelos",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 4,
+          "name": "Herramientas",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/tools.html"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 5,
+          "name": "Comparativa",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/comparison.html"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 6,
+          "name": "Precios",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 7,
+          "name": "Preguntas frecuentes",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/faq.html"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 8,
+          "name": "Seguridad",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/security.html"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 9,
+          "name": "Privacidad",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/privacy.html"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 10,
+          "name": "Novedades",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/changelog.html"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 11,
+          "name": "Journal",
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/blog/"
+        }
+      ]
+    }
+  ]
 }
 </script>
 <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-400.woff2" crossorigin>
@@ -484,7 +679,6 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
 
 </style>
 <link rel="stylesheet" href="../assets/lang.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://oasislocal.github.io/O.A.S.I.S./es/#website", "url": "https://oasislocal.github.io/O.A.S.I.S./es/", "name": "O.A.S.I.S.", "description": "O.A.S.I.S. es un asistente de IA local-first para Windows.", "inLanguage": "es"}, {"@type": "Organization", "@id": "https://oasislocal.github.io/O.A.S.I.S./es/#org", "name": "O.A.S.I.S.", "url": "https://oasislocal.github.io/O.A.S.I.S./", "logo": {"@type": "ImageObject", "url": "https://oasislocal.github.io/O.A.S.I.S./assets/og-card.png", "width": 1200, "height": 630}}]}</script>
 </head>
 <body>
 <a href="#content" class="skip">Saltar al contenido</a>
@@ -834,7 +1028,7 @@ input[type="checkbox"], input[type="radio"], [role="button"] { cursor: pointer; 
         <li><a href="https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs" target="_blank" rel="noopener noreferrer">Documentación</a></li>
         <li><a href="../blog/">Journal</a></li>
         <li><a href="changelog.html#roadmap">Hoja de ruta</a></li>
-        <li><a href="changelog.html">Novedades</a></li><li><a href="../llms.txt">llms.txt (para IA)</a></li>
+        <li><a href="changelog.html">Novedades</a></li><li><a href="glossary.html">Glossary</a></li><li><a href="../llms.txt">llms.txt (para IA)</a></li>
       </ul>
     </div>
     <div>
