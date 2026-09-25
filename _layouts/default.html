@@ -137,7 +137,7 @@
       {%- for t in gterms -%}
         {
           "@type": "DefinedTerm",
-          "@id": "{{ t['@id'] | default: page.url | append: '#' | append: t.name | slugify | jsonify }}",
+          "@id": {% if t['@id'] %}{{ t['@id'] | jsonify }}{% else %}{{ page.url | append: '#' | append: t.name | slugify | jsonify }}{% endif %},
           "name": {{ t.name | jsonify }},
           "description": {{ t.description | jsonify }}
           {%- if t.url %}, "url": {{ t.url | jsonify }}{% endif -%}
