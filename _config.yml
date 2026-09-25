@@ -35,17 +35,25 @@ defaults:
 # assets/ folder are left completely alone.
 include:
   - _posts
+# NOTE: this list REPLACES Jekyll's default exclude, not adds to it. Anything
+# not listed here gets published, including internal documentation and the
+# build tooling. `docs/`, `readme` and `Gemfile` were being served in production
+# (verified 200) before this list covered them.
 exclude:
   - README.md
+  - readme
+  - Gemfile
   - "*.log"
   - PRODUCT_TRUTH.md
   - CLAIMS_AUDIT.md
   - QA_CHECKLIST.md
   - LAUNCH_RUNBOOK.md
   - METRICS.md
+  - REVIEW_HIPERDETALLADA.md
   - JOURNAL_GLOSSARY.md
   - JOURNAL_CHECKLIST.md
   - GOOGLE_NEWS.md
+  - docs/
   - launch/
   - sync-web.ps1
   - .lighthouserc.json
@@ -55,6 +63,7 @@ exclude:
   - build_news_sitemap.py
   - check_site.py
   - check_claims.py
+  - check_seo.py
   - i18n/
   - fix-es-metadata.ps1
   - translate-es-pages.ps1

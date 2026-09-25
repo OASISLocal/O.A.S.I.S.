@@ -83,8 +83,11 @@ if (Get-Command python -ErrorAction SilentlyContinue) {
   Write-Host "-- python check_claims.py" -ForegroundColor DarkGray
   python check_claims.py
   if ($LASTEXITCODE -ne 0) { Fail "check_claims.py failed (forbidden phrasing or an unmeasured performance figure)" }
+  Write-Host "-- python check_seo.py" -ForegroundColor DarkGray
+  python check_seo.py
+  if ($LASTEXITCODE -ne 0) { Fail "check_seo.py failed (head tags, JSON-LD, hreflang reciprocity, robots.txt, unique titles, or an internal file that would be published)" }
 } else {
-  Write-Host "WARNING: python not found, skipping check_site.py / check_claims.py" -ForegroundColor Yellow
+  Write-Host "WARNING: python not found, skipping check_site.py / check_claims.py / check_seo.py" -ForegroundColor Yellow
 }
 
 if ($Mode -ne "live") {
@@ -105,6 +108,12 @@ if (Get-Command python -ErrorAction SilentlyContinue) {
   Write-Host "-- regenerating sitemap.xml" -ForegroundColor DarkGray
   python build_sitemap.py
   if ($LASTEXITCODE -ne 0) { Fail "build_sitemap.py failed" }
+  # The Google News sitemap stays dormant (ACTIVATED = False, and robots.txt does
+  # not point at it), but the file is kept fresh so it is ready the day the
+  # Publisher Center verification exists. See GOOGLE_NEWS.md.
+  Write-Host "-- regenerating news-sitemap.xml (dormant)" -ForegroundColor DarkGray
+  python build_news_sitemap.py
+  if ($LASTEXITCODE -ne 0) { Fail "build_news_sitemap.py failed" }
 }
 
 git add -A

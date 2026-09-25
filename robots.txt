@@ -1,3 +1,48 @@
+# robots.txt for O.A.S.I.S.
+#
+# The site has no trackers and no third-party requests, so there is nothing to
+# hide here and no reason to block anything. Every crawler is welcome.
+#
+# Search and citation crawlers are explicitly allowed, because being cited by
+# an answer engine (ChatGPT, Claude, Perplexity, Copilot, AI Overviews) is the
+# point of writing the Journal in public. Training crawlers are a separate,
+# editorial decision, kept in a commented block below so it is written down and
+# reviewed rather than left to the default.
+
 User-agent: *
 Allow: /
+
+# Search / citation crawlers. These fetch pages to answer and to link.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Training crawlers. DECISION PENDING (docs/PLAN_BUSCADORES_2026.md, Fase 3 #19):
+# leaving these unmentioned keeps the permissive default. Switching to
+# "Disallow: /" is a one-line change and would only affect model training, not
+# search or citations.
+# User-agent: GPTBot
+# Disallow: /
+# User-agent: ClaudeBot
+# Disallow: /
+# User-agent: CCBot
+# Disallow: /
+# User-agent: Googlebot-Extended
+# Disallow: /
+
 Sitemap: https://oasislocal.github.io/O.A.S.I.S./sitemap.xml
+
+# Machine-readable summary of the product and the site, for AI crawlers.
+# Not a sitemap: a plain-text file for language models.
+# https://oasislocal.github.io/O.A.S.I.S./llms.txt

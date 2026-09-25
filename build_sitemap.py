@@ -4,49 +4,74 @@
 Why this exists: with 40 Journal articles there are ~80 new URLs, each of which
 used to be a manual edit. The sitemap is now derived from the files:
 
-  * static pages: the PAGES table below (path, lastmod, changefreq, priority)
+  * static pages: the PAGES table below, lastmod taken from the last commit
+    that touched each file (`git log -1 --format=%as -- <path>`)
   * Journal posts: read from _posts/*.md front matter (date, lang, ref, permalink)
 
-Emitted format is byte-identical to the hand-maintained sitemap it replaces.
+Two rules from docs/PLAN_BUSCADORES_2026.md (Fase 0):
+
+  1. Every Spanish twin is emitted as its OWN <url>, with hreflang pointing
+     back to its English page. A mirror reachable only through an alternate is
+     discovered late; a mirror declared as a URL is discovered on schedule.
+  2. `lastmod` is real (the commit date), never a hand-typed constant.
+
+`changefreq` and `priority` are deliberately NOT emitted. Google ignores both
+completely, and hand-maintained values are false precision that rots: for the
+site that exists, the truth is "this page changed in this commit".
+
 Run:  python build_sitemap.py            (writes sitemap.xml)
-      python build_sitemap.py --check    (fails if it would change anything)
+      python build_sitemap.py --check    (exit 1 if it would change anything)
 """
-import io, os, re, sys, glob
+import io, os, re, sys, glob, subprocess
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 os.chdir(ROOT)
 SITE = "https://oasislocal.github.io/O.A.S.I.S."
+FALLBACK_LASTMOD = "2026-09-21"          # only if git has no history for a file
 
-# path, lastmod, changefreq, priority — order is the published order.
+# Site path -> the file that produces it. Order is the published order.
 PAGES = [
-    ("/", "2026-09-21", "weekly", "1.0"),
-    ("/how-it-works.html", "2026-09-21", "monthly", "0.9"),
-    ("/requirements.html", "2026-09-21", "monthly", "0.9"),
-    ("/download.html", "2026-09-21", "monthly", "0.9"),
-    ("/pricing.html", "2026-09-21", "monthly", "0.8"),
-    ("/models.html", "2026-09-21", "monthly", "0.8"),
-    ("/tools.html", "2026-09-21", "monthly", "0.8"),
-    ("/comparison.html", "2026-09-21", "monthly", "0.8"),
-    ("/features.html", "2026-09-21", "monthly", "0.8"),
-    ("/faq.html", "2026-09-21", "monthly", "0.8"),
-    ("/security.html", "2026-09-21", "yearly", "0.6"),
-    ("/changelog.html", "2026-09-21", "monthly", "0.6"),
-    ("/about.html", "2026-09-21", "yearly", "0.6"),
-    ("/privacy.html", "2026-09-21", "yearly", "0.5"),
-    ("/privacy-policy.html", "2026-09-21", "yearly", "0.6"),
-    ("/eula.html", "2026-09-21", "yearly", "0.5"),
-    ("/third-party-notices.html", "2026-09-21", "yearly", "0.5"),
-    ("/blog/", "2026-09-25", "weekly", "0.7"),
+    ("/", "index.html"),
+    ("/how-it-works.html", "how-it-works.html"),
+    ("/requirements.html", "requirements.html"),
+    ("/download.html", "download.html"),
+    ("/pricing.html", "pricing.html"),
+    ("/models.html", "models.html"),
+    ("/tools.html", "tools.html"),
+    ("/comparison.html", "comparison.html"),
+    ("/features.html", "features.html"),
+    ("/faq.html", "faq.html"),
+    ("/security.html", "security.html"),
+    ("/changelog.html", "changelog.html"),
+    ("/about.html", "about.html"),
+    ("/privacy.html", "privacy.html"),
+    ("/privacy-policy.html", "privacy-policy.html"),
+    ("/eula.html", "eula.html"),
+    ("/third-party-notices.html", "third-party-notices.html"),
+    ("/blog/", "blog/Index.html"),
 ]
 
-# /es/blog/ has its own entry (x-default points at the English index).
-EXTRA = [("/es/blog/", "/blog/", "2026-09-25", "weekly", "0.7")]
+# Paths whose Spanish twin is not "<page>.html" under /es/.
+ES_TWINS = {"/": "/es/", "/blog/": "/es/blog/"}
 
-# Explicit ES twins for paths that are not "<page>.html" under /es/.
-ES_TWINS = {
-    "/": "/es/",
-    "/blog/": "/es/blog/",
-}
+_git_cache = {}
+
+
+def git_lastmod(path):
+    """Date of the last commit that touched `path` (YYYY-MM-DD), or the fallback."""
+    if path in _git_cache:
+        return _git_cache[path]
+    out = FALLBACK_LASTMOD
+    try:
+        r = subprocess.run(["git", "log", "-1", "--format=%as", "--", path],
+                           capture_output=True, text=True, timeout=20)
+        value = (r.stdout or "").strip()
+        if re.match(r"^\d{4}-\d{2}-\d{2}$", value):
+            out = value
+    except Exception:
+        pass
+    _git_cache[path] = out
+    return out
 
 
 def read(path):
@@ -55,26 +80,28 @@ def read(path):
 
 
 def front_matter(path):
-    """Return the parsed YAML front matter of a Jekyll file (simple subset)."""
     src = read(path)
     m = re.match(r"^---\s*\n(.*?)\n---\s*\n", src, re.S)
     if not m:
         return {}
-    fm = {}
+    fm, key = {}, None
     for line in m.group(1).split("\n"):
-        line = line.rstrip()
-        if not line or line.lstrip().startswith("#"):
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        if line.startswith((" ", "\t")) and key:
+            fm[key] += " " + line.strip()
             continue
         k, _, v = line.partition(":")
+        key = k.strip()
         v = v.strip()
         if v.startswith(("'", '"')) and v.endswith(("'", '"')) and len(v) > 1:
             v = v[1:-1]
-        fm[k.strip()] = v
+        fm[key] = v
     return fm
 
 
 def es_url_for(path):
-    """The Spanish twin of a static page path, or None."""
+    """The Spanish twin of a site path, or None when there is none."""
     if path in ES_TWINS:
         return ES_TWINS[path]
     if not path.endswith(".html"):
@@ -83,64 +110,87 @@ def es_url_for(path):
     return candidate if os.path.isfile("." + candidate) else None
 
 
+def es_source_for(site_path):
+    """The local file that produces a Spanish site path."""
+    if not site_path:
+        return None
+    rel = site_path.strip("/")
+    if not rel:
+        rel = "index.html"
+    elif site_path.endswith("/"):
+        rel = rel + "/index.html"
+    for cand in (rel, rel.replace("index.html", "Index.html")):
+        if os.path.isfile(cand):
+            return cand
+    return None
+
+
 def load_posts():
-    """Journal posts grouped by ref: {ref: {"en": (url, date), "es": (url, date)}}."""
+    """Posts grouped by ref: {ref: {"en": (url, date, file), "es": (...)}}."""
     posts = {}
     for f in sorted(glob.glob("_posts/*.md")):
         fm = front_matter(f)
         lang = fm.get("lang", "en")
-        slug = os.path.basename(f)[:-3]          # 2026-09-25-what-is-ai
+        slug = os.path.basename(f)[:-3]
         m = re.match(r"^(\d{4})-(\d{2})-(\d{2})-(.+)$", slug)
         if not m:
             print("WARN: cannot parse date from %s" % f)
             continue
         date = "%s-%s-%s" % m.groups()[:3]
-        if "permalink" in fm:
-            url = fm["permalink"]
-        else:
-            url = "/blog/%s/%s/%s/%s/" % (m.group(1), m.group(2), m.group(3), m.group(4))
+        url = fm.get("permalink") or "/blog/%s/%s/%s/%s/" % m.groups()
         ref = fm.get("ref") or m.group(4)
-        posts.setdefault(ref, {})[lang] = (url, date)
+        posts.setdefault(ref, {})[lang] = (url, date, f)
     return posts
 
 
-def url_entry(loc, en, es, lastmod, changefreq, priority):
+def url_entry(loc, en, es, lastmod):
+    """One <url> with the three hreflang alternates it participates in."""
     def alt(hreflang, href):
         return '<xhtml:link rel="alternate" hreflang="%s" href="%s"/>' % (hreflang, href)
-    parts = ['<url><loc>%s%s</loc>' % (SITE, loc)]
-    parts.append(alt("en", SITE + en))
-    parts.append(alt("es", SITE + es))
-    parts.append(alt("x-default", SITE + en))
-    parts.append("<lastmod>%s</lastmod>" % lastmod)
-    parts.append("<changefreq>%s</changefreq>" % changefreq)
-    parts.append("<priority>%s</priority>" % priority)
-    parts.append("</url>")
-    return "".join(parts)
+    return ("".join([
+        "<url><loc>%s%s</loc>" % (SITE, loc),
+        alt("en", SITE + en),
+        alt("es", SITE + es),
+        alt("x-default", SITE + en),
+        "<lastmod>%s</lastmod>" % lastmod,
+        "</url>",
+    ]))
 
 
 def build():
     entries = []
-    for path, lastmod, freq, prio in PAGES:
-        es = es_url_for(path) or path
-        entries.append(url_entry(path, path, es, lastmod, freq, prio))
-    for loc, x_default, lastmod, freq, prio in EXTRA:
-        entries.append(url_entry(loc, x_default, loc, lastmod, freq, prio))
+    for path, source in PAGES:
+        es = es_url_for(path)
+        lastmod = git_lastmod(source)
+        # English page: hreflang self + Spanish twin + x-default to English
+        entries.append(url_entry(path, path, es or path, lastmod))
+        # Spanish twin: its own <url>, hreflang pointing back at the English page
+        if es:
+            es_source = es_source_for(es)
+            es_lastmod = git_lastmod(es_source) if es_source else lastmod
+            entries.append(url_entry(es, path, es, es_lastmod))
 
     posts = load_posts()
     def key(item):
-        return item[1]["en"][1] if "en" in item[1] else item[1]["es"][1]
+        pair = item[1]
+        return (pair.get("en") or pair.get("es"))[1]
+
     for ref, pair in sorted(posts.items(), key=key, reverse=True):
-        lastmod = (pair.get("en") or pair.get("es"))[1]
         if "en" in pair:
-            en_url, _ = pair["en"]
-            es_url = pair["es"][0] if "es" in pair else en_url
-            entries.append(url_entry(en_url, en_url, es_url, lastmod, "yearly", "0.7"))
+            en_url, en_date, _ = pair["en"]
             if "es" in pair:
-                es_url = pair["es"][0]
-                entries.append(url_entry(es_url, en_url, es_url, lastmod, "yearly", "0.6"))
+                es_url, es_date, _ = pair["es"]
+                entries.append(url_entry(en_url, en_url, es_url, en_date))
+                entries.append(url_entry(es_url, en_url, es_url, es_date))
+            else:
+                # English only: no misleading hreflang es
+                entries.append("<url><loc>%s%s</loc><xhtml:link rel=\"alternate\" "
+                               "hreflang=\"en\" href=\"%s%s\"/><xhtml:link rel=\"alternate\" "
+                               "hreflang=\"x-default\" href=\"%s%s\"/><lastmod>%s</lastmod></url>"
+                               % (SITE, en_url, SITE, en_url, SITE, en_url, en_date))
         else:
-            es_url, _ = pair["es"]
-            entries.append(url_entry(es_url, es_url, es_url, lastmod, "yearly", "0.6"))
+            es_url, es_date, _ = pair["es"]
+            entries.append(url_entry(es_url, es_url, es_url, es_date))
 
     header = ('<?xml version="1.0" encoding="UTF-8"?>\n'
               '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
@@ -150,8 +200,7 @@ def build():
 
 def main():
     out = build()
-    target = os.path.join(ROOT, "sitemap.xml")
-    current = read("sitemap.xml") if os.path.isfile(target) else ""
+    current = read("sitemap.xml") if os.path.isfile("sitemap.xml") else ""
     if "--check" in sys.argv:
         if current != out:
             print("build_sitemap.py --check: sitemap.xml is out of date")
@@ -162,7 +211,7 @@ def main():
     if current == out:
         print("sitemap.xml already up to date (%d urls)" % out.count("<url>"))
         return
-    with io.open(target, "w", encoding="utf-8", newline="") as f:
+    with io.open("sitemap.xml", "w", encoding="utf-8", newline="") as f:
         f.write(out)
     print("sitemap.xml regenerated: %d urls (%d before)" % (out.count("<url>"), current.count("<url>")))
 
