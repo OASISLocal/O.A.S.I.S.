@@ -114,8 +114,18 @@
     }
 {%- endif %}
 {%- if page.permalink == '/glossary/' or page.permalink == '/es/glossary/' %}
+{%- comment -%}
+  The generated data file stores a full JSON-LD graph; the terms live in the
+  DefinedTermSet node inside @graph, not at the root.
+{%- endcomment -%}
 {%- assign gts = site.data.glossary_terms -%}
 {%- if page.permalink == '/es/glossary/' %}{%- assign gts = site.data.glossary_terms_es -%}{%- endif -%}
+{%- assign gterms = gts.hasDefinedTerm -%}
+{%- if gterms == nil and gts['@graph'] -%}
+  {%- for n in gts['@graph'] -%}
+    {%- if n['@type'] == 'DefinedTermSet' -%}{%- assign gterms = n.hasDefinedTerm -%}{%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
     ,{
       "@type": "DefinedTermSet",
       "@id": "{{ page.url | absolute_url }}#glossary",
@@ -124,10 +134,10 @@
       "url": "{{ page.url | absolute_url }}",
       "inLanguage": "{% if es %}es{% else %}en{% endif %}",
       "hasDefinedTerm": [
-      {%- for t in gts.hasDefinedTerm -%}
+      {%- for t in gterms -%}
         {
           "@type": "DefinedTerm",
-          "@id": "{{ page.url | absolute_url }}#g-{{ t.name | slugify }}",
+          "@id": "{{ t['@id'] | default: page.url | append: '#' | append: t.name | slugify | jsonify }}",
           "name": {{ t.name | jsonify }},
           "description": {{ t.description | jsonify }}
           {%- if t.url %}, "url": {{ t.url | jsonify }}{% endif -%}
