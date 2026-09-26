@@ -1,6 +1,6 @@
 # O.A.S.I.S.
 
-> Local-first AI assistant for Windows 10/11 x64. Public beta v0.2.0.
+> Local-first AI assistant for Windows 10 / 11 x64. Public beta v0.2.0.
 
 ## Product
 
@@ -8,27 +8,52 @@ O.A.S.I.S. runs compatible GGUF models locally and adds chat, voice, memory, doc
 
 ## Capabilities
 
-- Local chat with compatible GGUF models
-- Spanish and English voice input/output
-- Basic local memory and document workflows
-- Everyday low-risk PC control
+- Local chat with streaming
+- GGUF models via llama.cpp
+- Voice in Spanish and English
+- Memory and documents (basic)
+- Everyday PC control
+- 100+ tools across seven categories
 - Up to three Personal projects
 - 100+ registered product tools, with 10 high-impact tools requiring confirmation
-- Max-only or planned: vision, advanced RAG, full coding agent, Docker sandbox, workflows, scheduled workflows, messaging, mobile/browser companions, MCP servers, voice cloning, encrypted sync, OpenCode integration and parallel sessions
+- Max-only or planned: vision, advanced RAG, full coding agent, Docker sandbox, workflows, scheduled workflows, messaging, mobile/browser companions, MCP servers, voice cloning, encrypted sync, OpenCode integration, parallel sessions
 
 ## Network model
 
-Local features run on your PC. Network-enabled features communicate externally only when you use or configure them. O.A.S.I.S. is offline-first, not network-blind. Web search, online pages, weather, translation fallbacks, Spotify, messaging, companions and external MCP servers can require network access.
+Local features run on your PC. Network-enabled features communicate externally only when you use or configure them. O.A.S.I.S. is offline-first, not network-blind. Web search, online pages, weather, translation fallbacks, messaging, companions and external MCP servers can require network access.
 
 ## Models
 
 Compatible GGUF models are supported. Bundled profiles include `gemma-4b-it`, `qwen-2.5-1.5b` and `llama-3.2-3b`. Compatibility depends on model, quantization, context size, backend and hardware.
 
+## Journal
+
+Plain-language explanations, written for someone deciding whether a local assistant is real. Each one is a complete answer rather than a summary, and they exist in Spanish too.
+
+- [What is AI? And how does it work?](https://oasislocal.github.io/O.A.S.I.S./blog/2026/09/25/what-is-ai-and-how-it-works/): What AI actually is, in two levels: the simple version (it predicts the next piece of text) and a deeper one (tokens, probabilities, context). (7 min read)
+  - [Español](https://oasislocal.github.io/O.A.S.I.S./es/blog/2026/09/25/que-es-la-ia-y-como-funciona/)
+- [What is a language model?](https://oasislocal.github.io/O.A.S.I.S./blog/2026/09/25/what-is-a-language-model/): Where a language model's ability comes from, what the billions of numbers inside it are, and the three questions that explain how it behaves. (7 min read)
+  - [Español](https://oasislocal.github.io/O.A.S.I.S./es/blog/2026/09/25/que-es-un-modelo-de-lenguaje/)
+- [Journal index](https://oasislocal.github.io/O.A.S.I.S./blog/)
+
+## Glossary
+
+77 terms defined in plain language, with a Spanish rendering for each. The same text appears as a tooltip on the pages that use it, so a definition is never longer than the page it sits on.
+
+- [Glossary](https://oasislocal.github.io/O.A.S.I.S./glossary/)
+- [Glosario](https://oasislocal.github.io/O.A.S.I.S./es/glossary/)
+
+## Roadmap
+
+Next, in order: Max early access opens, Linux build, macOS build, Plugin/marketplace foundations.
+
 ## Official links
 
 - Website: https://oasislocal.github.io/O.A.S.I.S./
 - Spanish website: https://oasislocal.github.io/O.A.S.I.S./es/
+- Journal: https://oasislocal.github.io/O.A.S.I.S./blog/
 - Releases: https://github.com/OASISLocal/O.A.S.I.S./releases
 - Documentation: https://github.com/OASISLocal/O.A.S.I.S./tree/main/docs
 - Issues: https://github.com/OASISLocal/O.A.S.I.S./issues
-- Privacy: https://oasislocal.github.io/O.A.S.I.S./privacy.html
+- Privacy model: https://oasislocal.github.io/O.A.S.I.S./privacy.html
+- llms.txt: https://oasislocal.github.io/O.A.S.I.S./llms.txt

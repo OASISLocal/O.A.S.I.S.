@@ -263,7 +263,7 @@ and the [full feature list](/features.html) is one page long, on purpose.
   numbers so the file is smaller and runs with less memory, at a small cost in
   quality. It is why a 4B model fits on a normal laptop.
 {% endcapture %}
-{% include components/details.html title="Questions people actually ask" faq="true" open="first" body=faq open-label="Open all" close-label="Close all" %}
+{% include components/details.html title="Questions people actually ask" faq="true" open="first" schema="faqpage" body=faq open-label="Open all" close-label="Close all" %}
 
 ## In short
 

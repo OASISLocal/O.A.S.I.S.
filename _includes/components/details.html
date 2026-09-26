@@ -31,6 +31,16 @@ faq="true"          question and answer side by side on wide screens
 {%- assign open = include.open | default: "all" -%}
 {%- assign opened = 0 -%}
 {%- comment -%}
+  schema="faqpage" emits FAQPage structured data from the very same strings the
+  visible answers are built from, so the two cannot drift apart. Worth being
+  precise about the value: Google restricted FAQ rich results to authoritative
+  health and government sites, so this will not produce a snippet here. It is
+  for answer engines and tooling that read structured data, not for Google.
+{%- endcomment -%}
+{%- assign want_schema = include.schema -%}
+{%- assign schema_q = "" | split: "" -%}
+{%- assign schema_a = "" | split: "" -%}
+{%- comment -%}
   The captured body is raw markdown: kramdown has NOT run on it yet, because
   markdownify happens later, on the whole post. So convert it here first, and
   only then split on the <li> elements kramdown produced.
@@ -62,6 +72,18 @@ faq="true"          question and answer side by side on wide screens
     {%- endcomment -%}
     {%- assign answer_html = cleaned | remove_first: "<strong>" | remove_first: strong | remove_first: "</strong>" | strip -%}
     {%- assign answer = answer_html | strip -%}
+    {%- if want_schema == "faqpage" -%}
+      {%- comment -%}
+        Strip the value, not the array. `schema_q | push: strong | strip`
+        applied strip to the whole array and turned it into the string
+        '["first question"]', so the block carried one question instead of five.
+      {%- endcomment -%}
+      {%- assign qtext = strong | strip -%}
+      {%- assign schema_q = schema_q | push: qtext -%}
+      {%- comment -%} Plain text for the schema: markdown and <p> are not wanted there. {%- endcomment -%}
+      {%- assign plain = answer_html | strip_html | normalize_whitespace | strip -%}
+      {%- assign schema_a = schema_a | push: plain -%}
+    {%- endif -%}
     {%- if open == "all" or open == "first" and opened == 0 -%}
       {%- assign opened = opened | plus: 1 -%}
 <details class="cmp-details__item" open>
@@ -79,3 +101,13 @@ faq="true"          question and answer side by side on wide screens
   {%- endif -%}
 {%- endfor -%}
 </div>
+{%- if want_schema == "faqpage" and schema_q.size > 0 -%}
+{%- comment -%}
+  jsonify, not hand-escaping. A first attempt replaced quotes and backslashes by
+  hand and produced invalid JSON on all four articles, which is exactly the
+  failure that is invisible on the page: the FAQ renders perfectly and the
+  structured data is silently worthless. jsonify emits a correctly escaped JSON
+  string, quotes included, so the values go in unquoted.
+{%- endcomment -%}
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{% for q in schema_q %}{"@type":"Question","name":{{ q | strip | jsonify }},"acceptedAnswer":{"@type":"Answer","text":{{ schema_a[forloop.index0] | jsonify }}}}{% unless forloop.last %},{% endunless %}{% endfor %}]}</script>
+{%- endif -%}

@@ -4,6 +4,27 @@
   "platform": ["Windows 10", "Windows 11"],
   "tools": "100+",
   "updated": "2026-09-20",
+  "personal": {
+    "free": true,
+    "account_required": false,
+    "limits": "Up to three Personal projects",
+    "tool_note": "100+ registered product tools, with 10 high-impact tools requiring confirmation"
+  },
+  "max_only": [
+    "vision",
+    "advanced RAG",
+    "full coding agent",
+    "Docker sandbox",
+    "workflows",
+    "scheduled workflows",
+    "messaging",
+    "mobile/browser companions",
+    "MCP servers",
+    "voice cloning",
+    "encrypted sync",
+    "OpenCode integration",
+    "parallel sessions"
+  ],
   "roadmap": {
     "now": [
       "Local chat with streaming",

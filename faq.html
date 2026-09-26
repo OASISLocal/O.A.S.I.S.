@@ -36,21 +36,111 @@
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/tooltip.css">
 <script>try{var t=localStorage.getItem('oasis-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(_){}</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"What is a local AI assistant?","acceptedAnswer":{"@type":"Answer","text":"A local AI assistant runs compatible AI models on your hardware instead of requiring a cloud model. O.A.S.I.S. provides local chat, voice, memory, documents and supported PC tools on Windows."}},
-{"@type":"Question","name":"Does OASIS really work offline?","acceptedAnswer":{"@type":"Answer","text":"Supported local features can work without internet after a model is installed. Web search, weather and external integrations require network access when used or configured."}},
-{"@type":"Question","name":"Do my files leave my computer?","acceptedAnswer":{"@type":"Answer","text":"Local files, memory and local model work can remain on your PC. Network-enabled features may communicate externally when used or configured, and permissions apply to sensitive capabilities."}},
-{"@type":"Question","name":"What PC do I need to run local AI?","acceptedAnswer":{"@type":"Answer","text":"Any modern CPU runs small models; 16 GB RAM and an NVIDIA GPU with 4 GB+ VRAM is the comfortable setup for 7-8B models. Docker is only needed for the code sandbox."}},
-{"@type":"Question","name":"Is there a Mac or Linux version?","acceptedAnswer":{"@type":"Answer","text":"Not yet — Windows 10/11 only. Linux and macOS are on the public roadmap."}},
-{"@type":"Question","name":"How is OASIS different from Ollama or LM Studio?","acceptedAnswer":{"@type":"Answer","text":"Ollama, LM Studio, GPT4All and Jan run local models. O.A.S.I.S. adds local voice, memory, documents, PC tools and permissioned actions; Max adds further workflows and integrations."}},
-{"@type":"Question","name":"Is OASIS Max a subscription?","acceptedAnswer":{"@type":"Answer","text":"No, and there is nothing to pay yet. Max will be a single payment (15 EUR early access, 25 EUR at 1.0), never a subscription. A waitlist collects one email per person for launch day."}},
-{"@type":"Question","name":"How do I uninstall it?","acceptedAnswer":{"@type":"Answer","text":"Like any Windows program. You can also remove the local data folder to delete models, memory and settings. Network-enabled features are described on the privacy page."}},
-{"@type":"Question","name":"What happens when an action is dangerous?","acceptedAnswer":{"@type":"Answer","text":"It stops and asks. Deleting files, shutting down or running code always requires explicit confirmation; high-impact tools can never run silently."}},
-{"@type":"Question","name":"Can it access my screen?","acceptedAnswer":{"@type":"Answer","text":"Only when you ask it to look, for example to describe a window. It never watches in the background."}},
-{"@type":"Question","name":"Is O.A.S.I.S. open source?","acceptedAnswer":{"@type":"Answer","text":"No. It is proprietary software with a public changelog and roadmap; the source code is not publicly available."}}
-]}
-</script>
+<!-- faqpage:generated -->
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "url": "https://oasislocal.github.io/O.A.S.I.S./faq.html",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a local AI assistant?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A program that runs compatible AI models on your hardware instead of requiring a cloud model. O.A.S.I.S. provides local chat, voice, memory, documents and supported PC tools on Windows."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it really work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Local chat, voice, memory and other local workflows keep working without an internet connection once the models are installed. Features such as web search, weather and external integrations need network access when you use them. In short: offline-first, not network-blind."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do my files leave my computer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Local files, memory and local model work can remain on your PC. Network-enabled features may communicate externally when you use or configure them. The app exposes permission controls for mic, screen, files and tools. Read the full privacy page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What PC do I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any modern CPU runs small models well. The comfortable setup is 16 GB RAM plus an NVIDIA GPU with 4 GB or more for 7–8B models. Details and honest caveats on the requirements page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a Mac or Linux version?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not yet — Windows 10/11 only. Linux and macOS are on the public roadmap; the models themselves are portable, the packaging isn't done."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is it different from Ollama or LM Studio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Those are excellent at running local models. O.A.S.I.S. adds an assistant layer with local voice, memory, documents, PC tools and permissioned actions. Max adds further workflows and integrations. Full table on the comparison page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which features need Max?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Personal covers chat, voice, memory, documents and everyday PC control. Max adds vision/screen analysis, full coding with the Docker sandbox, workflows and scheduling, Discord/Telegram, the Android app, the browser extension, external tool servers and voice cloning. The pricing matrix lists every feature."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is OASIS Max a subscription?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — and there's nothing to pay yet. Max will be a single payment (€15 in early access, €25 at 1.0), never a subscription. Join the waitlist and we'll send one email when it opens."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when an action is dangerous?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It stops and asks. Deleting files, shutting down or running code always requires your explicit confirmation. How security works →"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it access my screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Only when you ask it to look — for example, to describe a window or click something for you. It never watches in the background."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is O.A.S.I.S. open source?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It's proprietary software with a public changelog and roadmap — the source code is not publicly available. See the EULA shipped with the installer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I uninstall it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Like any Windows program. You can also remove the local data folder to delete models, memory and settings. Network-enabled features are described on the privacy page."
+      }
+    }
+  ]
+}</script>
+<!-- /faqpage:generated -->
 <link rel="stylesheet" href="assets/lang.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "@id": "https://oasislocal.github.io/O.A.S.I.S./faq.html#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://oasislocal.github.io/O.A.S.I.S./"}, {"@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://oasislocal.github.io/O.A.S.I.S./faq.html"}]}</script>
 </head>

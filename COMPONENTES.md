@@ -99,6 +99,15 @@ En un artículo usa `open="first"`: con las cinco abiertas el FAQ es un muro de
 texto. La página de pruebas deja el valor por defecto a propósito, para que
 ambos comportamientos se vean probados.
 
+`schema="faqpage"` emite además datos estructurados `FAQPage`, construidos con
+las mismas cadenas que las respuestas visibles, así que no pueden divergir. Merece
+la pena ser preciso sobre su valor: Google restringió los rich results de FAQ a
+sitios autorizados de salud y gobierno, así que **aquí no va a generar un
+snippet**. Sirve para motores de respuesta y herramientas que leen datos
+estructurados. `check_seo.py` lo parsea y comprueba que las preguntas del schema
+son las mismas que se ven en la página, porque un JSON inválido o desalineado no
+deja ni una marca visible.
+
 ## table
 
 La tabla se escribe como **HTML**, no como markdown, y **con la clase puesta**:
@@ -214,6 +223,27 @@ miniatura.
 Automático: mismo `tags` primero, después cualquier otro, nunca el propio
 artículo ni su traducción (mismo `ref`). Con menos de tres, el bloque
 desaparece en vez de rellenarse con contenido débil.
+
+## Los datos estructurados se generan, no se escriben
+
+Todo el schema del sitio sale de algo que ya existe, para que no pueda separarse
+de lo que el lector ve:
+
+| Qué | Se genera de | Comprobación |
+|---|---|---|
+| `FAQPage` de los artículos | el propio componente `details` | `check_seo.py` parsea el JSON y compara las preguntas con los `<summary>` visibles |
+| `FAQPage` de `/faq.html` | los `<details>` de esa misma página | `build_faqpage.py --check` |
+| `DefinedTermSet` del glosario | `tooltips.json` + `tooltips.es.json` | `build_glossary.py --check` |
+| `llms.txt` | `site-data.json` + los artículos publicados | `build_llms.py --check` |
+| `sitemap.xml` | las rutas reales + fecha del último commit | `build_sitemap.py` |
+
+La razón por la que son generadores y no ficheros a mano está en los fallos que
+ya costaron tiempo: el FAQPage de `faq.html` preguntaba *"Does OASIS really work
+offline?"* mientras la página decía *"Does it really work offline?"*, en otro
+orden, y ninguna comprobación lo notó porque nadie comparaba las dos cosas.
+
+Cuando añadas un `FAQPage` a una página nueva, Genéralo desde sus propias
+preguntas visibles en lugar de escribir el JSON a mano.
 
 ## Poner un artículo en la ruta de lectura
 

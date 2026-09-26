@@ -235,7 +235,7 @@ Nada de eso es una lista de errores. Es la misma lista de consecuencias.
   propia <span class="term" data-term="gpu">GPU</span> es más útil a diario que
   uno grande al que hay que esperar.
 {% endcapture %}
-{% include components/details.html title="Preguntas sobre modelos" faq="true" open="first" body=faq2 open-label="Abrir todo" close-label="Cerrar todo" %}
+{% include components/details.html title="Preguntas sobre modelos" faq="true" open="first" schema="faqpage" body=faq2 open-label="Abrir todo" close-label="Cerrar todo" %}
 
 ## En corto
 

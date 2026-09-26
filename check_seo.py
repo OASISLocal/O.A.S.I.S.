@@ -240,10 +240,67 @@ cfg = read("_config.yml")
 for internal in ("docs/", "readme", "Gemfile", "PRODUCT_TRUTH.md", "JOURNAL_CHECKLIST.md",
                  "GOOGLE_NEWS.md", "JOURNAL_GLOSSARY.md", "build_sitemap.py",
                  "check_site.py", "check_claims.py", "check_seo.py",
-                 "build_news_sitemap.py", "build_es.py", "sync-web.ps1"):
+                 "build_news_sitemap.py", "build_es.py", "sync-web.ps1",
+                 "build_glossary.py", "build_llms.py", "build_faqpage.py",
+                 "check_lang.py", "site_config.py"):
     if os.path.exists(internal) and re.search(r"^\s*-\s*%s\s*$" % re.escape(internal),
                                               cfg, re.M) is None:
         fail("%s is not in _config.yml exclude (Jekyll would publish it)" % internal)
+
+# ------------------------------------- 10b. the FAQPage block is valid and honest
+# Two failures happened here in a single sitting and neither showed on the page:
+# hand-escaped JSON did not parse, and a stray `| strip` turned the question
+# array into a string so the block carried one question instead of five. The FAQ
+# rendered perfectly in both cases. So it is parsed here, and the questions are
+# compared against the visible <summary> text: structured data that disagrees
+# with the page is worse than none.
+SITE_DIR = "_site"
+if not os.path.isdir(SITE_DIR):
+    notes.append("_site not present: skipped the FAQPage pass")
+else:
+    for dp, _d, fs in os.walk(SITE_DIR):
+        for f in fs:
+            if not f.endswith(".html"):
+                continue
+            p = os.path.join(dp, f)
+            page = "/" + os.path.relpath(p, SITE_DIR).replace(os.sep, "/")
+            html = read(p)
+            blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>',
+                                html, re.S)
+            faq = next((b for b in blocks if '"FAQPage"' in b), None)
+            if not faq:
+                continue
+            try:
+                d = json.loads(faq)
+            except Exception as e:
+                fail("%s: the FAQPage block is not valid JSON (%s)" % (page, e))
+                continue
+            if d.get("@type") != "FAQPage" or d.get("@context") != "https://schema.org":
+                fail("%s: FAQPage block has the wrong @type/@context" % page)
+            qs = d.get("mainEntity", [])
+            if not qs:
+                fail("%s: FAQPage has no questions" % page)
+                continue
+            # Any <summary>, not just the component's: the product FAQ pages use
+            # their own accordion markup, and reading only the component's class
+            # made this report 0 visible questions and a false mismatch.
+            visible = [re.sub(r"<[^>]+>", "", v).strip() for v in
+                       re.findall(r"<summary[^>]*>(.*?)</summary>", html, re.S)]
+            named = [(q.get("name") or "").strip() for q in qs]
+            if not visible:
+                fail("%s: FAQPage is present but the page shows no <summary> questions, "
+                     "so the two cannot be compared" % page)
+            elif named != visible:
+                fail("%s: FAQPage questions disagree with the visible FAQ "
+                     "(%d in the schema, %d on the page)" % (page, len(named), len(visible)))
+            for q in qs:
+                if not (q.get("acceptedAnswer", {}).get("text") or "").strip():
+                    fail("%s: FAQPage question %r has an empty answer"
+                         % (page, (q.get("name") or "")[:40]))
+                if not (q.get("name") or "").strip():
+                    fail("%s: a FAQPage entry has an empty question" % page)
+            notes.append("FAQPage ok in %s (%d questions, matches the visible FAQ)"
+                         % (page, len(qs)))
 
 # ------------------------------------------------- 11. the Jekyll head templates
 # Only layouts that emit their own <head> need the full set; post.html inherits

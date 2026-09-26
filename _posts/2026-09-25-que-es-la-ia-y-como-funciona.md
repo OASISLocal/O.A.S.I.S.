@@ -269,7 +269,7 @@ Si prefieres verlo a leerlo, la [beta es gratis](/es/download.html) y la
   pequeño coste en calidad. Es la razón de que un modelo de 4B quepa en un
   portátil normal.
 {% endcapture %}
-{% include components/details.html title="Preguntas que se hacen de verdad" faq="true" open="first" body=faq open-label="Abrir todo" close-label="Cerrar todo" %}
+{% include components/details.html title="Preguntas que se hacen de verdad" faq="true" open="first" schema="faqpage" body=faq open-label="Abrir todo" close-label="Cerrar todo" %}
 
 ## En corto
 

@@ -101,6 +101,18 @@ if (Get-Command python -ErrorAction SilentlyContinue) {
   Write-Host "-- python check_lang.py" -ForegroundColor DarkGray
   python check_lang.py
   if ($LASTEXITCODE -ne 0) { Fail "check_lang.py failed (a layout links to the other language; use {{ lp | append: ... }})" }
+  # llms.txt is generated from site-data.json and the posts. It was hand-written
+  # and had already drifted: it hardcoded the version and never mentioned the
+  # Journal. This also keeps the version honest on pages that cannot read the
+  # data file themselves.
+  Write-Host "-- python build_llms.py --check" -ForegroundColor DarkGray
+  python build_llms.py --check
+  if ($LASTEXITCODE -ne 0) { Fail "build_llms.py --check failed (llms.txt is stale, or a page shows a version that site-data.json contradicts). Run: python build_llms.py" }
+  # The product FAQ pages carried a hand-written FAQPage block that had drifted
+  # from the questions the page actually shows. It is now generated from them.
+  Write-Host "-- python build_faqpage.py --check" -ForegroundColor DarkGray
+  python build_faqpage.py --check
+  if ($LASTEXITCODE -ne 0) { Fail "build_faqpage.py --check failed (the FAQPage schema does not match the visible FAQ). Run: python build_faqpage.py" }
 } else {
   Write-Host "WARNING: python not found, skipping check_site.py / check_claims.py / check_seo.py" -ForegroundColor Yellow
 }

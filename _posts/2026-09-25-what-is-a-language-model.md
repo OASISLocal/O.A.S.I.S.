@@ -234,7 +234,7 @@ None of that is a bug list. It is the same list of consequences.
   <span class="term" data-term="gpu">GPU</span> is more useful for daily work than
   a bigger one you have to wait for.
 {% endcapture %}
-{% include components/details.html title="Questions about models" faq="true" open="first" body=faq2 open-label="Open all" close-label="Close all" %}
+{% include components/details.html title="Questions about models" faq="true" open="first" schema="faqpage" body=faq2 open-label="Open all" close-label="Close all" %}
 
 ## In short
 
