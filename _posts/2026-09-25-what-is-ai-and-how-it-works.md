@@ -3,6 +3,8 @@ title: "What is AI? And how does it work?"
 ref: what-is-ai-and-how-it-works
 lang: en
 tags: [basics]
+series: foundations
+order: 1
 reading_minutes: 7
 excerpt: "What AI actually is, in two levels: the simple version (it predicts the next piece of text) and a deeper one (tokens, probabilities, context)."
 ---
@@ -261,7 +263,7 @@ and the [full feature list](/features.html) is one page long, on purpose.
   numbers so the file is smaller and runs with less memory, at a small cost in
   quality. It is why a 4B model fits on a normal laptop.
 {% endcapture %}
-{% include components/details.html title="Questions people actually ask" faq="true" body=faq open-label="Open all" close-label="Close all" %}
+{% include components/details.html title="Questions people actually ask" faq="true" open="first" body=faq open-label="Open all" close-label="Close all" %}
 
 ## In short
 

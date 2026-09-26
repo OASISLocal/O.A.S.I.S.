@@ -5,13 +5,50 @@ permalink: /es/blog/
 lang: es
 en_url: /blog/
 es_url: /es/blog/
-excerpt: "Notas, análisis técnicos y aprendizajes de O.A.S.I., el asistente de IA local-first para Windows. Aún no hay artículos: el Journal se está reconstruyendo desde cero."
+excerpt: "Notas, análisis técnicos y aprendizajes de O.A.S.I., el asistente de IA local-first para Windows. Empieza por qué es la IA y sigue con cómo funciona un modelo de lenguaje, en lenguaje claro."
 ---
 <p class="blog-eyebrow">Journal</p>
 <h1 class="blog-h1">Journal de O.A.S.I.S.</h1>
 <p class="blog-meta">Notas, análisis técnicos y lo que aprendemos construyendo un asistente de IA local-first.</p>
 
-{% assign en_posts = site.posts | where: "lang", "en" | where_exp: "p", "p.sitemap != false" %}
+{%- comment -%}
+  El orden de lectura sale de los propios artículos: `series` los agrupa y
+  `order` los secuencia, así que publicar la parte 3 alarga la ruta sin tocar
+  este fichero. Como en la versión inglesa, aquí no hay ningún número escrito
+  a mano. Cada entrada enlaza a su gemelo en español cuando existe, y al
+  artículo en inglés con la insignia EN cuando todavía no.
+{%- endcomment -%}
+{%- assign en_posts = site.posts | where: "lang", "en" | where_exp: "p", "p.sitemap != false" | sort: "order" -%}
+{%- assign es_posts = site.posts | where: "lang", "es" | where_exp: "p", "p.sitemap != false" -%}
+{%- assign series_list = en_posts | map: "series" | uniq -%}
+
+{% if en_posts.size > 0 %}
+<nav class="post-path" aria-labelledby="path-title-es">
+  <p class="cmp__eyebrow" id="path-title-es">Empieza por aquí</p>
+  {% for s in series_list %}
+  {%- assign in_series = en_posts | where: "series", s -%}
+  <p class="post-path__series">
+    {%- if s == "foundations" -%}Fundamentos{%- else -%}{{ s }}{%- endif -%}
+    <span class="post-path__count">{{ in_series.size }} {% if in_series.size == 1 %}parte{% else %}partes{% endif %}</span>
+  </p>
+  <ol class="post-path__list">
+    {% for post in in_series %}
+    {%- assign twin = es_posts | where: "ref", post.ref | first -%}
+    {%- assign meta = site.data.blog_es[post.ref] -%}
+    <li>
+      <span class="post-path__num">{{ post.order }}</span>
+      <a href="{% if twin %}{{ twin.url | relative_url }}{% else %}{{ post.url | relative_url }}{% endif %}">{% if twin %}{{ twin.title }}{% elsif meta.title %}{{ meta.title }}{% else %}{{ post.title }}{% endif %}</a>{% unless twin %}{% if meta.title or meta.excerpt %} <span class="post-lang" title="Artículo completo solo en inglés">EN</span>{% endif %}{% endunless %}
+      {% if post.reading_minutes %}<span class="post-path__time">{{ post.reading_minutes }} min</span>{% endif %}
+      {% if post.tags.first %}<span class="post-path__tag">{% if post.tags.first == "basics" %}básicos{% else %}{{ post.tags.first }}{% endif %}</span>{% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+  {% endfor %}
+</nav>
+{% endif %}
+
+<h2 class="prose" style="font-size:20px;margin:40px 0 10px">{% if en_posts.size > 0 %}Todo lo publicado hasta ahora{% else %}Todavía no hay artículos{% endif %}</h2>
+
 <ul class="post-list">
 {% for post in en_posts %}
   {% assign es_post = site.posts | where: "lang", "es" | where: "ref", post.ref | first %}
@@ -19,7 +56,7 @@ excerpt: "Notas, análisis técnicos y aprendizajes de O.A.S.I., el asistente de
   {% assign item_date = es_post.date | default: post.date %}
   {% assign mi = item_date | date: "%m" | minus: 1 %}
 <li>
-<span class="post-date">{{ item_date | date: "%-d" }} de {{ site.data.i18n.es_months[mi] }} de {{ item_date | date: "%Y" }}</span>
+<span class="post-date">{{ item_date | date: "%-d" }} de {{ site.data.i18n.es_months[mi] }} de {{ item_date | date: "%Y" }}{% if post.order %} · parte {{ post.order }}{% endif %}</span>
 <a class="post-title" href="{% if es_post %}{{ es_post.url | relative_url }}{% else %}{{ post.url | relative_url }}{% endif %}">{% if es_post %}{{ es_post.title }}{% elsif meta.title %}{{ meta.title }}{% else %}{{ post.title }}{% endif %}</a>{% unless es_post %}{% if meta.title or meta.excerpt %} <span class="post-lang" title="Artículo completo solo en inglés">EN</span>{% endif %}{% endunless %}
 <p class="post-excerpt">{% if es_post %}{{ es_post.excerpt | strip_html | strip_newlines | truncate: 180 }}{% elsif meta.excerpt %}{{ meta.excerpt }}{% else %}{{ post.excerpt | strip_html | strip_newlines | truncate: 180 }}{% endif %}</p>
 </li>
@@ -32,7 +69,7 @@ excerpt: "Notas, análisis técnicos y aprendizajes de O.A.S.I., el asistente de
 
 <h2 class="prose" style="font-size:22px;margin:48px 0 12px">Sobre qué escribiremos</h2>
 <ul class="prose">
-<li><a href="{{ '/es/how-it-works.html' | relative_url }}">IA local, explicada</a> — qué es un asistente local, cómo se ejecutan los modelos en tu propio hardware y qué cambia cuando nada sale del PC.</li>
+<li>Fundamentos — <a href="{{ '/es/blog/' | relative_url }}">qué es la IA, cómo funciona un modelo de lenguaje, tokens y ventana de contexto</a>. Primero en lenguaje claro, después un nivel más profundo.</li>
 <li><a href="{{ '/es/privacy.html' | relative_url }}">Privacidad y permisos</a> — la tabla Local/Red por función, qué pide la confirmación y cómo está diseñado el sistema de permisos.</li>
 <li><a href="{{ '/es/models.html' | relative_url }}">Modelos y hardware</a> — perfiles GGUF, longitud de contexto, niveles de VRAM y números honestos para cada tipo de PC.</li>
 <li><a href="{{ '/es/tools.html' | relative_url }}">Herramientas y agentes</a> — el inventario de más de 100 herramientas, sus niveles de permiso y qué pueden hacer las de alto impacto.</li>

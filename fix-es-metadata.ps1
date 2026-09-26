@@ -1,5 +1,6 @@
 $root = $PSScriptRoot
-$base = 'https://oasislocal.github.io/O.A.S.I.S.'
+# From _config.yml, via site_config.py, so this cannot drift from the build.
+$base = (python (Join-Path $root 'site_config.py') SITE).Trim()
 $files = Get-ChildItem (Join-Path $root 'es') -Filter *.html
 $files += Get-Item (Join-Path $root 'es.html')
 foreach ($file in $files) {

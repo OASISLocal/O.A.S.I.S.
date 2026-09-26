@@ -1,8 +1,19 @@
 name: Lighthouse CI
 
-# Audits the static site on every push/PR. Runs entirely on GitHub's runners:
-# no analytics, no external service, nothing added to the page itself.
-# Thresholds live in .lighthouserc.json (calibrated locally, see QA_CHECKLIST.md).
+# Audits the real site on every push/PR. Runs entirely on GitHub's runners: no
+# analytics, no external service, nothing added to the page itself.
+#
+# Two things this used to get wrong, which made the thresholds meaningless:
+#
+#   1. It never built the site. staticDistDir was "." so LHCI served the
+#      repository root, i.e. the Jekyll sources, and the audited URLs had no
+#      subpath, so they were not the URLs that exist in production.
+#   2. The mobile config was never used. `autorun` only reads
+#      .lighthouserc.json, so .lighthouserc.mobile.json was dead config.
+#
+# Now the job builds with Jekyll, stages _site under a directory named after
+# the baseurl, and audits http://localhost/O.A.S.I.S./... so the paths, the
+# assets and the redirects are the ones production really serves.
 
 on:
   push:
@@ -13,27 +24,68 @@ on:
 permissions:
   contents: read
 
+env:
+  # Kept here and in .lighthouserc*.json; the staging step derives the folder
+  # name from _config.yml via site_config.py, so these only have to agree with
+  # the audited URLs below.
+  STAGE_DIR: .lh-site
+
 jobs:
   lighthouse:
-    name: Lighthouse audit
+    name: Lighthouse (${{ matrix.profile }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - profile: desktop
+            config: .lighthouserc.json
+          - profile: mobile
+            config: .lighthouserc.mobile.json
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # full history: build_sitemap.py derives <lastmod> from git dates.
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Build the site
+        run: bundle exec jekyll build
+
+      - name: Stage it under the site subpath
+        # GitHub Pages serves this project at /<repo>/, so the audited URLs have
+        # to include the prefix or every asset 404s and the score is fiction.
+        run: |
+          set -euo pipefail
+          baseurl="$(python site_config.py BASEURL)"
+          mkdir -p "$STAGE_DIR"
+          # BASEURL is "/O.A.S.I.S./"; stage it as the directory Pages uses.
+          target="$STAGE_DIR/${baseurl#/}"
+          target="${target%/}"
+          mkdir -p "$target"
+          cp -R _site/. "$target/"
+          echo "staged _site -> $STAGE_DIR/$target"
+          ls "$target" | head
+
       - name: Run Lighthouse CI
-        run: npx --yes @lhci/cli@0.14.x autorun
+        run: npx --yes @lhci/cli@0.14.x autorun --config=${{ matrix.config }}
 
       - name: Upload Lighthouse reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: lighthouse-reports
+          name: lighthouse-${{ matrix.profile }}
           path: .lighthouseci
           retention-days: 7
           if-no-files-found: warn

@@ -22,6 +22,7 @@ Until now it did not. This is that gate.
 """
 import io, os, re, sys, glob, json
 import xml.etree.ElementTree as ET
+from site_config import BASEURL, SITE
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 os.chdir(ROOT)
@@ -85,10 +86,10 @@ for f in STATIC:
     # The site is published under a subpath (/O.A.S.I.S./), so an internal link
     # that starts at the host root resolves to the wrong place in production.
     for href in re.findall(r'href="(/[^"]*)"', src):
-        if href.startswith("/O.A.S.I.S./"):
+        if href.startswith(BASEURL):
             continue
         fail("%s: root-absolute internal link %r breaks under the %s subpath"
-             % (f, href, "/O.A.S.I.S."))
+             % (f, href, BASEURL.rstrip("/")))
 
     # A link in the wrong language is a translation bug that no other gate sees.
     es_page = f.replace("\\", "/").startswith("es/")
@@ -180,7 +181,7 @@ def url_for_file(f):
         rel = ""
     elif rel.endswith("/index.html"):
         rel = rel[:-len("index.html")]
-    return "https://oasislocal.github.io/O.A.S.I.S./" + rel
+    return SITE + "/" + rel
 
 
 for f in STATIC:
@@ -204,11 +205,11 @@ def post_url(f):
             opted_out = True
         pm = re.search(r"^permalink:\s*(\S+)\s*$", head, re.M)
         if pm:
-            return "https://oasislocal.github.io/O.A.S.I.S." + pm.group(1), opted_out
+            return SITE + pm.group(1), opted_out
     m = re.match(r"^(\d{4})-(\d{2})-(\d{2})-(.+)$", os.path.basename(f)[:-3])
     if not m:
         return None, opted_out
-    return "https://oasislocal.github.io/O.A.S.I.S./blog/%s/%s/%s/%s/" % m.groups(), opted_out
+    return SITE + "/blog/%s/%s/%s/%s/" % m.groups(), opted_out
 
 
 for f in sorted(glob.glob("_posts/*.md")):

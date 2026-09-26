@@ -21,7 +21,7 @@ import io, json, os, re, sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 ROOT = os.path.dirname(os.path.abspath(__file__))
-SITE = "https://oasislocal.github.io/O.A.S.I.S."
+from site_config import SITE
 
 # Category order is editorial, not alphabetical: the page is read top to bottom
 # from "what the AI is" to "what it costs".

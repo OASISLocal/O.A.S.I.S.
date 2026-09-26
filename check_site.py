@@ -18,8 +18,7 @@ import xml.etree.ElementTree as ET
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 os.chdir(ROOT)
-SITE = "https://oasislocal.github.io/O.A.S.I.S."
-BASEURL = "/O.A.S.I.S./"
+from site_config import BASEURL, SITE
 problems = []
 notes = []
 

@@ -24,6 +24,13 @@ faq="true"          question and answer side by side on wide screens
 
 {%- assign faq = include.faq | default: "false" -%}
 {%- comment -%}
+  How many items start open. "all" was the old behaviour and it turned every
+  FAQ into a wall of text; "first" is what an article wants, where the first
+  question is the one most people arrived with.
+{%- endcomment -%}
+{%- assign open = include.open | default: "all" -%}
+{%- assign opened = 0 -%}
+{%- comment -%}
   The captured body is raw markdown: kramdown has NOT run on it yet, because
   markdownify happens later, on the whole post. So convert it here first, and
   only then split on the <li> elements kramdown produced.
@@ -55,10 +62,18 @@ faq="true"          question and answer side by side on wide screens
     {%- endcomment -%}
     {%- assign answer_html = cleaned | remove_first: "<strong>" | remove_first: strong | remove_first: "</strong>" | strip -%}
     {%- assign answer = answer_html | strip -%}
+    {%- if open == "all" or open == "first" and opened == 0 -%}
+      {%- assign opened = opened | plus: 1 -%}
 <details class="cmp-details__item" open>
   <summary class="cmp-details__summary">{{ strong | strip }}</summary>
   <div class="cmp-details__body">{{ answer }}</div>
 </details>
+    {%- else -%}
+<details class="cmp-details__item">
+  <summary class="cmp-details__summary">{{ strong | strip }}</summary>
+  <div class="cmp-details__body">{{ answer }}</div>
+</details>
+    {%- endif -%}
   {%- else -%}
     <p class="cmp-details__heading">{{ cleaned | strip_html | strip }}</p>
   {%- endif -%}

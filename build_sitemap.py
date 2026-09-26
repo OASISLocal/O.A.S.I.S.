@@ -26,7 +26,7 @@ import io, os, re, sys, glob, subprocess
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 os.chdir(ROOT)
-SITE = "https://oasislocal.github.io/O.A.S.I.S."
+from site_config import SITE
 FALLBACK_LASTMOD = "2026-09-21"          # only if git has no history for a file
 
 # Site path -> the file that produces it. Order is the published order.

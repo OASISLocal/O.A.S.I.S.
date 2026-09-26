@@ -88,6 +88,17 @@ Sobre `<details>` nativo, así que funciona sin JavaScript.
 `faq="true"` pone pregunta y respuesta en dos columnas en pantallas anchas.
 `-open-label` / `-close-label` traducen los botones de expandir.
 
+`open` decide cuántas preguntas arrancan desplegadas:
+
+| valor | efecto |
+|---|---|
+| `all` (por defecto) | todas abiertas |
+| `first` | solo la primera, que es la que suele haber traído a la gente |
+
+En un artículo usa `open="first"`: con las cinco abiertas el FAQ es un muro de
+texto. La página de pruebas deja el valor por defecto a propósito, para que
+ambos comportamientos se vean probados.
+
 ## table
 
 La tabla se escribe como **HTML**, no como markdown, y **con la clase puesta**:
@@ -203,6 +214,23 @@ miniatura.
 Automático: mismo `tags` primero, después cualquier otro, nunca el propio
 artículo ni su traducción (mismo `ref`). Con menos de tres, el bloque
 desaparece en vez de rellenarse con contenido débil.
+
+## Poner un artículo en la ruta de lectura
+
+El índice del Journal construye el orden de lectura solo, a partir del front
+matter del artículo:
+
+```yaml
+tags: [basics]
+series: foundations   # agrupa
+order: 3              # secuencia dentro de la serie
+```
+
+No hay que tocar `blog/Index.html` ni `es/blog/index.html` al publicar: el
+índice enumera las series, numera las partes y enlaza al gemelo en español
+cuando existe. El índice en inglés muestra el `excerpt` del artículo; el español
+prefiere el del gemelo y, si no hay, cae en `_data/blog_es.yml` y marca la
+insignia `EN`.
 
 ## Página de pruebas
 

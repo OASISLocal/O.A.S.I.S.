@@ -48,6 +48,24 @@
     return (esDir + file) || '/';
   }
 
+  /* Stay on the host the visitor is already on.
+
+     The hreflang alternates are absolute production URLs, which is right in
+     production but wrong anywhere else: on a staging host, a preview or a
+     Lighthouse run it bounced the reader off to production, so the audit
+     measured the production page instead of the build under test. Reduce any
+     cross-host URL to its own path. */
+  function onThisHost(url) {
+    try {
+      var a = document.createElement('a');
+      a.href = url;
+      if (a.host && location.host && a.host !== location.host) {
+        return a.pathname + a.search + a.hash;
+      }
+    } catch (_) {}
+    return url;
+  }
+
   /* 0) An explicit choice is sticky, in both directions.
 
      This is the safety net for the language. Every link in the layout now
@@ -60,7 +78,7 @@
   var stored = pref();
   if (stored && ((stored === 'es') !== isES)) {
     var want = document.querySelector('link[rel="alternate"][hreflang="' + stored + '"]');
-    var to = want && want.getAttribute('href');
+    var to = want && onThisHost(want.getAttribute('href'));
     if (to && to !== path) {
       location.replace(to);
       return;
@@ -74,7 +92,7 @@
     var altEs = document.querySelector('link[rel="alternate"][hreflang="es"]');
     if (!skip && wantsSpanish()) {
       var target = null;
-      if (altEs) { target = altEs.getAttribute('href'); }          // explicit Spanish twin (blog posts, legal…)
+      if (altEs) { target = onThisHost(altEs.getAttribute('href')); }  // explicit Spanish twin (blog posts, legal…)
       else if (!underBlog) { target = twin(path, true); }          // mechanical /es/ twin
       if (target) {
         location.replace(target + (target.indexOf('?') >= 0 ? '&' : '?') + 'lang=es');
@@ -99,7 +117,7 @@
     var en = document.createElement('a');
     en.className = 'ln-en';
     var altEn = document.querySelector('link[rel="alternate"][hreflang="en"]');
-    en.href = altEn ? altEn.getAttribute('href') : twin(path, false);
+    en.href = altEn ? onThisHost(altEn.getAttribute('href')) : twin(path, false);
     en.lang = 'en';
     en.hreflang = 'en';
     en.textContent = msg ? 'Ver la original en inglés' : 'View the English original';

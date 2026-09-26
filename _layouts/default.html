@@ -233,6 +233,18 @@ main.blog-main { max-width: 720px; margin: 0 auto; padding: 60px 24px 100px; }
 .post-list .post-date { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 8px; }
 .post-list .post-excerpt { font-size: 15px; color: var(--text-3); margin-top: 8px; line-height: 1.6; }
 .post-lang { font-family: 'Space Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-3); border: 1px solid var(--border); padding: 2px 6px; margin-left: 8px; vertical-align: 2px; }
+/* "Start here": the reading order, built from each post's series and order. */
+.post-path { border: 1px solid var(--border-strong); padding: 18px 18px 8px; margin: 28px 0 8px; }
+.post-path .cmp__eyebrow { margin: 0 0 4px; }
+.post-path__series { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; margin: 14px 0 6px; letter-spacing: -0.01em; }
+.post-path__count { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 400; color: var(--text-3); text-transform: uppercase; letter-spacing: .06em; margin-left: 8px; }
+.post-path__list { list-style: none; margin: 0 0 8px; padding: 0; counter-reset: none; }
+.post-path__list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; padding: 7px 0; border-top: 1px solid var(--border); }
+.post-path__num { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-3); min-width: 1.4em; }
+.post-path__list a { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: var(--text); text-decoration: none; }
+.post-path__list a:hover { text-decoration: underline; }
+.post-path__time, .post-path__tag { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: .06em; }
+.post-path__tag { border: 1px solid var(--border); padding: 1px 6px; }
 
 /* Article prose (used by post.html) */
 .prose { font-size: 17px; line-height: 1.75; color: var(--text-2); }

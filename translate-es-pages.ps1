@@ -63,6 +63,16 @@ $pages = @{
   'tools.html' = 'es/tools.html'
 }
 
+# From _config.yml, via site_config.py. These three rewrites used to carry the
+# subpath written out by hand, in three places, next to six copies of the domain.
+$cfgScript = Join-Path $root 'site_config.py'
+$basePath = (python $cfgScript BASEURL).Trim()
+$siteUrl = (python $cfgScript SITE).Trim()
+$pAssets = 'href="' + $basePath + 'assets/'
+$sAssets = 'src="' + $basePath + 'assets/'
+$pEsHome = 'href="' + $basePath + 'es/"'
+$pSiteHome = 'href="' + $siteUrl + '/"'
+
 foreach ($pair in $pages.GetEnumerator()) {
   if ($Only -and $pair.Key -ne $Only) { continue }
   try {
@@ -70,9 +80,9 @@ foreach ($pair in $pages.GetEnumerator()) {
     $translated = Translate-Block $source
     $translated = $translated.Replace('lang="en"', 'lang="es"').Replace('og:locale" content="en_US"', 'og:locale" content="es_ES"')
     $translated = $translated.Replace('hreflang="en"', 'hreflang="__ES__"').Replace('hreflang="es"', 'hreflang="en"').Replace('hreflang="__ES__"', 'hreflang="es"')
-    $translated = $translated.Replace('href="assets/', 'href="/O.A.S.I.S./assets/').Replace('src="assets/', 'src="/O.A.S.I.S./assets/')
-    $translated = $translated.Replace('href="index.html"', 'href="/O.A.S.I.S./es/"').Replace('href="/"', 'href="/O.A.S.I.S./es/"')
-    $translated = $translated.Replace('href="https://oasislocal.github.io/O.A.S.I.S./"', 'href="https://oasislocal.github.io/O.A.S.I.S./es/"')
+    $translated = $translated.Replace('href="assets/', $pAssets).Replace('src="assets/', $sAssets)
+    $translated = $translated.Replace('href="index.html"', $pEsHome).Replace('href="/"', $pEsHome)
+    $translated = $translated.Replace($pSiteHome, $pEsHome)
     $target = Join-Path $root $pair.Value
     [IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($target)) | Out-Null
     [IO.File]::WriteAllText($target, $translated, [Text.UTF8Encoding]::new($false))

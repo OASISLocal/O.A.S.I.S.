@@ -3,6 +3,8 @@ title: "What is a language model?"
 ref: what-is-a-language-model
 lang: en
 tags: [basics]
+series: foundations
+order: 2
 reading_minutes: 7
 excerpt: "Where a language model's ability comes from, what the billions of numbers inside it are, and the three questions that explain how it behaves."
 ---
@@ -232,7 +234,7 @@ None of that is a bug list. It is the same list of consequences.
   <span class="term" data-term="gpu">GPU</span> is more useful for daily work than
   a bigger one you have to wait for.
 {% endcapture %}
-{% include components/details.html title="Questions about models" faq="true" body=faq2 open-label="Open all" close-label="Close all" %}
+{% include components/details.html title="Questions about models" faq="true" open="first" body=faq2 open-label="Open all" close-label="Close all" %}
 
 ## In short
 

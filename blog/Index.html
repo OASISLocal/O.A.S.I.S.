@@ -4,18 +4,50 @@ title: Journal
 permalink: /blog/
 lang: en
 es_url: /es/blog/
-excerpt: "Notes, deep dives and build logs from O.A.S.I., the local-first AI assistant for Windows. No articles published yet — the Journal is being rebuilt from scratch."
+excerpt: "Notes, deep dives and build logs from O.A.S.I., the local-first AI assistant for Windows. Start with what AI actually is, then how a language model works, in plain language."
 ---
 <p class="blog-eyebrow">Journal</p>
 <h1 class="blog-h1">O.A.S.I.S. Journal</h1>
 <p class="blog-meta">Notes, deep dives and what we learn building a local-first AI assistant.</p>
 
-{% assign en_posts = site.posts | where: "lang", "en" | where_exp: "p", "p.sitemap != false" %}
+{%- comment -%}
+  The reading order comes from the posts themselves: `series` groups them and
+  `order` sequences them, so publishing part 3 makes the path below longer
+  without touching this file. Nothing here is hardcoded to a count.
+{%- endcomment -%}
+{%- assign en_posts = site.posts | where: "lang", "en" | where_exp: "p", "p.sitemap != false" | sort: "order" -%}
+{%- assign series_list = en_posts | map: "series" | uniq -%}
+
+{% if en_posts.size > 0 %}
+<nav class="post-path" aria-labelledby="path-title">
+  <p class="cmp__eyebrow" id="path-title">Start here</p>
+  {% for s in series_list %}
+  {%- assign in_series = en_posts | where: "series", s -%}
+  <p class="post-path__series">
+    {%- if s == "foundations" -%}Foundations{%- else -%}{{ s }}{%- endif -%}
+    <span class="post-path__count">{{ in_series.size }} {% if in_posts.size == 1 %}part{% else %}parts{% endif %}</span>
+  </p>
+  <ol class="post-path__list">
+    {% for post in in_series %}
+    <li>
+      <span class="post-path__num">{{ post.order }}</span>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      {% if post.reading_minutes %}<span class="post-path__time">{{ post.reading_minutes }} min</span>{% endif %}
+      {% if post.tags.first %}<span class="post-path__tag">{{ post.tags.first }}</span>{% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+  {% endfor %}
+</nav>
+{% endif %}
+
+<h2 class="prose" style="font-size:20px;margin:40px 0 10px">{% if en_posts.size > 0 %}Everything published so far{% else %}Nothing published yet{% endif %}</h2>
+
 <ul class="post-list">
 {% for post in en_posts %}
   {% assign meta = site.data.blog_es[post.ref] %}
 <li>
-<span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+<span class="post-date">{{ post.date | date: "%B %-d, %Y" }}{% if post.order %} · part {{ post.order }}{% endif %}</span>
 <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
 <p class="post-excerpt">{{ post.excerpt | strip_html | strip_newlines | truncate: 180 }}</p>
 </li>
@@ -28,7 +60,7 @@ excerpt: "Notes, deep dives and build logs from O.A.S.I., the local-first AI ass
 
 <h2 class="prose" style="font-size:22px;margin:48px 0 12px">What the Journal will cover</h2>
 <ul class="prose">
-<li><a href="{{ '/blog/' | relative_url }}">Local AI, explained</a> — what a local assistant is, how models run on your own hardware, and what changes when nothing leaves the PC.</li>
+<li>Foundations — <a href="{{ '/blog/' | relative_url }}">what AI is, how a language model works, tokens and context</a>. Plain language first, one level deeper second.</li>
 <li><a href="{{ '/privacy.html' | relative_url }}">Privacy and permissions</a> — the per-feature Local/Network table, what confirmation asks for, and how the permission system is designed.</li>
 <li><a href="{{ '/models.html' | relative_url }}">Models and hardware</a> — GGUF profiles, context length, VRAM tiers, and honest numbers for each class of PC.</li>
 <li><a href="{{ '/tools.html' | relative_url }}">Tools and agents</a> — the 100+ tool inventory, its permission levels, and what the high-impact ones can actually do.</li>

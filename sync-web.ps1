@@ -189,7 +189,9 @@ git push production HEAD:github-pages
 
 Write-Host ""
 if ($Mode -eq "live") {
-  $siteUrl = "https://oasislocal.github.io/O.A.S.I.S./"
+  # From _config.yml, via site_config.py: the domain used to be written here as
+  # well as in eight other scripts, and the two drifted apart once.
+  $siteUrl = (python site_config.py SITE).Trim() + "/"
 
   # A 404 raises, so the StatusCode check never ran and a dead site was still
   # reported as SYNC DONE. Read the real status, insist on our own content

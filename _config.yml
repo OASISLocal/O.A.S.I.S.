@@ -49,6 +49,7 @@ exclude:
   - "*.log"
   - build_glossary.py
   - check_lang.py
+  - site_config.py
   - PRODUCT_TRUTH.md
   - CLAIMS_AUDIT.md
   - QA_CHECKLIST.md

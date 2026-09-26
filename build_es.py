@@ -7,11 +7,15 @@ import io, os, re, json, sys, shutil
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 I18N = os.path.join(ROOT, 'i18n')
-BASE = 'https://oasislocal.github.io/O.A.S.I.S./'
+from site_config import BASEURL, SITE
+# BASE is the absolute origin the ES pages declare in canonical/og:url, so it
+# needs the host as well as the subpath. PATH is the subpath on its own, for the
+# hrefs written into these static pages.
+BASE = SITE + '/'
 # Path-only form of BASE. The es/ pages are static HTML with no front matter, so
 # they cannot use relative_url; they carry absolute paths like the rest of the
 # site instead of "../" climbing out of /es/.
-PATH = '/O.A.S.I.S./'
+PATH = BASEURL
 PAGES = ['index.html', '404.html', 'about.html', 'changelog.html', 'comparison.html',
          'download.html', 'eula.html', 'faq.html', 'features.html', 'how-it-works.html',
          'models.html', 'pricing.html', 'privacy.html', 'privacy-policy.html',
@@ -61,6 +65,12 @@ def to_spanish(html, page):
     # The Journal in Spanish, not the English one.
     html = html.replace('href="blog/', 'href="%ses/blog/' % PATH)
     html = html.replace('href="es/blog/', 'href="%ses/blog/' % PATH)
+    # llms.txt has no Spanish twin, but a relative "llms.txt" from /es/ resolves
+    # to /es/llms.txt, which does not exist. Absolute, and check_site catches it
+    # if this ever comes back.
+    html = html.replace('href="llms.txt"', 'href="%sllms.txt"' % PATH)
+    # Any es/ link left over in the body: same problem, one directory deeper.
+    html = re.sub(r'href="es/([^"]*)"', lambda m: 'href="%ses/%s"' % (PATH, m.group(1)), html)
     # language switcher: ES link -> absolute EN link back to the original
     en_path = PATH if page == 'index.html' else PATH + page
     html = re.sub(r'<a href="es/[^"]*"[^>]*>ES</a>',
@@ -99,41 +109,48 @@ def patch_english(html):
         html = html.replace('</body>', '<script src="assets/lang.js"></script>\n</body>', 1)
     return html
 
-shared = load('_shared.json')
-attrs = load('_attrs.json')
+def main():
+    shared = load('_shared.json')
+    attrs = load('_attrs.json')
 
-# 1) patch the English pages (switcher attr + language assets)
-for page in PAGES:
-    src = os.path.join(ROOT, page)
-    html = io.open(src, encoding='utf-8', newline='').read()
-    out = patch_english(html)
-    if out != html:
-        io.open(src, 'w', encoding='utf-8', newline='').write(out)
-        print('EN patched  ', page)
+    # 1) patch the English pages (switcher attr + language assets)
+    for page in PAGES:
+        src = os.path.join(ROOT, page)
+        html = io.open(src, encoding='utf-8', newline='').read()
+        out = patch_english(html)
+        if out != html:
+            io.open(src, 'w', encoding='utf-8', newline='').write(out)
+            print('EN patched  ', page)
 
-# 2) build the Spanish pages
-os.makedirs(os.path.join(ROOT, 'es'), exist_ok=True)
-for page in PAGES:
-    src = os.path.join(ROOT, page)
-    if not os.path.exists(src):
-        print('skip (missing)', page); continue
-    html = io.open(src, encoding='utf-8', newline='').read()
-    # English pages were just patched; undo the added attrs for a clean base? no: replacements ignore them
-    html = apply_pairs(html, load(page + '.json'), page)
-    html = apply_pairs(html, attrs, page, strict=False)
-    html = apply_pairs(html, shared, page, strict=False)
-    if html.lstrip().startswith('---'):
-        html = to_spanish_legal(html, page)
-    else:
-        html = to_spanish(html, page)
-    dst = os.path.join(ROOT, 'es', page)
-    io.open(dst, 'w', encoding='utf-8', newline='').write(html)
-    print('ES built     ', page)
-print('done')
-if MISSES:
-    print('%d string(s) not found in the English source.' % len(MISSES))
-    sys.exit(1)
-if MISSES:
-    print('--- MISSES (%d) ---' % len(MISSES))
-    for m in MISSES:
-        print(m)
+    # 2) build the Spanish pages
+    os.makedirs(os.path.join(ROOT, 'es'), exist_ok=True)
+    for page in PAGES:
+        src = os.path.join(ROOT, page)
+        if not os.path.exists(src):
+            print('skip (missing)', page); continue
+        html = io.open(src, encoding='utf-8', newline='').read()
+        html = apply_pairs(html, load(page + '.json'), page)
+        html = apply_pairs(html, attrs, page, strict=False)
+        html = apply_pairs(html, shared, page, strict=False)
+        if html.lstrip().startswith('---'):
+            html = to_spanish_legal(html, page)
+        else:
+            html = to_spanish(html, page)
+        dst = os.path.join(ROOT, 'es', page)
+        io.open(dst, 'w', encoding='utf-8', newline='').write(html)
+        print('ES built     ', page)
+
+    print('done')
+    if MISSES:
+        # Report first, then fail. The exit used to come first, so the list of
+        # missing strings was never actually shown to anyone.
+        print('--- MISSES (%d) ---' % len(MISSES))
+        for m in MISSES:
+            print(m)
+        sys.exit(1)
+
+
+# Under a guard so that importing this module to reuse en_url()/PATH cannot
+# rewrite eighteen Spanish pages as a side effect.
+if __name__ == '__main__':
+    main()

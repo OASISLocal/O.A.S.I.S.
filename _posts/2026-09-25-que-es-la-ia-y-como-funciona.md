@@ -4,6 +4,8 @@ ref: what-is-ai-and-how-it-works
 lang: es
 permalink: /es/blog/2026/09/25/que-es-la-ia-y-como-funciona/
 tags: [basics]
+series: foundations
+order: 1
 reading_minutes: 7
 excerpt: "Qué es la IA en realidad, en dos niveles: la versión simple (predice el siguiente trozo de texto) y otra más profunda (tokens, probabilidades, contexto)."
 ---
@@ -267,7 +269,7 @@ Si prefieres verlo a leerlo, la [beta es gratis](/es/download.html) y la
   pequeño coste en calidad. Es la razón de que un modelo de 4B quepa en un
   portátil normal.
 {% endcapture %}
-{% include components/details.html title="Preguntas que se hacen de verdad" faq="true" body=faq open-label="Abrir todo" close-label="Cerrar todo" %}
+{% include components/details.html title="Preguntas que se hacen de verdad" faq="true" open="first" body=faq open-label="Abrir todo" close-label="Cerrar todo" %}
 
 ## En corto
 

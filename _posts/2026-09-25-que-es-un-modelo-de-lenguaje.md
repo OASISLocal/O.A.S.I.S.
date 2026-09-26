@@ -4,6 +4,8 @@ ref: what-is-a-language-model
 lang: es
 permalink: /es/blog/2026/09/25/que-es-un-modelo-de-lenguaje/
 tags: [basics]
+series: foundations
+order: 2
 reading_minutes: 7
 excerpt: "De dónde sale la capacidad de un modelo de lenguaje, qué son los miles de millones de números que lleva dentro, y qué explica su comportamiento."
 ---
@@ -233,7 +235,7 @@ Nada de eso es una lista de errores. Es la misma lista de consecuencias.
   propia <span class="term" data-term="gpu">GPU</span> es más útil a diario que
   uno grande al que hay que esperar.
 {% endcapture %}
-{% include components/details.html title="Preguntas sobre modelos" faq="true" body=faq2 open-label="Abrir todo" close-label="Cerrar todo" %}
+{% include components/details.html title="Preguntas sobre modelos" faq="true" open="first" body=faq2 open-label="Abrir todo" close-label="Cerrar todo" %}
 
 ## En corto
 

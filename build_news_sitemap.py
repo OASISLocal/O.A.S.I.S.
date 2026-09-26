@@ -15,7 +15,7 @@ import xml.etree.ElementTree as ET
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 os.chdir(ROOT)
-SITE = "https://oasislocal.github.io/O.A.S.I.S."
+from site_config import SITE
 PUBLICATION = "O.A.S.I.S. Journal"
 WINDOW_DAYS = 2          # Google News keeps ~48h of articles in a news sitemap
 ACTIVATED = False        # flip to True only when the Publisher Center is verified
