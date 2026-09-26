@@ -178,14 +178,47 @@ git push production HEAD:github-pages
 Write-Host ""
 if ($Mode -eq "live") {
   $siteUrl = "https://oasislocal.github.io/O.A.S.I.S./"
-  try {
-    $probe = Invoke-WebRequest -UseBasicParsing -Uri $siteUrl -TimeoutSec 20
-    if ($probe.StatusCode -ne 200) { Write-Host "WARNING: Pages returned HTTP $($probe.StatusCode): $siteUrl" -ForegroundColor Yellow }
-    else { Write-Host "Pages check OK: HTTP 200" -ForegroundColor Green }
-  } catch {
-    Write-Host "WARNING: Pages endpoint is unavailable or not configured: $siteUrl" -ForegroundColor Yellow
+
+  # A 404 raises, so the StatusCode check never ran and a dead site was still
+  # reported as SYNC DONE. Read the real status, insist on our own content
+  # rather than any 200, and retry while Pages rebuilds.
+  function Get-PagesStatus($url) {
+    try {
+      $r = Invoke-WebRequest -UseBasicParsing -Uri $url -TimeoutSec 20
+      return @{ code = [int]$r.StatusCode; body = $r.Content }
+    } catch [System.Net.WebException] {
+      $resp = $_.Exception.Response
+      if ($resp) { return @{ code = [int]$resp.StatusCode; body = "" } }
+      return @{ code = 0; body = "" }
+    } catch {
+      return @{ code = 0; body = "" }
+    }
   }
-  Write-Host "SYNC DONE: full site live in ~1-3 min at https://oasislocal.github.io/O.A.S.I.S./" -ForegroundColor Green
+
+  $marker = "O.A.S.I.S."
+  $ok = $false
+  $lastCode = 0
+  foreach ($attempt in 1..8) {
+    $res = Get-PagesStatus $siteUrl
+    $lastCode = $res.code
+    $hasContent = $res.body -and $res.body.Contains($marker)
+    if ($res.code -eq 200 -and $hasContent) {
+      $ok = $true
+      Write-Host "Pages check OK: HTTP 200 with site content (intento $attempt/8)" -ForegroundColor Green
+      break
+    }
+    Write-Host "  Pages aun no sirve el sitio: HTTP $($res.code), contenido=$hasContent (intento $attempt/8)" -ForegroundColor DarkGray
+    if ($attempt -lt 8) { Start-Sleep -Seconds 20 }
+  }
+
+  if ($ok) {
+    Write-Host "SYNC DONE: full site live at $siteUrl" -ForegroundColor Green
+  } else {
+    Write-Host "FALLO: $siteUrl responde HTTP $lastCode tras 8 intentos. El commit se subio, pero Pages NO esta publicando." -ForegroundColor Red
+    Write-Host "  Comprueba en el repo de produccion: Settings > Pages > Source, y el ultimo run del workflow 'Deploy Jekyll with GitHub Pages'." -ForegroundColor Yellow
+    Write-Host "  Sitemap, canonical y robots siguen apuntando a $siteUrl, asi que no hay alternativa hasta arreglarlo." -ForegroundColor Yellow
+    exit 1
+  }
 } else {
   Write-Host "SYNC DONE: $Mode shell live in ~1-3 min. Full site NOT deployed (not even in view-source)." -ForegroundColor Green
   Write-Host "To go live later: set launch.json mode to live (or run with -Mode live) and re-run." -ForegroundColor Yellow
