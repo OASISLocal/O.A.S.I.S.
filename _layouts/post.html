@@ -104,14 +104,23 @@ layout: default
 
 {%- if use_related -%}
 {%- comment -%}
-  Related posts: same series tag first, then anything else. Never the post
-  itself and never its own translation (same ref). Built with a plain counter
-  and array append, because `push` is not part of standard Liquid.
+  Related posts, in three passes, and the order matters:
+    1. same language, same series tag
+    2. same language, any tag
+    3. the other language, only to fill a gap, and always badged "EN"
+  Never the post itself and never its own translation (same ref).
+  Pass 3 exists so a half-translated catalogue does not leave a page with zero
+  internal links, but it is labelled so nobody is dropped into a language they
+  did not choose without being told.
 {%- endcomment -%}
-{%- assign pool = site.posts | where: "lang", "en" | where_exp: "p", "p.sitemap != false" -%}
+{%- assign cur = page.lang | default: 'en' -%}
+{%- assign other = 'en' -%}
+{%- if cur == 'es' -%}{%- assign other = 'en' -%}{%- endif -%}
+{%- assign same = site.posts | where: "lang", cur | where_exp: "p", "p.sitemap != false" -%}
+{%- assign cross = site.posts | where: "lang", other | where_exp: "p", "p.sitemap != false" -%}
 {%- assign related = "" | split: "" -%}
 {%- assign slot = 0 -%}
-{%- for p in pool -%}
+{%- for p in same -%}
   {%- if slot < 3 and p.url != page.url and p.ref != page.ref -%}
     {%- if p.tags contains tag -%}
       {%- assign related = related | push: p -%}
@@ -119,7 +128,19 @@ layout: default
     {%- endif -%}
   {%- endif -%}
 {%- endfor -%}
-{%- for p in pool -%}
+{%- for p in same -%}
+  {%- if slot < 3 and p.url != page.url and p.ref != page.ref -%}
+    {%- assign already = false -%}
+    {%- for r in related -%}
+      {%- if r.url == p.url %}{% assign already = true %}{% endif -%}
+    {%- endfor -%}
+    {%- unless already -%}
+      {%- assign related = related | push: p -%}
+      {%- assign slot = slot | plus: 1 -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- for p in cross -%}
   {%- if slot < 3 and p.url != page.url and p.ref != page.ref -%}
     {%- assign already = false -%}
     {%- for r in related -%}
@@ -138,12 +159,12 @@ layout: default
     {%- for p in related -%}
     <li class="cmp-related__item">
       <a class="cmp-related__link" href="{{ p.url | relative_url }}">{{ p.title }}</a>
-      <span class="cmp-related__meta">{{ p.date | date: "%Y-%m-%d" }}{% if p.tags.first %} · {{ p.tags.first | upcase }}{% endif %}</span>
+      <span class="cmp-related__meta">{{ p.date | date: "%Y-%m-%d" }}{% if p.tags.first %} · {{ p.tags.first | upcase }}{% endif %}{% if p.lang != cur %} · <b class="cmp-related__lang">{{ p.lang | upcase }}</b>{% endif %}</span>
     </li>
     {%- endfor -%}
   </ul>
   {%- else -%}
-  <p class="cmp-related__empty">{% if es %}Todavía no hay más artículos. Este es el primero.{% else %}No more articles yet. This is the first one.{% endif %}</p>
+  <p class="cmp-related__empty">{% if es %}Es el único artículo por ahora.{% else %}This is the only article so far.{% endif %}</p>
   {%- endif -%}
 </nav>
 {%- endif -%}

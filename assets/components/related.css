@@ -43,6 +43,17 @@
   display: block;
 }
 
+/* A related post in the other language. It is only ever shown to fill a gap,
+   so it is labelled rather than passed off as same-language content. */
+.cmp-related__lang {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--cmp-text-3);
+  border: 1px solid var(--cmp-border-strong);
+  border-radius: 2px;
+  padding: 0 0.25em;
+}
+
 .cmp-related__empty {
   font-size: 0.9375rem;
   color: var(--cmp-text-3);
