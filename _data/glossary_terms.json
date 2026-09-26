@@ -21,6 +21,16 @@
         },
         {
           "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-hallucination",
+          "name": "Hallucination",
+          "description": "A fluent, confident answer that is simply not true. It happens because the model predicts what would read well, and there is no database inside it to check against.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./blog/2026/09/25/what-is-ai-and-how-it-works/"
+        },
+        {
+          "@type": "DefinedTerm",
           "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-inference",
           "name": "Inference",
           "description": "The moment a model actually produces an answer from your input. On a local assistant it happens on your PC, using your CPU or GPU.",
@@ -101,6 +111,16 @@
         },
         {
           "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-training",
+          "name": "Training",
+          "description": "Showing a model an enormous amount of text and nudging its numbers a little every time its guess was wrong. Nobody writes the grammar or the facts: they come out of the statistics.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./blog/2026/09/25/what-is-ai-and-how-it-works/"
+        },
+        {
+          "@type": "DefinedTerm",
           "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-tts",
           "name": "Speech synthesis",
           "description": "Turning text into spoken audio. It lets the assistant answer out loud, in Spanish or English, using voices on your machine.",
@@ -171,6 +191,16 @@
         },
         {
           "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-knowledge-cutoff",
+          "name": "Knowledge cutoff",
+          "description": "The date of the newest text the model was trained on. It cannot know anything published after it, and it will not warn you on its own.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./blog/2026/09/25/what-is-a-language-model/"
+        },
+        {
+          "@type": "DefinedTerm",
           "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-model",
           "name": "Model",
           "description": "The AI 'brain' — a large file that has learned patterns from text. You download one and it runs on your computer.",
@@ -178,6 +208,36 @@
             "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
           },
           "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-model-file",
+          "name": "Model file",
+          "description": "The single file a model ships as. Choosing which model runs means choosing which file sits on your disk, which is why a local assistant can work with the network unplugged.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./blog/2026/09/25/what-is-a-language-model/"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-open-weights",
+          "name": "Open weights",
+          "description": "A model whose trained numbers are published so anyone can download them. The training code usually is not, which is why this is not the same as open source.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-parameters",
+          "name": "Parameters",
+          "description": "The numbers inside a model that training adjusts. '7B' means seven billion of them. They are the model: there is nothing else in there.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./blog/2026/09/25/what-is-a-language-model/"
         },
         {
           "@type": "DefinedTerm",
@@ -191,6 +251,26 @@
         },
         {
           "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-sampling",
+          "name": "Sampling",
+          "description": "The step where one of the possible next tokens actually gets picked. The model only produces probabilities; the application around it does the choosing.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./blog/2026/09/25/what-is-a-language-model/"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-temperature",
+          "name": "Temperature",
+          "description": "A setting that decides how often an unlikely word is allowed. Low is repetitive and safe, good for code. High is more varied and more likely to be nonsense.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./blog/2026/09/25/what-is-ai-and-how-it-works/"
+        },
+        {
+          "@type": "DefinedTerm",
           "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-token",
           "name": "Token",
           "description": "A small chunk of text — roughly part of a word — that the model reads and writes. Speed is usually measured in tokens per second.",
@@ -198,6 +278,16 @@
             "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
           },
           "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-tokenizer",
+          "name": "Tokenizer",
+          "description": "The step that cuts your text into tokens before the model sees it. It also decides the price of a request, because cost is counted in tokens.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./blog/2026/09/25/what-is-ai-and-how-it-works/"
         },
         {
           "@type": "DefinedTerm",
@@ -271,6 +361,16 @@
         },
         {
           "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-database",
+          "name": "Local database",
+          "description": "The file on your disk where memory is stored — messages, notes and documents, indexed so they can be found again by meaning.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
+        },
+        {
+          "@type": "DefinedTerm",
           "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-docker",
           "name": "Docker",
           "description": "A tool that runs software in isolated containers. O.A.S.I.S. uses it to execute generated code safely, and it is optional.",
@@ -291,6 +391,16 @@
         },
         {
           "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-hash",
+          "name": "SHA-256 hash",
+          "description": "A short fingerprint of a file. Comparing it with the published value proves the installer you downloaded is the one that was released.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./download.html"
+        },
+        {
+          "@type": "DefinedTerm",
           "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-llama-cpp",
           "name": "llama.cpp",
           "description": "A widely used local runtime that loads GGUF models and runs them efficiently on CPUs and GPUs. It is the engine under many local AI tools.",
@@ -308,16 +418,6 @@
             "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
           },
           "url": "https://oasislocal.github.io/O.A.S.I.S./comparison.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-database",
-          "name": "Local database",
-          "description": "The file on your disk where memory is stored — messages, notes and documents, indexed so they can be found again by meaning.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
         },
         {
           "@type": "DefinedTerm",
@@ -367,7 +467,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./https://github.com/OASISLocal/O.A.S.I.S."
+          "url": "https://github.com/OASISLocal/O.A.S.I.S."
         },
         {
           "@type": "DefinedTerm",
@@ -381,16 +481,6 @@
         },
         {
           "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-hash",
-          "name": "SHA-256 hash",
-          "description": "A short fingerprint of a file. Comparing it with the published value proves the installer you downloaded is the one that was released.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./download.html"
-        },
-        {
-          "@type": "DefinedTerm",
           "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-tool-server",
           "name": "Tool server",
           "description": "An external service that offers extra tools to the assistant. You add it yourself, so it only runs when you configure it.",
@@ -401,16 +491,6 @@
         },
         {
           "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-audit-log",
-          "name": "Action log",
-          "description": "A local record of what the assistant did, kept on your machine so you can review or undo recent actions.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./security.html"
-        },
-        {
-          "@type": "DefinedTerm",
           "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-analytics",
           "name": "Analytics",
           "description": "Scripts that count visitors and behaviour. This site runs none, and the app has no analytics built in — there is nothing to opt out of.",
@@ -418,6 +498,16 @@
             "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
           },
           "url": "https://oasislocal.github.io/O.A.S.I.S./privacy.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#g-audit-log",
+          "name": "Action log",
+          "description": "A local record of what the assistant did, kept on your machine so you can review or undo recent actions.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./security.html"
         },
         {
           "@type": "DefinedTerm",

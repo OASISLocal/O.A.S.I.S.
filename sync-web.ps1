@@ -89,6 +89,13 @@ if (Get-Command python -ErrorAction SilentlyContinue) {
   Write-Host "-- python check_seo.py" -ForegroundColor DarkGray
   python check_seo.py
   if ($LASTEXITCODE -ne 0) { Fail "check_seo.py failed (head tags, JSON-LD, hreflang reciprocity, robots.txt, unique titles, or an internal file that would be published)" }
+  # The glossary pages and their JSON-LD are generated from tooltips.json. Both
+  # HTML pages once shipped the same wrong definition in all 68 rows, and every
+  # "Details" link was broken, because nothing compared the output with its
+  # source. This is that comparison.
+  Write-Host "-- python build_glossary.py --check" -ForegroundColor DarkGray
+  python build_glossary.py --check
+  if ($LASTEXITCODE -ne 0) { Fail "build_glossary.py --check failed (a generated glossary file is stale, or a term points at a page or anchor that does not exist). Run: python build_glossary.py" }
 } else {
   Write-Host "WARNING: python not found, skipping check_site.py / check_claims.py / check_seo.py" -ForegroundColor Yellow
 }

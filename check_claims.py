@@ -81,14 +81,18 @@ for f in posts:
 
     # 4. glossary renderings in Spanish posts
     if lang == "es":
-        low = body.lower()
+        # Only the visible text counts. data-term="training" and hreflang URLs
+        # are attributes, not prose: scanning the raw body reported a Spanish
+        # post for using the English word because of its own tooltip markup.
+        visible = re.sub(r"<[^>]+>", " ", body)
+        low = visible.lower()
         for en, es in RULES["terms"].items():
             if es.lower() in low:
                 continue
             # the Spanish rendering should be used instead of a bare English term
             if en in RULES.get("keep_in_english", []):
                 continue
-            if re.search(r"\b%s\b" % re.escape(en), body, re.I):
+            if re.search(r"\b%s\b" % re.escape(en), visible, re.I):
                 notes.append("%s: uses %r where the glossary says %r" % (name, en, es))
         # 5. leftover English scaffolding in a Spanish post
         for leftover in (r"^#{1,3}\s*(Part|Level|Step)\b", r"\bIn short\b", r"\bRead the first\b"):

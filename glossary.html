@@ -8,7 +8,7 @@ excerpt: "Plain definitions of the terms this site uses: model, token, context w
 ---
 <p class="blog-eyebrow">Glossary</p>
 <h1 class="blog-h1">The words we use, defined.</h1>
-<p class="blog-meta">68 terms. Every definition below is the same text that appears as a tooltip on the pages that use the term. No marketing words.</p>
+<p class="blog-meta">77 terms. Every definition below is the same text that appears as a tooltip on the pages that use the term. No marketing words.</p>
 
   <h2 id="cat-ai">What the AI is</h2>
   <table class="glossary">
@@ -16,311 +16,353 @@ excerpt: "Plain definitions of the terms this site uses: model, token, context w
     <tbody>
       <tr id="g-embedding">
         <th scope="row"><span class="term" data-term="embedding">Embedding</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="how-it-works.html#memory">Details</a></td>
+        <td>A numeric representation of meaning. It lets the assistant compare pieces of text by what they mean, not just the words used. <a href="{{ '/how-it-works.html#memory' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-hallucination">
+        <th scope="row"><span class="term" data-term="hallucination">Hallucination</span> <span class="gl-es">ES: Alucinación</span></th>
+        <td>A fluent, confident answer that is simply not true. It happens because the model predicts what would read well, and there is no database inside it to check against. <a href="{{ '/blog/2026/09/25/what-is-ai-and-how-it-works/' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-inference">
         <th scope="row"><span class="term" data-term="inference">Inference</span> <span class="gl-es">ES: Inferencia</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="models.html#inference">Details</a></td>
+        <td>The moment a model actually produces an answer from your input. On a local assistant it happens on your PC, using your CPU or GPU. <a href="{{ '/models.html#inference' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-llm">
         <th scope="row"><span class="term" data-term="llm">LLM</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="models.html">Details</a></td>
+        <td>Large Language Model — the kind of AI model that reads and writes text. Local models are smaller versions you can run yourself. <a href="{{ '/models.html' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-local-ai">
         <th scope="row"><span class="term" data-term="local-ai">Local AI</span> <span class="gl-es">ES: IA local</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="how-it-works.html">Details</a></td>
+        <td>An AI assistant that runs its model on your own computer instead of sending your data to a server. You keep control of the model and the files. <a href="{{ '/how-it-works.html' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-local-inference">
         <th scope="row"><span class="term" data-term="local-inference">Local inference</span> <span class="gl-es">ES: Inferencia local</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="models.html#inference">Details</a></td>
+        <td>Running the AI model on your own hardware, rather than on a remote server. The response is produced on your machine. <a href="{{ '/models.html#inference' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-ocr">
         <th scope="row"><span class="term" data-term="ocr">OCR</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="tools.html#see">Details</a></td>
+        <td>Optical Character Recognition — reading text out of an image or a screenshot so the assistant can act on it or copy it. <a href="{{ '/tools.html#see' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-on-device">
         <th scope="row"><span class="term" data-term="on-device">On-device</span> <span class="gl-es">ES: En el dispositivo</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="how-it-works.html#voice">Details</a></td>
+        <td>Work handled by your own computer's hardware instead of a remote server. Audio, images and text never have to leave the machine. <a href="{{ '/how-it-works.html#voice' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-semantic-search">
         <th scope="row"><span class="term" data-term="semantic-search">Semantic search</span> <span class="gl-es">ES: Búsqueda semántica</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="how-it-works.html#memory">Details</a></td>
+        <td>Search that looks for meaning and related concepts rather than only exact words. Useful when you remember the idea but not the wording. <a href="{{ '/how-it-works.html#memory' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-stt">
         <th scope="row"><span class="term" data-term="stt">Speech recognition</span> <span class="gl-es">ES: Reconocimiento de voz</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="how-it-works.html#voice">Details</a></td>
+        <td>Turning your spoken words into text. O.A.S.I.S. does this on your PC, so dictation works without sending audio anywhere. <a href="{{ '/how-it-works.html#voice' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-training">
+        <th scope="row"><span class="term" data-term="training">Training</span> <span class="gl-es">ES: Entrenamiento</span></th>
+        <td>Showing a model an enormous amount of text and nudging its numbers a little every time its guess was wrong. Nobody writes the grammar or the facts: they come out of the statistics. <a href="{{ '/blog/2026/09/25/what-is-ai-and-how-it-works/' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-tts">
         <th scope="row"><span class="term" data-term="tts">Speech synthesis</span> <span class="gl-es">ES: Síntesis de voz</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="how-it-works.html#voice">Details</a></td>
+        <td>Turning text into spoken audio. It lets the assistant answer out loud, in Spanish or English, using voices on your machine. <a href="{{ '/how-it-works.html#voice' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-vision">
         <th scope="row"><span class="term" data-term="vision">Vision</span> <span class="gl-es">ES: Visión</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="tools.html#see">Details</a></td>
+        <td>The ability to look at an image or your screen and describe what is there. It only happens when you ask. <a href="{{ '/tools.html#see' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-voice-cloning">
         <th scope="row"><span class="term" data-term="voice-cloning">Voice cloning</span> <span class="gl-es">ES: Clonación de voz</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="pricing.html">Details</a></td>
+        <td>Building a synthetic voice from a sample so replies sound like a chosen speaker. A Max feature, created from audio you provide yourself. <a href="{{ '/pricing.html' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-wake-word">
         <th scope="row"><span class="term" data-term="wake-word">Wake word</span> <span class="gl-es">ES: Palabra de activación</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="how-it-works.html#voice">Details</a></td>
+        <td>A short phrase that starts listening without touching the keyboard. Recognition runs locally, so the microphone is not streamed anywhere. <a href="{{ '/how-it-works.html#voice' | relative_url }}">Details</a></td>
       </tr>
     </tbody>
   </table>
+
   <h2 id="cat-model">Models and files</h2>
   <table class="glossary">
     <thead><tr><th scope="col">Term</th><th scope="col">What it means here</th></tr></thead>
     <tbody>
       <tr id="g-context-window">
         <th scope="row"><span class="term" data-term="context-window">Context window</span> <span class="gl-es">ES: Ventana de contexto</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="models.html#inference">Details</a></td>
+        <td>How much text the model can consider at once. Larger windows let it handle longer documents and conversations. <a href="{{ '/models.html#inference' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-gguf">
         <th scope="row"><span class="term" data-term="gguf">GGUF</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="models.html#gguf">Details</a></td>
+        <td>A model file format commonly used for running AI models locally. It packages a model into a single file your PC can load. <a href="{{ '/models.html#gguf' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-hugging-face">
         <th scope="row"><span class="term" data-term="hugging-face">Hugging Face</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="models.html">Details</a></td>
+        <td>A large public catalogue of AI models. The app searches it so you can pick a compatible model and download it without hunting for files. <a href="{{ '/models.html' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-knowledge-cutoff">
+        <th scope="row"><span class="term" data-term="knowledge-cutoff">Knowledge cutoff</span> <span class="gl-es">ES: Corte de conocimiento</span></th>
+        <td>The date of the newest text the model was trained on. It cannot know anything published after it, and it will not warn you on its own. <a href="{{ '/blog/2026/09/25/what-is-a-language-model/' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-model">
         <th scope="row"><span class="term" data-term="model">Model</span> <span class="gl-es">ES: Modelo</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="models.html">Details</a></td>
+        <td>The AI 'brain' — a large file that has learned patterns from text. You download one and it runs on your computer. <a href="{{ '/models.html' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-model-file">
+        <th scope="row"><span class="term" data-term="model-file">Model file</span> <span class="gl-es">ES: Archivo de modelo</span></th>
+        <td>The single file a model ships as. Choosing which model runs means choosing which file sits on your disk, which is why a local assistant can work with the network unplugged. <a href="{{ '/blog/2026/09/25/what-is-a-language-model/' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-open-weights">
+        <th scope="row"><span class="term" data-term="open-weights">Open weights</span> <span class="gl-es">ES: Pesos abiertos</span></th>
+        <td>A model whose trained numbers are published so anyone can download them. The training code usually is not, which is why this is not the same as open source. <a href="{{ '/models.html' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-parameters">
+        <th scope="row"><span class="term" data-term="parameters">Parameters</span> <span class="gl-es">ES: Parámetros</span></th>
+        <td>The numbers inside a model that training adjusts. '7B' means seven billion of them. They are the model: there is nothing else in there. <a href="{{ '/blog/2026/09/25/what-is-a-language-model/' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-quantization">
         <th scope="row"><span class="term" data-term="quantization">Quantization</span> <span class="gl-es">ES: Cuantización</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="models.html#gguf">Details</a></td>
+        <td>A way of compressing a model so it uses less memory and runs faster, at a small cost in quality. Q4 is a common middle ground. <a href="{{ '/models.html#gguf' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-sampling">
+        <th scope="row"><span class="term" data-term="sampling">Sampling</span> <span class="gl-es">ES: Muestreo</span></th>
+        <td>The step where one of the possible next tokens actually gets picked. The model only produces probabilities; the application around it does the choosing. <a href="{{ '/blog/2026/09/25/what-is-a-language-model/' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-temperature">
+        <th scope="row"><span class="term" data-term="temperature">Temperature</span> <span class="gl-es">ES: Temperatura</span></th>
+        <td>A setting that decides how often an unlikely word is allowed. Low is repetitive and safe, good for code. High is more varied and more likely to be nonsense. <a href="{{ '/blog/2026/09/25/what-is-ai-and-how-it-works/' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-token">
         <th scope="row"><span class="term" data-term="token">Token</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="models.html#sizes">Details</a></td>
+        <td>A small chunk of text — roughly part of a word — that the model reads and writes. Speed is usually measured in tokens per second. <a href="{{ '/models.html#sizes' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-tokenizer">
+        <th scope="row"><span class="term" data-term="tokenizer">Tokenizer</span> <span class="gl-es">ES: Tokenizador</span></th>
+        <td>The step that cuts your text into tokens before the model sees it. It also decides the price of a request, because cost is counted in tokens. <a href="{{ '/blog/2026/09/25/what-is-ai-and-how-it-works/' | relative_url }}">Details</a></td>
       </tr>
     </tbody>
   </table>
+
   <h2 id="cat-hardware">Hardware</h2>
   <table class="glossary">
     <thead><tr><th scope="col">Term</th><th scope="col">What it means here</th></tr></thead>
     <tbody>
       <tr id="g-cpu">
         <th scope="row"><span class="term" data-term="cpu">CPU</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="requirements.html#tiers">Details</a></td>
+        <td>The main processor of your computer. It can run small AI models on its own, just more slowly than a graphics card. <a href="{{ '/requirements.html#tiers' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-gpu">
         <th scope="row"><span class="term" data-term="gpu">GPU</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="requirements.html#tiers">Details</a></td>
+        <td>A graphics card. For AI it acts as an accelerator, producing answers noticeably faster than the CPU alone. <a href="{{ '/requirements.html#tiers' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-model-size">
         <th scope="row"><span class="term" data-term="model-size">Model size</span> <span class="gl-es">ES: Tamaño del modelo</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="models.html#sizes">Details</a></td>
+        <td>Usually written like '7B' — billions of parameters. Bigger models know more but need more memory and run slower. <a href="{{ '/models.html#sizes' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-offloading">
         <th scope="row"><span class="term" data-term="offloading">Offloading</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="requirements.html#vram">Details</a></td>
+        <td>Splitting a model between your graphics card and your processor so it fits in the memory you have available. <a href="{{ '/requirements.html#vram' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-ram">
         <th scope="row"><span class="term" data-term="ram">RAM</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="requirements.html#tiers">Details</a></td>
+        <td>Your computer's working memory. It holds the model while it runs, so more RAM lets you load larger models. <a href="{{ '/requirements.html#tiers' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-vram">
         <th scope="row"><span class="term" data-term="vram">VRAM</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="requirements.html#vram">Details</a></td>
+        <td>Memory available on a graphics card. Larger local models generally need more VRAM when running on the GPU. <a href="{{ '/requirements.html#vram' | relative_url }}">Details</a></td>
       </tr>
     </tbody>
   </table>
+
   <h2 id="cat-software">Software and formats</h2>
   <table class="glossary">
     <thead><tr><th scope="col">Term</th><th scope="col">What it means here</th></tr></thead>
     <tbody>
       <tr id="g-api">
         <th scope="row"><span class="term" data-term="api">API</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="how-it-works.html">Details</a></td>
-      </tr>
-      <tr id="g-docker">
-        <th scope="row"><span class="term" data-term="docker">Docker</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="security.html#sandbox">Details</a></td>
-      </tr>
-      <tr id="g-eula">
-        <th scope="row"><span class="term" data-term="eula">EULA</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="faq.html">Details</a></td>
-      </tr>
-      <tr id="g-llama-cpp">
-        <th scope="row"><span class="term" data-term="llama-cpp">llama.cpp</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="models.html#inference">Details</a></td>
-      </tr>
-      <tr id="g-lm-studio">
-        <th scope="row"><span class="term" data-term="lm-studio">LM Studio</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="comparison.html">Details</a></td>
+        <td>A defined way for two programs to talk to each other. Here it usually means the local interface other tools use to reach O.A.S.I.S. <a href="{{ '/how-it-works.html' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-database">
         <th scope="row"><span class="term" data-term="database">Local database</span> <span class="gl-es">ES: Base de datos local</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="how-it-works.html#memory">Details</a></td>
+        <td>The file on your disk where memory is stored — messages, notes and documents, indexed so they can be found again by meaning. <a href="{{ '/how-it-works.html#memory' | relative_url }}">Details</a></td>
       </tr>
-      <tr id="g-mcp">
-        <th scope="row"><span class="term" data-term="mcp">MCP</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="tools.html#connect">Details</a></td>
+      <tr id="g-docker">
+        <th scope="row"><span class="term" data-term="docker">Docker</span></th>
+        <td>A tool that runs software in isolated containers. O.A.S.I.S. uses it to execute generated code safely, and it is optional. <a href="{{ '/security.html#sandbox' | relative_url }}">Details</a></td>
       </tr>
-      <tr id="g-ollama">
-        <th scope="row"><span class="term" data-term="ollama">Ollama</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="comparison.html">Details</a></td>
-      </tr>
-      <tr id="g-open-source">
-        <th scope="row"><span class="term" data-term="open-source">Open source</span> <span class="gl-es">ES: Código abierto</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="faq.html">Details</a></td>
-      </tr>
-      <tr id="g-proprietary">
-        <th scope="row"><span class="term" data-term="proprietary">Proprietary</span> <span class="gl-es">ES: Propietario</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="faq.html">Details</a></td>
-      </tr>
-      <tr id="g-repository">
-        <th scope="row"><span class="term" data-term="repository">Repository</span> <span class="gl-es">ES: Repositorio</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="https://github.com/OASISLocal/O.A.S.I.S.">Details</a></td>
-      </tr>
-      <tr id="g-runtime">
-        <th scope="row"><span class="term" data-term="runtime">Runtime</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="models.html#inference">Details</a></td>
+      <tr id="g-eula">
+        <th scope="row"><span class="term" data-term="eula">EULA</span></th>
+        <td>End User Licence Agreement — the terms you accept to install and use the app. It ships with the installer and covers one Windows machine. <a href="{{ '/faq.html' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-hash">
         <th scope="row"><span class="term" data-term="hash">SHA-256 hash</span> <span class="gl-es">ES: Hash SHA-256</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="download.html">Details</a></td>
+        <td>A short fingerprint of a file. Comparing it with the published value proves the installer you downloaded is the one that was released. <a href="{{ '/download.html' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-llama-cpp">
+        <th scope="row"><span class="term" data-term="llama-cpp">llama.cpp</span></th>
+        <td>A widely used local runtime that loads GGUF models and runs them efficiently on CPUs and GPUs. It is the engine under many local AI tools. <a href="{{ '/models.html#inference' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-lm-studio">
+        <th scope="row"><span class="term" data-term="lm-studio">LM Studio</span></th>
+        <td>A desktop app for downloading and chatting with local models. Excellent for a chat window; it does not drive your PC or keep a memory of you. <a href="{{ '/comparison.html' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-mcp">
+        <th scope="row"><span class="term" data-term="mcp">MCP</span></th>
+        <td>A protocol that lets AI systems connect to external tools and services in a standardised way. It is how O.A.S.I.S. can use outside tool servers. <a href="{{ '/tools.html#connect' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-ollama">
+        <th scope="row"><span class="term" data-term="ollama">Ollama</span></th>
+        <td>A popular way to run local models from a command line. It is strong as a model server; O.A.S.I.S. is the assistant layer around a model. <a href="{{ '/comparison.html' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-open-source">
+        <th scope="row"><span class="term" data-term="open-source">Open source</span> <span class="gl-es">ES: Código abierto</span></th>
+        <td>Software whose source code is published for anyone to read and modify. O.A.S.I.S. is not: it is proprietary, with a public changelog instead. <a href="{{ '/faq.html' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-proprietary">
+        <th scope="row"><span class="term" data-term="proprietary">Proprietary</span> <span class="gl-es">ES: Propietario</span></th>
+        <td>Software whose source code is not public and is licensed by its owner. The app is proprietary; the AI models you run are licensed separately. <a href="{{ '/faq.html' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-repository">
+        <th scope="row"><span class="term" data-term="repository">Repository</span> <span class="gl-es">ES: Repositorio</span></th>
+        <td>The public project folder on GitHub, where releases, the roadmap and the changelog live. <a href="https://github.com/OASISLocal/O.A.S.I.S.">Details</a></td>
+      </tr>
+      <tr id="g-runtime">
+        <th scope="row"><span class="term" data-term="runtime">Runtime</span></th>
+        <td>The engine that actually loads a model file and produces answers. It is what turns a downloaded file into a working assistant. <a href="{{ '/models.html#inference' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-tool-server">
         <th scope="row"><span class="term" data-term="tool-server">Tool server</span> <span class="gl-es">ES: Servidor de herramientas</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="tools.html#connect">Details</a></td>
+        <td>An external service that offers extra tools to the assistant. You add it yourself, so it only runs when you configure it. <a href="{{ '/tools.html#connect' | relative_url }}">Details</a></td>
       </tr>
     </tbody>
   </table>
+
   <h2 id="cat-security">Security and permissions</h2>
   <table class="glossary">
     <thead><tr><th scope="col">Term</th><th scope="col">What it means here</th></tr></thead>
     <tbody>
-      <tr id="g-audit-log">
-        <th scope="row"><span class="term" data-term="audit-log">Action log</span> <span class="gl-es">ES: Registro de acciones</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="security.html#storage">Details</a></td>
-      </tr>
       <tr id="g-analytics">
         <th scope="row"><span class="term" data-term="analytics">Analytics</span> <span class="gl-es">ES: Analítica</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="privacy.html#network">Details</a></td>
+        <td>Scripts that count visitors and behaviour. This site runs none, and the app has no analytics built in — there is nothing to opt out of. <a href="{{ '/privacy.html#network' | relative_url }}">Details</a></td>
+      </tr>
+      <tr id="g-audit-log">
+        <th scope="row"><span class="term" data-term="audit-log">Action log</span> <span class="gl-es">ES: Registro de acciones</span></th>
+        <td>A local record of what the assistant did, kept on your machine so you can review or undo recent actions. <a href="{{ '/security.html#storage' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-encryption">
         <th scope="row"><span class="term" data-term="encryption">Encryption</span> <span class="gl-es">ES: Cifrado</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="security.html#storage">Details</a></td>
+        <td>Scrambling stored data so only someone with the key can read it. Secrets and the local vault are encrypted on your machine. <a href="{{ '/security.html#storage' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-high-impact">
         <th scope="row"><span class="term" data-term="high-impact">High-impact action</span> <span class="gl-es">ES: Acción de alto impacto</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="security.html#permissions">Details</a></td>
+        <td>An action that can change or remove things — like deleting files, running code or shutting down. These always ask for confirmation first. <a href="{{ '/security.html#permissions' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-isolation">
         <th scope="row"><span class="term" data-term="isolation">Isolation</span> <span class="gl-es">ES: Aislamiento</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="security.html#sandbox">Details</a></td>
+        <td>Keeping an action inside its own contained environment, with limits on what it can read, write or reach. <a href="{{ '/security.html#sandbox' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-permission">
         <th scope="row"><span class="term" data-term="permission">Permission</span> <span class="gl-es">ES: Permiso</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="security.html#permissions">Details</a></td>
+        <td>Your per-tool setting that decides whether an action runs automatically, asks first, or is blocked. You can change it at any time. <a href="{{ '/security.html#permissions' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-sandbox">
         <th scope="row"><span class="term" data-term="sandbox">Sandbox</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="security.html#sandbox">Details</a></td>
+        <td>An isolated environment used to run code with additional safety boundaries, so generated code cannot reach the rest of your system. <a href="{{ '/security.html#sandbox' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-telemetry">
         <th scope="row"><span class="term" data-term="telemetry">Telemetry</span> <span class="gl-es">ES: Telemetría</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="privacy.html#network">Details</a></td>
+        <td>Usage or crash data sent back to the maker. Here it ships off: nothing is reported unless you deliberately enable an outbound channel. <a href="{{ '/privacy.html#network' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-vault">
         <th scope="row"><span class="term" data-term="vault">Vault</span> <span class="gl-es">ES: Caja fuerte</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="security.html#storage">Details</a></td>
+        <td>The encrypted store for secrets such as API keys and tokens. It lives on your disk, not in a cloud account or a plain config file. <a href="{{ '/security.html#storage' | relative_url }}">Details</a></td>
       </tr>
     </tbody>
   </table>
+
   <h2 id="cat-network">Network and services</h2>
   <table class="glossary">
     <thead><tr><th scope="col">Term</th><th scope="col">What it means here</th></tr></thead>
     <tbody>
       <tr id="g-cloud">
         <th scope="row"><span class="term" data-term="cloud">Cloud</span> <span class="gl-es">ES: Nube</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="comparison.html">Details</a></td>
+        <td>Computing that runs on someone else's servers over the internet. Here it is the alternative the app is built to avoid for everyday tasks. <a href="{{ '/comparison.html' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-endpoint">
         <th scope="row"><span class="term" data-term="endpoint">Endpoint</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="privacy.html#network">Details</a></td>
+        <td>A specific address a program can send requests to. With telemetry off, there is no endpoint receiving your data by default. <a href="{{ '/privacy.html#network' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-integration">
         <th scope="row"><span class="term" data-term="integration">Integration</span> <span class="gl-es">ES: Integración</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="privacy.html#network">Details</a></td>
+        <td>A connection to an outside service, like a messaging platform. It only communicates when you enable and use it. <a href="{{ '/privacy.html#network' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-localhost">
         <th scope="row"><span class="term" data-term="localhost">Localhost</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="privacy.html#network">Details</a></td>
+        <td>Your own machine as seen by itself. The app's internal server listens there, so nothing is exposed on your network. <a href="{{ '/privacy.html#network' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-network">
         <th scope="row"><span class="term" data-term="network">Network features</span> <span class="gl-es">ES: Funciones de red</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="privacy.html#network">Details</a></td>
+        <td>The optional parts that reach the internet, such as web search and integrations. They only communicate when you use or configure them. <a href="{{ '/privacy.html#network' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-server">
         <th scope="row"><span class="term" data-term="server">Server</span> <span class="gl-es">ES: Servidor</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="privacy.html#network">Details</a></td>
+        <td>A remote computer that answers requests. A local assistant avoids depending on one for chat, voice or memory. <a href="{{ '/privacy.html#network' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-webhook">
         <th scope="row"><span class="term" data-term="webhook">Webhook</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="privacy.html#network">Details</a></td>
+        <td>A URL that receives a message when something happens. O.A.S.I.S. only uses one if you set it up for diagnostics. <a href="{{ '/privacy.html#network' | relative_url }}">Details</a></td>
       </tr>
     </tbody>
   </table>
+
   <h2 id="cat-product">The product and its plans</h2>
   <table class="glossary">
     <thead><tr><th scope="col">Term</th><th scope="col">What it means here</th></tr></thead>
     <tbody>
       <tr id="g-agent">
         <th scope="row"><span class="term" data-term="agent">Agent</span> <span class="gl-es">ES: Agente</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="how-it-works.html#agent">Details</a></td>
+        <td>An assistant that does more than answer: it plans, uses tools, asks for permission and verifies the result. <a href="{{ '/how-it-works.html#agent' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-browser-extension">
         <th scope="row"><span class="term" data-term="browser-extension">Browser extension</span> <span class="gl-es">ES: Extensión de navegador</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="tools.html#connect">Details</a></td>
+        <td>A Max add-on that lets the browser talk to your assistant on the same PC, so it can work with the page you are looking at. <a href="{{ '/tools.html#connect' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-companion">
         <th scope="row"><span class="term" data-term="companion">Companion</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="how-it-works.html">Details</a></td>
+        <td>Optional apps that reach your assistant from elsewhere — phone, browser or chat platforms — over your own network. <a href="{{ '/how-it-works.html' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-local-first">
         <th scope="row"><span class="term" data-term="local-first">Local-first</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="privacy.html#network">Details</a></td>
+        <td>Designed to keep local tasks and data on your PC, while still allowing optional network-enabled features when you choose to use them. <a href="{{ '/privacy.html#network' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-max">
         <th scope="row"><span class="term" data-term="max">Max</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="pricing.html">Details</a></td>
+        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="{{ '/pricing.html' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-memory">
         <th scope="row"><span class="term" data-term="memory">Memory</span> <span class="gl-es">ES: Memoria</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="how-it-works.html#memory">Details</a></td>
+        <td>What the assistant keeps between conversations — facts, notes and documents — stored on your disk and searchable by meaning. <a href="{{ '/how-it-works.html#memory' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-offline">
         <th scope="row"><span class="term" data-term="offline">Offline</span> <span class="gl-es">ES: Sin conexión</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="faq.html">Details</a></td>
+        <td>Supported local features can work without internet after a model is downloaded. Network-enabled features require connectivity when used. <a href="{{ '/faq.html' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-offline-first">
         <th scope="row"><span class="term" data-term="offline-first">Offline-first</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="privacy.html#network">Details</a></td>
+        <td>Built so the core experience works without a connection, and network access is an extra you opt into — not a requirement to function. <a href="{{ '/privacy.html#network' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-persistent-memory">
         <th scope="row"><span class="term" data-term="persistent-memory">Persistent memory</span> <span class="gl-es">ES: Memoria persistente</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="how-it-works.html#memory">Details</a></td>
+        <td>Information that survives after the conversation ends, so you don't have to repeat yourself every time. <a href="{{ '/how-it-works.html#memory' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-personal">
         <th scope="row"><span class="term" data-term="personal">Personal</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="pricing.html">Details</a></td>
+        <td>The free plan: local chat, voice, memory, documents and everyday PC control, with no account and no message limits. <a href="{{ '/pricing.html' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-skill">
         <th scope="row"><span class="term" data-term="skill">Skill</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="tools.html#automate">Details</a></td>
+        <td>A small piece of behaviour triggered by your phrases, so common requests get handled your way. <a href="{{ '/tools.html#automate' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-tool">
         <th scope="row"><span class="term" data-term="tool">Tool</span> <span class="gl-es">ES: Herramienta</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="tools.html">Details</a></td>
+        <td>A single capability the assistant can use — reading a file, changing the volume, setting a timer — each with its own permission level. <a href="{{ '/tools.html' | relative_url }}">Details</a></td>
       </tr>
       <tr id="g-workflow">
         <th scope="row"><span class="term" data-term="workflow">Workflow</span></th>
-        <td>The paid edition: advanced coding, sandboxed execution, workflows, integrations and companion apps. A one-time payment, not a subscription. <a href="tools.html#automate">Details</a></td>
+        <td>A routine you describe in plain words, like 'every day at 9 send me a briefing', that runs on a schedule. <a href="{{ '/tools.html#automate' | relative_url }}">Details</a></td>
       </tr>
     </tbody>
   </table>

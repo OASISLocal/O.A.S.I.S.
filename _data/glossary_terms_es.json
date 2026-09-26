@@ -11,53 +11,23 @@
       "hasDefinedTerm": [
         {
           "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-semantic-search",
-          "name": "Búsqueda semántica",
-          "description": "Búsqueda que atiende al significado y a conceptos relacionados, no solo a las palabras exactas. Útil cuando recuerdas la idea pero no cómo se decía.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-voice-cloning",
-          "name": "Clonación de voz",
-          "description": "Crear una voz sintética a partir de una muestra para que las respuestas suenen como un hablante elegido. Función de Max, creada con audio que aportas tú.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./pricing.html"
-        },
-        {
-          "@type": "DefinedTerm",
           "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-embedding",
           "name": "Embedding",
           "description": "Una representación numérica del significado. Permite al asistente comparar textos por lo que significan, no solo por las palabras usadas.",
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
         },
         {
           "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-on-device",
-          "name": "En el dispositivo",
-          "description": "Trabajo realizado por el hardware de tu propio ordenador en lugar de un servidor remoto. El audio, las imágenes y el texto no tienen que salir de la máquina.",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-hallucination",
+          "name": "Alucinación",
+          "description": "Una respuesta fluida y segura que sencillamente no es cierta. Ocurre porque el modelo predice lo que leería bien, y no hay ninguna base de datos dentro para comprobarlo.",
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-local-ai",
-          "name": "IA local",
-          "description": "Un asistente de IA que ejecuta su modelo en tu propio ordenador en lugar de enviar tus datos a un servidor. Tú mantienes el control del modelo y de los archivos.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/blog/2026/09/25/que-es-la-ia-y-como-funciona/"
         },
         {
           "@type": "DefinedTerm",
@@ -67,17 +37,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-local-inference",
-          "name": "Inferencia local",
-          "description": "Ejecutar el modelo de IA en tu propio hardware, en lugar de en un servidor remoto. La respuesta se produce en tu máquina.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
         },
         {
           "@type": "DefinedTerm",
@@ -87,7 +47,27 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-local-ai",
+          "name": "IA local",
+          "description": "Un asistente de IA que ejecuta su modelo en tu propio ordenador en lugar de enviar tus datos a un servidor. Tú mantienes el control del modelo y de los archivos.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-local-inference",
+          "name": "Inferencia local",
+          "description": "Ejecutar el modelo de IA en tu propio hardware, en lugar de en un servidor remoto. La respuesta se produce en tu máquina.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
         },
         {
           "@type": "DefinedTerm",
@@ -97,17 +77,27 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./tools.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/tools.html"
         },
         {
           "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-wake-word",
-          "name": "Palabra de activación",
-          "description": "Una frase corta que empieza a escuchar sin tocar el teclado. El reconocimiento se ejecuta en local, así que el micrófono no se envía a ningún sitio.",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-on-device",
+          "name": "En el dispositivo",
+          "description": "Trabajo realizado por el hardware de tu propio ordenador en lugar de un servidor remoto. El audio, las imágenes y el texto no tienen que salir de la máquina.",
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-semantic-search",
+          "name": "Búsqueda semántica",
+          "description": "Búsqueda que atiende al significado y a conceptos relacionados, no solo a las palabras exactas. Útil cuando recuerdas la idea pero no cómo se decía.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
         },
         {
           "@type": "DefinedTerm",
@@ -117,7 +107,17 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-training",
+          "name": "Entrenamiento",
+          "description": "Mostrarle a un modelo muchísimo texto y adjusts sus números un poco cada vez que su predicción falla. Nadie escribe la gramática ni los datos: salen de la estadística.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/blog/2026/09/25/que-es-la-ia-y-como-funciona/"
         },
         {
           "@type": "DefinedTerm",
@@ -127,7 +127,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
         },
         {
           "@type": "DefinedTerm",
@@ -137,57 +137,27 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./tools.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/tools.html"
         },
         {
           "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-quantization",
-          "name": "Cuantización",
-          "description": "Una forma de comprimir un modelo para que use menos memoria y vaya más rápido, con una pequeña pérdida de calidad. Q4 es el punto medio habitual.",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-voice-cloning",
+          "name": "Clonación de voz",
+          "description": "Crear una voz sintética a partir de una muestra para que las respuestas suenen como un hablante elegido. Función de Max, creada con audio que aportas tú.",
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html"
         },
         {
           "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-gguf",
-          "name": "GGUF",
-          "description": "Formato de archivo de modelo habitual para ejecutar IA en local. Empaqueta un modelo en un único archivo que tu PC puede cargar.",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-wake-word",
+          "name": "Palabra de activación",
+          "description": "Una frase corta que empieza a escuchar sin tocar el teclado. El reconocimiento se ejecuta en local, así que el micrófono no se envía a ningún sitio.",
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-hugging-face",
-          "name": "Hugging Face",
-          "description": "Un gran catálogo público de modelos de IA. La app lo busca para que elijas un modelo compatible y lo descargues sin rebuscar archivos.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-model",
-          "name": "Modelo",
-          "description": "El «cerebro» de la IA: un archivo grande que ha aprendido patrones del texto. Descargas uno y se ejecuta en tu ordenador.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-token",
-          "name": "Token",
-          "description": "Un pequeño fragmento de texto —más o menos parte de una palabra— que el modelo lee y escribe. La velocidad suele medirse en tokens por segundo.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
         },
         {
           "@type": "DefinedTerm",
@@ -197,7 +167,127 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-gguf",
+          "name": "GGUF",
+          "description": "Formato de archivo de modelo habitual para ejecutar IA en local. Empaqueta un modelo en un único archivo que tu PC puede cargar.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-hugging-face",
+          "name": "Hugging Face",
+          "description": "Un gran catálogo público de modelos de IA. La app lo busca para que elijas un modelo compatible y lo descargues sin rebuscar archivos.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-knowledge-cutoff",
+          "name": "Corte de conocimiento",
+          "description": "La fecha del texto más reciente con el que se entrenó el modelo. No puede saber nada publicado después, y no te avisará por su cuenta.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/blog/2026/09/25/que-es-un-modelo-de-lenguaje/"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-model",
+          "name": "Modelo",
+          "description": "El «cerebro» de la IA: un archivo grande que ha aprendido patrones del texto. Descargas uno y se ejecuta en tu ordenador.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-model-file",
+          "name": "Archivo de modelo",
+          "description": "El único archivo en el que se distribuye un modelo. Elegir qué modelo se ejecuta es elegir qué archivo está en tu disco, y por eso un asistente local puede funcionar con la red desenchufada.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/blog/2026/09/25/que-es-un-modelo-de-lenguaje/"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-open-weights",
+          "name": "Pesos abiertos",
+          "description": "Un modelo cuyos números ya entrenados se publican para que cualquiera los descargue. El código de entrenamiento normalmente no, por eso no es lo mismo que el código abierto.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-parameters",
+          "name": "Parámetros",
+          "description": "Los números dentro de un modelo que el entrenamiento ajusta. «7B» significa siete mil millones. Son el modelo: no hay nada más dentro.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/blog/2026/09/25/que-es-un-modelo-de-lenguaje/"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-quantization",
+          "name": "Cuantización",
+          "description": "Una forma de comprimir un modelo para que use menos memoria y vaya más rápido, con una pequeña pérdida de calidad. Q4 es el punto medio habitual.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-sampling",
+          "name": "Muestreo",
+          "description": "El paso en el que se elige realmente uno de los tokens posibles. El modelo solo produce probabilidades; elige la aplicación que lo rodea.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/blog/2026/09/25/que-es-un-modelo-de-lenguaje/"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-temperature",
+          "name": "Temperatura",
+          "description": "Un ajuste que decide con qué frecuencia se permite una palabra improbable. Baja es repetitiva y segura, ideal para código. Alta es más variada y con más opciones de no tener sentido.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/blog/2026/09/25/que-es-la-ia-y-como-funciona/"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-token",
+          "name": "Token",
+          "description": "Un pequeño fragmento de texto —más o menos parte de una palabra— que el modelo lee y escribe. La velocidad suele medirse en tokens por segundo.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-tokenizer",
+          "name": "Tokenizador",
+          "description": "El paso que corta tu texto en tokens antes de que el modelo lo vea. También decide el precio de una petición, porque el coste se cuenta en tokens.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/blog/2026/09/25/que-es-la-ia-y-como-funciona/"
         },
         {
           "@type": "DefinedTerm",
@@ -207,7 +297,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./requirements.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/requirements.html"
         },
         {
           "@type": "DefinedTerm",
@@ -217,27 +307,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./requirements.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-offloading",
-          "name": "Offloading",
-          "description": "Repartir un modelo entre la tarjeta gráfica y el procesador para que quepa en la memoria de la que dispones.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./requirements.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-ram",
-          "name": "RAM",
-          "description": "La memoria de trabajo de tu ordenador. Mantiene el modelo mientras se ejecuta, así que más RAM te permite cargar modelos mayores.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./requirements.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/requirements.html"
         },
         {
           "@type": "DefinedTerm",
@@ -247,7 +317,27 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-offloading",
+          "name": "Offloading",
+          "description": "Repartir un modelo entre la tarjeta gráfica y el procesador para que quepa en la memoria de la que dispones.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/requirements.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-ram",
+          "name": "RAM",
+          "description": "La memoria de trabajo de tu ordenador. Mantiene el modelo mientras se ejecuta, así que más RAM te permite cargar modelos mayores.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/requirements.html"
         },
         {
           "@type": "DefinedTerm",
@@ -257,7 +347,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./requirements.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/requirements.html"
         },
         {
           "@type": "DefinedTerm",
@@ -267,7 +357,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
         },
         {
           "@type": "DefinedTerm",
@@ -277,17 +367,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-open-source",
-          "name": "Código abierto",
-          "description": "Software cuyo código fuente se publica para que cualquiera lo lea y modifique. O.A.S.I.S. no lo es: es propietario, con un changelog público.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./faq.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
         },
         {
           "@type": "DefinedTerm",
@@ -297,7 +377,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./security.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/security.html"
         },
         {
           "@type": "DefinedTerm",
@@ -307,7 +387,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./faq.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/faq.html"
         },
         {
           "@type": "DefinedTerm",
@@ -317,7 +397,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./download.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/download.html"
         },
         {
           "@type": "DefinedTerm",
@@ -327,7 +407,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
         },
         {
           "@type": "DefinedTerm",
@@ -337,7 +417,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./comparison.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/comparison.html"
         },
         {
           "@type": "DefinedTerm",
@@ -347,7 +427,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./tools.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/tools.html"
         },
         {
           "@type": "DefinedTerm",
@@ -357,7 +437,17 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./comparison.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/comparison.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-open-source",
+          "name": "Código abierto",
+          "description": "Software cuyo código fuente se publica para que cualquiera lo lea y modifique. O.A.S.I.S. no lo es: es propietario, con un changelog público.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/faq.html"
         },
         {
           "@type": "DefinedTerm",
@@ -367,7 +457,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./faq.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/faq.html"
         },
         {
           "@type": "DefinedTerm",
@@ -377,7 +467,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./https://github.com/OASISLocal/O.A.S.I.S."
+          "url": "https://github.com/OASISLocal/O.A.S.I.S."
         },
         {
           "@type": "DefinedTerm",
@@ -387,7 +477,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./models.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/models.html"
         },
         {
           "@type": "DefinedTerm",
@@ -397,27 +487,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./tools.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-high-impact",
-          "name": "Acción de alto impacto",
-          "description": "Una acción que puede cambiar o borrar cosas —como borrar archivos, ejecutar código o apagar—. Siempre piden confirmación primero.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./security.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-isolation",
-          "name": "Aislamiento",
-          "description": "Mantener una acción dentro de su propio entorno contenido, con límites sobre lo que puede leer, escribir o alcanzar.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./security.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/tools.html"
         },
         {
           "@type": "DefinedTerm",
@@ -427,37 +497,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./privacy.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-vault",
-          "name": "Caja fuerte",
-          "description": "El almacén cifrado de secretos como claves de API y tokens. Vive en tu disco, no en una cuenta en la nube ni en un archivo de configuración plano.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./security.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-encryption",
-          "name": "Cifrado",
-          "description": "Ofuscar los datos guardados para que solo quien tenga la clave pueda leerlos. Los secretos y la caja fuerte local se cifran en tu máquina.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./security.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-permission",
-          "name": "Permiso",
-          "description": "Tu ajuste por herramienta que decide si una acción se ejecuta automáticamente, pregunta antes o se bloquea. Puedes cambiarlo cuando quieras.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./security.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/privacy.html"
         },
         {
           "@type": "DefinedTerm",
@@ -467,7 +507,47 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./security.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/security.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-encryption",
+          "name": "Cifrado",
+          "description": "Ofuscar los datos guardados para que solo quien tenga la clave pueda leerlos. Los secretos y la caja fuerte local se cifran en tu máquina.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/security.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-high-impact",
+          "name": "Acción de alto impacto",
+          "description": "Una acción que puede cambiar o borrar cosas —como borrar archivos, ejecutar código o apagar—. Siempre piden confirmación primero.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/security.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-isolation",
+          "name": "Aislamiento",
+          "description": "Mantener una acción dentro de su propio entorno contenido, con límites sobre lo que puede leer, escribir o alcanzar.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/security.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-permission",
+          "name": "Permiso",
+          "description": "Tu ajuste por herramienta que decide si una acción se ejecuta automáticamente, pregunta antes o se bloquea. Puedes cambiarlo cuando quieras.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/security.html"
         },
         {
           "@type": "DefinedTerm",
@@ -477,7 +557,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./security.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/security.html"
         },
         {
           "@type": "DefinedTerm",
@@ -487,47 +567,17 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./privacy.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/privacy.html"
         },
         {
           "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-endpoint",
-          "name": "Endpoint",
-          "description": "Una dirección concreta a la que un programa puede enviar peticiones. Con la telemetría desactivada, no hay ningún endpoint que reciba tus datos por defecto.",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-vault",
+          "name": "Caja fuerte",
+          "description": "El almacén cifrado de secretos como claves de API y tokens. Vive en tu disco, no en una cuenta en la nube ni en un archivo de configuración plano.",
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./privacy.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-network",
-          "name": "Funciones de red",
-          "description": "Las partes opcionales que salen a internet, como la búsqueda web y las integraciones. Solo se comunican cuando las usas o las configuras.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./privacy.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-integration",
-          "name": "Integración",
-          "description": "Una conexión con un servicio externo, como una plataforma de mensajería. Solo se comunica cuando la activas y la usas.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./privacy.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-localhost",
-          "name": "Localhost",
-          "description": "Tu propia máquina vista por sí misma. El servidor interno de la app escucha ahí, así que nada queda expuesto en tu red.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./privacy.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/security.html"
         },
         {
           "@type": "DefinedTerm",
@@ -537,7 +587,47 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./comparison.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/comparison.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-endpoint",
+          "name": "Endpoint",
+          "description": "Una dirección concreta a la que un programa puede enviar peticiones. Con la telemetría desactivada, no hay ningún endpoint que reciba tus datos por defecto.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/privacy.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-integration",
+          "name": "Integración",
+          "description": "Una conexión con un servicio externo, como una plataforma de mensajería. Solo se comunica cuando la activas y la usas.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/privacy.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-localhost",
+          "name": "Localhost",
+          "description": "Tu propia máquina vista por sí misma. El servidor interno de la app escucha ahí, así que nada queda expuesto en tu red.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/privacy.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-network",
+          "name": "Funciones de red",
+          "description": "Las partes opcionales que salen a internet, como la búsqueda web y las integraciones. Solo se comunican cuando las usas o las configuras.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/privacy.html"
         },
         {
           "@type": "DefinedTerm",
@@ -547,7 +637,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./privacy.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/privacy.html"
         },
         {
           "@type": "DefinedTerm",
@@ -557,7 +647,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./privacy.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/privacy.html"
         },
         {
           "@type": "DefinedTerm",
@@ -567,17 +657,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-companion",
-          "name": "Companion",
-          "description": "Apps opcionales que llegan a tu asistente desde otros sitios —teléfono, navegador o plataformas de chat— a través de tu propia red.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
         },
         {
           "@type": "DefinedTerm",
@@ -587,17 +667,17 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./tools.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/tools.html"
         },
         {
           "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-tool",
-          "name": "Herramienta",
-          "description": "Una capacidad concreta que el asistente puede usar —leer un archivo, cambiar el volumen, poner un temporizador—, cada una con su nivel de permiso.",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-companion",
+          "name": "Companion",
+          "description": "Apps opcionales que llegan a tu asistente desde otros sitios —teléfono, navegador o plataformas de chat— a través de tu propia red.",
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./tools.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
         },
         {
           "@type": "DefinedTerm",
@@ -607,7 +687,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./privacy.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/privacy.html"
         },
         {
           "@type": "DefinedTerm",
@@ -617,7 +697,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./pricing.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html"
         },
         {
           "@type": "DefinedTerm",
@@ -627,37 +707,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-persistent-memory",
-          "name": "Memoria persistente",
-          "description": "Información que sobrevive al final de la conversación, para que no tengas que repetirte cada vez.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./how-it-works.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-offline-first",
-          "name": "Offline-first",
-          "description": "Diseñado para que lo esencial funcione sin conexión, y el acceso a la red sea un extra que eliges, no un requisito para funcionar.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./privacy.html"
-        },
-        {
-          "@type": "DefinedTerm",
-          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-personal",
-          "name": "Personal",
-          "description": "El plan gratuito: chat local, voz, memoria, documentos y control del PC cotidiano, sin cuenta y sin límites de mensajes.",
-          "inDefinedTermSet": {
-            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
-          },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./pricing.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
         },
         {
           "@type": "DefinedTerm",
@@ -667,7 +717,37 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./faq.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/faq.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-offline-first",
+          "name": "Offline-first",
+          "description": "Diseñado para que lo esencial funcione sin conexión, y el acceso a la red sea un extra que eliges, no un requisito para funcionar.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/privacy.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-persistent-memory",
+          "name": "Memoria persistente",
+          "description": "Información que sobrevive al final de la conversación, para que no tengas que repetirte cada vez.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/how-it-works.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-personal",
+          "name": "Personal",
+          "description": "El plan gratuito: chat local, voz, memoria, documentos y control del PC cotidiano, sin cuenta y sin límites de mensajes.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/pricing.html"
         },
         {
           "@type": "DefinedTerm",
@@ -677,7 +757,17 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./tools.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/tools.html"
+        },
+        {
+          "@type": "DefinedTerm",
+          "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#g-tool",
+          "name": "Herramienta",
+          "description": "Una capacidad concreta que el asistente puede usar —leer un archivo, cambiar el volumen, poner un temporizador—, cada una con su nivel de permiso.",
+          "inDefinedTermSet": {
+            "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
+          },
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/tools.html"
         },
         {
           "@type": "DefinedTerm",
@@ -687,7 +777,7 @@
           "inDefinedTermSet": {
             "@id": "https://oasislocal.github.io/O.A.S.I.S./es/glossary/#glossary"
           },
-          "url": "https://oasislocal.github.io/O.A.S.I.S./tools.html"
+          "url": "https://oasislocal.github.io/O.A.S.I.S./es/tools.html"
         }
       ]
     },
