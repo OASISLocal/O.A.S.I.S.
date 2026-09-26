@@ -50,6 +50,7 @@ exclude:
   - build_glossary.py
   - build_llms.py
   - build_faqpage.py
+  - build_fonts.py
   - check_lang.py
   - site_config.py
   - PRODUCT_TRUTH.md

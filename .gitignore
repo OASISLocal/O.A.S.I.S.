@@ -7,3 +7,6 @@ Gemfile.lock
 node_modules/
 __pycache__/
 *.pyc
+# Originals kept by build_fonts.py on the first run; git already has them
+assets/fonts/*.orig
+.lhci-mobile/

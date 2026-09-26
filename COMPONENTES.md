@@ -224,6 +224,50 @@ Automático: mismo `tags` primero, después cualquier otro, nunca el propio
 artículo ni su traducción (mismo `ref`). Con menos de tres, el bloque
 desaparece en vez de rellenarse con contenido débil.
 
+## Peso de página: lo que sirve y lo que no
+
+Medido con Lighthouse en móvil (3 ejecuciones, 14 páginas), no a ojo:
+
+| Recurso | Peso real | Nota |
+|---|---|---|
+| CSS | 2,5-8 KB | Los 133 KB de `style.css` son el **tamaño en disco**; gzip lo baja a 4 KB |
+| JS | 5-7,6 KB | |
+| Fuentes | 74-102 KB | lo que de verdad pesa |
+| Página | 76-316 KB | |
+
+Total: 188-286 KB por página, rendimiento 0,96-0,99, CLS 0,000-0,021.
+
+**Dos cosas que se intentaron y no valieron la pena.** Están aquí para que nadie
+vuelva a perder el tiempo en ellas:
+
+1. **Quitar los preloads de fuentes de las páginas de producto.** Ahorraba
+   40-80 KB, pero provocation CLS de hasta 0,16 en cuatro páginas. Se debe a que
+   esas páginas usan las fuentes a través de `var(--display)` y `var(--mono)`
+   definidas en el CSS que enlazan, no por nombre: un escaneo del texto de la
+   página no lo ve. Los preloads se quedaron.
+2. **Suponer que las fuentes estaban sin recortar.** `build_fonts.py` las
+   recorta a los 113 caracteres que el sitio dibuja de verdad y ahorra un 13%
+   (130 → 114 KB), pero ese 13% es el techo real: ya venían subconjuntadas a
+   latino. El "55% de glifos sin usar" que aparecia en las metricas era
+   enganoso: contaba glifos que la fuente nunca tuvo.
+
+Lo que sí queda por debajo del suelo: 74 KB de fuentes es el precio de la
+tipografía de marca, y bajarlo significa usar menos de las cuatro familias, que
+es una decisión de diseño y no de rendimiento.
+
+## Las fuentes se recortan, y se comprueba
+
+```
+python build_fonts.py            # recorta assets/fonts/*.woff2
+python build_fonts.py --check    # falla si no están recortadas (lo corre sync-web.ps1)
+```
+
+El recorte es la unión de los rangos latinos que puede contener el texto y de
+**todos los caracteres que el sitio realmente dibuja**. La segunda mitad es la
+importante: si el sitio dibuja ■ ✓ ≠ y el recorte los tira, aparece un cuadro
+vacío que ninguna comprobación detecta. `--check` compara contra el `.orig` de
+cada fuente y avisa si el recorte perdió un glifo que la original tenía.
+
 ## Los datos estructurados se generan, no se escriben
 
 Todo el schema del sitio sale de algo que ya existe, para que no pueda separarse

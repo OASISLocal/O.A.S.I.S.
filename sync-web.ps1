@@ -113,6 +113,12 @@ if (Get-Command python -ErrorAction SilentlyContinue) {
   Write-Host "-- python build_faqpage.py --check" -ForegroundColor DarkGray
   python build_faqpage.py --check
   if ($LASTEXITCODE -ne 0) { Fail "build_faqpage.py --check failed (the FAQPage schema does not match the visible FAQ). Run: python build_faqpage.py" }
+  # The webfonts are subset to the characters the built site actually renders.
+  # It also fails if a subset ever dropped a glyph the site draws, which would
+  # show up as an empty box with nothing else noticing.
+  Write-Host "-- python build_fonts.py --check" -ForegroundColor DarkGray
+  python build_fonts.py --check
+  if ($LASTEXITCODE -ne 0) { Fail "build_fonts.py --check failed (a font is not subset, or a subset dropped a glyph the site draws). Run: python build_fonts.py" }
 } else {
   Write-Host "WARNING: python not found, skipping check_site.py / check_claims.py / check_seo.py" -ForegroundColor Yellow
 }

@@ -242,6 +242,7 @@ for internal in ("docs/", "readme", "Gemfile", "PRODUCT_TRUTH.md", "JOURNAL_CHEC
                  "check_site.py", "check_claims.py", "check_seo.py",
                  "build_news_sitemap.py", "build_es.py", "sync-web.ps1",
                  "build_glossary.py", "build_llms.py", "build_faqpage.py",
+                 "build_fonts.py",
                  "check_lang.py", "site_config.py"):
     if os.path.exists(internal) and re.search(r"^\s*-\s*%s\s*$" % re.escape(internal),
                                               cfg, re.M) is None:
