@@ -6,6 +6,7 @@
 <!doctype html>
 <html lang="{{ page.lang | default: 'en' }}" data-theme="dark">
 <head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.github.com https://oasis-waitlist.sanitariorteba.workers.dev; frame-src https://www.youtube-nocookie.com https://player.vimeo.com; form-action 'self'">
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{{ page.title }} | O.A.S.I.S.</title><meta name="description" content="{{ page.description }}"><meta name="robots" content="index, follow">
 <link rel="canonical" href="{{ page.url | absolute_url }}"><link rel="alternate" hreflang="en" href="{{ page.en_url | absolute_url }}"><link rel="alternate" hreflang="es" href="{{ page.es_url | absolute_url }}"><link rel="alternate" hreflang="x-default" href="{{ page.en_url | absolute_url }}"><meta name="theme-color" content="#111111">

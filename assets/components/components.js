@@ -126,24 +126,50 @@
    */
   function initDetails() {
     var groups = doc.querySelectorAll("[data-cmp-details]");
+    var seq = 0;
     Array.prototype.forEach.call(groups, function (group) {
       var items = group.querySelectorAll("details");
       if (!items.length || group.querySelector(".cmp-details__toggle")) return;
 
+      /* aria-expanded has to describe reality, not the button you last pressed:
+         a reader who opens one <details> by hand would otherwise be told the
+         group is still collapsed. Both buttons carry the state of the whole
+         group, and aria-controls points at the group they act on. */
+      if (!group.id) group.id = "cmp-details-" + (++seq);
       var bar = doc.createElement("div");
       bar.className = "cmp-details__toggle";
       var open = doc.createElement("button");
       open.type = "button";
+      open.setAttribute("aria-controls", group.id);
       open.textContent = group.getAttribute("data-open-label") || "Expand all";
       var close = doc.createElement("button");
       close.type = "button";
+      close.setAttribute("aria-controls", group.id);
       close.textContent = group.getAttribute("data-close-label") || "Collapse all";
+
+      var allOpen = function () {
+        return Array.prototype.every.call(items, function (d) { return d.open; });
+      };
+      var sync = function () {
+        var state = allOpen() ? "true" : "false";
+        open.setAttribute("aria-expanded", state);
+        close.setAttribute("aria-expanded", state);
+      };
+
       open.addEventListener("click", function () {
         Array.prototype.forEach.call(items, function (d) { d.open = true; });
+        sync();
       });
       close.addEventListener("click", function () {
         Array.prototype.forEach.call(items, function (d) { d.open = false; });
+        sync();
       });
+      /* <details> fires `toggle` when it opens or closes, including when the
+         reader does it, so this is what keeps the buttons honest. */
+      Array.prototype.forEach.call(items, function (d) {
+        d.addEventListener("toggle", sync);
+      });
+      sync();
       bar.appendChild(open);
       bar.appendChild(close);
       group.insertBefore(bar, group.firstChild);

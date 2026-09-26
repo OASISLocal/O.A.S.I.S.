@@ -119,6 +119,25 @@ if (Get-Command python -ErrorAction SilentlyContinue) {
   Write-Host "-- python build_fonts.py --check" -ForegroundColor DarkGray
   python build_fonts.py --check
   if ($LASTEXITCODE -ne 0) { Fail "build_fonts.py --check failed (a font is not subset, or a subset dropped a glyph the site draws). Run: python build_fonts.py" }
+  # A CSP turns "we make no third-party requests" from a claim in the privacy
+  # policy into something the browser enforces. It is generated, not written by
+  # hand, so unlike the translation check below this one can block.
+  Write-Host "-- python build_csp.py --check" -ForegroundColor DarkGray
+  python build_csp.py --check
+  if ($LASTEXITCODE -ne 0) { Fail "build_csp.py --check failed (a page has no Content-Security-Policy). Run: python build_csp.py" }
+  # Advisory, not blocking, and the reason is worth writing down. es/ is still
+  # maintained by hand on top of i18n/: 163 lines across 16 pages, mostly the
+  # Spanish JSON-LD (the generator does not translate schema.org or rewrite the
+  # URLs inside it) and hand-written meta descriptions and titles. Running
+  # build_es.py would overwrite all of it, so --check reports the drift instead
+  # of failing. Make it blocking once that Spanish lives in i18n/.
+  Write-Host "-- python build_es.py --check (advisory)" -ForegroundColor DarkGray
+  python build_es.py --check
+  if ($LASTEXITCODE -ne 0) {
+    Write-Host "  AVISO: es/ ha derivado respecto a i18n/. No bloquea el deploy porque" -ForegroundColor Yellow
+    Write-Host "  es/ se mantiene a mano todavia (JSON-LD en espanol, metas y titulos)." -ForegroundColor Yellow
+    Write-Host "  NO ejecutes 'python build_es.py' sin revisar el diff: regenera las 18 paginas." -ForegroundColor Yellow
+  }
 } else {
   Write-Host "WARNING: python not found, skipping check_site.py / check_claims.py / check_seo.py" -ForegroundColor Yellow
 }
@@ -130,6 +149,15 @@ if ($Mode -ne "live") {
 }
 
 Write-Host "checks OK" -ForegroundColor Green
+
+# From here on, decisions are made from git's exit code, not from whether it wrote
+# anything to stderr. PowerShell turns a native command's stderr into a
+# terminating NativeCommandError while $ErrorActionPreference is "Stop", and git
+# writes routine notices there ("LF will be replaced by CRLF"). That aborted a
+# deploy that had already passed all nine gates, and it reported a deploy failure
+# when the only thing wrong was a line-ending notice. Every git call below is
+# followed by an explicit $LASTEXITCODE check, so nothing is lost by relaxing it.
+$ErrorActionPreference = "Continue"
 
 # ---------- 2. Commit sources ----------
 Write-Host "== commit ==" -ForegroundColor Cyan
@@ -214,16 +242,25 @@ if ($Mode -eq "live") {
   # A 404 raises, so the StatusCode check never ran and a dead site was still
   # reported as SYNC DONE. Read the real status, insist on our own content
   # rather than any 200, and retry while Pages rebuilds.
+  #
+  # curl.exe, not Invoke-WebRequest: the baseurl ends in a dot ("/O.A.S.I.S."),
+  # and .NET normalises that segment away before sending, so it requested
+  # "/O.A.S.I.S/" and got a 404 for a site that was serving perfectly well. The
+  # check therefore failed on every single deploy and reported the opposite of
+  # the truth, which is worse than having no check at all.
   function Get-PagesStatus($url) {
+    $tmp = [System.IO.Path]::GetTempFileName()
     try {
-      $r = Invoke-WebRequest -UseBasicParsing -Uri $url -TimeoutSec 20
-      return @{ code = [int]$r.StatusCode; body = $r.Content }
-    } catch [System.Net.WebException] {
-      $resp = $_.Exception.Response
-      if ($resp) { return @{ code = [int]$resp.StatusCode; body = "" } }
-      return @{ code = 0; body = "" }
+      $code = & curl.exe -s -L --max-time 25 -o $tmp -w "%{http_code}" $url
+      $body = ""
+      if (Test-Path -LiteralPath $tmp) { $body = [System.IO.File]::ReadAllText($tmp) }
+      $n = 0
+      if ($code -match '^\d+$') { $n = [int]$code }
+      return @{ code = $n; body = $body }
     } catch {
       return @{ code = 0; body = "" }
+    } finally {
+      Remove-Item -LiteralPath $tmp -Force -ErrorAction SilentlyContinue
     }
   }
 
