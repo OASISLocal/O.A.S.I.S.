@@ -8,6 +8,10 @@ import io, os, re, json, sys, shutil
 ROOT = os.path.dirname(os.path.abspath(__file__))
 I18N = os.path.join(ROOT, 'i18n')
 BASE = 'https://oasislocal.github.io/O.A.S.I.S./'
+# Path-only form of BASE. The es/ pages are static HTML with no front matter, so
+# they cannot use relative_url; they carry absolute paths like the rest of the
+# site instead of "../" climbing out of /es/.
+PATH = '/O.A.S.I.S./'
 PAGES = ['index.html', '404.html', 'about.html', 'changelog.html', 'comparison.html',
          'download.html', 'eula.html', 'faq.html', 'features.html', 'how-it-works.html',
          'models.html', 'pricing.html', 'privacy.html', 'privacy-policy.html',
@@ -47,23 +51,28 @@ def to_spanish(html, page):
                         '<meta property="og:url" content="%s">' % es_url(page))
     html = html.replace('<meta property="og:locale" content="en_US">',
                         '<meta property="og:locale" content="es_ES">')
-    # relative asset paths
-    html = html.replace('href="assets/', 'href="../assets/')
-    html = html.replace('src="assets/', 'src="../assets/')
-    html = html.replace('href="favicon.ico"', 'href="../favicon.ico"')
-    html = html.replace('href="blog/', 'href="../blog/')
-    # language switcher: ES link -> EN link back to the original
-    en_rel = '../' if page == 'index.html' else '../' + page
+    # Paths. Absolute, not "../": the es/ pages live one level down, so a
+    # relative link works right up until the depth changes, and "../blog/" sent
+    # the Spanish reader to the English Journal. check_lang.py can only police
+    # links it can see, and it could not see a relative one.
+    html = html.replace('href="assets/', 'href="%sassets/' % PATH)
+    html = html.replace('src="assets/', 'src="%sassets/' % PATH)
+    html = html.replace('href="favicon.ico"', 'href="%sfavicon.ico"' % PATH)
+    # The Journal in Spanish, not the English one.
+    html = html.replace('href="blog/', 'href="%ses/blog/' % PATH)
+    html = html.replace('href="es/blog/', 'href="%ses/blog/' % PATH)
+    # language switcher: ES link -> absolute EN link back to the original
+    en_path = PATH if page == 'index.html' else PATH + page
     html = re.sub(r'<a href="es/[^"]*"[^>]*>ES</a>',
-                  '<a class="lang-switch" href="%s" lang="en" hreflang="en" data-lang-switch="en">EN</a>' % en_rel,
+                  '<a class="lang-switch" href="%s" lang="en" hreflang="en" data-lang-switch="en">EN</a>' % en_path,
                   html)
-    html = re.sub(r'<a class="btn ghost" href="es/"[^>]*>Español</a>',
-                  '<a class="btn ghost" href="%s" hreflang="en" lang="en" data-lang-switch="en">English</a>' % en_rel, html)
+    html = re.sub(r'<a class="btn ghost" href="es/"[^>]*>Espa�ol</a>',
+                  '<a class="btn ghost" href="%s" hreflang="en" lang="en" data-lang-switch="en">English</a>' % en_path, html)
     # language assets
     if 'lang.css' not in html:
-        html = html.replace('</head>', '<link rel="stylesheet" href="../assets/lang.css">\n</head>', 1)
+        html = html.replace('</head>', '<link rel="stylesheet" href="%sassets/lang.css">\n</head>' % PATH, 1)
     if 'lang.js' not in html:
-        html = html.replace('</body>', '<script src="../assets/lang.js"></script>\n</body>', 1)
+        html = html.replace('</body>', '<script src="%sassets/lang.js"></script>\n</body>' % PATH, 1)
     return html
 
 def to_spanish_legal(html, page):
@@ -121,6 +130,9 @@ for page in PAGES:
     io.open(dst, 'w', encoding='utf-8', newline='').write(html)
     print('ES built     ', page)
 print('done')
+if MISSES:
+    print('%d string(s) not found in the English source.' % len(MISSES))
+    sys.exit(1)
 if MISSES:
     print('--- MISSES (%d) ---' % len(MISSES))
     for m in MISSES:

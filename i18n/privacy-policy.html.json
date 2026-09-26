@@ -1,38 +1,86 @@
 [
- ["title: Privacy Policy", "title: Política de privacidad"],
- ["description: Privacy Policy for the O.A.S.I.S. website, Journal, contact channels and Max waitlist.", "description: Política de privacidad del sitio web de O.A.S.I.S., el Journal, los canales de contacto y la lista de espera de Max."],
- ["<p class=\"legal-meta\">Website edition · Effective 20 September 2026</p>", "<p class=\"legal-meta\">Edición web · En vigor desde el 20 de septiembre de 2026</p>"],
- ["<h1>Privacy Policy.</h1>", "<h1>Política de privacidad.</h1>"],
- ["<strong>Scope.</strong> This policy covers the O.A.S.I.S. website, Journal, public documentation, contact messages and Max waitlist. It does not describe the desktop application. App privacy documentation will be published separately before app distribution.",
-  "<strong>Alcance.</strong> Esta política cubre el sitio web de O.A.S.I.S., el Journal, la documentación pública, los mensajes de contacto y la lista de espera de Max. No describe la aplicación de escritorio. La documentación de privacidad de la app se publicará por separado antes de distribuirla."],
- ["This policy explains what information may be processed when you visit <span translate=\"no\">O.A.S.I.S.</span> online, why it is processed, which providers may receive it and how to contact us. It is written for the public website, not as a promise that every product feature is network-independent.",
-  "Esta política explica qué información puede tratarse cuando visitas <span translate=\"no\">O.A.S.I.S.</span> en línea, por qué se trata, qué proveedores pueden recibirla y cómo contactarnos. Está escrita para el sitio web público, no como promesa de que cada función del producto sea independiente de la red."],
- ["<h2>1. Who is responsible?</h2><p>The website is operated by the O.A.S.I.S. project. For privacy requests, contact <a href=\"mailto:hello@oasislocal.dev\">hello@oasislocal.dev</a>. If you need the legal identity or address of the responsible operator for a formal request, ask through that address and we will provide the applicable contact details.</p>",
-  "<h2>1. ¿Quién es responsable?</h2><p>El sitio web lo opera el proyecto O.A.S.I.S. Para solicitudes de privacidad, escribe a <a href=\"mailto:hello@oasislocal.dev\">hello@oasislocal.dev</a>. Si necesitas la identidad legal o la dirección del responsable para una solicitud formal, pídela a través de esa dirección y facilitaremos los datos de contacto aplicables.</p>"],
- ["<h2>2. Information we process</h2>", "<h2>2. Información que tratamos</h2>"],
- ["<th>Source</th><th>Information</th><th>Purpose</th>", "<th>Origen</th><th>Información</th><th>Finalidad</th>"],
- ["<td>Normal page visit</td><td>Technical request data handled by hosting/CDN providers</td><td>Delivery, security and availability</td>",
-  "<td>Visita normal a una página</td><td>Datos técnicos de la petición tratados por los proveedores de alojamiento/CDN</td><td>Entrega, seguridad y disponibilidad</td>"],
- ["<td>Theme preference</td><td>One local browser key: <code>oasis-theme</code></td><td>Remember dark/light mode</td>",
-  "<td>Preferencia de tema</td><td>Una clave local del navegador: <code>oasis-theme</code></td><td>Recordar el modo claro/oscuro</td>"],
- ["<td>GitHub star display</td><td>Public repository response requested from GitHub when the homepage loads</td><td>Show a public project signal</td>",
-  "<td>Estrellas de GitHub</td><td>Respuesta del repositorio público solicitada a GitHub al cargar la página de inicio</td><td>Mostrar una señal pública del proyecto</td>"],
- ["<td>Max waitlist</td><td>Email, selected interests and join date</td><td>Send the requested launch notification</td>",
-  "<td>Lista de espera de Max</td><td>Correo, intereses seleccionados y fecha de alta</td><td>Enviar el aviso de lanzamiento solicitado</td>"],
- ["<td>Email contact</td><td>Your email address and message</td><td>Respond to your request</td>",
-  "<td>Contacto por correo</td><td>Tu dirección de correo y tu mensaje</td><td>Responder a tu solicitud</td>"],
- ["<h2>3. Legal bases and use</h2><ul><li>Waitlist processing is based on your request and consent to receive the launch notification.</li><li>Replies to messages are processed to respond to you.</li><li>Security, abuse prevention and reliable delivery rely on the operator’s legitimate interest and provider obligations.</li><li>We do not use the website for behavioural advertising, profiling or sale of personal information.</li></ul>",
-  "<h2>3. Bases jurídicas y uso</h2><ul><li>El tratamiento de la lista de espera se basa en tu solicitud y tu consentimiento para recibir el aviso de lanzamiento.</li><li>Las respuestas a los mensajes se tratan para contestarte.</li><li>La seguridad, la prevención de abusos y una entrega fiable se apoyan en el interés legítimo del responsable y en las obligaciones de los proveedores.</li><li>No usamos el sitio para publicidad conductual, elaboración de perfiles ni venta de información personal.</li></ul>"],
- ["<h2>4. Providers and external requests</h2><p>The site is hosted and published through GitHub Pages. The homepage may request public repository data from the GitHub API to show a star count. The waitlist form sends its submission to an O.A.S.I.S.-configured Cloudflare Worker, which stores the waitlist record in Cloudflare KV. GitHub and Cloudflare may process technical data under their own terms and privacy policies.</p><p>Fonts and static assets used by normal page loads are served from this site. No Google Analytics, advertising pixels or third-party analytics SDK is installed.</p>",
-  "<h2>4. Proveedores y peticiones externas</h2><p>El sitio se aloja y publica mediante GitHub Pages. La página de inicio puede solicitar datos del repositorio público a la API de GitHub para mostrar un recuento de estrellas. El formulario de la lista de espera envía su contenido a un Worker de Cloudflare configurado por O.A.S.I.S., que guarda el registro de la lista en Cloudflare KV. GitHub y Cloudflare pueden tratar datos técnicos según sus propios términos y políticas de privacidad.</p><p>Las fuentes y los recursos estáticos de las cargas normales se sirven desde este mismo sitio. No hay Google Analytics, ni píxeles publicitarios, ni SDK de analítica de terceros.</p>"],
- ["<h2>5. Retention</h2><ul><li>Theme preference remains in your browser until you remove it or clear site data.</li><li>Waitlist records are retained until the relevant launch communication is completed or you request deletion, unless a longer period is required for security or legal obligations.</li><li>Email correspondence is retained only as long as reasonably necessary to handle the request and maintain project records.</li><li>Hosting, CDN and provider logs follow the provider’s retention policies.</li></ul>",
-  "<h2>5. Conservación</h2><ul><li>La preferencia de tema permanece en tu navegador hasta que la elimines o borres los datos del sitio.</li><li>Los registros de la lista de espera se conservan hasta que finalice la comunicación de lanzamiento correspondiente o solicites su supresión, salvo que se requiera un plazo mayor por seguridad u obligaciones legales.</li><li>La correspondencia por correo se conserva solo el tiempo razonablemente necesario para atender la solicitud y mantener los registros del proyecto.</li><li>Los registros de alojamiento, CDN y proveedores siguen las políticas de conservación del proveedor.</li></ul>"],
- ["<h2>6. Your choices and rights</h2><p>You can decline the waitlist, block optional requests, clear the theme key and contact us to request access, correction, deletion or restriction of your waitlist data. You may also object where processing relies on legitimate interests. You can complain to the data protection authority in your country. We may need enough information to verify a request.</p>",
-  "<h2>6. Tus opciones y derechos</h2><p>Puedes rechazar la lista de espera, bloquear las peticiones opcionales, borrar la clave del tema y escribirnos para solicitar acceso, rectificación, supresión o limitación de tus datos de la lista de espera. También puedes oponerte cuando el tratamiento se base en intereses legítimos. Puedes reclamar ante la autoridad de protección de datos de tu país. Podemos necesitar información suficiente para verificar una solicitud.</p>"],
- ["<h2>7. Children</h2><p>The website is not directed at children. Do not submit another person’s information to the waitlist.</p>",
-  "<h2>7. Menores</h2><p>El sitio web no está dirigido a menores. No envíes a la lista de espera información de otra persona.</p>"],
- ["<h2>8. Changes</h2><p>We may update this policy when the website or its providers change. The effective date at the top indicates the current version. Material changes will be highlighted on the Journal or changelog where appropriate.</p>",
-  "<h2>8. Cambios</h2><p>Podemos actualizar esta política cuando cambien el sitio o sus proveedores. La fecha de entrada en vigor de arriba indica la versión actual. Los cambios importantes se destacarán en el Journal o el registro de cambios cuando proceda.</p>"],
- ["<p class=\"cap\">This website policy is informational and does not replace advice from a qualified privacy professional. See also the <a href=\"{{ '/eula.html' | relative_url }}\">Website EULA</a> and <a href=\"{{ '/third-party-notices.html' | relative_url }}\">Third-party notices</a>.</p>",
-  "<p class=\"cap\">Esta política del sitio es informativa y no sustituye el consejo de un profesional cualificado en privacidad. Consulta también el <a href=\"{{ '/eula.html' | relative_url }}\">EULA del sitio</a> y los <a href=\"{{ '/third-party-notices.html' | relative_url }}\">Avisos de terceros</a>.</p>"]
+  [
+    "title: Privacy Policy",
+    "title: Política de privacidad"
+  ],
+  [
+    "description: Legal privacy policy for the O.A.S.I.S. website, Journal, contact channels and Max waitlist. What is collected, why, with whom and how to delete it.",
+    "description: Política de privacidad del sitio web de O.A.S.I.S., el Journal, los canales de contacto y la lista de espera de Max. Qué se recoge, por qué, con quién y cómo eliminarlo."
+  ],
+  [
+    "<p class=\"legal-meta\">Website edition · Effective 20 September 2026</p>",
+    "<p class=\"legal-meta\">Edición web · En vigor desde el 20 de septiembre de 2026</p>"
+  ],
+  [
+    "<h1>Privacy Policy.</h1>",
+    "<h1>Política de privacidad.</h1>"
+  ],
+  [
+    "<strong>Scope.</strong> This policy covers the O.A.S.I.S. website, Journal, public documentation, contact messages and Max waitlist. It does not describe the desktop application. App privacy documentation will be published separately before app distribution.",
+    "<strong>Alcance.</strong> Esta política cubre el sitio web de O.A.S.I.S., el Journal, la documentación pública, los mensajes de contacto y la lista de espera de Max. No describe la aplicación de escritorio. La documentación de privacidad de la app se publicará por separado antes de distribuirla."
+  ],
+  [
+    "This policy explains what information may be processed when you visit <span translate=\"no\">O.A.S.I.S.</span> online, why it is processed, which providers may receive it and how to contact us. It is written for the public website, not as a promise that every product feature is network-independent.",
+    "Esta política explica qué información puede tratarse cuando visitas <span translate=\"no\">O.A.S.I.S.</span> en línea, por qué se trata, qué proveedores pueden recibirla y cómo contactarnos. Está escrita para el sitio web público, no como promesa de que cada función del producto sea independiente de la red."
+  ],
+  [
+    "<h2>1. Who is responsible?</h2><p>The website is operated by the O.A.S.I.S. project. For privacy requests, contact <a href=\"mailto:hello@oasislocal.dev\">hello@oasislocal.dev</a>. If you need the legal identity or address of the responsible operator for a formal request, ask through that address and we will provide the applicable contact details.</p>",
+    "<h2>1. ¿Quién es responsable?</h2><p>El sitio web lo opera el proyecto O.A.S.I.S. Para solicitudes de privacidad, escribe a <a href=\"mailto:hello@oasislocal.dev\">hello@oasislocal.dev</a>. Si necesitas la identidad legal o la dirección del responsable para una solicitud formal, pídela a través de esa dirección y facilitaremos los datos de contacto aplicables.</p>"
+  ],
+  [
+    "<h2>2. Information we process</h2>",
+    "<h2>2. Información que tratamos</h2>"
+  ],
+  [
+    "<th>Source</th><th>Information</th><th>Purpose</th>",
+    "<th>Origen</th><th>Información</th><th>Finalidad</th>"
+  ],
+  [
+    "<td>Normal page visit</td><td>Technical request data handled by hosting/CDN providers</td><td>Delivery, security and availability</td>",
+    "<td>Visita normal a una página</td><td>Datos técnicos de la petición tratados por los proveedores de alojamiento/CDN</td><td>Entrega, seguridad y disponibilidad</td>"
+  ],
+  [
+    "<td>Theme preference</td><td>One local browser key: <code>oasis-theme</code></td><td>Remember dark/light mode</td>",
+    "<td>Preferencia de tema</td><td>Una clave local del navegador: <code>oasis-theme</code></td><td>Recordar el modo claro/oscuro</td>"
+  ],
+  [
+    "<td>GitHub star display</td><td>Public repository response requested from GitHub when the homepage loads</td><td>Show a public project signal</td>",
+    "<td>Estrellas de GitHub</td><td>Respuesta del repositorio público solicitada a GitHub al cargar la página de inicio</td><td>Mostrar una señal pública del proyecto</td>"
+  ],
+  [
+    "<td>Max waitlist</td><td>Email, selected interests and join date</td><td>Send the requested launch notification</td>",
+    "<td>Lista de espera de Max</td><td>Correo, intereses seleccionados y fecha de alta</td><td>Enviar el aviso de lanzamiento solicitado</td>"
+  ],
+  [
+    "<td>Email contact</td><td>Your email address and message</td><td>Respond to your request</td>",
+    "<td>Contacto por correo</td><td>Tu dirección de correo y tu mensaje</td><td>Responder a tu solicitud</td>"
+  ],
+  [
+    "<h2>3. Legal bases and use</h2><ul><li>Waitlist processing is based on your request and consent to receive the launch notification.</li><li>Replies to messages are processed to respond to you.</li><li>Security, abuse prevention and reliable delivery rely on the operator’s legitimate interest and provider obligations.</li><li>We do not use the website for behavioural advertising, profiling or sale of personal information.</li></ul>",
+    "<h2>3. Bases jurídicas y uso</h2><ul><li>El tratamiento de la lista de espera se basa en tu solicitud y tu consentimiento para recibir el aviso de lanzamiento.</li><li>Las respuestas a los mensajes se tratan para contestarte.</li><li>La seguridad, la prevención de abusos y una entrega fiable se apoyan en el interés legítimo del responsable y en las obligaciones de los proveedores.</li><li>No usamos el sitio para publicidad conductual, elaboración de perfiles ni venta de información personal.</li></ul>"
+  ],
+  [
+    "<h2>4. Providers and external requests</h2><p>The site is hosted and published through GitHub Pages. The homepage may request public repository data from the GitHub API to show a star count. The waitlist form sends its submission to an O.A.S.I.S.-configured Cloudflare Worker, which stores the waitlist record in Cloudflare KV. GitHub and Cloudflare may process technical data under their own terms and privacy policies.</p><p>Fonts and static assets used by normal page loads are served from this site. No Google Analytics, advertising pixels or third-party analytics SDK is installed.</p>",
+    "<h2>4. Proveedores y peticiones externas</h2><p>El sitio se aloja y publica mediante GitHub Pages. La página de inicio puede solicitar datos del repositorio público a la API de GitHub para mostrar un recuento de estrellas. El formulario de la lista de espera envía su contenido a un Worker de Cloudflare configurado por O.A.S.I.S., que guarda el registro de la lista en Cloudflare KV. GitHub y Cloudflare pueden tratar datos técnicos según sus propios términos y políticas de privacidad.</p><p>Las fuentes y los recursos estáticos de las cargas normales se sirven desde este mismo sitio. No hay Google Analytics, ni píxeles publicitarios, ni SDK de analítica de terceros.</p>"
+  ],
+  [
+    "<h2>5. Retention</h2><ul><li>Theme preference remains in your browser until you remove it or clear site data.</li><li>Waitlist records are retained until the relevant launch communication is completed or you request deletion, unless a longer period is required for security or legal obligations.</li><li>Email correspondence is retained only as long as reasonably necessary to handle the request and maintain project records.</li><li>Hosting, CDN and provider logs follow the provider’s retention policies.</li></ul>",
+    "<h2>5. Conservación</h2><ul><li>La preferencia de tema permanece en tu navegador hasta que la elimines o borres los datos del sitio.</li><li>Los registros de la lista de espera se conservan hasta que finalice la comunicación de lanzamiento correspondiente o solicites su supresión, salvo que se requiera un plazo mayor por seguridad u obligaciones legales.</li><li>La correspondencia por correo se conserva solo el tiempo razonablemente necesario para atender la solicitud y mantener los registros del proyecto.</li><li>Los registros de alojamiento, CDN y proveedores siguen las políticas de conservación del proveedor.</li></ul>"
+  ],
+  [
+    "<h2>6. Your choices and rights</h2><p>You can decline the waitlist, block optional requests, clear the theme key and contact us to request access, correction, deletion or restriction of your waitlist data. You may also object where processing relies on legitimate interests. You can complain to the data protection authority in your country. We may need enough information to verify a request.</p>",
+    "<h2>6. Tus opciones y derechos</h2><p>Puedes rechazar la lista de espera, bloquear las peticiones opcionales, borrar la clave del tema y escribirnos para solicitar acceso, rectificación, supresión o limitación de tus datos de la lista de espera. También puedes oponerte cuando el tratamiento se base en intereses legítimos. Puedes reclamar ante la autoridad de protección de datos de tu país. Podemos necesitar información suficiente para verificar una solicitud.</p>"
+  ],
+  [
+    "<h2>7. Children</h2><p>The website is not directed at children. Do not submit another person’s information to the waitlist.</p>",
+    "<h2>7. Menores</h2><p>El sitio web no está dirigido a menores. No envíes a la lista de espera información de otra persona.</p>"
+  ],
+  [
+    "<h2>8. Changes</h2><p>We may update this policy when the website or its providers change. The effective date at the top indicates the current version. Material changes will be highlighted on the Journal or changelog where appropriate.</p>",
+    "<h2>8. Cambios</h2><p>Podemos actualizar esta política cuando cambien el sitio o sus proveedores. La fecha de entrada en vigor de arriba indica la versión actual. Los cambios importantes se destacarán en el Journal o el registro de cambios cuando proceda.</p>"
+  ],
+  [
+    "<p class=\"cap\">This website policy is informational and does not replace advice from a qualified privacy professional. See also the <a href=\"{{ '/eula.html' | relative_url }}\">Website EULA</a> and <a href=\"{{ '/third-party-notices.html' | relative_url }}\">Third-party notices</a>.</p>",
+    "<p class=\"cap\">Esta política del sitio es informativa y no sustituye el consejo de un profesional cualificado en privacidad. Consulta también el <a href=\"{{ '/eula.html' | relative_url }}\">EULA del sitio</a> y los <a href=\"{{ '/third-party-notices.html' | relative_url }}\">Avisos de terceros</a>.</p>"
+  ]
 ]

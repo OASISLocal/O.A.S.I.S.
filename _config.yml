@@ -33,8 +33,11 @@ defaults:
 
 # Only these are processed by Jekyll; index.html and its existing
 # assets/ folder are left completely alone.
-include:
-  - _posts
+# No `include:` on purpose. Listing _posts there made Jekyll process the folder
+# a second time as ordinary pages, so every English article was published twice:
+# /blog/2026/09/25/what-is-ai-and-how-it-works/ and the unlinked duplicate
+# /_posts/2026-09-25-what-is-ai-and-how-it-works/. The posts collection is
+# always processed; nothing needs to be included to make that happen.
 # NOTE: this list REPLACES Jekyll's default exclude, not adds to it. Anything
 # not listed here gets published, including internal documentation and the
 # build tooling. `docs/`, `readme` and `Gemfile` were being served in production
@@ -44,6 +47,8 @@ exclude:
   - readme
   - Gemfile
   - "*.log"
+  - build_glossary.py
+  - check_lang.py
   - PRODUCT_TRUTH.md
   - CLAIMS_AUDIT.md
   - QA_CHECKLIST.md

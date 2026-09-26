@@ -96,6 +96,11 @@ if (Get-Command python -ErrorAction SilentlyContinue) {
   Write-Host "-- python build_glossary.py --check" -ForegroundColor DarkGray
   python build_glossary.py --check
   if ($LASTEXITCODE -ne 0) { Fail "build_glossary.py --check failed (a generated glossary file is stale, or a term points at a page or anchor that does not exist). Run: python build_glossary.py" }
+  # Spanish and English share their layouts, so an href without the language
+  # prefix is an English link on a Spanish page. 59 of them shipped once.
+  Write-Host "-- python check_lang.py" -ForegroundColor DarkGray
+  python check_lang.py
+  if ($LASTEXITCODE -ne 0) { Fail "check_lang.py failed (a layout links to the other language; use {{ lp | append: ... }})" }
 } else {
   Write-Host "WARNING: python not found, skipping check_site.py / check_claims.py / check_seo.py" -ForegroundColor Yellow
 }

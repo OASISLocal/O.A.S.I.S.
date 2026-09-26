@@ -48,6 +48,25 @@
     return (esDir + file) || '/';
   }
 
+  /* 0) An explicit choice is sticky, in both directions.
+
+     This is the safety net for the language. Every link in the layout now
+     carries the /es/ prefix, so it should never be needed -- but a link that
+     slips through (a hand-written one in a page, a bookmark, a search result)
+     used to drop the reader into the other language and keep them there, because
+     the redirect below only fired when there was no stored preference. The
+     server declares the twin with <link rel="alternate" hreflang>, so trust that
+     and only redirect when it is actually there. */
+  var stored = pref();
+  if (stored && ((stored === 'es') !== isES)) {
+    var want = document.querySelector('link[rel="alternate"][hreflang="' + stored + '"]');
+    var to = want && want.getAttribute('href');
+    if (to && to !== path) {
+      location.replace(to);
+      return;
+    }
+  }
+
   // 1) English page: auto-redirect to Spanish when the browser prefers it.
   if (!isES && lang === 'en' && !pref()) {
     var skip = /(^|\/)404\.html$/.test(path) || /\/launch\//.test(path);

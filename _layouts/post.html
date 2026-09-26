@@ -140,6 +140,13 @@ layout: default
     {%- endunless -%}
   {%- endif -%}
 {%- endfor -%}
+{%- comment -%}
+  Pass 3 runs only when the page's own language produced nothing. It used to top
+  up to three, which put an English article under a Spanish one even when the
+  Spanish twin was right there -- the exact language leak the site is trying to
+  avoid. The other language is a last resort, not a filler.
+{%- endcomment -%}
+{%- if slot == 0 -%}
 {%- for p in cross -%}
   {%- if slot < 3 and p.url != page.url and p.ref != page.ref -%}
     {%- assign already = false -%}
@@ -152,6 +159,7 @@ layout: default
     {%- endunless -%}
   {%- endif -%}
 {%- endfor -%}
+{%- endif -%}
 <nav class="cmp cmp-related" aria-labelledby="related-title">
   <h2 class="cmp-related__title" id="related-title">{% if es %}Más del Journal{% else %}More from the Journal{% endif %}</h2>
   {%- if related.size > 0 -%}

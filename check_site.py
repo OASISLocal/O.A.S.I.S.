@@ -19,6 +19,7 @@ import xml.etree.ElementTree as ET
 ROOT = os.path.dirname(os.path.abspath(__file__))
 os.chdir(ROOT)
 SITE = "https://oasislocal.github.io/O.A.S.I.S."
+BASEURL = "/O.A.S.I.S./"
 problems = []
 notes = []
 
@@ -123,8 +124,23 @@ for f in LINK_FILES:
             continue
         if href.endswith(SKIP_EXT):
             continue
-        # relative to the file
-        target = os.path.normpath(os.path.join(base, href.split("#")[0].split("?")[0]))
+        clean = href.split("#")[0].split("?")[0]
+        # The site lives under a subpath, so a link written as /O.A.SI.S./x
+        # means the repo-root x, and a link written as a bare /x or x is a bug:
+        # it drops the subpath and 404s in production. Both used to slip through
+        # because the old es/ pages used "../", which resolved by luck.
+        if clean.startswith(BASEURL):
+            target = clean[len(BASEURL):]
+            if not target:
+                continue
+        elif clean.startswith("/") or ":" in clean.split("/")[0]:
+            if clean.startswith("/"):
+                fail("link in %s -> %s ignores the site subpath '%s/' (it will 404)"
+                     % (f, href, BASEURL.strip("/")))
+                continue
+            target = os.path.normpath(os.path.join(base, clean))
+        else:
+            target = os.path.normpath(os.path.join(base, clean))
         target = os.path.normpath(target).replace("\\", "/")
         if target.startswith("./"):
             target = target[2:]
@@ -134,7 +150,70 @@ for f in LINK_FILES:
         if "{" in target or "assets/" in target or "launch/" in target or "i18n/" in target:
             continue
         if not os.path.exists(target):
-            fail("broken link in %s -> %s" % (f, href))
+            # A route and its source file are not the same name: the glossary is
+            # written as glossary.html and published as /glossary/. Accept any of
+            # the three shapes rather than calling a working link broken.
+            alts = [target + ".html", target.rstrip("/") + "/index.html",
+                    target.rstrip("/") + ".html"]
+            if not any(os.path.exists(a) for a in alts):
+                fail("broken link in %s -> %s" % (f, href))
+
+# ------------------------------------------------ 1a. links against the build
+# The pass above resolves source paths, which cannot see the difference between
+# a file and a route: glossary.html exists as a source file but Jekyll publishes
+# it as /glossary/, so every link to "glossary.html" 404s in production. That
+# was 30 links across the product pages. This pass walks the built site instead.
+SITE_DIR = "_site"
+if os.path.isdir(SITE_DIR):
+    built = set()
+
+    def add_built(rel):
+        rel = "/" + rel.replace(os.sep, "/")
+        built.add(rel)
+        if rel.endswith("/"):
+            built.add(rel + "index.html")
+        else:
+            built.add(rel + "/")
+            built.add(rel + "/index.html")
+            built.add(rel + ".html")
+
+    for dp, _d, fs in os.walk(SITE_DIR):
+        for f in fs:
+            p = os.path.join(dp, f)
+            rel = os.path.relpath(p, SITE_DIR)
+            if rel.endswith("index.html"):
+                built.add("/" + rel.replace(os.sep, "/")[:-len("index.html")])
+            else:
+                built.add("/" + rel.replace(os.sep, "/"))
+
+    BUILT_EXT = (".css", ".js", ".woff2", ".woff", ".png", ".jpg", ".svg", ".ico",
+                 ".xml", ".txt", ".json", ".webmanifest", ".map")
+    for dp, _d, fs in os.walk(SITE_DIR):
+        for f in fs:
+            if not f.endswith(".html"):
+                continue
+            p = os.path.join(dp, f)
+            page = "/" + os.path.relpath(p, SITE_DIR).replace(os.sep, "/")
+            if page.endswith("/index.html"):
+                page = page[:-len("index.html")]
+            src = read(p)
+            for href in re.findall(r'href="([^"]+)"', src):
+                if href.startswith(("http://", "https://", "mailto:", "#", "data:", "javascript:")):
+                    continue
+                if href.split("#")[0].split("?")[0].endswith(BUILT_EXT):
+                    continue
+                if "{" in href:
+                    continue
+                route = href.split("#")[0].split("?")[0]
+                if route.startswith(BASEURL):
+                    route = route[len(BASEURL):]
+                if not route.startswith("/"):
+                    continue
+                if route not in built:
+                    fail("link in the built page %s -> %s does not exist in _site"
+                         % (page, href))
+else:
+    notes.append("_site not present: skipped the built-link pass")
 
 # -------------------------------------------------------- 2/5. hreflang+sitemap
 sitemap = read("sitemap.xml")
